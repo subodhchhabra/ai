@@ -974,7 +974,7 @@ https://google-developers.appspot.com/machine-learning/crash-course/backprop-scr
 
 <section>
 <h3>What does the neural network learn?</h3>
-<p class="fragment">All the weights of a the neurons</p>
+<p class="fragment">Optimal values of weights (+biases) for all neurons</p>
 <pre><code contenteditable data-trim class="fragment line-numbers python">
 model.summary()</code></pre>
 <pre><code contenteditable data-trim class="fragment line-numbers python">
@@ -1453,7 +1453,7 @@ https://colab.research.google.com/github/Machine-Learning-Tokyo/DL-workshop-seri
 
         <section data-markdown>
                 <textarea data-template>
-### Fashion MNINST example
+### Fashion MNIST example
 
 28x28 grayscale images of fashion Items
 
@@ -1471,7 +1471,7 @@ https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/ten
                 <textarea data-template>
 ### Exercise
 
-_Can you improve the model for Fashion MNINST notebook?_
+_Can you improve the model for Fashion MNIST notebook?_
 
 * other/more/less layers
 * different sequence, less/more filters
@@ -1482,7 +1482,7 @@ _Can you improve the model for Fashion MNINST notebook?_
 
 <section data-markdown>
     <textarea data-template>
-### Next Level Fashion MNINST
+### Next Level Fashion MNIST
 
 * trained on powerful TPU (Tensor Processing Unit)
 * using better regularization 
@@ -1522,13 +1522,13 @@ https://medium.com/towards-data-science/neural-network-architectures-156e5bad51b
 
 <section data-markdown style="font-size: xx-large">
     <textarea data-template>
-### Fashion MNINST using Resnet / Mobilnet
+### Fashion MNIST using ResNet / MobileNet
 
-<small>Reset</small>
+<small>ResNet</small>
 <br>
 <img src='img/resnet-history.png' height="200px">
 
-<small>Mobilnet</small>
+<small>MobileNet</small>
 <br>
 <img src='img/mobilnet-historie.png' height="200px">
 <small>
@@ -1541,10 +1541,10 @@ https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/ten
     <textarea data-template>
 ### Transfer Learning
 
-* Keras provides a lot of pre-defined network architectures for image classification (like Restnet and Mobilnet)
-* You can get each of them pre-trained on a generic image data set
+* Keras provides a lot of pre-defined network architectures for image classification (like ResNet and MobileNet)
+* You can get each of them pre-trained on a generic image data set (ImageNet)
 * You can either use them as is
-* Or retrain with your own images
+* Or retrain (fine tune weights) with your own images
 * https://blog.keras.io/building-powerful-image-classification-models-using-very-little-data.html
 * Might be helpful if you do not have a lot of data
 
@@ -1679,8 +1679,8 @@ https://blog.acolyer.org/2016/04/21/the-amazing-power-of-word-vectors/
                                 <textarea data-template>
 ### Enter: Word Embeddings
 
-* Embedding: Transform a high dimensionalty to a lower one
-* Word Embedding: Transform one hot encodings into something of lower dimensionalty
+* Embedding: Transform a high dim. vector space to a lower one
+* Word Embedding: Transform sparse one hot encodings into a dense lower dim. encoding 
 
 <small>https://en.wikipedia.org/wiki/Word_embedding</small>
                                     </textarea>
@@ -1803,9 +1803,9 @@ Inspired by https://colab.research.google.com/drive/12uq1dCjN1tJy8OsnBnNGQ7Fjog9
         <textarea data-template>
 ## Second Challenge
 
-### Traditional Networks have no memory of previous events
+### Feed-forward Networks have no memory of previous events
 
-Which is required to "understand" text
+They lack capability to deal with sequential data, which is required to "understand" text
             </textarea>
             </section>
         
@@ -1823,6 +1823,7 @@ http://colah.github.io/posts/2015-08-Understanding-LSTMs/
     <section data-markdown>
         <textarea data-template>
 ### Unrolling the loop
+#### Becomes a truly deep feed-forward network!
 <img src='img/nlp/colah/RNN-unrolled.png'>
 
 <small>
@@ -1838,7 +1839,7 @@ http://colah.github.io/posts/2015-08-Understanding-LSTMs/
 _Vanishing or exploding gradient problem:_
 * Each step in training applies the same weights to the output, also in back-propagation  
 * The further we move backwards, the bigger (explodes) or smaller (vanishes) the gradient becomes
-
+* Multiplying many numbers <1 closes in on 0 (vanshing) and the same for >1 approaches infinty (exploding)
 <small>
 https://towardsdatascience.com/learn-how-recurrent-neural-networks-work-84e975feaaf7
 </small>
@@ -1847,7 +1848,7 @@ https://towardsdatascience.com/learn-how-recurrent-neural-networks-work-84e975fe
 
 <section data-markdown>
         <textarea data-template>
-### Intution of effect
+### Intuition of effect
 
 _Effectively long term memory does not work:_
 
@@ -1863,7 +1864,7 @@ _Effectively long term memory does not work:_
 
     <section data-markdown>
         <textarea data-template>
-### GRU (Gated Recurrent Unit) / LSTMS (Long short-term memory)
+### LSTM (Long short-term memory) / GRU (Gated Recurrent Unit)
 
 _allow past information
 to be reinjected at a later time, thus fighting the vanishing-gradient problem_
