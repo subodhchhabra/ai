@@ -592,7 +592,7 @@ To compare
     </textarea>
     </section>
 
-    <section data-markdown>
+    <!-- <section data-markdown>
             <textarea data-template>
 ### Average number of moves
 
@@ -602,7 +602,7 @@ To compare
 * _Go_: 75
 
         </textarea>
-        </section>        
+        </section>         -->
 
 <!-- <section data-markdown class="todo">
         <textarea data-template>
@@ -626,9 +626,13 @@ _Full, exhaustive search is mostly just not feasible_
     <textarea data-template>
 ### Mini Max, lookahead of 4 halfmoves
 
-_Computer maximixes and it is its move (squares)_
+_Computer maximixes and it is its move (circles)_
+
+<div class="fragment">
 
 <img src='img/search/Minimax.png'>
+</div>
+
 
 <small>
 https://en.wikipedia.org/wiki/Minimax    
@@ -661,9 +665,14 @@ https://en.wikipedia.org/wiki/Alpha%E2%80%93beta_pruning
 
 _can reach up to twice the depth of minimax_
 
+<div class="fragment">
+
 <img src="img/search/alpha-beta-intuition.png" alt="Alpha Beta Intuition" height="350px">
 <br>
+</div>
+<div class="fragment">
 No matter what Min does, Max can always win in leftmost branch, no need to check for the others
+</div>
 </textarea>
 </section>
 
@@ -761,7 +770,7 @@ _It heavily relies on human knowledge put into heuristics_
 * Alpha-Beta Search Pruning: https://en.wikipedia.org/wiki/Alpha%E2%80%93beta_search
 * Bitboards: https://en.wikipedia.org/wiki/Bitboard
 * Transposition Tables: https://en.wikipedia.org/wiki/Transposition_table
-* Late Move Reductions:: https://en.wikipedia.org/wiki/Late_Move_Reductions 
+* Late Move Reductions: https://en.wikipedia.org/wiki/Late_Move_Reductions (expand killer moves to full depth)
 * and many more
 
 https://en.wikipedia.org/wiki/Stockfish_(chess)
@@ -788,13 +797,13 @@ https://slido.com / DJCORDHOSE
 
     <section data-markdown>
             <textarea data-template>
-### Reasonable Heuristic for evaluation of position is cruical
+### Reasonable Heuristic for evaluation of position is cruical for deterministic search
 
-* Good solutions available for chess
+* Good solutions available for Chess
 * No good solutions for Go
     * Only a win as a state is a reliable indication
     * Need to search to the end
-    * Branching Factor Higher than Chess as well
+    * Branching factor higher than Chess as well
 
         </textarea>
         </section>
@@ -816,7 +825,7 @@ https://en.wikipedia.org/wiki/Monte_Carlo_method#/media/File:Pi_30K.gif
     </section>
 
         
-        <section data-markdown>
+        <!-- <section data-markdown>
                 <textarea data-template>
 ### Monte Carlo Game Search
 
@@ -832,11 +841,11 @@ Choose number of random experiment wisely based on branching factor
 https://en.wikipedia.org/wiki/Monte_Carlo_tree_search#Pure_Monte_Carlo_game_search
 </small>
             </textarea>
-            </section>
+            </section> -->
         
             <section data-markdown>
                     <textarea data-template>
-### Example: Monte Carlo Game Search
+### Monte Carlo Game Search
 
 <img src='img/search/monte_carlo_game_search.jpg' height="550px">
                         </textarea>
@@ -872,7 +881,24 @@ Choose a node to expand next
         </textarea>
         </section>
 
-        <section data-markdown style="font-size: xx-large">
+        <section data-markdown>
+            <textarea data-template>
+### Exploration vs Exploitation
+
+_Rather improve on states known as good or have a look at unknown moves?_
+
+* exploitation: choose moves with high average win ratio
+* exploration: choose moves with few simulations
+
+Compare: How would you explore a new city?
+            
+<small>
+https://en.wikipedia.org/wiki/Monte_Carlo_tree_search
+</small>
+        </textarea>
+        </section>
+
+        <!-- <section data-markdown style="font-size: xx-large">
             <textarea data-template>
 ### Exploration vs Exploitation
 
@@ -895,7 +921,7 @@ _Rather improve on states known as good or have a look at unknown moves?_
 https://en.wikipedia.org/wiki/Monte_Carlo_tree_search
 </small>
         </textarea>
-        </section>
+        </section> -->
 
         <section data-markdown>
             <textarea data-template>
@@ -997,14 +1023,14 @@ Explanation: http://tim.hibal.org/blog/alpha-zero-how-and-why-it-works/
         <textarea data-template>
 ### AlphaGo Zero adapting MCTS
 
-_core difference, now we are having a heuristic_ 
+_core difference: now we are have a heuristic_ 
 
 * choose child to expand using heuristic of game state (instead of random expansion phase)
-* determined by Convolutional Neural Network (Resnet)
+* determined by Convolutional Neural Network (ResNet)
 * simulation phase by playing against best known heuristic
 * CNN trained by which state leads to a win
 * CNN also gives estimation of which player is going to win
-* no other information went into training
+* no other information goes into training
 
 <small>
 https://deepmind.com/blog/alphago-zero-learning-scratch/    
@@ -1054,7 +1080,7 @@ https://youtu.be/Wujy7OzvdJk?t=1893
     
     
 
-        <section data-markdown>
+        <section data-markdown class="remote">
             <textarea data-template>
 ### Links for AlphaGo Zero
 
