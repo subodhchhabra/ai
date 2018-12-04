@@ -212,6 +212,18 @@ https://www.dur.ac.uk/research/directory/staff/?mode=pdetail&id=12916&sid=12916&
 </section>
 
 <section data-markdown>
+    <textarea data-template>
+### Our Story
+
+1. from path Finding
+1. to game search
+1. to monte carlo game search and tree search to
+1. to Alpha(Go) (Zero)
+
+</textarea>
+</section>
+
+<section data-markdown>
         <textarea data-template>
 ### Funny, but isn't there more to AI than ML?
 
@@ -260,18 +272,6 @@ https://www.manning.com/livevideo/deep-learning-crash-course?a_aid=djcordhose&a_
     </textarea>
 </section>
  -->
-
-<section data-markdown>
-        <textarea data-template>
-### Our Story
-
-1. from path Finding
-1. to game search
-1. to monte carlo game search and tree search to
-1. to Alpha(Go) (Zero)
-
-</textarea>
-</section>
 
 <!-- <section data-markdown>
 <textarea data-template>
@@ -640,24 +640,6 @@ https://en.wikipedia.org/wiki/Minimax
 </textarea>
 </section>
 
-<!-- <section data-markdown>
-    <textarea data-template>
-### Alpha–beta pruning
-
-* maintains two values, alpha and beta
-* alpha: minimum score of the maximizing player in a branch
-* beta: maximum score of the minimizing player in a branch
-* branch can be pruned if
-  * beta ≤ alpha
-  * as this will never happen if players play well
-* can reach approx. twice the depth of minimax in the same amount of time  
-
-<small>
-https://en.wikipedia.org/wiki/Alpha%E2%80%93beta_pruning    
-</small>
-</textarea>
-</section> -->
-
 
 <section data-markdown>
     <textarea data-template>
@@ -673,6 +655,24 @@ _can reach up to twice the depth of minimax_
 <div class="fragment">
 No matter what Min does, Max can always win in leftmost branch, no need to check for the others
 </div>
+</textarea>
+</section>
+
+<section data-markdown class="remote">
+    <textarea data-template>
+### How does Alpha–beta pruning work?
+
+* maintains two values, alpha and beta
+* alpha: minimum score of the maximizing player in a branch
+* beta: maximum score of the minimizing player in a branch
+* branch can be pruned if
+  * beta ≤ alpha
+  * as this will never happen if players play well
+* can reach approx. twice the depth of minimax in the same amount of time  
+
+<small>
+https://en.wikipedia.org/wiki/Alpha%E2%80%93beta_pruning    
+</small>
 </textarea>
 </section>
 
@@ -825,9 +825,18 @@ https://en.wikipedia.org/wiki/Monte_Carlo_method#/media/File:Pi_30K.gif
     </section>
 
         
-        <!-- <section data-markdown>
-                <textarea data-template>
+            <section data-markdown>
+                    <textarea data-template>
 ### Monte Carlo Game Search
+
+<img src='img/search/monte_carlo_game_search.jpg' height="550px">
+                        </textarea>
+                        </section>
+
+
+        <section data-markdown class="remote">
+                <textarea data-template>
+### Algorithm Monte Carlo Game Search
 
 * Start from a next move beginning from an initial state
 * For each next move
@@ -841,16 +850,8 @@ Choose number of random experiment wisely based on branching factor
 https://en.wikipedia.org/wiki/Monte_Carlo_tree_search#Pure_Monte_Carlo_game_search
 </small>
             </textarea>
-            </section> -->
+            </section>
         
-            <section data-markdown>
-                    <textarea data-template>
-### Monte Carlo Game Search
-
-<img src='img/search/monte_carlo_game_search.jpg' height="550px">
-                        </textarea>
-                        </section>
-
                         
         <section data-markdown>
             <textarea data-template>
@@ -898,30 +899,27 @@ https://en.wikipedia.org/wiki/Monte_Carlo_tree_search
         </textarea>
         </section>
 
-        <!-- <section data-markdown style="font-size: xx-large">
+        <section data-markdown style="font-size: xx-large" class="remote">
             <textarea data-template>
-### Exploration vs Exploitation
-
-_Rather improve on states known as good or have a look at unknown moves?_
+### Details: Exploration vs Exploitation
 
 * wi: number of wins for the node considered after the i-th move
 * ni: number of simulations for the node considered after the i-th move
 * Ni: total number of simulations after the i-th move
 * c: exploration parameter - theoretically equal to 2; in practice usually chosen empirically
 
+<br>
+
 <script type="math/tex; mode=display">
 {\displaystyle {\frac {w_{i}}{n_{i}}}+{\sqrt (c {\frac {\ln N_{i}}{n_{i}})}}}    
-            </script>
+</script>
 
-
+<br>            
 * first component: exploitation; it is high for moves with high average win ratio
 * second component: exploration; it is high for moves with few simulations            
             
-<small>
-https://en.wikipedia.org/wiki/Monte_Carlo_tree_search
-</small>
         </textarea>
-        </section> -->
+        </section>
 
         <section data-markdown>
             <textarea data-template>
@@ -1162,6 +1160,8 @@ https://slido.com / DJCORDHOSE
 
 <script>
         if (window.location.hostname.indexOf('localhost') !== -1) {
+            // only applies to local version
+            $('.remote').remove();
         } else {
             // only applies to public version
             $('.todo').remove();
