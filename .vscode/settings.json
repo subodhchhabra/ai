@@ -20,5 +20,6 @@
         "typescriptreact",
         "yml"
     ],
-    "liveServer.settings.multiRootWorkspaceName": "ai"
+    "liveServer.settings.multiRootWorkspaceName": "ai",
+    "python.pythonPath": "C:\\Users\\olive\\Anaconda3\\python.exe"
 }
