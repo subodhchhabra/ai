@@ -183,6 +183,59 @@ und auch bereits erste Werkzeuge kennen lernen, mit denen wir Machine Learning i
 
 Diese Talk eignet sich für jeden, der sich mit Software-Entwicklung beschäftigt und setzt kein Wissen über Machine Learning voraus.
              -->
+
+
+<!-- JFokus Hands-On
+
+3 hours
+
+https://www.jfokus.se/jfokus19/talks/2634
+
+
+Hands-on-lab: Machine Learning for Software Developers
+The idea of machine learning is to teach a system from given data rather than to program it from scratch. It is best
+suited when the problem at hand is hard to specify, but you have a lot of example solutions and solving the problem can
+tolerate some error or uncertainty. It can thus be a great addition to the skills of any software developer. Once you
+understand what machine learning can do you will see a lot of potential in the data you encounter every day.
+
+In this hands-on lab you will get a good understanding of how machine learning is different from classic software
+development and make first experiments using Scikit-learn and TensorFlow. There will be exercises on paper and in code
+using Python, but no previous knowledge of Python or machine learning is required.
+ -->
+
+<!-- JFokus Talk
+
+50 minutes
+
+https://www.jfokus.se/jfokus19/talks/2786
+
+Business Logic has always been very tedious to write and maintain at best and feels random and ad-hoc ad worst. Often
+we express large and growing sets of rules using nested if statements or similar constructs. Both form and content are
+often questionable, though. Could it be there are better solutions?
+
+In this talk we will discuss when Machine Learning might be the better option and which tools you would use. You will
+see actual code based on a real world example. -->
+
+<!-- embarc Hamburg Meetup
+
+90 Minuten
+
+Machine Learning: Das Ende der Businesslogik?
+
+Machine Learning Star Andrej Karpathy, Head of AI bei Tesla, beschreibt Neuronale Netzwerke als Software 2.0. 
+Also die neue Art zu Software zu entwickeln, die die klassische Art nicht ersetzen, sondern ergänzen wird.
+
+Passend dazu lernst du in diesem interaktiven Workshop, wo uns als Software-Architekten Machine Learning begegnet und wo sich der Ansatz von
+Machine Learning grundsätzlich von dem der Software-Entwicklung unterscheidet und wo es parallelen gibt. 
+
+Anhand eines praktischen Beispiels werden wir dabei Machine Learning als Alternative zu klassischer Business-Logik erleben. Dies wird durch einige Übungen auf Papier unterstützt.
+
+
+Dieser Workshop eignet sich für jeden, der sich mit Software-Entwicklung beschäftigt und setzt kein Wissen über Machine Learning voraus.
+
+-->
+
+
              <section>
             <h2>Machine Learning: Das Ende der Businesslogik?</h2>
             <p><a target="_blank" href="https://www.meetup.com/en-AU/Softwarearchitektur-Wien/events/256269462/?isFirstPublish=true">
@@ -325,14 +378,16 @@ return green # otherwise: low risk
 
 <section data-markdown>
     <textarea data-template>
-### Would we be able to separate different classes by a few lines?
+### Would we be able to separate different classes by drawing a few lines?
 
     </textarea>
         </section>
 
-<section data-markdown class="workshop">
+<section data-markdown class="workshop exercise">
     <textarea data-template>
 ### Exercise on Paper
+
+Part I: Marking on Training Data
 
     </textarea>
         </section>
@@ -410,6 +465,16 @@ _collecting data might be the hardest part of the job_
 
 </textarea>
 </section>
+
+<section data-markdown class="workshop exercise">
+    <textarea data-template>
+### Exercise on Paper
+
+Finding Errors
+
+    </textarea>
+        </section>
+
 
 <section data-markdown style="font-size: xx-large">
         <textarea data-template>
@@ -601,6 +666,16 @@ model.add(Dense(3, name='softmax', activation='softmax'))
 
 </textarea>
 </section>
+
+<section data-markdown class="workshop exercise">
+    <textarea data-template>
+### Exercise on Paper
+
+Part II: Check on Test Data
+
+    </textarea>
+        </section>
+
 
 <section id='overfitting'>
         <h3>The Issue: Overfitting</h2>
@@ -971,6 +1046,7 @@ https://twitter.com/fchollet/status/1035951190276681728
         }
         // remove for workshop version
         $('.workshop').remove();
+        $('.exercise').remove();
         
 
         Reveal.addEventListener( 'ready', function( event ) {
