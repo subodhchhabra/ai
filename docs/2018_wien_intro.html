@@ -236,10 +236,30 @@ Dieser Workshop eignet sich für jeden, der sich mit Software-Entwicklung besch�
 -->
 
 
-             <section>
+<section data-markdown class="preparation">
+        <textarea data-template>
+### Preparation Workshop
+
+* 2019-workshop-exercise.docx ausdrucken für alle Teilnehmer
+    </textarea>
+</section>
+
+<section data-markdown class="todo">
+    <textarea data-template>
+### jfokus
+
+* Übungen Decision Tree und NN
+</textarea>
+</section>
+
+        <section>
             <h2>Machine Learning: Das Ende der Businesslogik?</h2>
+            <br>
+            <br>
+            <br>
+            <br>
             <p><a target="_blank" href="https://www.meetup.com/en-AU/Softwarearchitektur-Wien/events/256269462/?isFirstPublish=true">
-                Softwarearchitektur Wien, Dezember 2018
+                Softwarearchitektur Meetup, Wien, Dezember 2018
             </a></p>
             <h4><a href="http://zeigermann.eu">Oliver Zeigermann</a> / 
                 <a href="http://twitter.com/djcordhose">@DJCordhose</a> /
@@ -250,7 +270,7 @@ Dieser Workshop eignet sich für jeden, der sich mit Software-Entwicklung besch�
             </a></small></p>
         </section>
 
-            <section data-markdown class="local">
+            <!-- <section data-markdown class="local">
         <textarea data-template>
 ### First question wins a free copy
 
@@ -263,8 +283,7 @@ https://www.manning.com/livevideo/deep-learning-crash-course?a_aid=djcordhose&a_
 </small>
 <br>
         </textarea>
-    </section>
-
+    </section> -->
 
     <section data-markdown>
         <textarea data-template>
@@ -383,11 +402,13 @@ return green # otherwise: low risk
     </textarea>
         </section>
 
+
 <section data-markdown class="workshop exercise">
     <textarea data-template>
-### Exercise on Paper
+### Paper Exercise #1 - Understanding the Supervised Learning Approach
 
-Part I: Marking on Training Data
+* Manually cluster areas of different customer types on the <em>upper part</em> of the handout
+* Be sure to use a ballpen and apply pressure when drawing
 
     </textarea>
         </section>
@@ -459,9 +480,25 @@ _collecting data might be the hardest part of the job_
 
 <section data-markdown class="workshop exercise">
     <textarea data-template>
-### Exercise on Paper
+### Exercise on Paper #2 - Data Cleaning and Feature Selection
 
-Finding Errors
+_Data Cleaning_
+* What errors do you find in the data? Mark on paper and describe
+* How to deal with those errors?
+
+_Feature Selection_
+* Which column would you predict?
+* Which columns would you use as input for training?
+* Would you use all columns? If not, why?
+
+<!--
+- Datendopplung Zeile 4/5 => eine löschen
+- Fehlender Wert Zeile 16 => Zeile löschen oder Durchschnitt
+- Spalte 'state' mit mehr als 50% fehlenden Werten
+- Zeile 23 Ausreißer: Zeile löschen oder auf plausiblen Wert korrigieren 
+- Zeile 24: Califorina
+-->
+
 
     </textarea>
         </section>
@@ -670,9 +707,12 @@ model.add(Dense(3, name='softmax', activation='softmax'))
 
 <section data-markdown class="workshop exercise">
     <textarea data-template>
-### Exercise on Paper
+### Exercise on Paper #3 - How well did you generalize?
 
-Part II: Check on Test Data
+<p>Turn the page and redraw the lines you printed through from the first page</p>
+<p>Get an estimate of the misclassified samples on both diagrams</p>
+<p>What do you think, is this result worse?</p>
+<p>What would you have done differently if you had been given this information before (that it is all about generalisation)?</p>
 
     </textarea>
         </section>
@@ -1068,9 +1108,9 @@ https://twitter.com/fchollet/status/1035951190276681728
             $('a').attr('target', '_blank')
 
         } );
-        // $('section').attr('data-background-image', "backgrounds/sky.jpg");
+        $('section').attr('data-background-image', "backgrounds/sky.jpg");
         // $('section').attr('data-background-image', "backgrounds/cloud.jpg");
-        $('section').attr('data-background-image', "backgrounds/snow.jpg");
+        // $('section').attr('data-background-image', "backgrounds/snow.jpg");
 
         // $('section').attr('data-background-image', "backgrounds/light-metal.jpg");
         // $('section').attr('data-background-image', "backgrounds/pink.jpg");
