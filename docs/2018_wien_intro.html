@@ -448,15 +448,6 @@ _collecting data might be the hardest part of the job_
     </textarea>
     </section>
 
-    <section data-markdown>
-    <textarea data-template>
-### Basic Check on Collected Data
-
-<img src='img/df_describe.png' height="500">
-
-</textarea>
-</section>
-
 <section data-markdown>
     <textarea data-template>
 ### Clean Data and Select Features
@@ -492,6 +483,16 @@ _Feature Selection_
 * Explore dependencies to decide what to use for training input
             </textarea>
             </section>
+
+    <section data-markdown>
+    <textarea data-template>
+### Final Check on Collected Data
+
+<img src='img/df_describe.png' height="500">
+
+</textarea>
+</section>
+
 
 <section data-markdown>
     <textarea data-template>
@@ -635,7 +636,7 @@ http://scikit-learn.org/stable/modules/tree.html#tree-algorithms-id3-c4-5-c5-0-a
 <pre><code contenteditable data-trim class="line-numbers python">
 model = keras.Sequential()
 
-model.add(Dense(100, name='hidden1', activation='relu', input_dim=2))
+model.add(Dense(100, name='hidden1', activation='relu', input_dim=3))
 model.add(Dense(100, name='hidden2', activation='relu'))
 model.add(Dense(3, name='softmax', activation='softmax'))
 </code></pre>
@@ -928,7 +929,7 @@ https://ranzato.github.io/publications/tutorial_deep_unsup_learning_part1_NeurIP
             <h3>There is no general AI</h3>
             <div class='fragment' style="float: left; padding-left: 50px">
                     <img src='img/no_brain_robo.jpg' height="300">
-                    <p><small><em>Consciousness or autonomous lernen<br>
+                    <p><small><em>Consciousness or autonomous learning<br>
                         does not exit in machines</em></small>
                     </p>
                 </div>
@@ -1067,7 +1068,9 @@ https://twitter.com/fchollet/status/1035951190276681728
             $('a').attr('target', '_blank')
 
         } );
-        $('section').attr('data-background-image', "backgrounds/sky.jpg");
+        // $('section').attr('data-background-image', "backgrounds/sky.jpg");
+        // $('section').attr('data-background-image', "backgrounds/cloud.jpg");
+        $('section').attr('data-background-image', "backgrounds/snow.jpg");
 
         // $('section').attr('data-background-image', "backgrounds/light-metal.jpg");
         // $('section').attr('data-background-image', "backgrounds/pink.jpg");
