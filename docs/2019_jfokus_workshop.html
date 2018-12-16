@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 
-    <title>HH Softwarearchitektur - Machine Learning</title>
+    <title>JFokus Workshop Machine Learning</title>
 
     <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
     <meta name="author" content="Hakim El Hattab">
@@ -154,26 +154,24 @@
 <div class="reveal">
     <div class="slides">
 
-<!-- embarc Hamburg Meetup
+<!-- JFokus Talk
 
-90 Minuten
+3 hours
 
-Machine Learning: Das Ende der Businesslogik?
+https://www.jfokus.se/jfokus19/talks/2634
 
-Machine Learning Star Andrej Karpathy, Head of AI bei Tesla, beschreibt Neuronale Netzwerke als Software 2.0. 
-Also die neue Art zu Software zu entwickeln, die die klassische Art nicht ersetzen, sondern ergänzen wird.
+Hands-on-lab: Machine Learning for Software Developers
+The idea of machine learning is to teach a system from given data rather than to program it from scratch. It is best
+suited when the problem at hand is hard to specify, but you have a lot of example solutions and solving the problem can
+tolerate some error or uncertainty. It can thus be a great addition to the skills of any software developer. Once you
+understand what machine learning can do you will see a lot of potential in the data you encounter every day.
 
-Passend dazu lernst du in diesem interaktiven Workshop, wo uns als Software-Architekten Machine Learning begegnet und wo sich der Ansatz von
-Machine Learning grundsätzlich von dem der Software-Entwicklung unterscheidet und wo es parallelen gibt. 
+In this hands-on lab you will get a good understanding of how machine learning is different from classic software
+development and make first experiments using Scikit-learn and TensorFlow. There will be exercises on paper and in code
+using Python, but no previous knowledge of Python or machine learning is required.
+ -->
 
-Anhand eines praktischen Beispiels werden wir dabei Machine Learning als Alternative zu klassischer Business-Logik erleben. Dies wird durch einige Übungen auf Papier unterstützt.
-
-
-Dieser Workshop eignet sich für jeden, der sich mit Software-Entwicklung beschäftigt und setzt kein Wissen über Machine Learning voraus.
-
--->
-
-<section data-markdown class="preparation">
+ <section data-markdown class="preparation">
     <textarea data-template>
 ### Preparation Workshop
 
@@ -181,24 +179,41 @@ Dieser Workshop eignet sich für jeden, der sich mit Software-Entwicklung besch�
 </textarea>
 </section>
 
+
         <section>
             <br>
             <br>
-            <h2>Machine Learning: Das Ende der Businesslogik?</h2>
+            <h2>Machine Learning for Software Developers</h2>
             <br>
             <br>
-            <p><a target="_blank" href="TODO">
-                Softwarearchitektur Meetup, Hamburg, Januar 2019
+            <p><a target="_blank" href="https://www.jfokus.se/jfokus19/talks/2634">
+                JFokus, Stockholm, February 2019
             </a></p>
             <h4><a href="http://zeigermann.eu">Oliver Zeigermann</a> / 
-                <a href="http://twitter.com/djcordhose">@DJCordhose</a> /
-                <a href="https://www.embarc.de/ ">embarc GmbH</a>
+                <a href="http://twitter.com/djcordhose">@DJCordhose</a>
             </h4>
             <p><small><a href="TODO">
                 TODO
             </a></small></p>
         </section>
 
+    <!-- <section data-markdown class="todo">
+        <textarea data-template>
+    </textarea>
+    </section> -->
+
+    <section data-markdown>
+        <textarea data-template>
+### Our plan for today
+
+1. Nature of Machine Learning
+1. Data Preparation (Optional)
+1. Implementation using Scikit-learn
+1. Making sure we really generalize to unknown data
+1. Deep Learning is all the hype
+</textarea>
+</section>
+    
     <section data-markdown>
         <textarea data-template>
 ### Our Scenario for today
@@ -451,7 +466,7 @@ _Feature Selection_
             </textarea>
             </section>
 
-    <section data-markdown class="detail">
+    <section data-markdown class="workshop">
     <textarea data-template>
 ### Final Check on Collected Data
 
@@ -494,29 +509,6 @@ Plotting the predictions as a background
         </textarea>
         </section>
 
-    <section>
-<h3>Code in Scikit-learn</h3>
-
-<p>Training</p>
-<pre><code contenteditable data-trim class="fragment line-numbers python">
-from sklearn.tree import DecisionTreeClassifier
-clf = DecisionTreeClassifier()
-clf.fit(X_train, y_train)
-            </code></pre>
-        
-<p>Prediction</p>
-<pre><code contenteditable data-trim class="fragment line-numbers python">
-y_pred = clf.predict(input)
-        </code></pre>
-
-<small>
-    <a href='https://scikit-learn.org/stable/modules/classes.html'>https://scikit-learn.org/stable/modules/classes.html</a>
-    <br>
-    <a href='https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/sklearn/overview.ipynb'>
-        https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/sklearn/overview.ipynb</a>
-</small>
-        </section>
-        
     <section data-markdown class="detail">
             <textarea data-template>
 ### How do they learn?
@@ -540,75 +532,52 @@ http://scikit-learn.org/stable/modules/tree.html#tree-algorithms-id3-c4-5-c5-0-a
         </div>
     </section>
 
-    <section data-markdown class="nn">
-            <textarea data-template>
-## Not bad, but can we do even better?
+    <section>
+<h3>Code in Scikit-learn</h3>
 
-        </textarea>
+<p>Training</p>
+<pre><code contenteditable data-trim class="fragment line-numbers python">
+from sklearn.tree import DecisionTreeClassifier
+clf = DecisionTreeClassifier()
+clf.fit(X_train, y_train)
+            </code></pre>
+        
+<p>Prediction</p>
+<pre><code contenteditable data-trim class="fragment line-numbers python">
+input = [[100.0, 48.0]]
+y_pred = clf.predict(input)
+> array([1]) # green
+        </code></pre>
+
+<small>
+    <a href='https://scikit-learn.org/stable/modules/classes.html'>https://scikit-learn.org/stable/modules/classes.html</a>
+</small>
         </section>
-    <section data-markdown class="nn">
-            <textarea data-template>
-### Foundation of Deep Neural Networks
-    
-<img src='img/insurance/neuron213.jpg'>
-    
-    </textarea>
-    </section>
-    
-    <section data-markdown class="nn">
+        
+
+    <section data-markdown>
         <textarea data-template>
-    ### From Neuron to Network 
-<a href='https://playground.tensorflow.org'>    
-    <img src='img/tf-plaground.png' height="500px">
-</a>
-    <small>
-    https://playground.tensorflow.org
-    </small>
-    </textarea>
+### Working with Colab Notebooks
+
+https://colab.research.google.com
+        </textarea>
     </section>
-    
-    <!-- <section class="nn">
-            <h3>Neural Networks</h3>
-            <div class="fragment">
 
-        <img src="img/decision-boundaries/15-nn-reg-test.png">
-        <small>Up to 80% accuracy on unknown data</small>
-        </div>
-    </section>
- -->
-<section data-markdown class="nn">
-    <textarea data-template>
-### Keras is TensorFlow's high level API
+<section data-markdown>
+<textarea data-template>
+### Hands-On
+_Run your first Colab Notbook_
 
-* https://www.tensorflow.org 
-* https://www.tensorflow.org/guide/low_level_intro 
-* https://www.tensorflow.org/guide/keras 
+* Open the notebook containing the training code 
+* Sign into your Google account or register a new one 
+* Execute cells until the notebook tells you to stop
+* Train the model and see how it would classify yourself
 
-    </textarea>
-</section>
-
-<section data-markdown class="nn">
-    <textarea data-template>
-### Next step: Encode this with Keras
-
-<img src='img/insurance/encoding3.jpg'>
-
+<small>
+https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/sklearn/dt-intro.ipynb
+</small>
 </textarea>
 </section>
-
-        <section class="nn">
-<h3>Code using Keras High Level API</h3>
-
-<p>Network Setup</p>
-<pre><code contenteditable data-trim class="line-numbers python">
-model = keras.Sequential()
-
-model.add(Dense(100, name='hidden1', activation='relu', input_dim=3))
-model.add(Dense(100, name='hidden2', activation='relu'))
-model.add(Dense(3, name='softmax', activation='softmax'))
-</code></pre>
-        
-        </section>
 
 <section data-markdown class="workshop">
     <textarea data-template>
@@ -687,8 +656,28 @@ Each ML strategy has its own means of Regularization, e.g.
 * NN: Dropout, Batch Normalization, Reduced Capacity, Reduced Training Time
             </textarea>
             </section>
-    
 
+<section data-markdown>
+<textarea data-template>
+### Hands-On: Colab Notebook Part II
+
+_Regularize your Decision tree_
+
+* Continue with your notebook from where you stopped
+* Execute the rest of the notebook
+* Change the maximum depth of the decision tree to fight overfitting
+* What is your best depth?
+* How do the decision boundaries change?
+* What are your best scores? 
+
+<small>
+https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/sklearn/dt-intro.ipynb
+</small>
+</textarea>
+</section>
+
+
+            
 <section data-markdown>
         <textarea data-template>
 ### Best Known Results after regularization
@@ -696,12 +685,113 @@ Each ML strategy has its own means of Regularization, e.g.
 Using neural networks with TensorFlow
 
 <img src='img/manning/nn-reg.png' height="450">
-
-<p class="fragment"><small>Up to 80% accuracy on test data using a regularized neural networks</small></p>
+<small class="fragment">Up to 80% accuracy on test data using a regularized neural networks</small>
 </textarea>
     </section>
 
+    <section data-markdown class="nn">
+        <textarea data-template>
+## Neural Networks?
+
+    </textarea>
+    </section>
+<section data-markdown class="nn">
+        <textarea data-template>
+### Foundation of Deep Neural Networks
+
+<img src='img/insurance/neuron213.jpg'>
+
+</textarea>
+</section>
+
+<section data-markdown class="nn">
+    <textarea data-template>
+### From Neuron to Network 
+<a href='https://playground.tensorflow.org'>    
+<img src='img/tf-plaground.png' height="500px">
+</a>
+<small>
+https://playground.tensorflow.org
+</small>
+</textarea>
+</section>
+
+    
 <section data-markdown>
+<textarea data-template>
+### Exercise
+_How many neurons do you need to decently separate the two classes from each other?_
+
+* You might have noticed that two neurons do not give good results. 
+* Can you figure out a minimal number of neurons to get a good result? 
+* As weights and biases are initialized randomly, training results are not deterministic. You might have to train several times.
+
+<a href="http://playground.tensorflow.org/#activation=tanh&amp;batchSize=10&amp;dataset=xor&amp;regDataset=reg-plane&amp;learningRate=0.03&amp;regularizationRate=0&amp;noise=0&amp;networkShape=2&amp;seed=0.90689&amp;showTestData=false&amp;discretize=true&amp;percTrainData=50&amp;x=true&amp;y=true&amp;xTimesY=false&amp;xSquared=false&amp;ySquared=false&amp;cosX=false&amp;sinX=false&amp;cosY=false&amp;sinY=false&amp;collectStats=false&amp;problem=classification&amp;initZero=false&amp;hideText=false&amp;showTestData_hide=true&amp;stepButton_hide=false&amp;activation_hide=true&amp;problem_hide=true&amp;noise_hide=true&amp;regularization_hide=true&amp;dataset_hide=true&amp;batchSize_hide=true&amp;learningRate_hide=true&amp;regularizationRate_hide=true&amp;percTrainData_hide=true&amp;numHiddenLayers_hide=true&amp;discretize_hide=true">
+https://playground.tensorflow.org
+</a>
+
+</textarea>
+</section>
+
+
+<!-- <section class="nn">
+        <h3>Neural Networks</h3>
+        <div class="fragment">
+
+    <img src="img/decision-boundaries/15-nn-reg-test.png">
+    <small>Up to 80% accuracy on unknown data</small>
+    </div>
+</section>
+-->
+<section data-markdown class="nn">
+<textarea data-template>
+### Keras is TensorFlow's high level API
+
+* https://www.tensorflow.org 
+* https://www.tensorflow.org/guide/low_level_intro 
+* https://www.tensorflow.org/guide/keras 
+
+</textarea>
+</section>
+
+<section data-markdown class="nn">
+<textarea data-template>
+### Next step: Encode this with Keras
+
+<img src='img/insurance/encoding3.jpg'>
+
+</textarea>
+</section>
+
+    <section class="nn">
+<h3>Code using Keras High Level API</h3>
+
+<p>Network Setup</p>
+<pre><code contenteditable data-trim class="line-numbers python">
+model = keras.Sequential()
+
+model.add(Dense(100, name='hidden1', activation='relu', input_dim=3))
+model.add(Dense(100, name='hidden2', activation='relu'))
+model.add(Dense(3, name='softmax', activation='softmax'))
+</code></pre>
+<small>
+    <a href='https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/sklearn/overview.ipynb'>
+        https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/sklearn/overview.ipynb</a>
+</small>
+    
+    </section>
+
+    <section data-markdown class="workshop">
+    <textarea data-template>
+### Where to go from here
+
+* Find yourself some datasets to experiment with: https://toolbox.google.com/datasetsearch
+* Visit my talk on Tuesday: https://www.jfokus.se/jfokus19/talks/2786
+* Watch my Deep Learning Crash Course: https://www.manning.com/livevideo/deep-learning-crash-course?a_aid=djcordhose&a_bid=e8e77cbf
+</textarea>
+</section>
+
+<section data-markdown class="talk">
     <textarea data-template>
 ### How does this behave in the real world?
 
@@ -713,7 +803,7 @@ https://twitter.com/brenankeller/status/1068615953989087232
 </textarea>
 </section>
 
-<section data-markdown>
+<section data-markdown class="talk">
     <textarea data-template>
 ### Revisiting the Risk Calculator
 
@@ -726,7 +816,7 @@ What about really fast cars?
 </textarea>
 </section>
 
-<section data-markdown>
+<section data-markdown class="talk">
     <textarea data-template>
 ### Areas not covered by training data
 
@@ -735,7 +825,7 @@ What about really fast cars?
 </textarea>
 </section>
 
-<section data-markdown style='font-size: xx-large'>
+<section data-markdown style='font-size: xx-large'  class="talk">
         <textarea data-template>
 ### How to deal with those blank spots?
 
@@ -754,7 +844,7 @@ What about really fast cars?
 </textarea>
     </section>
 
-<section data-markdown class="detail">
+<section data-markdown class="detail talk">
         <textarea data-template>
 ### Making Your Neural Network Say "I am not sure"
 
@@ -770,7 +860,7 @@ https://towardsdatascience.com/making-your-neural-network-say-i-dont-know-bayesi
 </textarea>
     </section>
 
-    <section data-markdown>
+    <section data-markdown class="talk">
         <textarea data-template>
     
 ## What does work?             
@@ -778,7 +868,7 @@ https://towardsdatascience.com/making-your-neural-network-say-i-dont-know-bayesi
 </textarea>
 </section>
 
-    <section data-markdown>
+    <section data-markdown class="talk">
         <textarea data-template>
 ### Supervised Machine Learning fits best when
 
@@ -790,7 +880,7 @@ https://towardsdatascience.com/making-your-neural-network-say-i-dont-know-bayesi
             </textarea>
             </section>
 
-<section data-markdown>
+<section data-markdown class="talk">
     <textarea data-template>
 <img src='img/twitter-fcholett-bias.png' height="580px">
 
@@ -810,7 +900,7 @@ https://twitter.com/fchollet/status/1050227462162894848
     </textarea>
 </section>
 -->
-<section data-markdown>
+<section data-markdown class="talk">
     <textarea data-template>
 <!-- ### Andrew Ng: Supervised Machine Learning -->
 
@@ -832,13 +922,13 @@ https://twitter.com/ilyasut/status/1070436619755241472
         </textarea>
         </section> -->
 
-<section data-markdown>
+<section data-markdown class="talk">
     <textarea data-template>
 ## Is Supervised Machine Learning all there is?
 </textarea>
 </section>
 
-<section data-markdown>
+<section data-markdown class="talk">
     <textarea data-template>
 ## Types of Learning
 <img src='img/types-of-ml.jpg'>
@@ -865,7 +955,7 @@ https://ranzato.github.io/publications/tutorial_deep_unsup_learning_part1_NeurIP
 
 
 
-            <section data-markdown>
+            <section data-markdown class="talk">
                     <textarea data-template>
                 
 ## What does not work?             
@@ -873,7 +963,7 @@ https://ranzato.github.io/publications/tutorial_deep_unsup_learning_part1_NeurIP
             </textarea>
             </section>
 
-            <section data-markdown>
+            <section data-markdown class="talk">
                     <textarea data-template>             
 ### The easy answer
 
@@ -887,7 +977,7 @@ https://ranzato.github.io/publications/tutorial_deep_unsup_learning_part1_NeurIP
             </textarea>
             </section>
 
-            <section data-markdown>
+            <section data-markdown class="talk">
                     <textarea data-template>             
 ## The harder answer ...
             
@@ -895,7 +985,7 @@ https://ranzato.github.io/publications/tutorial_deep_unsup_learning_part1_NeurIP
             </section>
 
 
-        <section>
+        <section class="talk">
             <h3>There is no general AI</h3>
             <div class='fragment' style="float: left; padding-left: 50px">
                     <img src='img/no_brain_robo.jpg' height="300">
@@ -910,7 +1000,7 @@ https://ranzato.github.io/publications/tutorial_deep_unsup_learning_part1_NeurIP
             </div>
         </section>
 
-    <section data-markdown>
+    <section data-markdown class="talk">
             <textarea data-template>
 <h4 class="fragment"> NY Times in 1958 after perceptrons were invented</h4>
 <img src='img/ny-times-1958.jpg' height="500px">
@@ -919,7 +1009,7 @@ https://ranzato.github.io/publications/tutorial_deep_unsup_learning_part1_NeurIP
                 </textarea>
             </section>
 
-<section data-markdown>
+<section data-markdown class="talk">
     <textarea data-template>
 ### What does this mean for you?
 
@@ -946,7 +1036,7 @@ https://twitter.com/SeanPedersen96/status/1063272488489099264
 </textarea>
 </section> -->
 
-            <section data-markdown>
+            <section data-markdown class="talk">
         <textarea data-template>
 <img src='img/twitter-cholett-applications.png' height="570px">
 
@@ -956,7 +1046,7 @@ https://twitter.com/fchollet/status/1035951190276681728
             </textarea>
             </section>
 
-    <section data-markdown>
+    <section data-markdown class="talk">
         <textarea data-template>
 ### How to integrate into existing software?
 
@@ -972,7 +1062,7 @@ _Measures_
         </textarea>
     </section>
 
-    <section data-markdown>
+    <section data-markdown class="talk">
         <textarea data-template>
 ### Machine Learning in Projects
 
@@ -986,7 +1076,7 @@ _Measures_
     </section>
 
 
-<section style="font-size: xx-large">
+<section style="font-size: xx-large" class="talk">
     <h2>Wrap-Up</h2>
     <ul>
         <li class="fragment">Machine Learning can learn from existing data and generalize from it
@@ -999,36 +1089,16 @@ _Measures_
     </ul>
     <br>
     <p>
-            <em>Softwarearchitektur Meetup - Machine Learning: Das Ende der Businesslogik?</em>
+            <em>JFokus 2019: Will Machine Learning kill Business Logic?</em>
         <br>
         <br>
-    <a href="http://zeigermann.eu">Oliver Zeigermann</a> / <a href="http://twitter.com/djcordhose">@DJCordhose</a> /
-    <a href="https://www.embarc.de/ ">embarc GmbH</a>
+    <a href="http://zeigermann.eu">Oliver Zeigermann</a> / <a href="http://twitter.com/djcordhose">@DJCordhose</a></a>
         <br>
     <a href="TODO">
         TODO
     </a>
     </p>
 </section>
-
-<!-- <section data-markdown class="todo">
-        <textarea data-template>
-- Unsupervised Länger
-  - Clustering erst mal mit K means (wie vorher)
-- Für jede ML Art Konkret Tools und Lib zeigen
-- Semi Supervised ML: https://twitter.com/colinraffel/status/1059941035651010561
-- Reinforcement Learning
-  - https://twitter.com/xbpeng4/status/1051880967814574087
-- GANs
-  - Auch aus anderen Talks
-  - Computer generated faces using generative adversarial network / progressive growing technique from Nvidia. Trained on 50,000 images from a photobooth at ZKM Center for Art and Media by @highqualitysh1t https://t.co/RO1EG6ha8S
-(https://twitter.com/darren_cullen/status/1060225126313156613?s=03)
-- Vision: If there’s this much hype about using lots of data to make predictions with AI I can’t even imagine the hype train when physics is invented we can make predictions with no data...
-(https://twitter.com/brendanjmeade/status/1060341302599081984?s=03)
-</textarea>
-</section> -->
-
-
 
     </div>
 
@@ -1054,8 +1124,10 @@ _Measures_
         // $('.exercise').remove();
 
         // tensorflow / neural network
-        $('.nn').remove();
+        // $('.nn').remove();
         
+        // remove for talk
+        $('.talk').remove();
 
         Reveal.addEventListener( 'ready', function( event ) {
             // do we want this???
