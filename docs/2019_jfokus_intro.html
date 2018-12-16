@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 
-    <title>Intro Machine Learning</title>
+    <title>JFokus Intro Machine Learning</title>
 
     <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
     <meta name="author" content="Hakim El Hattab">
@@ -153,55 +153,6 @@
 
 <div class="reveal">
     <div class="slides">
-        <!-- 
-Machine Learning Star Andrej Karpathy beschreibt Neuronale Netzwerke als Software 2.0. Also die neue Art zu Software zu entwickeln,
-die die klassische Art nicht ersetzen, sondern ergänzen wird.
-
-Passend dazu zeige ich in diesem Talk, wo uns als Software-Entwickler Machine Learning begegnet und wo sich der Ansatz von
-Machine Learning grundsätzlich von dem der Software-Entwicklung unterscheidet und wo es parallelen gibt. Wir werden dabei
-die unterschiedlichen Arten des Machine Learnings diskutieren, was diese auszeichnet, wie sie sich unterscheiden und welche
-Anwendungspotentiale in ihnen stecken.
-
-Vorausgesetzt wird dabei kein Wissen über Machine Learning.
-             -->
-        <!-- 
-
-JAX 2019
-
-Machine Learning: Das Ende der Businesslogik?
-
-Machine Learning Star Andrej Karpathy, Head of AI bei Tesla, beschreibt Neuronale Netzwerke als Software 2.0. 
-Also die neue Art zu Software zu entwickeln, die die klassische Art nicht ersetzen, sondern ergänzen wird.
-
-Passend dazu zeige ich in diesem Talk, wo uns als Software-Entwickler Machine Learning begegnet und wo sich der Ansatz von
-Machine Learning grundsätzlich von dem der Software-Entwicklung unterscheidet und wo es parallelen gibt. Wir werden dabei
-die unterschiedlichen Arten des Machine Learnings diskutieren, was diese auszeichnet, wie sie sich unterscheiden und welche
-Anwendungspotentiale in ihnen stecken. 
-
-Anhand einer praktischen Beispiels werden wir dabei Machine Learning als Alternative zu klassischer Business-Logik erleben 
-und auch bereits erste Werkzeuge kennen lernen, mit denen wir Machine Learning implementieren können.
-
-Diese Talk eignet sich für jeden, der sich mit Software-Entwicklung beschäftigt und setzt kein Wissen über Machine Learning voraus.
-             -->
-
-
-<!-- JFokus Hands-On
-
-3 hours
-
-https://www.jfokus.se/jfokus19/talks/2634
-
-
-Hands-on-lab: Machine Learning for Software Developers
-The idea of machine learning is to teach a system from given data rather than to program it from scratch. It is best
-suited when the problem at hand is hard to specify, but you have a lot of example solutions and solving the problem can
-tolerate some error or uncertainty. It can thus be a great addition to the skills of any software developer. Once you
-understand what machine learning can do you will see a lot of potential in the data you encounter every day.
-
-In this hands-on lab you will get a good understanding of how machine learning is different from classic software
-development and make first experiments using Scikit-learn and TensorFlow. There will be exercises on paper and in code
-using Python, but no previous knowledge of Python or machine learning is required.
- -->
 
 <!-- JFokus Talk
 
@@ -216,74 +167,22 @@ often questionable, though. Could it be there are better solutions?
 In this talk we will discuss when Machine Learning might be the better option and which tools you would use. You will
 see actual code based on a real world example. -->
 
-<!-- embarc Hamburg Meetup
-
-90 Minuten
-
-Machine Learning: Das Ende der Businesslogik?
-
-Machine Learning Star Andrej Karpathy, Head of AI bei Tesla, beschreibt Neuronale Netzwerke als Software 2.0. 
-Also die neue Art zu Software zu entwickeln, die die klassische Art nicht ersetzen, sondern ergänzen wird.
-
-Passend dazu lernst du in diesem interaktiven Workshop, wo uns als Software-Architekten Machine Learning begegnet und wo sich der Ansatz von
-Machine Learning grundsätzlich von dem der Software-Entwicklung unterscheidet und wo es parallelen gibt. 
-
-Anhand eines praktischen Beispiels werden wir dabei Machine Learning als Alternative zu klassischer Business-Logik erleben. Dies wird durch einige Übungen auf Papier unterstützt.
-
-
-Dieser Workshop eignet sich für jeden, der sich mit Software-Entwicklung beschäftigt und setzt kein Wissen über Machine Learning voraus.
-
--->
-
-
-<section data-markdown class="preparation">
-        <textarea data-template>
-### Preparation Workshop
-
-* 2019-workshop-exercise.docx ausdrucken für alle Teilnehmer
-    </textarea>
-</section>
-
-<section data-markdown class="todo">
-    <textarea data-template>
-### jfokus
-
-* Übungen Decision Tree und NN
-</textarea>
-</section>
-
         <section>
             <br>
             <br>
-            <h2>Machine Learning: Das Ende der Businesslogik?</h2>
+            <h2>Will Machine Learning kill Business Logic?</h2>
             <br>
             <br>
-            <p><a target="_blank" href="TODO">
-                TODO
+            <p><a target="_blank" href="https://www.jfokus.se/jfokus19/talks/2786">
+                JFokus, Stockholm, February 2019
             </a></p>
             <h4><a href="http://zeigermann.eu">Oliver Zeigermann</a> / 
-                <a href="http://twitter.com/djcordhose">@DJCordhose</a> /
-                <a href="https://www.embarc.de/ ">embarc GmbH</a>
+                <a href="http://twitter.com/djcordhose">@DJCordhose</a>
             </h4>
             <p><small><a href="TODO">
                 TODO
             </a></small></p>
         </section>
-
-            <!-- <section data-markdown class="local">
-        <textarea data-template>
-### First question wins a free copy
-
-<a href='https://www.manning.com/livevideo/deep-learning-crash-course?a_aid=djcordhose&a_bid=e8e77cbf'>
-    <img src='img/livevideo-deep-learning-crash-course-meap.png' height="400px">
-</a>
-
-<small>
-https://www.manning.com/livevideo/deep-learning-crash-course?a_aid=djcordhose&a_bid=e8e77cbf
-</small>
-<br>
-        </textarea>
-    </section> -->
 
     <section data-markdown>
         <textarea data-template>
@@ -299,7 +198,7 @@ https://www.manning.com/livevideo/deep-learning-crash-course?a_aid=djcordhose&a_
 
 <section data-markdown>
         <textarea data-template>
-### ML Car Insurance Risk Calculator
+### Three Inputs for Prediction
 
 <a href='html/calculator.html'>
 <img src='img/manning/calculator.png' height="450">
@@ -411,7 +310,7 @@ Looking at the problem from the perspective of our data
     <small  class="fragment">Would we able to rank me (47) for a car having 100 mph top speed, driving 10k miles per year?</small>
 </section>
 
-<section data-markdown>
+<section data-markdown class="workshop">
     <textarea data-template>
 ### Would we be able to separate different classes by drawing a few lines?
 
@@ -430,27 +329,27 @@ Looking at the problem from the perspective of our data
         </section>
 
 
-<section>
+<section class="workshop">
     <h3>Manual Classification - red</h3>
     <img src="img/decision-boundaries/decision-boundaries-1.jpg">
 </section>
 
-<section>
+<section class="workshop">
     <h3>Manual Classification - yellow</h3>
 <img src="img/decision-boundaries/decision-boundaries-2.jpg">
 </section>
 
-<section>
+<section class="workshop">
     <h3>Manual Classification - green</h3>
 <img src="img/decision-boundaries/decision-boundaries-3.jpg">
 </section>
 
-<section>
+<section class="workshop">
     <h3>Decision Bounaries</h3>
 <img src="img/decision-boundaries/decision-boundaries-4.jpg">
 </section>
 
-<section data-markdown>
+<section data-markdown class="workshop">
 <textarea data-template>
 ## Core Question
 
@@ -465,14 +364,14 @@ Looking at the problem from the perspective of our data
 </textarea>
 </section>
 
-<section data-markdown>
+<section data-markdown class="workshop">
     <textarea data-template>
 ### Step I
 ## Data Preparation
 </textarea>
 </section>
 
-<section data-markdown>
+<section data-markdown class="workshop">
         <textarea data-template>
 ### Data is King
 
@@ -485,7 +384,7 @@ _collecting data might be the hardest part of the job_
     </textarea>
     </section>
 
-<section data-markdown>
+<section data-markdown class="workshop">
     <textarea data-template>
 ### Clean Data and Select Features
 
@@ -520,7 +419,7 @@ _Feature Selection_
         </section>
 
 
-<section data-markdown style="font-size: xx-large">
+<section data-markdown style="font-size: xx-large" class="workshop">
         <textarea data-template>
 ### Results: Data Cleaning und Feature Selection
 
@@ -547,7 +446,7 @@ _Feature Selection_
 </section>
 
 
-<section data-markdown>
+<section data-markdown class="workshop">
     <textarea data-template>
 ### Step II
 ## Training
@@ -603,7 +502,7 @@ y_pred = clf.predict(input)
 </small>
         </section>
         
-    <section data-markdown>
+    <section data-markdown class="detail">
             <textarea data-template>
 ### How do they learn?
 
@@ -626,13 +525,13 @@ http://scikit-learn.org/stable/modules/tree.html#tree-algorithms-id3-c4-5-c5-0-a
         </div>
     </section>
 
-    <section data-markdown>
+    <section data-markdown class="nn">
             <textarea data-template>
 ## Not bad, but can we do even better?
 
         </textarea>
         </section>
-    <section data-markdown>
+    <section data-markdown class="nn">
             <textarea data-template>
 ### Foundation of Deep Neural Networks
     
@@ -641,7 +540,7 @@ http://scikit-learn.org/stable/modules/tree.html#tree-algorithms-id3-c4-5-c5-0-a
     </textarea>
     </section>
     
-    <section data-markdown>
+    <section data-markdown class="nn">
         <textarea data-template>
     ### From Neuron to Network 
 <a href='https://playground.tensorflow.org'>    
@@ -653,7 +552,7 @@ http://scikit-learn.org/stable/modules/tree.html#tree-algorithms-id3-c4-5-c5-0-a
     </textarea>
     </section>
     
-    <!-- <section>
+    <!-- <section class="nn">
             <h3>Neural Networks</h3>
             <div class="fragment">
 
@@ -662,7 +561,7 @@ http://scikit-learn.org/stable/modules/tree.html#tree-algorithms-id3-c4-5-c5-0-a
         </div>
     </section>
  -->
-<section data-markdown>
+<section data-markdown class="nn">
     <textarea data-template>
 ### Keras is TensorFlow's high level API
 
@@ -673,7 +572,7 @@ http://scikit-learn.org/stable/modules/tree.html#tree-algorithms-id3-c4-5-c5-0-a
     </textarea>
 </section>
 
-<section data-markdown>
+<section data-markdown class="nn">
     <textarea data-template>
 ### Next step: Encode this with Keras
 
@@ -682,7 +581,7 @@ http://scikit-learn.org/stable/modules/tree.html#tree-algorithms-id3-c4-5-c5-0-a
 </textarea>
 </section>
 
-        <section>
+        <section class="nn">
 <h3>Code using Keras High Level API</h3>
 
 <p>Network Setup</p>
@@ -696,7 +595,7 @@ model.add(Dense(3, name='softmax', activation='softmax'))
         
         </section>
 
-<section data-markdown>
+<section data-markdown class="workshop">
     <textarea data-template>
 ### Step III
 ## Evaluation
@@ -1020,7 +919,7 @@ If you want to adopt Machine Learning in your Company
 </textarea>
 </section>
 
-<section data-markdown>
+<!-- <section data-markdown>
     <textarea data-template>
 ### What really matters 
 
@@ -1030,7 +929,7 @@ If you want to adopt Machine Learning in your Company
 https://twitter.com/SeanPedersen96/status/1063272488489099264
 </small>
 </textarea>
-</section>
+</section> -->
 
             <section data-markdown>
         <textarea data-template>
@@ -1041,6 +940,36 @@ https://twitter.com/fchollet/status/1035951190276681728
 </small>
             </textarea>
             </section>
+
+    <section data-markdown>
+        <textarea data-template>
+### How to integrate into existing software?
+
+_Challenge_
+* Machine Learning Models are often trained in Python
+* Need a Python Server or other specialized servers
+* Sometimes even need a GPU to perform properly
+
+_Measures_
+* Use dedicated server and REST calls
+* REST overhead for fine grained calls too much overhead: consider custom implementations in host language 
+
+        </textarea>
+    </section>
+
+    <section data-markdown>
+        <textarea data-template>
+### Machine Learning in Projects
+
+* Data Science and Machine Learning can be experiments that fail often
+* Success of experiment can be precondition to starting a software project
+* ML experiment work rather feels like PO work
+* Some ML work rather is engineering, though
+* Can be part of an agile team
+
+        </textarea>
+    </section>
+
 
 <section style="font-size: xx-large">
     <h2>Wrap-Up</h2>
@@ -1055,13 +984,13 @@ https://twitter.com/fchollet/status/1035951190276681728
     </ul>
     <br>
     <p>
-            <em>Machine Learning: Das Ende der Businesslogik?</em>
+            <em>JFokus 2019: Will Machine Learning kill Business Logic?</em>
         <br>
         <br>
-    <a href="http://zeigermann.eu">Oliver Zeigermann</a> / <a href="http://twitter.com/djcordhose">@DJCordhose</a> / <a href="https://www.embarc.de/ ">embarc GmbH</a>
+    <a href="http://zeigermann.eu">Oliver Zeigermann</a> / <a href="http://twitter.com/djcordhose">@DJCordhose</a></a>
         <br>
-    <a href="http://bit.ly/wien-architectur">
-        http://bit.ly/wien-architectur
+    <a href="TODO">
+        TODO
     </a>
     </p>
 </section>
@@ -1095,6 +1024,9 @@ https://twitter.com/fchollet/status/1035951190276681728
 
 <script>
         if (window.location.hostname.indexOf('localhost') !== -1 && !printMode) {
+            // only applies to local version
+            $('.remote').remove();
+            $('.detail').remove();
         } else {
             // only applies to public version
             $('.todo').remove();
@@ -1104,6 +1036,9 @@ https://twitter.com/fchollet/status/1035951190276681728
         // remove for workshop version
         $('.workshop').remove();
         $('.exercise').remove();
+
+        // tensorflow / neural network
+        $('.nn').remove();
         
 
         Reveal.addEventListener( 'ready', function( event ) {
