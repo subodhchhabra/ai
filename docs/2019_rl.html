@@ -173,6 +173,206 @@
 </a></small></p>
 </section>
 
+<section data-markdown>
+    <textarea data-template>
+### Text Books
+
+* Standard: Reinforcement Learning: An Introduction
+  * Main page (including Code): http://incompleteideas.net/book/the-book-2nd.html
+  * Free PDF: https://drive.google.com/file/d/1opPSz5AZ_kVa1uWOdOiveNiBFiEOHjkG/view
+
+* More concise, more mathematical: Algorithms for Reinforcement Learning
+  * Main page: https://sites.ualberta.ca/~szepesva/RLBook.html
+  * Free PDF: https://sites.ualberta.ca/~szepesva/papers/RLAlgsInMDPs.pdf
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+## Types of Learning
+<img src='img/types-of-ml.jpg'>
+<small>
+https://www.facebook.com/nipsfoundation/posts/795861577420073/
+<br>
+https://ranzato.github.io/publications/tutorial_deep_unsup_learning_part1_NeurIPS2018.pdf
+</small>
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Introduction
+
+control a system so as to maximize some numerical value which represents a long-term objective
+
+<img src='img/rl_szepesva.png' height="350px">
+
+<small>
+https://sites.ualberta.ca/~szepesva/papers/RLAlgsInMDPs.pdf
+</small>
+</textarea>
+</section>
+
+
+<section data-markdown>
+<textarea data-template>
+### When to do Reinforcement Learning
+
+1. When you don't have suitable data
+1. You can accurately simulate an environment
+1. Maybe express your problem as a game                
+
+<!-- <small>
+TensorFlow based tool: https://github.com/deepmind/trfl/blob/master/docs/index.md
+</small> -->
+</textarea>
+</section>
+
+
+<section data-markdown>
+<textarea data-template>
+### Reinforcement Learning
+
+<div  style="max-width: 45%; float: left">
+<br>
+<img src="img/rl.png">
+</div>
+<div style="max-width: 50%; float: right">
+
+An Agent executes 
+
+<ol>
+<li>_Actions_ within a given  
+<li>_Environment_ which lead to a positive or negative 
+<li>_Reward_.
+<li>The Agent’s job is to maximise the cumulative Reward
+</ol>
+</div>
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Reward Hypothesis
+
+_All_ goals can be described by the maximisation of expected cumulative reward
+
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+### Reinforcement Learning Challenges
+
+1. Model your problem into an environment 
+  1. What is the observation space?
+  1. What is the action space?
+  1. What is the current situation?
+  1. How rewarding is the current situation?
+1. Give your agent a learning policy powerful enough to master your problem
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### OpenAI Platforms
+
+<img src='img/openai.jpg' height="500px">
+
+<small>
+https://openai.com/systems/
+</small>
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Atari Reinforcement Learning
+
+<img src='img/atari_rl.jpg'>
+<small>
+http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching_files/intro_RL.pdf    
+</small>
+</textarea>
+</section>
+    
+
+<section data-markdown style="font-size: xx-large">
+<textarea data-template>
+### Example Atari Environment: Space Invaders using OpenAI
+
+<img src='img/space-invaders-gym.png'>
+
+* Accumulated Reward 155
+* Observation Space: Pixels in three color channels
+* Action Space: 8 directions, plus fire on Atari joystick 
+
+<small>
+https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/openai-colab.ipynb
+<br>
+https://github.com/openai/gym/blob/master/gym/envs/atari/atari_env.py
+<br>
+https://github.com/openai/atari-py
+</small>
+</textarea>
+</section>
+
+<section data-markdown class="todo">
+        <textarea data-template>
+### Are our agents creative enough?
+
+1. Show the approaches (random and ppo) as movies
+1. Exploitation vs Exploration
+            </textarea>
+        </section>
+            
+
+<section data-markdown class="todo">
+    <textarea data-template>
+### Algorithms
+
+* RL as a learning problem best described using Markovian Decision Processes (MDPs)
+* MDPs describe states and probabilities for going from one sate to another
+* standard approach to ‘solve’ MDPs is to use dynamic programming
+* dynamic programming transforms the problem of finding a good controller into the problem of finding a good value function
+* apart from the simplest cases dynamic programming is infeasible
+* turning the infeasible dynamic programming methods into practical algorithms
+  * use powerful function approximation methods to compactly represent value functions
+  * allows dealing with large, high-dimensional state- and action-spaces
+</textarea>
+</section>
+
+<section data-markdown class="todo">
+    <textarea data-template>
+
+# FROM HERE JUST MATERIAL
+
+</textarea>
+</section>
+
+
+<section data-markdown class="todo">
+    <textarea data-template>
+### Advanced Deep Learning & Reinforcement Learning
+
+https://www.youtube.com/playlist?list=PLqYmG7hTraZDNJre23vqCGIVpfZ_K2RZs
+
+</textarea>
+</section>
+
+<section data-markdown class="todo">
+    <textarea data-template>
+### Intro
+
+https://www.youtube.com/watch?v=2pWv7GOvuf0
+
+http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching.html
+
+http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching_files/intro_RL.pdf
+</textarea>
+</section>
+
 <section data-markdown class="todo">
         <textarea data-template>
 ### Installation for RL Notebook without restart
@@ -188,7 +388,6 @@ http://jakevdp.github.io/blog/2017/12/05/installing-python-packages-from-jupyter
       1. Choose Example
       1. Write simple Code by hand that plays the game
    1. Step 3: Baselines
-1. Vortrag Christian ansehen
 1. Folien übersetzen
    </textarea>
 </section>
@@ -214,43 +413,6 @@ http://jakevdp.github.io/blog/2017/12/05/installing-python-packages-from-jupyter
 
 
 
-<section data-markdown>
-    <textarea data-template>
-## Types of Learning
-<img src='img/types-of-ml.jpg'>
-<small>
-https://www.facebook.com/nipsfoundation/posts/795861577420073/
-<br>
-https://ranzato.github.io/publications/tutorial_deep_unsup_learning_part1_NeurIPS2018.pdf
-</small>
-</textarea>
-</section>
-
-<section>
-    <h2>Reinforcement Learning</h2>
-</section>
-
-<section data-markdown>
-<textarea data-template>
-### Idee von Verstärkendem Lernen (Reinforcement Learning)
-
-<div  style="max-width: 45%; float: left">
-<br>
-<img src="img/rl.png">
-</div>
-<div style="max-width: 50%; float: right">
-
-Ein Software Agent führt 
-
-<ol>
-<li>_Aktionen (Actions)_ innerhalb einer  
-<li>_Umgebung (Environment)_ aus, die zu einer positiven oder negativen 
-<li>_Belohung (Reward)_ führen.
-<li>Belohnung wird durch Lern-Experimente maximiert
-</ol>
-</div>
-</textarea>
-</section>
 
 <section data-markdown>
 <textarea data-template>
@@ -292,55 +454,6 @@ https://twitter.com/evolvingstuff/status/1058220030045827072
 https://www.forbes.com/sites/quora/2018/10/26/reinforcement-learning-will-be-2019s-biggest-trend-in-data-science/#56470a067de2
 <br>
 https://www.quora.com/What-will-be-the-next-thing-to-revolutionize-data-science-in-2019    
-</small>
-</textarea>
-</section>
-
-<section data-markdown>
-<textarea data-template>
-### When to do Reinforcement Learning
-
-1. When you don't have suitable data
-1. You can accurately simulate an environment
-1. Maybe express your problem as a game                
-
-<!-- <small>
-TensorFlow based tool: https://github.com/deepmind/trfl/blob/master/docs/index.md
-</small> -->
-</textarea>
-</section>
-
-<section data-markdown>
-<textarea data-template>
-### Reinforcement Learning Challenges
-
-1. Model your problem into an environment 
-  1. What is the observation space?
-  1. What is the action space?
-  1. What is the current situation?
-  1. How rewarding is the current situation?
-1. Give your agent a learning policy powerful enough to master your problem
-
-</textarea>
-</section>
-
-
-<section data-markdown style="font-size: xx-large">
-<textarea data-template>
-### Example Atari Environment: Space Invaders
-
-<img src='img/space-invaders-gym.png'>
-
-* Accumulated Reward 155
-* Observation Space: Pixels in three color channels
-* Action Space: 8 directions, plus fire on Atari joystick 
-
-<small>
-https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/openai-colab.ipynb
-<br>
-https://github.com/openai/gym/blob/master/gym/envs/atari/atari_env.py
-<br>
-https://github.com/openai/atari-py
 </small>
 </textarea>
 </section>
