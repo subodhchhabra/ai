@@ -220,7 +220,7 @@ https://sites.ualberta.ca/~szepesva/papers/RLAlgsInMDPs.pdf
 
 1. When you don't have suitable data
 1. You can accurately simulate an environment
-1. Maybe express your problem as a game                
+1. Maybe express your problem as a game
 
 <!-- <small>
 TensorFlow based tool: https://github.com/deepmind/trfl/blob/master/docs/index.md
@@ -296,7 +296,26 @@ http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching_files/intro_RL.pdf
 </small>
 </textarea>
 </section>
-    
+
+<section data-markdown class="todo">
+    <textarea data-template>
+### Markov Process
+
+_Model your state in a way that how you came to a certain state does not matter any more_
+
+E.g. the position of the PacMan is not enough. Which path taken results in where the ghosts are and what pills have been eaten
+</textarea>
+</section>
+
+
+<section data-markdown class="todo">
+    <textarea data-template>
+### Policy
+_select an action based on the observed state of an environment_
+
+</textarea>
+</section>
+
 <section data-markdown>
     <textarea data-template>
 ### Policy Gradient
@@ -309,9 +328,6 @@ Courtesy of Christian Hidber
 </small>
 </textarea>
 </section>
-    
-
-
 
 <section data-markdown style="font-size: xx-large">
 <textarea data-template>
@@ -333,12 +349,22 @@ https://github.com/openai/atari-py
 </textarea>
 </section>
 
-<section data-markdown class="todo">
+<section data-markdown>
         <textarea data-template>
-### Are our agents creative enough?
+### Hands-On: Tweak Learning 
 
-1. Show the approaches (random and ppo) as movies
+Balance
 1. Exploitation vs Exploration
+1. Immediate vs Future Rewards
+
+<img src='img/cartpole-animation.gif'>
+
+
+<small>
+https://en.wikipedia.org/wiki/Q-learning#Influence_of_variables
+<br>
+https://storage.googleapis.com/tfjs-examples/cart-pole/dist/index.html    
+</small>
             </textarea>
         </section>
             
@@ -578,7 +604,7 @@ http://ai.googleblog.com/2018/08/introducing-new-framework-for-flexible.html
         }
         Reveal.addEventListener( 'ready', function( event ) {
                 // do we want this???
-                $('li').addClass('fragment')
+                // $('li').addClass('fragment')
 
             if (window.location.hostname.indexOf('localhost') !== -1) {
                 // only applies to presentation version
