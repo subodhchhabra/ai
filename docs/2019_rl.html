@@ -173,7 +173,7 @@
 </a></small></p>
 </section>
 
-<section data-markdown>
+<section data-markdown style="font-size: xx-large">
     <textarea data-template>
 ### Text Books
 
@@ -186,7 +186,6 @@
   * Free PDF: https://sites.ualberta.ca/~szepesva/papers/RLAlgsInMDPs.pdf
 </textarea>
 </section>
-
 
 
 <section data-markdown>
@@ -205,7 +204,7 @@ https://ranzato.github.io/publications/tutorial_deep_unsup_learning_part1_NeurIP
     <textarea data-template>
 ### Learning to Play Chess using Reinforcement Learning
 <a href='https://frpays.github.io/lc0-js/engine.html'>
-<img src='img/lczero.jpg'>
+<img src='img/lczero.jpg' height="400px">
 </a>
 <small>
 https://frpays.github.io/lc0-js/engine.html
@@ -215,11 +214,9 @@ https://twitter.com/frpays/status/1077672273673359361
 </textarea>
 </section>
 
-
-
 <section data-markdown>
     <textarea data-template>
-### Introduction
+### Idea of Reinforcement Learning
 
 control a system so as to maximize some numerical value which represents a long-term objective
 
@@ -256,16 +253,20 @@ TensorFlow based tool: https://github.com/deepmind/trfl/blob/master/docs/index.m
 <img src="img/rl.png">
 </div>
 <div style="max-width: 50%; float: right">
-
-An Agent executes 
-
+<br>
 <ol>
+    <li>Based on _Observations_ an _Agent_ executes </li>
 <li>_Actions_ within a given  
-<li>_Environment_ which lead to a positive or negative 
-<li>_Reward_.
-<li>The Agent’s job is to maximise the cumulative Reward
+<li>_Environment_ which lead to positive or negative 
+<li>_Rewards_.
 </ol>
 </div>
+
+<div style="clear: both;">
+    <br>
+    <p >The Agent’s job is to maximise the cumulative Reward</p>        
+</div>
+
 </textarea>
 </section>
 
@@ -274,20 +275,6 @@ An Agent executes
 ### Reward Hypothesis
 
 _All_ goals can be described by the maximisation of expected cumulative reward
-
-</textarea>
-</section>
-
-<section data-markdown>
-<textarea data-template>
-### Reinforcement Learning Challenges
-
-1. Model your problem into an environment 
-  1. What is the observation space?
-  1. What is the action space?
-  1. What is the current situation?
-  1. How rewarding is the current situation?
-1. Give your agent a learning policy powerful enough to master your problem
 
 </textarea>
 </section>
@@ -315,21 +302,154 @@ http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching_files/intro_RL.pdf
 </textarea>
 </section>
 
-<section data-markdown class="todo">
-    <textarea data-template>
-### Markov Process
+<section data-markdown style="font-size: xx-large">
+<textarea data-template>
+### Hands-On Colab: Atari Environment using OpenAI
 
-_Model your state in a way that how you came to a certain state does not matter any more_
+<a href='https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/openai-colab.ipynb'>
+<img src='img/space-invaders-gym.png'>
+</a>
+
+* Score given as Reward
+* Observation Space: Pixels in three color channels
+* Action Space: 8 directions, plus fire on Atari joystick
+
+<small>
+https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/openai-colab.ipynb
+<br>
+https://github.com/openai/gym/blob/master/gym/envs/atari/atari_env.py
+<br>
+https://github.com/openai/atari-py
+</small>
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Our Example: Consultant Travel
+
+* Visit each customer and return home
+* Reward per customer visited 1000
+* Each travel has a penalty up to 1000
+* Three customers, thus theoretical optimum 3000 (given 0 penalty)
+
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+### Reinforcement Learning Challenges
+
+1. Model your problem into an environment 
+  1. What is the observation space?
+  1. What is the action space?
+  1. What is the current situation?
+  1. How rewarding is the current situation?
+1. Give your agent a learning policy powerful enough to master your problem
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+## Step 1: Model environment
+
+</textarea>
+</section>
+
+
+<section data-markdown>
+    <textarea data-template>
+### Consultant Travel: Graph
+
+<img src='img/rl/berater/routes.jpg' height="500">
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Consultant Travel: Cost
+
+<img src='img/rl/berater/routes-cost.jpg' height="500">
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Consultant Travel: Actions
+
+<img src='img/rl/berater/routes-actions.jpg' height="500">
+
+</textarea>
+</section>
+<section>
+<h3>Perfect Path and Reward</h3>
+
+<pre><code contenteditable data-trim class="line-numbers python">
+S --0-> A R= 0.30 totalR= 0.30 cost= 100 customerR=1000
+A --0-> B R= 0.25 totalR= 0.55 cost= 250 customerR=1000
+B --1-> C R= 0.25 totalR= 0.80 cost= 250 customerR=1000
+C --2-> S R=-0.07 totalR= 0.73 cost= 200 customerR=   0
+                </code></pre>
+
+<img src='img/rl/berater/routes-actions.jpg' height="350">
+
+<p>Reward: 1000, penalty: 800, normalized: 0.73</p>
+        </section>
+            
+
+<section data-markdown>
+    <textarea data-template>
+### Prerequisite: Markovian Decision Processes
+
+_Model your observation in a way that how you came to a certain state does not matter any more_
 
 E.g. the position of the PacMan is not enough. Which path taken results in where the ghosts are and what pills have been eaten
 </textarea>
 </section>
 
-
-<section data-markdown class="todo">
+<section data-markdown>
     <textarea data-template>
-### Policy
-_select an action based on the observed state of an environment_
+### Modelling Observation
+
+agent needs an idea of how the world looks like
+
+* position of agent is just one information
+* but not enough, as it not self-sufficient according to Markovian Decision Processes
+* we also need to know that rewards go away once a customer has been visited
+* there are several ways of modelling this
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Our Observation Model
+
+calculate all combined rewards for all routes
+
+<pre><code contenteditable data-trim class="line-numbers python">
+# Initial position and rewards
+[  0. 900. 600. 800. 750. 600. 750.]    
+
+# Final position and rewards
+[   0. -100. -400. -200. -250. -400. -250.]
+
+</code></pre>
+
+very friendly for learning
+
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+## Step 2: Policy
+
+_select an action based on the observed state of our consultant environment_
 
 </textarea>
 </section>
@@ -347,35 +467,15 @@ Courtesy of Christian Hidber
 </textarea>
 </section>
 
-<section data-markdown style="font-size: xx-large">
-<textarea data-template>
-### Example Atari Environment: Space Invaders using OpenAI
-
-<img src='img/space-invaders-gym.png'>
-
-* Accumulated Reward 155
-* Observation Space: Pixels in three color channels
-* Action Space: 8 directions, plus fire on Atari joystick 
-
-<small>
-https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/openai-colab.ipynb
-<br>
-https://github.com/openai/gym/blob/master/gym/envs/atari/atari_env.py
-<br>
-https://github.com/openai/atari-py
-</small>
-</textarea>
-</section>
-
 <section data-markdown>
         <textarea data-template>
-### Hands-On: Tweak Learning 
+### Hands-On: Tweak Learning
 
 Balance
 1. Exploitation vs Exploration
-1. Immediate vs Future Rewards
+1. Immediate vs Future Rewards (set Gamma between 0.9 and 0.99)
 
-<img src='img/cartpole-animation.gif'>
+<img src='img/cartpole-animation.gif' height="200px">
 
 
 <small>
@@ -399,6 +499,29 @@ https://storage.googleapis.com/tfjs-examples/cart-pole/dist/index.html
 * turning the infeasible dynamic programming methods into practical algorithms
   * use powerful function approximation methods to compactly represent value functions
   * allows dealing with large, high-dimensional state- and action-spaces
+</textarea>
+</section>
+
+<section data-markdown class="todo">
+    <textarea data-template>
+### Algorithm Overview
+
+<img src='img/rl_algorithms_9_15.svg'>
+
+<small>
+https://spinningup.openai.com/en/latest/spinningup/rl_intro2.html    
+</small>
+
+</textarea>
+</section>
+
+<section data-markdown class="todo">
+    <textarea data-template>
+### Algorithm
+
+* Sampling Strategy: what experiments to make, what data to create
+* Policy: what action is best in which situation
+
 </textarea>
 </section>
 
@@ -543,6 +666,8 @@ https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/
 https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v2.ipynb
 
 https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v3.ipynb
+
+https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v4.ipynb
 
 https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/openai-gym-playground.ipynb
 
