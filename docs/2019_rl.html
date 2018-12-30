@@ -420,7 +420,13 @@ agent needs an idea of how the world looks like
 * but not enough, as it not self-sufficient according to Markovian Decision Processes
 * we also need to know that rewards go away once a customer has been visited
 * there are several ways of modelling this
+  * fully observed environment (e.g. Jump'n'Run Game)
+  * partially observed environment (e.g. Ego Shooter)
 
+<small>
+https://spinningup.openai.com/en/latest/spinningup/rl_intro.html    
+</small>
+        
 </textarea>
 </section>
 
@@ -441,6 +447,8 @@ calculate all combined rewards for all routes
 
 very friendly for learning
 
+_Alternative: only show rewards for the routes robot can take from current position_
+
 
 </textarea>
 </section>
@@ -456,14 +464,54 @@ _select an action based on the observed state of our consultant environment_
 
 <section data-markdown>
     <textarea data-template>
-### Policy Gradient
+### Policy Gradient for Discrete Actions
 
 use a neural network to approximate action probabilities
 
 <img src='img/hidber-policy-gradient.jpg'>
 <small>
-Courtesy of Christian Hidber
+Image Courtesy of Christian Hidber
+<br>
+https://spinningup.openai.com/en/latest/algorithms/vpg.html
 </small>
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Algorithm
+
+* Policy: probabilities for which action is best in which situation
+* Sampling Strategy: what experiments to make, what data to create
+  * make experiments according to probabilities for actions 
+</textarea>
+</section>
+
+<section data-markdown style="font-size: xx-large">
+    <textarea data-template>
+### Algorithms: More general
+
+* RL as a learning problem best described using Markovian Decision Processes (MDPs)
+* MDPs describe states and probabilities for going from one sate to another
+* standard approach to ‘solve’ MDPs is to use dynamic programming
+* dynamic programming transforms the problem of finding a good controller into the problem of finding a good value function
+* apart from the simplest cases dynamic programming is infeasible
+* turning the infeasible dynamic programming methods into practical algorithms
+  * use powerful function approximation methods to compactly represent value functions
+  * allows dealing with large, high-dimensional state- and action-spaces
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Algorithm Overview
+
+<img src='img/rl_algorithms_9_15.svg'>
+
+<small>
+https://spinningup.openai.com/en/latest/spinningup/rl_intro2.html    
+</small>
+
 </textarea>
 </section>
 
@@ -486,45 +534,6 @@ https://storage.googleapis.com/tfjs-examples/cart-pole/dist/index.html
             </textarea>
         </section>
             
-
-<section data-markdown class="todo">
-    <textarea data-template>
-### Algorithms
-
-* RL as a learning problem best described using Markovian Decision Processes (MDPs)
-* MDPs describe states and probabilities for going from one sate to another
-* standard approach to ‘solve’ MDPs is to use dynamic programming
-* dynamic programming transforms the problem of finding a good controller into the problem of finding a good value function
-* apart from the simplest cases dynamic programming is infeasible
-* turning the infeasible dynamic programming methods into practical algorithms
-  * use powerful function approximation methods to compactly represent value functions
-  * allows dealing with large, high-dimensional state- and action-spaces
-</textarea>
-</section>
-
-<section data-markdown class="todo">
-    <textarea data-template>
-### Algorithm Overview
-
-<img src='img/rl_algorithms_9_15.svg'>
-
-<small>
-https://spinningup.openai.com/en/latest/spinningup/rl_intro2.html    
-</small>
-
-</textarea>
-</section>
-
-<section data-markdown class="todo">
-    <textarea data-template>
-### Algorithm
-
-* Sampling Strategy: what experiments to make, what data to create
-* Policy: what action is best in which situation
-
-</textarea>
-</section>
-
 <section data-markdown class="todo">
     <textarea data-template>
 
@@ -636,19 +645,6 @@ https://twitter.com/evolvingstuff/status/1058220030045827072
 </textarea>
 </section>
 
-<section data-markdown>
-    <textarea data-template>
-### Aber Forbes meint:
-## Reinforcement Learning Will Be 2019's Biggest Trend In Data Science
-
-<small>
-https://www.forbes.com/sites/quora/2018/10/26/reinforcement-learning-will-be-2019s-biggest-trend-in-data-science/#56470a067de2
-<br>
-https://www.quora.com/What-will-be-the-next-thing-to-revolutionize-data-science-in-2019    
-</small>
-</textarea>
-</section>
-
 <section data-markdown class="todo">
     <textarea data-template>
 ### Example from Supervised RNN to RL
@@ -749,7 +745,7 @@ http://ai.googleblog.com/2018/08/introducing-new-framework-for-flexible.html
         }
         Reveal.addEventListener( 'ready', function( event ) {
                 // do we want this???
-                // $('li').addClass('fragment')
+            $('li').addClass('fragment')
 
             if (window.location.hostname.indexOf('localhost') !== -1) {
                 // only applies to presentation version
