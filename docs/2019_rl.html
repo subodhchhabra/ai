@@ -472,52 +472,87 @@ use a neural network to approximate action probabilities
 <small>
 Image Courtesy of Christian Hidber
 <br>
-https://spinningup.openai.com/en/latest/algorithms/vpg.html
+http://karpathy.github.io/2016/05/31/rl/
 </small>
 </textarea>
 </section>
 
-<section data-markdown class="todo">
+<section data-markdown>
     <textarea data-template>
-### Understanding Policy Gradient
+### Looking at Pong
+
+<img src='img/rl/pong/pong-random.gif' height="500">
+<small>
+    https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/pg-from-scratch.ipynb
+    </small>
+    
 </textarea>
 </section>
 
 <section data-markdown>
     <textarea data-template>
-### Untrained Pong
+### How Policy Gradient learns
 
-<img src='img/rl/pong/pong-random.gif'>
+_As we have no idea, try a bunch of stuff and see what happens. In the future do more of the stuff that worked well._
+
+* Network outputs probabilities for which action is best in which situation
+* what data to create: make experiments according to probabilities for actions
+* use eventual reward as label for state
+* store tuples of state, action until reward becomes clear
+* use SGD analogous to supervised learning 
+    
 </textarea>
 </section>
 
 <section data-markdown>
     <textarea data-template>
-### Weakly Trained using Policy Gradient
+### Policy Gradient Rollout
 
-<img src='img/rl/pong/pong-low.gif'>
+<img src='img/rl/pg-rollout.jpg' height="500">
+<small>
+Andrej Karpathy, Deep RL Bootcamp: https://www.youtube.com/watch?v=tqrcjHuNdmQ    
+</small>
 </textarea>
 </section>
 
 <section data-markdown>
     <textarea data-template>
-### Medium Well Trained using Policy Gradient
+### Loss in Policy Gradient
 
-<img src='img/rl/pong/pong-medium.gif'>
+<img src='img/rl/pg-loss.jpg' height="500">
+<small>
+Andrej Karpathy, Deep RL Bootcamp: https://www.youtube.com/watch?v=tqrcjHuNdmQ    
+</small>
 </textarea>
 </section>
 
-<!-- <section data-markdown>
+
+<section data-markdown>
     <textarea data-template>
-### Algorithm
-
-* Policy: probabilities for which action is best in which situation
-* Sampling Strategy: what experiments to make, what data to create
-  * make experiments according to probabilities for actions 
+<img src='img/rl/pg-discounting.jpg' height="600">
+<small>
+Andrej Karpathy, Deep RL Bootcamp: https://www.youtube.com/watch?v=tqrcjHuNdmQ    
+</small>
 </textarea>
 </section>
 
-<section data-markdown style="font-size: xx-large">
+<section data-markdown>
+    <textarea data-template>
+### Weakly Trained Model using Policy Gradient
+
+<img src='img/rl/pong/pong-low.gif' height="500">
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Medium Well Trained Model using Policy Gradient
+
+<img src='img/rl/pong/pong-medium.gif' height="500">
+</textarea>
+</section>
+
+<!-- <section data-markdown style="font-size: xx-large">
     <textarea data-template>
 ### Algorithms: More general
 
@@ -529,8 +564,8 @@ https://spinningup.openai.com/en/latest/algorithms/vpg.html
 * turning the infeasible dynamic programming methods into practical algorithms
   * use powerful function approximation methods to compactly represent value functions
   * allows dealing with large, high-dimensional state- and action-spaces
-</textarea>
-</section> -->
+</textarea> -->
+</section>
 
 <section data-markdown>
     <textarea data-template>
@@ -545,8 +580,6 @@ https://spinningup.openai.com/en/latest/spinningup/rl_intro2.html
 </textarea>
 </section>
 
-
-
 <section data-markdown>
     <textarea data-template>
 ### State of the art Algorithm: PPO
@@ -557,6 +590,8 @@ Proximal Policy Optimization
 
 <small>
 https://blog.openai.com/openai-baselines-ppo/
+<br>
+https://www.youtube.com/watch?v=5P7I-xPq8u8
 </small>
 
 </textarea>
@@ -576,6 +611,20 @@ https://blog.openai.com/openai-baselines-ppo/
 
 </textarea>
 </section>
+
+<section data-markdown class="todo">
+    <textarea data-template>
+### PPO builds on Policy Gradient
+
+1.
+
+<small>
+https://blog.openai.com/openai-baselines-ppo/
+</small>
+
+</textarea>
+</section>
+
 
 <!-- <section data-markdown>
         <textarea data-template>
@@ -713,7 +762,6 @@ http://ai.googleblog.com/2018/08/introducing-new-framework-for-flexible.html
 <section data-markdown class="todo">
     <textarea data-template>
 ### Overfitting
-
 
 * Das wird irgendwie nicht so breit diskutiert. Die meisten arbeiten ja mit Games, da ist es vermutlich auch nicht so ein Thema, da dort natürlicherweise a) mit einem random start state begonnen wird und b) das environment selbst oft randomness verwendet um den nächsten state zu definieren. Bei problemen aus «dem echten leben» dürfte das nicht immer zutreffen.
 * https://medium.com/singular-distillation/games-games-games-fighting-overfitting-in-reinforcement-learning-b464ed20cb1d
