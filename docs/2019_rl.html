@@ -538,17 +538,26 @@ Andrej Karpathy, Deep RL Bootcamp: https://www.youtube.com/watch?v=tqrcjHuNdmQ
 
 <section data-markdown>
     <textarea data-template>
-### Weakly Trained Model using Policy Gradient
+### Weakly Trained Model
 
 <img src='img/rl/pong/pong-low.gif' height="500">
+
+<small>
+batch_size = 10, learning_rate = 1e-3, gamma = 0.99, 1000 episodes    
+</small>
 </textarea>
 </section>
 
 <section data-markdown>
     <textarea data-template>
-### Medium Well Trained Model using Policy Gradient
+### Medium Well Trained Model
 
 <img src='img/rl/pong/pong-medium.gif' height="500">
+
+<small>
+batch_size = 10, learning_rate = 1e-4, gamma = 0.99, 2500 episodes    
+</small>
+    
 </textarea>
 </section>
 
@@ -584,14 +593,30 @@ https://spinningup.openai.com/en/latest/spinningup/rl_intro2.html
     <textarea data-template>
 ### State of the art Algorithm: PPO
 
-Proximal Policy Optimization
-
-<img src='img/ppo.jpg' height="400">
+<img src='img/ppo.jpg' height="450">
 
 <small>
 https://blog.openai.com/openai-baselines-ppo/
 <br>
+https://arxiv.org/abs/1707.06347
+<br>
 https://www.youtube.com/watch?v=5P7I-xPq8u8
+</small>
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### PPO Motivation
+
+_Policy gradient allows to easily incorporate neural network, but has two challenges_
+
+1. large number of samples typically required
+1. difficulty of obtaining stable and steady improvement becase of the nonstationarity of the incoming data
+
+<small>
+https://arxiv.org/abs/1506.02438
 </small>
 
 </textarea>
@@ -603,7 +628,7 @@ https://www.youtube.com/watch?v=5P7I-xPq8u8
 
 1. simple to implement (and thus to understand)
 1. easy to tune
-1. sample efficient
+1. sample efficiency
 
 <small>
 https://blog.openai.com/openai-baselines-ppo/
@@ -612,19 +637,66 @@ https://blog.openai.com/openai-baselines-ppo/
 </textarea>
 </section>
 
-<section data-markdown class="todo">
+<section data-markdown>
     <textarea data-template>
-### PPO builds on Policy Gradient
+### PPO Concepts
 
-1.
+* _sample efficiency_: value function estimates how good a position is (what reward to expect)
+* _stable and steady improvement_:  New policy will not change too much from step to step
+* Network has two heads:
+  * policy predicts action to be taken
+  * value function
+* Entropy parameter defines Exploitation vs Exploration
+* PPO can run highly parallel
 
 <small>
-https://blog.openai.com/openai-baselines-ppo/
+Arxiv Insights: https://www.youtube.com/watch?v=5P7I-xPq8u8
+<br>
+https://stackoverflow.com/questions/46422845/what-is-the-way-to-understand-proximal-policy-optimization-algorithm-in-rl
 </small>
 
 </textarea>
 </section>
 
+<section data-markdown>
+    <textarea data-template>
+### PPO Overview
+
+<img src='img/rl/ppo-overview.jpg' height="500px">
+
+<small>
+Arxiv Insights: https://www.youtube.com/watch?v=5P7I-xPq8u8
+</small>
+
+</textarea>
+</section>
+
+<section data-markdown style="font-size: x-large">
+    <textarea data-template>
+### OpenAPI PPO Parameters and their Defaults
+
+_Parameters you can tweak_
+* nsteps: batch size, 2048
+* lr: learning rate, 3e-4
+* gamma: discounting factor, 0.99 (often between 0.9 and 0.99)
+* ent_coef: value policy entropy coefficient in the optimization objective (c2 in the paper), 0.0 
+
+_Parameters you probably do not touch_
+* cliprange: clipping range (epsilon in the paper), 0.2
+* lam: advantage estimation discounting factor (GAE parameter / lambda in the paper), 0.95
+* vf_coef: value function loss coefficient in the optimization objective (c1 in the paper), 0.5 
+* max_grad_norm: gradient norm clipping coefficient, 0.5
+
+<small>
+https://github.com/openai/baselines/blob/master/baselines/ppo2/ppo2.py
+<br>
+PPO: https://arxiv.org/abs/1707.06347
+<br>
+GAE (lambda): https://arxiv.org/abs/1506.02438
+</small>
+
+</textarea>
+</section>
 
 <!-- <section data-markdown>
         <textarea data-template>
