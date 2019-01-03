@@ -698,6 +698,94 @@ GAE (lambda): https://arxiv.org/abs/1506.02438
 </textarea>
 </section>
 
+<section data-markdown>
+    <textarea data-template>
+## Step 3: Generalizing Environment
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Complete Graph
+
+<img src='img/rl/berater/graph-large-actions.png' height="500">
+
+</textarea>
+</section>
+
+
+<section data-markdown>
+    <textarea data-template>
+### New Observation Model
+
+_only show rewards for the routes agent can take from current position_
+
+<pre><code contenteditable data-trim class="line-numbers python">
+# Initial position and rewards
+[    0.   700.   900.   800. -1000.]    
+
+# Final position and rewards
+[    0.  -300.  -100.  -200. -1000.]
+
+</code></pre>
+
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### What is the optimum?
+
+could be calculated by deterministic baseline (https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm)
+
+Estimation
+* random has reward of -5.51
+* total cost when travelling all paths (back and forth): 5000
+* additional pernalty for illegal moves 1000
+* all rewards: 13000
+* perfect score???
+* estimate: half the travel cost and no illegal moves: (13000 - 2500) / 13000 = .80
+
+</textarea>
+</section>
+
+<section style="font-size: xx-large">
+<h3>Path after training</h3>
+<div style="float: left; width: 700px;">
+<pre><code contenteditable data-trim class="line-numbers python">
+S --1-> B R= 0.07 totalR= 0.07 cost= 100 customerR=1000
+B --3-> K R= 0.06 totalR= 0.13 cost= 200 customerR=1000
+K --1-> H R= 0.05 totalR= 0.18 cost= 300 customerR=1000
+H --0-> E R= 0.07 totalR= 0.25 cost= 100 customerR=1000
+E --0-> A R= 0.07 totalR= 0.32 cost= 100 customerR=1000
+A --3-> D R= 0.07 totalR= 0.39 cost= 100 customerR=1000
+D --1-> F R= 0.07 totalR= 0.47 cost=  50 customerR=1000
+F --2-> G R= 0.06 totalR= 0.53 cost= 200 customerR=1000
+G --1-> O R= 0.05 totalR= 0.58 cost= 300 customerR=1000
+O --0-> N R= 0.07 totalR= 0.65 cost= 100 customerR=1000
+N --0-> M R= 0.07 totalR= 0.72 cost= 100 customerR=1000
+M --0-> C R= 0.07 totalR= 0.79 cost= 100 customerR=1000
+C --3-> L R= 0.06 totalR= 0.85 cost= 200 customerR=1000
+L --0-> C R=-0.02 totalR= 0.83 cost= 200 customerR=   0
+C --1-> B R=-0.00 totalR= 0.83 cost=  50 customerR=   0
+B --0-> S R=-0.01 totalR= 0.82 cost= 100 customerR=   0
+</code></pre>
+</div>
+<div style="float: right;">
+    <img src='img/rl/berater/sample-solution.jpg' height="350">
+</div>
+
+<small>
+<a href="https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v6.ipynb">
+https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v6.ipynb
+</a>
+</small>
+
+        </section>
+
+
 <!-- <section data-markdown>
         <textarea data-template>
 ### Hands-On: Tweak Learning
