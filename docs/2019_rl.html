@@ -785,6 +785,39 @@ https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/
 
         </section>
 
+<section style="font-size: xx-large">
+<h3>Generalize to sub sets of of customers to be visited</h3>
+<div style="float: left; width: 700px;">
+<pre><code contenteditable data-trim class="line-numbers python">
+S --0-> A R= 0.12 totalR= 0.12 cost= 300 customerR=1000
+A --2-> E R= 0.15 totalR= 0.27 cost= 100 customerR=1000
+E --2-> H R= 0.15 totalR= 0.42 cost= 100 customerR=1000
+H --0-> E R=-0.02 totalR= 0.40 cost= 100 customerR=   0
+E --1-> F R=-0.02 totalR= 0.38 cost= 100 customerR=   0
+F --0-> D R= 0.16 totalR= 0.54 cost=  50 customerR=1000
+D --0-> A R=-0.02 totalR= 0.52 cost= 100 customerR=   0
+A --2-> E R=-0.02 totalR= 0.51 cost= 100 customerR=   0
+E --1-> F R=-0.02 totalR= 0.49 cost= 100 customerR=   0
+F --2-> G R=-0.03 totalR= 0.46 cost= 200 customerR=   0
+G --1-> O R=-0.05 totalR= 0.41 cost= 300 customerR=   0
+O --0-> N R=-0.02 totalR= 0.39 cost= 100 customerR=   0
+N --0-> M R=-0.02 totalR= 0.37 cost= 100 customerR=   0
+M --1-> L R= 0.16 totalR= 0.53 cost=  50 customerR=1000
+L --0-> C R= 0.13 totalR= 0.67 cost= 200 customerR=1000
+C --0-> S R=-0.03 totalR= 0.63 cost= 200 customerR=   0
+</code></pre>
+</div>
+<div style="float: right;">
+    <img src='img/rl/berater/sample-solution-generalized.jpg' height="350">
+</div>
+
+<small>
+<a href="https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v6.ipynb">
+https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v7.ipynb
+</a>
+</small>
+
+        </section>
 
 <!-- <section data-markdown>
         <textarea data-template>
@@ -836,16 +869,8 @@ http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching_files/intro_RL.pdf
 </textarea>
 </section>
 
-<section data-markdown class="todo">
-        <textarea data-template>
-### More intro
 
-https://medium.com/@m.alzantot/deep-reinforcement-learning-demysitifed-episode-2-policy-iteration-value-iteration-and-q-978f9e89ddaa
-
-</textarea>
-</section> -->
-
-<!-- <section data-markdown>
+ <section data-markdown>
 <textarea data-template>
 <img src='img/robot-fun.jpg' height="500px">
 
@@ -892,6 +917,8 @@ https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/
 https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v5.ipynb
 
 https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v6.ipynb
+
+https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v7.ipynb
 
 https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/openai-gym-playground.ipynb
 
