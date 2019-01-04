@@ -204,7 +204,7 @@ https://ranzato.github.io/publications/tutorial_deep_unsup_learning_part1_NeurIP
     <textarea data-template>
 ### Learning to Play Chess using Reinforcement Learning
 <a href='https://frpays.github.io/lc0-js/engine.html'>
-<img src='img/lczero.jpg' height="400px">
+<img src='img/rl/lczero.jpg' height="400px">
 </a>
 <small>
 https://frpays.github.io/lc0-js/engine.html
@@ -220,7 +220,7 @@ https://twitter.com/frpays/status/1077672273673359361
 
 control a system so as to maximize some numerical value which represents a long-term objective
 
-<img src='img/rl_szepesva.png' height="350px">
+<img src='img/rl/rl_szepesva.png' height="350px">
 
 <small>
 https://sites.ualberta.ca/~szepesva/papers/RLAlgsInMDPs.pdf
@@ -283,7 +283,7 @@ _All_ goals can be described by the maximisation of expected cumulative reward
     <textarea data-template>
 ### OpenAI Platforms
 
-<img src='img/openai.jpg' height="500px">
+<img src='img/rl/openai.jpg' height="500px">
 
 <small>
 https://openai.com/systems/
@@ -295,7 +295,7 @@ https://openai.com/systems/
     <textarea data-template>
 ### Atari Reinforcement Learning
 
-<img src='img/atari_rl.jpg'>
+<img src='img/rl/atari_rl.jpg'>
 <small>
 http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching_files/intro_RL.pdf    
 </small>
@@ -446,10 +446,18 @@ calculate all combined rewards for all routes
 </code></pre>
 
 very friendly for learning
+</textarea>
+</section>
 
-_Alternative: only show rewards for the routes robot can take from current position_
+<section data-markdown>
+        <textarea data-template>
+### Experiment to see if model is sufficient
+    
+Hier ein lustiges Experiment: setz die Gewichte des Graphen und vergiss sie wieder: zeig dir selbst dann die lokale Observation und versuche einen guten Weg zu finden. Du spiele einen 'human agent' (intuitiv,  ohne langes Nachdenken). schau auf welche Reward du kommst ' wenn du das einige male machst. Das gäbe eine interessanten Referenz wert. Daran würde man sehen wo die aktuelle Police im Vergleich zum Menschen steht.... man sieht daran auch ob der Observation und action space ausreichend gut designt ist.
 
-
+<small>
+Courtesy of Christian Hidber    
+</small>
 </textarea>
 </section>
 
@@ -468,7 +476,7 @@ _select an action based on the observed state of our consultant environment_
 
 use a neural network to approximate action probabilities
 
-<img src='img/hidber-policy-gradient.jpg'>
+<img src='img/rl/hidber-policy-gradient.jpg'>
 <small>
 Image Courtesy of Christian Hidber
 <br>
@@ -580,7 +588,7 @@ batch_size = 10, learning_rate = 1e-4, gamma = 0.99, 2500 episodes
     <textarea data-template>
 ### Algorithm Overview
 
-<img src='img/rl_algorithms_9_15.svg'>
+<img src='img/rl/rl_algorithms_9_15.svg'>
 
 <small>
 https://spinningup.openai.com/en/latest/spinningup/rl_intro2.html    
@@ -591,9 +599,58 @@ https://spinningup.openai.com/en/latest/spinningup/rl_intro2.html
 
 <section data-markdown>
     <textarea data-template>
+### A2C - Actor Next step from Policy Gradient
+
+<img src='img/rl/a2c.jpg' height="450">
+
+<small>
+https://blog.openai.com/baselines-acktr-a2c/
+<br>
+https://arxiv.org/abs/1602.01783
+<br>
+https://www.youtube.com/watch?v=S_gwYj1Q-44
+</small>
+
+</textarea>
+</section>
+
+
+<section data-markdown style="font-size: x-large">
+        <textarea data-template>
+### A2C - Advantage Actor Critic
+
+* Vanilla PG: advantage is total (discounted) return, need to wait till end of episode for update
+* Problem 1: police update late, bad for long episodes
+* Problem 2: high Variance / catastrophic failure
+  * Extreme episode can give large advantage and push policy over the cliff to a bad track
+* Problem 2: estimate total return a sub
+  
+Christian Hidber: Idee 1 zu p2: schätze den Wert des total returns und ziehe in ab (die pro State definierte baseline). Damit zentrieren wir den avg return um 0 (hoffentlich falls schätzungsweise gut).
+oliver zeigermann: Das verstehe ich
+Christian Hidber: Das wirkt sich beruhigend auf die pg Updates aus.
+oliver zeigermann: Mit value function, ne?
+oliver zeigermann: Die mit trainiert wird, oder?
+Christian Hidber: Genau die Baseline wird damit die  value function.
+Christian Hidber: Wir trainieren die fuers erste mit einem vom action nn getrennten Netz.
+Christian Hidber: Das value nn können wir nach jedem Schritt updaten / analog q learning.
+oliver zeigermann: ja
+Christian Hidber: Jetzt wollen wir noch das pg nn nach jedem Schritt updaten. Dann haben wir auch p1 im Griff.
+oliver zeigermann: ja
+Christian Hidber: Anstelle des total returns r1+r2+... nehmen wir r1+v(s2)
+Christian Hidber: Die v(s2) ist unsere Schätzung für r2+r3+...
+oliver zeigermann: wie schätzen wir das?
+Christian Hidber: V(s2) ist der Outputs unseres value nn für den nächsten State.
+Christian Hidber: Das pg nn wird actor genannt, das value nn critique
+Christian Hidber: Der critique rechnet wenn du so willst den Unterschied von der Tat zu dem was der critique erwartet hat. Das schöne hier ist- im Gegensatz zum echten Leben;-) - dass der critique auch bei jedem Schritt lernt.
+</pre>
+    </textarea>
+</section>
+    
+<section data-markdown>
+    <textarea data-template>
 ### State of the art Algorithm: PPO
 
-<img src='img/ppo.jpg' height="450">
+<img src='img/rl/ppo.jpg' height="450">
 
 <small>
 https://blog.openai.com/openai-baselines-ppo/
@@ -697,6 +754,23 @@ GAE (lambda): https://arxiv.org/abs/1506.02438
 
 </textarea>
 </section>
+
+<section data-markdown style="font-size: xx-large">
+        <textarea data-template>
+### Best Resource for further learning
+
+Deep RL Bootcamp 26-27 August 2017, Berkeley CA
+
+https://sites.google.com/view/deep-rl-bootcamp/lectures
+
+Especially:
+* Lecture 1: Motivation + Overview + Exact Solution Methods: https://www.youtube.com/watch?v=qaMdN6LS9rA
+* Lecture 4A: Policy Gradients and Actor Critic: https://www.youtube.com/watch?v=S_gwYj1Q-44
+* Lecture 4B: Pong from Pixels: https://www.youtube.com/watch?v=tqrcjHuNdmQ
+* Lecture 5: Natural Policy Gradients, TRPO, PPO: https://youtu.be/xvRrgxcpaHY
+            </textarea>
+        </section>
+            
 
 <section data-markdown>
     <textarea data-template>
