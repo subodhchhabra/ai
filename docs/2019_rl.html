@@ -450,18 +450,6 @@ very friendly for learning
 </section>
 
 <section data-markdown>
-        <textarea data-template>
-### Experiment to see if model is sufficient
-    
-Hier ein lustiges Experiment: setz die Gewichte des Graphen und vergiss sie wieder: zeig dir selbst dann die lokale Observation und versuche einen guten Weg zu finden. Du spiele einen 'human agent' (intuitiv,  ohne langes Nachdenken). schau auf welche Reward du kommst ' wenn du das einige male machst. Das gäbe eine interessanten Referenz wert. Daran würde man sehen wo die aktuelle Police im Vergleich zum Menschen steht.... man sieht daran auch ob der Observation und action space ausreichend gut designt ist.
-
-<small>
-Courtesy of Christian Hidber    
-</small>
-</textarea>
-</section>
-
-<section data-markdown>
     <textarea data-template>
 ## Step 2: Policy
 
@@ -619,31 +607,22 @@ https://www.youtube.com/watch?v=S_gwYj1Q-44
         <textarea data-template>
 ### A2C - Advantage Actor Critic
 
+Problems
 * Vanilla PG: advantage is total (discounted) return, need to wait till end of episode for update
-* Problem 1: police update late, bad for long episodes
-* Problem 2: high Variance / catastrophic failure
+* Problem 1: high Variance / catastrophic failure
   * Extreme episode can give large advantage and push policy over the cliff to a bad track
-* Problem 2: estimate total return a sub
-  
-<pre>
-Christian Hidber: Idee 1 zu p2: schätze den Wert des total returns und ziehe in ab (die pro State definierte baseline). Damit zentrieren wir den avg return um 0 (hoffentlich falls schätzungsweise gut).
-oliver zeigermann: Das verstehe ich
-Christian Hidber: Das wirkt sich beruhigend auf die pg Updates aus.
-oliver zeigermann: Mit value function, ne?
-oliver zeigermann: Die mit trainiert wird, oder?
-Christian Hidber: Genau die Baseline wird damit die  value function.
-Christian Hidber: Wir trainieren die fuers erste mit einem vom action nn getrennten Netz.
-Christian Hidber: Das value nn können wir nach jedem Schritt updaten / analog q learning.
-oliver zeigermann: ja
-Christian Hidber: Jetzt wollen wir noch das pg nn nach jedem Schritt updaten. Dann haben wir auch p1 im Griff.
-oliver zeigermann: ja
-Christian Hidber: Anstelle des total returns r1+r2+... nehmen wir r1+v(s2)
-Christian Hidber: Die v(s2) ist unsere Schätzung für r2+r3+...
-oliver zeigermann: wie schätzen wir das?
-Christian Hidber: V(s2) ist der Outputs unseres value nn für den nächsten State.
-Christian Hidber: Das pg nn wird actor genannt, das value nn critique
-Christian Hidber: Der critique rechnet wenn du so willst den Unterschied von der Tat zu dem was der critique erwartet hat. Das schöne hier ist- im Gegensatz zum echten Leben;-) - dass der critique auch bei jedem Schritt lernt.
-</pre>
+* Problem 2: police update late
+  * bad for long episodes
+  * sample efficiency bad
+
+A2C Solutions: Action: policy network, Critic: value network
+* problem 1
+  * estimate total return per state and subtract from from advantage
+  * normalizes return around 0
+  * uses value function also trained as MLP
+* problem 2
+  * update after each individual step
+  * reward is estimated by value function
     </textarea>
 </section>
     
@@ -659,22 +638,6 @@ https://blog.openai.com/openai-baselines-ppo/
 https://arxiv.org/abs/1707.06347
 <br>
 https://www.youtube.com/watch?v=5P7I-xPq8u8
-</small>
-
-</textarea>
-</section>
-
-<section data-markdown>
-    <textarea data-template>
-### PPO Motivation
-
-_Policy gradient allows to easily incorporate neural network, but has two challenges_
-
-1. large number of samples typically required
-1. difficulty of obtaining stable and steady improvement becase of the nonstationarity of the incoming data
-
-<small>
-https://arxiv.org/abs/1506.02438
 </small>
 
 </textarea>
@@ -699,11 +662,7 @@ https://blog.openai.com/openai-baselines-ppo/
     <textarea data-template>
 ### PPO Concepts
 
-* _sample efficiency_: value function estimates how good a position is (what reward to expect)
 * _stable and steady improvement_:  New policy will not change too much from step to step
-* Network has two heads:
-  * policy predicts action to be taken
-  * value function
 * Entropy parameter defines Exploitation vs Exploration
 * PPO can run highly parallel
 
@@ -860,8 +819,40 @@ https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/
 
         </section>
 
+<section data-markdown>
+    <textarea data-template>
+### Generalize to sub sets of of customers to be visited
+
+* simulating that not all customers will be visited by a single consultant
+* with each episode randomly set reward for half the locations to 0
+
+Estimation
+* total cost when travelling all paths (back and forth): 2500
+* all rewards: 6000
+* estimate: half the travel cost and no illegal moves: (6000 - 1250) / 6000 = .79
+* but: rewards are much more sparse while routes stay the same, maybe expect less
+* additionally: the agent only sees very little of the whole scenario
+  * changes with every episode
+  * was ok when network can learn fixed scenario
+
+</textarea>
+</section>
+
+<section data-markdown>
+        <textarea data-template>
+### Rewards do not look too good
+
+<img src='img/rl/berater/v7-learning-curve.png'>
+
+<small>
+https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v7.ipynb
+</small>
+            </textarea>
+        </section>
+            
+
 <section style="font-size: xx-large">
-<h3>Generalize to sub sets of of customers to be visited</h3>
+<h3>Path after training</h3>
 <div style="float: left; width: 700px;">
 <pre><code contenteditable data-trim class="line-numbers python">
 S --0-> A R= 0.12 totalR= 0.12 cost= 300 customerR=1000
@@ -887,12 +878,116 @@ C --0-> S R=-0.03 totalR= 0.63 cost= 200 customerR=   0
 </div>
 
 <small>
-<a href="https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v6.ipynb">
+<a href="https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v7.ipynb">
 https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v7.ipynb
 </a>
 </small>
 
         </section>
+
+<section data-markdown>
+        <textarea data-template>
+### Experiment to see if model is sufficient
+
+* use yourself to simulate the agent
+* show yourself local observations and reward for each step and choose an action
+* would this be sufficent for a good reward?
+
+<small>
+Idea Courtesy of Christian Hidber    
+</small>
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### New experimental observation
+
+_append all rest rewards_
+
+<pre><code contenteditable data-trim class="line-numbers python">
+# Initial position and rewards
+[    0.   700.   900.   800. -1000.     0.  1000.  1000.  1000.     0.
+0.  1000.     0.     0.     0.  1000.  1000.     0.     0.]    
+
+# Final position and rewards
+[    0.  -300.  -100.  -200. -1000.     0.     0.     0.     0.     0.
+     0.     0.     0.     0.     0.     0.     0.     0.     0.]
+</code></pre>
+
+
+</textarea>
+</section>
+
+<section data-markdown>
+        <textarea data-template>
+### Clear improvement of rewards
+
+but still not close to 0.8
+
+<img src='img/rl/berater/v8-learning-curve.png'>
+
+<small>
+https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v8.ipynb
+</small>
+            </textarea>
+        </section>
+
+<section style="font-size: xx-large">
+<h3>Path after training</h3>
+<div style="float: left; width: 700px;">
+<pre><code contenteditable data-trim class="line-numbers python">
+{ 'S': 0, 'A': 0, 'B': 0, 'C': 1000, 'D': 1000, 
+  'E': 0, 'F': 0, 'G': 1000, 'H': 0, 'K': 1000, 
+  'L': 1000, 'M': 1000, 'N': 0, 'O': 0}
+
+S --1-> B R=-0.02 totalR=-0.02 cost= 100 customerR=   0
+B --2-> C R= 0.16 totalR= 0.14 cost=  50 customerR=1000
+C --2-> M R= 0.15 totalR= 0.29 cost= 100 customerR=1000
+M --1-> L R= 0.16 totalR= 0.45 cost=  50 customerR=1000
+L --1-> M R=-0.01 totalR= 0.44 cost=  50 customerR=   0
+M --1-> L R=-0.01 totalR= 0.43 cost=  50 customerR=   0
+L --1-> M R=-0.01 totalR= 0.42 cost=  50 customerR=   0
+M --2-> N R=-0.02 totalR= 0.41 cost= 100 customerR=   0
+N --1-> O R=-0.02 totalR= 0.39 cost= 100 customerR=   0
+O --1-> G R= 0.12 totalR= 0.51 cost= 300 customerR=1000
+G --0-> F R=-0.03 totalR= 0.47 cost= 200 customerR=   0
+F --0-> D R= 0.16 totalR= 0.63 cost=  50 customerR=1000
+D --0-> A R=-0.02 totalR= 0.62 cost= 100 customerR=   0
+A --1-> B R=-0.02 totalR= 0.60 cost= 100 customerR=   0
+B --3-> K R= 0.13 totalR= 0.73 cost= 200 customerR=1000
+K --0-> B R=-0.03 totalR= 0.70 cost= 200 customerR=   0
+B --0-> S R=-0.02 totalR= 0.68 cost= 100 customerR=   0   
+</code></pre>
+</div>
+<div style="float: right;">
+    <img src='img/rl/berater/sample-solution-global.jpg' height="350">
+</div>
+
+<small>
+<a href="https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v8.ipynb">
+https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v8.ipynb
+</a>
+</small>
+
+        </section>
+
+<section data-markdown style="font-size: xx-large">
+        <textarea data-template>
+### What next?
+
+* nn model now has many more inputs
+* might need more neurons per layer?
+* more regularization?
+* custom neural network code?
+* better observation?
+  * network can learn all costs and all connections as they are static
+  * rewards are not, but are given in the observation
+  * all information is there, but
+  * it is very convoluted, too hard for us as humans
+  * could we make this more accessible? Would this also help? 
+</textarea>
+</section>
 
 <!-- <section data-markdown>
         <textarea data-template>
@@ -994,6 +1089,8 @@ https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/
 https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v6.ipynb
 
 https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v7.ipynb
+
+https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v8.ipynb
 
 https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/openai-gym-playground.ipynb
 
