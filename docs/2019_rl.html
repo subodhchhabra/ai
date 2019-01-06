@@ -972,10 +972,15 @@ https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/
 
         </section>
 
-<section data-markdown style="font-size: xx-large">
+<section data-markdown style="font-size: x-large">
         <textarea data-template>
 ### What next?
 
+* better rewards
+  * set discount factor (gamma) to 1
+    * rewards late in the game are as good as eartly ones
+    * no need to push game to an end, as every move comes at costs anyway
+ * add reward for returning home once all other locations have been visited 
 * nn model now has many more inputs
 * might need more neurons per layer?
 * more regularization?
@@ -986,6 +991,9 @@ https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/
   * all information is there, but
   * it is very convoluted, too hard for us as humans
   * could we make this more accessible? Would this also help? 
+* create baselines to better understand what is a good result
+  1. low level: always go in the direction of greatest reward
+  1. Dijkstra
 </textarea>
 </section>
 
