@@ -216,6 +216,22 @@ https://twitter.com/frpays/status/1077672273673359361
 
 <section data-markdown>
     <textarea data-template>
+### AutoML with TensorFlow AdaNet Estimator
+
+<img src='img/adanet.gif' height="450px">
+
+<small>
+_AdaNet uses Reinforcement Learning to learn a suitable Network Architecture for given data_
+<br>
+https://twitter.com/m4rkmc/status/1057485545708929024
+</small>
+</textarea>
+</section>
+
+
+
+<!-- <section data-markdown>
+    <textarea data-template>
 ### Idea of Reinforcement Learning
 
 control a system so as to maximize some numerical value which represents a long-term objective
@@ -226,22 +242,7 @@ control a system so as to maximize some numerical value which represents a long-
 https://sites.ualberta.ca/~szepesva/papers/RLAlgsInMDPs.pdf
 </small>
 </textarea>
-</section>
-
-
-<section data-markdown>
-<textarea data-template>
-### When to do Reinforcement Learning
-
-1. When you don't have suitable data
-1. You can accurately simulate an environment
-1. Maybe express your problem as a game
-
-<!-- <small>
-TensorFlow based tool: https://github.com/deepmind/trfl/blob/master/docs/index.md
-</small> -->
-</textarea>
-</section>
+</section> -->
 
 
 <section data-markdown>
@@ -278,6 +279,23 @@ _All_ goals can be described by the maximisation of expected cumulative reward
 
 </textarea>
 </section>
+
+<section data-markdown>
+<textarea data-template>
+### When to do Reinforcement Learning
+
+1. When you don't have suitable data
+1. You can accurately simulate an environment
+1. Maybe express your problem as a game
+
+<!-- <small>
+TensorFlow based tool: https://github.com/deepmind/trfl/blob/master/docs/index.md
+</small> -->
+</textarea>
+</section>
+
+
+
 
 <section data-markdown style="font-size: x-large">
         <textarea data-template>
@@ -341,13 +359,28 @@ https://github.com/openai/atari-py
 </section>
 
 <section data-markdown>
+        <textarea data-template>
+## While the academic world plays Super Mario real world problems look very different
+</textarea>
+</section>
+
+<section data-markdown>
     <textarea data-template>
 ### Our Example: Consultant Travel
 
 * Visit each customer and return home
 * Reward per customer visited 1000
-* Each travel has a penalty up to 1000
+* Each travel has a cost up to 1000
 * Three customers, thus theoretical optimum 3000 (given 0 penalty)
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Consultant Travel: Graph
+
+<img src='img/rl/berater/routes.jpg' height="500">
 
 </textarea>
 </section>
@@ -373,12 +406,11 @@ https://github.com/openai/atari-py
 </textarea>
 </section>
 
-
 <section data-markdown>
     <textarea data-template>
-### Consultant Travel: Graph
+### Consultant Travel: Actions
 
-<img src='img/rl/berater/routes.jpg' height="500">
+<img src='img/rl/berater/routes-actions.jpg' height="500">
 
 </textarea>
 </section>
@@ -392,29 +424,6 @@ https://github.com/openai/atari-py
 </textarea>
 </section>
 
-<section data-markdown>
-    <textarea data-template>
-### Consultant Travel: Actions
-
-<img src='img/rl/berater/routes-actions.jpg' height="500">
-
-</textarea>
-</section>
-<section>
-<h3>Perfect Path and Reward</h3>
-
-<pre><code contenteditable data-trim class="line-numbers python">
-S --0-> A R= 0.30 totalR= 0.30 cost= 100 customerR=1000
-A --0-> B R= 0.25 totalR= 0.55 cost= 250 customerR=1000
-B --1-> C R= 0.25 totalR= 0.80 cost= 250 customerR=1000
-C --2-> S R=-0.07 totalR= 0.73 cost= 200 customerR=   0
-                </code></pre>
-
-<img src='img/rl/berater/routes-actions.jpg' height="350">
-
-<p>Reward: 1000, penalty: 800, normalized: 0.73</p>
-        </section>
-            
 
 <section data-markdown>
     <textarea data-template>
@@ -462,6 +471,10 @@ calculate all combined rewards for all routes
 </code></pre>
 
 very friendly for learning
+
+<small>
+https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v4.ipynb    
+</small>
 </textarea>
 </section>
 
@@ -573,7 +586,7 @@ batch_size = 10, learning_rate = 1e-4, gamma = 0.99, 2500 episodes
 </textarea>
 </section>
 
-<!-- <section data-markdown style="font-size: xx-large">
+<section data-markdown style="font-size: xx-large">
     <textarea data-template>
 ### Algorithms: More general
 
@@ -585,7 +598,7 @@ batch_size = 10, learning_rate = 1e-4, gamma = 0.99, 2500 episodes
 * turning the infeasible dynamic programming methods into practical algorithms
   * use powerful function approximation methods to compactly represent value functions
   * allows dealing with large, high-dimensional state- and action-spaces
-</textarea> -->
+</textarea>
 </section>
 
 <section data-markdown>
@@ -602,8 +615,41 @@ https://spinningup.openai.com/en/latest/spinningup/rl_intro2.html
 </section>
 
 <section data-markdown>
+        <textarea data-template>
+### World Models
+
+_learn an abstract representation of the world and use it for reinforcement learning to achieve a simple policy_ 
+
+<img src='img/rl/world-models.gif' height="350">
+
+<small>
+https://worldmodels.github.io/
+<br>
+https://www.youtube.com/watch?v=HzA8LRqhujk    
+</small>
+
+</textarea>
+</section>
+
+
+<section data-markdown>
+        <textarea data-template>
+### Returning to Vanilla Policy Gradient: Issues 
+
+_advantage is total (discounted) return, need to wait till end of episode for update_
+
+
+* problem 1: high Variance / catastrophic failure
+  * Extreme episode can give large advantage and push policy over the cliff to a bad track
+* problem 2: police update late
+  * bad for long episodes
+  * sample efficiency bad
+</textarea>
+</section>
+
+<section data-markdown>
     <textarea data-template>
-### A2C - Actor Next step from Policy Gradient
+### A2C - Next step from Policy Gradient
 
 <img src='img/rl/a2c.jpg' height="450">
 
@@ -619,21 +665,14 @@ https://www.youtube.com/watch?v=S_gwYj1Q-44
 </section>
 
 
-<section data-markdown style="font-size: x-large">
+<section data-markdown style="font-size: xx-large">
         <textarea data-template>
 ### A2C - Advantage Actor Critic
 
-Problems
-* Vanilla PG: advantage is total (discounted) return, need to wait till end of episode for update
-* Problem 1: high Variance / catastrophic failure
-  * Extreme episode can give large advantage and push policy over the cliff to a bad track
-* Problem 2: police update late
-  * bad for long episodes
-  * sample efficiency bad
-
-A2C Solutions: Action: policy network, Critic: value network
+_Action: policy network, Critic: value network_
 * problem 1
   * estimate total return per state and subtract from from advantage
+  * how much better or worse is the action chosen than expected?
   * normalizes return around 0
   * uses value function also trained as MLP
 * problem 2
@@ -641,7 +680,7 @@ A2C Solutions: Action: policy network, Critic: value network
   * reward is estimated by value function
     </textarea>
 </section>
-    
+
 <section data-markdown>
     <textarea data-template>
 ### State of the art Algorithm: PPO
@@ -659,7 +698,7 @@ https://www.youtube.com/watch?v=5P7I-xPq8u8
 </textarea>
 </section>
 
-<section data-markdown>
+<!-- <section data-markdown>
     <textarea data-template>
 ### PPO Benefits
 
@@ -672,18 +711,18 @@ https://blog.openai.com/openai-baselines-ppo/
 </small>
 
 </textarea>
-</section>
+</section> -->
 
 <section data-markdown>
     <textarea data-template>
-### PPO Concepts
+### PPO Improvements over A2C
 
 * _stable and steady improvement_:  New policy will not change too much from step to step
 * Entropy parameter defines Exploitation vs Exploration
 * PPO can run highly parallel
 
 <small>
-Arxiv Insights: https://www.youtube.com/watch?v=5P7I-xPq8u8
+https://blog.openai.com/openai-baselines-ppo/
 <br>
 https://stackoverflow.com/questions/46422845/what-is-the-way-to-understand-proximal-policy-optimization-algorithm-in-rl
 </small>
@@ -701,6 +740,21 @@ https://stackoverflow.com/questions/46422845/what-is-the-way-to-understand-proxi
 Arxiv Insights: https://www.youtube.com/watch?v=5P7I-xPq8u8
 </small>
 
+</textarea>
+</section>
+
+<section data-markdown>
+        <textarea data-template>
+### Minimum Objective for Practitioners
+
+- understand which parameters are important
+- have an intuition for their effect
+- know what not to touch
+
+Like with a car
+- know what are the important knobs and levers
+- you do not need to understand how the engine of your car works
+- Unless maybe you are a race driver. Are you?
 </textarea>
 </section>
 
@@ -746,6 +800,21 @@ Especially:
 * Lecture 4B: Pong from Pixels: https://www.youtube.com/watch?v=tqrcjHuNdmQ
 * Lecture 5: Natural Policy Gradients, TRPO, PPO: https://youtu.be/xvRrgxcpaHY
             </textarea>
+        </section>
+            
+<section>
+<h3>Perfect Path and Reward using PPO</h3>
+
+<pre><code contenteditable data-trim class="line-numbers python">
+S --0-> A R= 0.30 totalR= 0.30 cost= 100 customerR=1000
+A --0-> B R= 0.25 totalR= 0.55 cost= 250 customerR=1000
+B --1-> C R= 0.25 totalR= 0.80 cost= 250 customerR=1000
+C --2-> S R=-0.07 totalR= 0.73 cost= 200 customerR=   0
+                </code></pre>
+
+<img src='img/rl/berater/routes-actions.jpg' height="350">
+
+<p>Cumulated Reward: 3000, penalty: 800, normalized: 0.73</p>
         </section>
             
 
@@ -940,7 +1009,8 @@ _append all rest rewards_
         <textarea data-template>
 ### Clear improvement of rewards
 
-but still not close to 0.8
+* but still not close to 0.8
+* drop outs probably due to high Exploration
 
 <img src='img/rl/berater/v8-learning-curve.png'>
 
