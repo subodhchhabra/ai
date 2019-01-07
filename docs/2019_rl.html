@@ -279,6 +279,22 @@ _All_ goals can be described by the maximisation of expected cumulative reward
 </textarea>
 </section>
 
+<section data-markdown style="font-size: x-large">
+        <textarea data-template>
+### Reinforcement Learning as a Markov Decision Process
+
+<img src='img/rl/rl-bootcamp-gridworld.jpg' height="400px">
+
+* maximize expected sum of rewards under policy pi
+* policy pi: given a state, what action do you take?
+
+
+<small>
+https://youtu.be/qaMdN6LS9rA?t=5m43s
+</small>
+</textarea>
+</section>
+
 <section data-markdown>
     <textarea data-template>
 ### OpenAI Platforms
@@ -696,6 +712,7 @@ _Parameters you can tweak_
 * nsteps: batch size, 2048
 * lr: learning rate, 3e-4
 * gamma: discounting factor, 0.99 (often between 0.9 and 0.99)
+  * if horizon is large rather have 0.99 as gamma, if low rather 0.9
 * ent_coef: value policy entropy coefficient in the optimization objective (c2 in the paper), 0.0 
 
 _Parameters you probably do not touch_
@@ -972,7 +989,7 @@ https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/
 
         </section>
 
-<section data-markdown style="font-size: x-large">
+<section data-markdown style="font-size: large">
         <textarea data-template>
 ### What next?
 
