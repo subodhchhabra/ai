@@ -173,6 +173,16 @@ https://djcordhose.github.io/ai/2019_rl.html
 </a></small></p>
 </section>
 
+<section data-markdown class="todo">
+    <textarea data-template>
+- Atari Consolen Image: https://en.wikipedia.org/wiki/Atari_2600#/media/File:Atari-2600-Wood-4Sw-Set.jpg
+- V9
+  - lr als Range, abnehmend
+  - ent_coef wieder auf 0
+  - Schätzung für Optimum anhand von Gesamtkosten zwischen 1250 und 2500
+    </textarea>
+</section>
+
 <section data-markdown style="font-size: xx-large">
     <textarea data-template>
 ### Text Books
@@ -386,6 +396,15 @@ https://github.com/openai/atari-py
 </section>
 
 <section data-markdown>
+    <textarea data-template>
+### Consultant Travel: Cost
+
+<img src='img/rl/berater/routes-cost.jpg' height="500">
+
+</textarea>
+</section>
+
+<section data-markdown>
 <textarea data-template>
 ### Reinforcement Learning Challenges
 
@@ -411,15 +430,6 @@ https://github.com/openai/atari-py
 ### Consultant Travel: Actions
 
 <img src='img/rl/berater/routes-actions.jpg' height="500">
-
-</textarea>
-</section>
-
-<section data-markdown>
-    <textarea data-template>
-### Consultant Travel: Cost
-
-<img src='img/rl/berater/routes-cost.jpg' height="500">
 
 </textarea>
 </section>
@@ -1069,9 +1079,9 @@ https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/
     * no need to push game to an end, as every move comes at costs anyway
  * add reward for returning home once all other locations have been visited 
 * nn model now has many more inputs
-* might need more neurons per layer?
-* more regularization?
-* custom neural network code?
+  * might need more neurons per layer (experiment show 2 layers / 100 units works just as well)
+  * more regularization?
+  * custom neural network code?
 * better observation?
   * network can learn all costs and all connections as they are static
   * rewards are not, but are given in the observation
