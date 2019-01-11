@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>TensorFlow Introduction</title>
+
+    <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+    <meta name="author" content="Hakim El Hattab">
+
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+          <link rel="stylesheet" href="reveal.js/css/reveal.css">
+          <!--<link rel="stylesheet" href="reveal.js/css/theme/white.css" id="theme">-->
+          <!--<link rel="stylesheet" href="reveal.js/css/theme/black.css" id="theme">-->
+          <!--<link rel="stylesheet" href="reveal.js/css/theme/night.css" id="theme">-->
+          <!--<link rel="stylesheet" href="reveal.js/css/theme/simple.css" id="theme">-->
+          <link rel="stylesheet" href="reveal.js/css/theme/solarized.css" id="theme">
+      
+          <!-- Code syntax highlighting -->
+          <link rel="stylesheet" href="reveal.js/lib/css/zenburn.css">
+          <style>
+              /*pre code {*/
+                  /*display: block;*/
+                  /*padding: 0.5em;*/
+                  /*background: #FFFFFF !important;*/
+                  /*color: #000000 !important;*/
+              /*}*/
+      
+              .right-img {
+                  margin-left: 10px !important;
+                  float: right;
+                  height: 500px;
+              }
+              .todo:before {
+                  content: 'TODO: ';
+              }
+              .todo {
+                  color: red !important;
+              }
+              code span.line-number {
+                  color: lightcoral;
+              }
+              .reveal pre code {
+                  max-height: 1000px !important;
+              }
+      
+              img {
+                  border: 0 !important;
+                  box-shadow:0 0 0 0 !important;
+              }
+      
+              .reveal {
+                  -ms-touch-action: auto !important;
+                  touch-action: auto !important;
+                      }
+      
+                      .reveal h2,
+                      .reveal h3,
+                      .reveal h4 {
+                        letter-spacing: 2px;
+                          font-family: 'Calibri', sans-serif;
+                          /* font-family: 'Times New Roman', Times, serif; */
+                          font-weight: bold;
+                          color: black;
+                          font-style: italic;
+                          letter-spacing: -2px;
+                          text-transform: none !important;
+                      }
+      
+                      .reveal em {
+                          font-weight: bold;
+                      }
+      
+                      .reveal .step-subtitle h1 {
+                          letter-spacing: 1px;
+                      }
+                      .reveal .step-subtitle h2,
+                      .reveal .step-subtitle h3 {
+                          text-transform: none;
+                          font-style: italic;
+                          font-weight: normal;
+                          /* font-weight: 400; */
+                          /* font-family: 'Amiri', serif; */
+                          font-family: 'Lobster', serif;
+                          letter-spacing: 1px;
+                          color: #2aa198;
+                          text-decoration: underline;
+                      }
+      
+                      .reveal .front-page h1,
+                      .reveal .front-page h2 {
+                          font-family: "League Gothic";
+                          font-style: normal;
+                          text-transform: uppercase !important;
+                          letter-spacing: 1px;
+                      }
+      
+                      .reveal .front-page h1 {
+                          font-size: 2.5em !important;
+                      }
+      
+                      .reveal .highlight {
+                          background-color: #D3337B;
+                          color: white;
+                      }
+      
+              .reveal section img {
+                background: none;
+              }
+      
+                      .reveal img.with-border {
+                          border: 1px solid #586e75 !important;
+                          box-shadow: 3px 3px 1px rgba(0, 0, 0, 0.15) !important;
+                      }
+      
+                      .reveal li {
+                          margin-bottom: 8px;
+                      }
+      
+                      /* For li's that use FontAwesome icons as bullet-point */
+                  .reveal ul.fa-ul li {
+                      list-style-type: none;
+                  }
+
+            .reveal {
+                color: black !important;
+             }       
+
+          </style>
+      
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'reveal.js/css/print/pdf.css' : 'reveal.js/css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="reveal.js/lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+<div class="reveal">
+    <div class="slides">
+
+<section data-markdown class="preparation">
+        <textarea data-template>
+### Preparation
+
+    </textarea>
+</section>
+
+<section>
+        <h2>Introduction to TensorFlow</h2>
+<h4><a href="http://zeigermann.eu">Oliver Zeigermann</a> / <a href="http://twitter.com/djcordhose">@DJCordhose</a>
+</h4>
+<p><small><a href="https://djcordhose.github.io/ai/2019_tf_intro.html">
+https://djcordhose.github.io/ai/2019_tf_intro.html
+</a></small></p>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+
+<img src='img/twitter-fchollet-trend.png' height="500px">            
+
+<small>
+https://twitter.com/fchollet/status/1029477656876613632
+<br>
+https://trends.google.com/trends/explore?cat=1299&date=today%205-y&q=tensorflow,keras,pytorch,caffe,theano
+</small>
+</textarea>
+</section>
+
+
+<section data-markdown>
+<textarea data-template>
+### Three Years of TensorFlow
+
+<img src='img/tf-history.jpg'>
+<small>https://twitter.com/TensorFlow/status/1060972928077053952</small>
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+### Colab Notebooks
+
+https://colab.research.google.com
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+### TensorFlow and Keras
+
+* https://www.tensorflow.org 
+* https://www.tensorflow.org/guide/low_level_intro 
+* https://www.tensorflow.org/guide/keras 
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Interactive, online introduction to TensorFlow low level API 
+
+_I type and explain and you people follow along in your own notebook and make experiments_
+
+<small>
+https://www.tensorflow.org/guide/low_level_intro
+<br>
+https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/tensorflow/tf_low_level_intro.ipynb
+https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/tensorflow/tf_low_level_training.ipynb
+</small>
+</textarea>
+</section>
+<section data-markdown>
+<textarea data-template>
+### Why Keras High Level API?
+
+_Will be only encouraged high level API in TensorFlow 2.0_ 
+
+<img src='img/why-keras.png' height="450">
+
+<small>
+https://twitter.com/karpathy/status/1013244313327681536<br>
+https://twitter.com/martin_wicke/status/1013550466125328384<br>
+https://medium.com/tensorflow/standardizing-on-keras-guidance-on-high-level-apis-in-tensorflow-2-0-bad2b04c819a
+</small>
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### TensorFlow Playground
+
+https://playground.tensorflow.org
+    </textarea>
+</section>
+
+<section data-markdown class="todo">
+    <textarea data-template>
+### TF 2.0
+
+* https://pypi.org/project/tf-nightly-2.0-preview/
+* @TensorFlow 2.0 preview is here! 🥳
+I wrote a few Jupyter notebooks to teach #DeepLearning using tf.keras and TF 2.0, I hope you'll find them useful! Teachers, you are more than welcome to use them in your own courses.
+https://t.co/j77gSiJDVt
+(https://twitter.com/aureliengeron/status/1083541404389765120?s=03)
+</textarea>
+</section>
+
+<section data-markdown class="todo">
+    <textarea data-template>
+### TF 2.0
+
+* TensorFlow (@TensorFlow) tweeted at 8:09 PM on Thu, Dec 06, 2018:
+Standardizing on Keras: Guidance on High-level APIs in TensorFlow 2.0. 
+
+Read the article here ↓ https://t.co/JrkJaOSAjt
+(https://twitter.com/TensorFlow/status/1070757130905501702?s=03)
+
+* Bernhard Schäfer (@berschae) tweeted at 11:04 PM on Thu, Dec 06, 2018:
+#TensorFlow 2.0 recommended APIs:
+1. Keras Sequential
+2. Keras Functional 
+3. Keras Subclassing + Eager Mode (similar to #PyTorch)
+
+Estimator API not recommended anymore for custom architectures. https://t.co/0wNLWpnCBU
+(https://twitter.com/berschae/status/1070801176730525696?s=03)
+</textarea>
+</section>
+
+
+
+
+</div>
+
+</div>
+
+<script src="reveal.js/lib/js/head.min.js"></script>
+<script src="reveal.js/js/reveal.js"></script>
+<script src="lib/jquery-2.2.4.js"></script>
+
+<script>
+        $('.slido').remove();
+        if (window.location.hostname.indexOf('localhost') !== -1) {
+            // only applies to local version
+            $('.remote').remove();
+        } else {
+            // only applies to public version
+            $('.todo').remove();
+            $('.preparation').remove();
+            $('.local').remove();
+        }
+        Reveal.addEventListener( 'ready', function( event ) {
+                // do we want this???
+            $('li').addClass('fragment')
+
+            if (window.location.hostname.indexOf('localhost') !== -1) {
+                // only applies to presentation version
+                Reveal.configure({ controls: false });
+            } else {
+                // only applies to public version
+                $('.fragment').removeClass('fragment');
+            }
+            // applies to all versions
+            $('code').addClass('line-numbers');
+
+            // make all links open in new tab
+            $('a').attr('target', '_blank')
+
+        } );
+        // $('section').attr('data-background-image', "backgrounds/light-metal.jpg");
+        // $('section').attr('data-background-image', "backgrounds/pink.jpg");
+        // $('section').attr('data-background-image', "backgrounds/white.jpg");
+        $('section').attr('data-background-image', "backgrounds/sky.jpg");
+
+    //    $('section').attr('data-background-image', "backgrounds/code.jpg");
+    </script>
+    
+<script>
+
+    // Full list of configuration options available at:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        width: 1100,
+
+
+        transition: 'fade', // none/fade/slide/convex/concave/zoom
+
+        math: {
+            mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+            config: 'TeX-AMS_HTML-full'  // See http://docs.mathjax.org/en/latest/config-files.html
+        },
+
+        // Optional reveal.js plugins
+        dependencies: [
+            {
+                src: 'reveal.js/lib/js/classList.js', condition: function () {
+                return !document.body.classList;
+            }
+            },
+            {
+                src: 'reveal.js/plugin/markdown/marked.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            }
+            },
+            {
+                src: 'reveal.js/plugin/markdown/markdown.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            }
+            },
+            {
+                src: 'reveal.js/plugin/highlight/highlight.js', async: true, condition: function () {
+                return !!document.querySelector('pre code');
+            }, callback: function () {
+                hljs.initHighlightingOnLoad();
+            }
+            },
+            {src: 'reveal.js/plugin/zoom-js/zoom.js', async: true},
+            {src: 'reveal.js/plugin/notes/notes.js', async: true},
+            // https://github.com/mikemiles86/reveal-line-numbers
+            {src: 'lib/js/line-numbers.js'},
+            { src: 'reveal.js/plugin/math/math.js', async: true }
+        ]
+    });
+
+</script>
+
+</body>
+</html>
