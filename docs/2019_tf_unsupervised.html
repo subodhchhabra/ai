@@ -169,50 +169,216 @@ https://djcordhose.github.io/ai/2019_tf_unsupervised.html
 </a></small></p>
 </section>
 
-<section data-markdown class="todo">
+<section data-markdown>
+        <textarea data-template>
+### How to turn categories into numbers?
+
+* neural networks can not deal with symbols
+* only numerical values can be processed by neural networks
+* even words and texts can be seen as categories / symbols
+* would it be possible to still make those numbers carry the semantic of the symbols? 
+
+            </textarea>
+            </section>
+
+<section data-markdown>
+    <textarea data-template>
+### Motivating Exercise: Encoding Airports 
+
+_find a numerical representation for airports_
+
+* choose a few airports of your choice and bring them into numbers
+* why did you choose this representation?
+* do you think it is a good one?
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+### Label Encoding    
+
+Normalize symbols such that they contain only values between 0 and number_of_symbols_in_vocab-1.
+
+<pre><code>text = ["paris", "paris", "tokyo", "amsterdam"]
+paris = 0
+tokyo = 1
+amsterdam = 2
+encoded_text = [0, 0, 1, 2]</code></pre>
+
+<small>
+http://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.LabelEncoder.html
+</small>
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+### Issues with turning symbols into integers
+
+* numbers close to each other suggest a relation, but there might actually be none
+* what would 7.5 mean?
+* and what -8457878574 mean?
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+### Bag of Words - One/Multiple Hot Encoding
+<img src="img/nlp/acolyer/word2vec-one-hot.png">
+<small>
+https://blog.acolyer.org/2016/04/21/the-amazing-power-of-word-vectors/
+</small>
+</textarea>
+</section>
+
+<section data-markdown>
+        <textarea data-template>
+### Issues with One-Hot-Encoding
+
+* high dimensionalty 
+* sparse representation
+* neighborhood does not mean anything
+
+            </textarea>
+            </section>
+
+            <section data-markdown>
+                    <textarea data-template>
+### Enter: Embeddings
+
+* Embedding: Transform a high dim. vector space to a lower one
+* word/symbol Embedding: Transform sparse one hot encodings into a dense lower dim. encoding 
+
+<small>https://en.wikipedia.org/wiki/Word_embedding</small>
+                        </textarea>
+                    </section>
+                
+                    <section data-markdown>
+<textarea data-template>
+<img src="img/nlp/word_embeddings.png" height="550px">
+
+<small>
+<a href="https://github.com/fchollet/deep-learning-with-python-notebooks/blob/master/6.1-using-word-embeddings.ipynb">
+Deep Learning with Python
+</a>
+</small>
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+### Assumption: symbols/words in similar contexts have similar meaning
+
+* Why not have a few semantic dimensions and embed symbols/words into them?
+* You define what is context and thus gives meaning
+* For random texts this might be just the words that surround others
+        </textarea>
+    </section>
+
+<section data-markdown>
+    <textarea data-template>
+## Types of Learning
+<img src='img/types-of-ml.jpg'>
+<small>
+https://www.facebook.com/nipsfoundation/posts/795861577420073/
+<br>
+https://ranzato.github.io/publications/tutorial_deep_unsup_learning_part1_NeurIPS2018.pdf
+</small>
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Introduction to Embeddings 
+
+<img src='img/embedding_airport.png'>
+
+<small>
+https://github.com/DJCordhose/ai/blob/master/notebooks/2019_tf/embeddings.ipynb
+</small>
+    </textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Hands-On: Find an application for an embedding 
+
+* Run the introductory notebook
+* can you come up with an interpretation for the semantics of the two dimensions of the embedding?
+* then either 
+  1. change the representation for airports and try to achieve good results
+  1. come up with an application of your own (this is hard, make sure it still fits into the structure of the notebook) 
+
+<small>
+https://github.com/DJCordhose/ai/blob/master/notebooks/2019_tf/embeddings.ipynb
+</small>
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Arithmetic on Embeddings
+
+_has been exaggerated recently, but still fun_
+
+<img src='img/embedding_arithmetic.jpg' height="400px">
+
+<small>
+http://bryanlohjy.gitlab.io/spacesheet/word2vec.html
+</small>
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Suprising Application of Embeddings
+
+<img src='img/embedding-spell-checker.png' height="500px">
+
+<small>
+https://twitter.com/jeremyphoward/status/997264148655259648    
+</small>
+        </textarea>
+        </section>
+
+<section data-markdown>
+        <textarea data-template>
+### Word Embeddings using word2vec
+
+_main assumption: words appearing in similar contexts have similar meaning_
+
+<a href='https://projector.tensorflow.org'>
+<img src="img/nlp/embedding-projector.png" height="350px">
+</a>
+
+<small>
+https://projector.tensorflow.org
+</small>
+</textarea>
+</section>
+
+
+        <section data-markdown>
+    <textarea data-template>
+### There is more to Unsupervised Deep Learning
+
+* Autoencoders
+  * VAEs
+* Generative Adversarial Network (GAN) 
+
+</textarea>
+</section>
+
+<section data-markdown>
     <textarea data-template>
 ### Unsupervised Deep Learning 
 
-Auf der NIPS
+Workshop at NIPS 2018
 * https://www.facebook.com/nipsfoundation/posts/795861577420073/
 * Slides: https://ranzato.github.io
   * https://ranzato.github.io/publications/tutorial_deep_unsup_learning_part1_NeurIPS2018.pdf
   * https://ranzato.github.io/publications/tutorial_deep_unsup_learning_part2_NeurIPS2018.pdf
 
-</textarea>
-</section>
-
-
-<section data-markdown>
-    <textarea data-template>
-## Embeddings
-
-</textarea>
-</section>
-
-
-<section data-markdown class="todo">
-    <textarea data-template>
-Einfaches Embedding trainieren zum zeigen und total overfitten und das auch im Kauf nehmen, Beispiel so wie da
-
-https://machinelearningmastery.com/use-word-embedding-layers-deep-learning-keras/
-    </textarea>
-</section>
-
-<section data-markdown class="todo">
-    <textarea data-template>
-10 Flughäfen anhand von Beschreibung
-Als Wikipedia kopieren, erste paar Absätze
-Übung von Hand 2 semantischen Dimensionen finden und die da einzeichnen
-Dann: das können wir auch automatisch machen wenn wir das Maß für ähnlich keit definieren können 
-</textarea>
-</section>
-
-<section data-markdown class="todo">
-    <textarea data-template>
-### Embeddings
-
-* http://bryanlohjy.gitlab.io/spacesheet/word2vec.html
 </textarea>
 </section>
 
