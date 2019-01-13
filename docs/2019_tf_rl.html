@@ -162,15 +162,13 @@
 
 <section data-markdown class="todo">
     <textarea data-template>
-### Umbau Struktur
-* Ms PacMan raus und nur Pong erklären, gleich mit Policy Gradient und Überblick über Algorithmen
+### Übungen
 * Berater dann als Übung ausarbeiten
 * RL 2 Übungen
   1. Environment anpassen
   1. Netzwerk für PPO und andere Parameter setzen
     </textarea>
 </section>
-
 
 <section data-markdown class="todo">
     <textarea data-template>
@@ -214,7 +212,6 @@ https://en.wikipedia.org/wiki/Atari_2600
 </textarea>
 </section>
 
-
 <section data-markdown>
         <textarea data-template>
 ### Structure
@@ -241,71 +238,32 @@ https://ranzato.github.io/publications/tutorial_deep_unsup_learning_part1_NeurIP
 </textarea>
 </section>
 
-<section data-markdown style="font-size: xx-large">
-    <textarea data-template>
-### Text Books
-
-* Standard: Reinforcement Learning: An Introduction
-  * Main page (including Code): http://incompleteideas.net/book/the-book-2nd.html
-  * Free PDF: https://drive.google.com/file/d/1opPSz5AZ_kVa1uWOdOiveNiBFiEOHjkG/view
-
-* More concise, more mathematical: Algorithms for Reinforcement Learning
-  * Main page: https://sites.ualberta.ca/~szepesva/RLBook.html
-  * Free PDF: https://sites.ualberta.ca/~szepesva/papers/RLAlgsInMDPs.pdf
-</textarea>
-</section>
-
-
 <section data-markdown>
     <textarea data-template>
-### Learning to Play Chess using Reinforcement Learning
-<a href='https://frpays.github.io/lc0-js/engine.html'>
-<img src='img/rl/lczero.jpg' height="400px">
-</a>
+### Learning to play Pong
+
+<img src='img/rl/pong/pong-random.gif' height="500">
 <small>
-https://frpays.github.io/lc0-js/engine.html
-<br>
-https://twitter.com/frpays/status/1077672273673359361
-</small>
+    https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/pg-from-scratch.ipynb
+    </small>
+    
 </textarea>
 </section>
 
 <section data-markdown>
     <textarea data-template>
-### AutoML with TensorFlow AdaNet Estimator
+### Atari Reinforcement Learning
 
-<img src='img/adanet.gif' height="450px">
-
+<img src='img/rl/atari_rl.jpg'>
 <small>
-_AdaNet uses Reinforcement Learning to learn a suitable Network Architecture for given data_
-<br>
-https://twitter.com/m4rkmc/status/1057485545708929024
+http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching_files/intro_RL.pdf    
 </small>
 </textarea>
 </section>
-
-
-
-
-
-<!-- <section data-markdown>
-    <textarea data-template>
-### Idea of Reinforcement Learning
-
-control a system so as to maximize some numerical value which represents a long-term objective
-
-<img src='img/rl/rl_szepesva.png' height="350px">
-
-<small>
-https://sites.ualberta.ca/~szepesva/papers/RLAlgsInMDPs.pdf
-</small>
-</textarea>
-</section> -->
-
 
 <section data-markdown>
 <textarea data-template>
-### Reinforcement Learning
+### Elements Reinforcement Learning
 
 <div  style="max-width: 45%; float: left">
 <br>
@@ -331,31 +289,6 @@ https://sites.ualberta.ca/~szepesva/papers/RLAlgsInMDPs.pdf
 
 <section data-markdown>
     <textarea data-template>
-### Reward Hypothesis
-
-_All_ goals can be described by the maximisation of expected cumulative reward
-
-</textarea>
-</section>
-
-
-<section data-markdown style="font-size: x-large">
-        <textarea data-template>
-### Reinforcement Learning as a Markov Decision Process
-
-<img src='img/rl/rl-bootcamp-gridworld.jpg' height="400px">
-
-* maximize expected sum of rewards under policy pi
-* policy pi: given a state, what action do you take?
-
-<small>
-https://youtu.be/qaMdN6LS9rA?t=5m43s
-</small>
-</textarea>
-</section>
-
-<section data-markdown>
-    <textarea data-template>
 ### OpenAI Platforms
 
 <img src='img/rl/openai.jpg' height="500px">
@@ -366,36 +299,88 @@ https://openai.com/systems/
 </textarea>
 </section>
 
+
 <section data-markdown>
     <textarea data-template>
-### Atari Reinforcement Learning
+## Finding a good Policy
 
-<img src='img/rl/atari_rl.jpg'>
+_select an action based on the observed state of our consultant environment_
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Policy Gradient for Discrete Actions
+
+use a neural network to approximate action probabilities
+
+<img src='img/rl/hidber-policy-gradient.jpg'>
 <small>
-http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching_files/intro_RL.pdf    
+Image Courtesy of Christian Hidber
+<br>
+http://karpathy.github.io/2016/05/31/rl/
 </small>
 </textarea>
 </section>
 
-<section data-markdown style="font-size: xx-large">
-<textarea data-template>
-### Hands-On Colab: Atari Environment using OpenAI
+<section data-markdown>
+    <textarea data-template>
+### How Policy Gradient learns
 
-<a href='https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/openai-colab.ipynb'>
-<img src='img/space-invaders-gym.png'>
-</a>
+_As we have no idea, try a bunch of stuff and see what happens. In the future do more of the stuff that worked well._
 
-* Score given as Reward
-* Observation Space: Pixels in three color channels
-* Action Space: 8 directions, plus fire on Atari joystick
+* Network outputs probabilities for which action is best in which situation
+* what data to create: make experiments according to probabilities for actions
+* use eventual reward *at end of episode* as label for state
+* store tuples of state, action until reward becomes clear
+* use SGD analogous to supervised learning 
+    
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Policy Gradient Rollout
+
+<img src='img/rl/pg-rollout.jpg' height="500">
+<small>
+Andrej Karpathy, Deep RL Bootcamp: https://www.youtube.com/watch?v=tqrcjHuNdmQ    
+</small>
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+<img src='img/rl/pg-discounting.jpg' height="600">
+<small>
+Andrej Karpathy, Deep RL Bootcamp: https://www.youtube.com/watch?v=tqrcjHuNdmQ    
+</small>
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Weakly Trained Model
+
+<img src='img/rl/pong/pong-low.gif' height="500">
 
 <small>
-https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/openai-colab.ipynb
-<br>
-https://github.com/openai/gym/blob/master/gym/envs/atari/atari_env.py
-<br>
-https://github.com/openai/atari-py
+batch_size = 10, learning_rate = 1e-3, gamma = 0.99, 1000 episodes    
 </small>
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Medium Well Trained Model
+
+<img src='img/rl/pong/pong-medium.gif' height="500">
+
+<small>
+batch_size = 10, learning_rate = 1e-4, gamma = 0.99, 2500 episodes    
+</small>
+    
 </textarea>
 </section>
 
@@ -519,114 +504,6 @@ https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/
 </textarea>
 </section>
 
-<section data-markdown>
-    <textarea data-template>
-## Step 2: Policy
-
-_select an action based on the observed state of our consultant environment_
-
-</textarea>
-</section>
-
-<section data-markdown>
-    <textarea data-template>
-### Policy Gradient for Discrete Actions
-
-use a neural network to approximate action probabilities
-
-<img src='img/rl/hidber-policy-gradient.jpg'>
-<small>
-Image Courtesy of Christian Hidber
-<br>
-http://karpathy.github.io/2016/05/31/rl/
-</small>
-</textarea>
-</section>
-
-<section data-markdown>
-    <textarea data-template>
-### Looking at Pong
-
-<img src='img/rl/pong/pong-random.gif' height="500">
-<small>
-    https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/pg-from-scratch.ipynb
-    </small>
-    
-</textarea>
-</section>
-
-<section data-markdown>
-    <textarea data-template>
-### How Policy Gradient learns
-
-_As we have no idea, try a bunch of stuff and see what happens. In the future do more of the stuff that worked well._
-
-* Network outputs probabilities for which action is best in which situation
-* what data to create: make experiments according to probabilities for actions
-* use eventual reward as label for state
-* store tuples of state, action until reward becomes clear
-* use SGD analogous to supervised learning 
-    
-</textarea>
-</section>
-
-<section data-markdown>
-    <textarea data-template>
-### Policy Gradient Rollout
-
-<img src='img/rl/pg-rollout.jpg' height="500">
-<small>
-Andrej Karpathy, Deep RL Bootcamp: https://www.youtube.com/watch?v=tqrcjHuNdmQ    
-</small>
-</textarea>
-</section>
-
-<section data-markdown>
-    <textarea data-template>
-### Loss in Policy Gradient
-
-<img src='img/rl/pg-loss.jpg' height="500">
-<small>
-Andrej Karpathy, Deep RL Bootcamp: https://www.youtube.com/watch?v=tqrcjHuNdmQ    
-</small>
-</textarea>
-</section>
-
-
-<section data-markdown>
-    <textarea data-template>
-<img src='img/rl/pg-discounting.jpg' height="600">
-<small>
-Andrej Karpathy, Deep RL Bootcamp: https://www.youtube.com/watch?v=tqrcjHuNdmQ    
-</small>
-</textarea>
-</section>
-
-<section data-markdown>
-    <textarea data-template>
-### Weakly Trained Model
-
-<img src='img/rl/pong/pong-low.gif' height="500">
-
-<small>
-batch_size = 10, learning_rate = 1e-3, gamma = 0.99, 1000 episodes    
-</small>
-</textarea>
-</section>
-
-<section data-markdown>
-    <textarea data-template>
-### Medium Well Trained Model
-
-<img src='img/rl/pong/pong-medium.gif' height="500">
-
-<small>
-batch_size = 10, learning_rate = 1e-4, gamma = 0.99, 2500 episodes    
-</small>
-    
-</textarea>
-</section>
-
 <section data-markdown style="font-size: xx-large">
     <textarea data-template>
 ### Algorithms: More general
@@ -678,7 +555,6 @@ https://www.youtube.com/watch?v=HzA8LRqhujk
 ### Returning to Vanilla Policy Gradient: Issues 
 
 _advantage is total (discounted) return, need to wait till end of episode for update_
-
 
 * problem 1: high Variance / catastrophic failure
   * Extreme episode can give large advantage and push policy over the cliff to a bad track
@@ -1127,121 +1003,6 @@ https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/
 </textarea>
 </section>
 
-<!-- <section data-markdown>
-        <textarea data-template>
-### Hands-On: Tweak Learning
-
-Balance
-1. Exploitation vs Exploration
-1. Immediate vs Future Rewards (set Gamma between 0.9 and 0.99)
-
-<img src='img/cartpole-animation.gif' height="200px">
-
-
-<small>
-https://en.wikipedia.org/wiki/Q-learning#Influence_of_variables
-<br>
-https://storage.googleapis.com/tfjs-examples/cart-pole/dist/index.html    
-</small>
-            </textarea>
-        </section> -->
-            
-<section data-markdown class="todo">
-    <textarea data-template>
-
-# FROM HERE JUST MATERIAL
-
-</textarea>
-</section>
-
-
-<!-- <section data-markdown class="todo">
-    <textarea data-template>
-### Advanced Deep Learning & Reinforcement Learning
-
-https://www.youtube.com/playlist?list=PLqYmG7hTraZDNJre23vqCGIVpfZ_K2RZs
-
-</textarea>
-</section>
-
-<section data-markdown class="todo">
-    <textarea data-template>
-### Intro Course
-
-https://www.youtube.com/watch?v=2pWv7GOvuf0
-
-http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching.html
-
-http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching_files/intro_RL.pdf
-
-</textarea>
-</section>
-
-
- <section data-markdown>
-<textarea data-template>
-<img src='img/robot-fun.jpg' height="500px">
-
-<p class="fragment">Reinforcement Learning: am ehesten die Basis für Roboter, die uns Menschen ausrotten</p>
-</textarea>
-</section>
-
-<section data-markdown>
-    <textarea data-template>
-### Aber erstmal machen wir die Roboter fertig!
-<video controls src="video/knocked-over-stand-up.mp4"  muted type="video/mp4" height="500"></video>
-            
-<small>
-https://blog.openai.com/openai-baselines-ppo/
-</small>
-</textarea>
-</section>
-<section data-markdown>
-<textarea data-template>
-### Und dann müssen die vorher auch noch ihren Pulli ankriegen
-<a href='https://youtu.be/ixmE5nt2o88?t=49'>
-<img src='img/rl-pulli.png'>
-</a>
-
-<small>
-https://twitter.com/evolvingstuff/status/1058220030045827072    
-</small>
-</textarea>
-</section> -->
-
-
-<section data-markdown class="todo">
-    <textarea data-template>
-### Colab Notebooks
-
-https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater.ipynb
-
-https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v2.ipynb
-
-https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v3.ipynb
-
-https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v4.ipynb
-
-https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v5.ipynb
-
-https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v6.ipynb
-
-https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v7.ipynb
-
-https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v8.ipynb
-
-https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/openai-gym-playground.ipynb
-
-https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/openai-colab.ipynb
-
-https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/baselines-colab.ipynb
-
-https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/dqn.ipynb
-
-https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/pg-from-scratch.ipynb
-
-</textarea>
-</section>
 
 <section data-markdown>
     <textarea data-template>
@@ -1276,6 +1037,35 @@ http://ai.googleblog.com/2018/08/introducing-new-framework-for-flexible.html
 </textarea>
 </section>
 
+
+<section data-markdown>
+    <textarea data-template>
+### Learning to Play Chess using Reinforcement Learning
+<a href='https://frpays.github.io/lc0-js/engine.html'>
+<img src='img/rl/lczero.jpg' height="400px">
+</a>
+<small>
+https://frpays.github.io/lc0-js/engine.html
+<br>
+https://twitter.com/frpays/status/1077672273673359361
+</small>
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### AutoML with TensorFlow AdaNet Estimator
+
+<img src='img/adanet.gif' height="450px">
+
+<small>
+_AdaNet uses Reinforcement Learning to learn a suitable Network Architecture for given data_
+<br>
+https://twitter.com/m4rkmc/status/1057485545708929024
+</small>
+</textarea>
+</section>
+
 <section data-markdown>
 <textarea data-template>
 ### When to do Reinforcement Learning
@@ -1299,6 +1089,52 @@ http://ai.googleblog.com/2018/08/introducing-new-framework-for-flexible.html
 </textarea>
 </section>
 
+<section data-markdown style="font-size: xx-large">
+    <textarea data-template>
+### Text Books
+
+* Standard: Reinforcement Learning: An Introduction
+  * Main page (including Code): http://incompleteideas.net/book/the-book-2nd.html
+  * Free PDF: https://drive.google.com/file/d/1opPSz5AZ_kVa1uWOdOiveNiBFiEOHjkG/view
+
+* More concise, more mathematical: Algorithms for Reinforcement Learning
+  * Main page: https://sites.ualberta.ca/~szepesva/RLBook.html
+  * Free PDF: https://sites.ualberta.ca/~szepesva/papers/RLAlgsInMDPs.pdf
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Collection of all Colab Notebooks
+
+https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater.ipynb
+
+https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v2.ipynb
+
+https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v3.ipynb
+
+https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v4.ipynb
+
+https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v5.ipynb
+
+https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v6.ipynb
+
+https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v7.ipynb
+
+https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v8.ipynb
+
+https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/openai-gym-playground.ipynb
+
+https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/openai-colab.ipynb
+
+https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/baselines-colab.ipynb
+
+https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/dqn.ipynb
+
+https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/pg-from-scratch.ipynb
+
+</textarea>
+</section>
 
     </div>
 
