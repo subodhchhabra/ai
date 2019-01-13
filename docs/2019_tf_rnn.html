@@ -160,41 +160,6 @@
     </textarea>
 </section>
 
-<section>
-        <h2>Recurrent Neural Networks with TensorFlow</h2>
-<h4><a href="http://zeigermann.eu">Oliver Zeigermann</a> / <a href="http://twitter.com/djcordhose">@DJCordhose</a>
-</h4>
-<p><small><a href="https://djcordhose.github.io/ai/2019_tf_supervised.html">
-https://djcordhose.github.io/ai/2019_tf_supervised.html
-</a></small></p>
-</section>
-
-<section data-markdown>
-    <textarea data-template>
-### Time Series Prediction 
-
-https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/seqeuence/intro.ipynb
-    </textarea>
-</section>
-
-<section data-markdown class="todo">
-    <textarea data-template>
-### RNN Teil
-
-* Motivate from given problems
-  * Emails from Customers, are they angry?
-* For long version take from all the nlp and rnn parts
-* RNN => CNN Übergang 1d Convolution
-  * Für Göteborg als Abschluss
-  * Für Kurs als Überleitung
-* Attention
-  * Folie "What's next?"
-  * seq2seq: https://colab.research.google.com/github/tensorflow/tensorflow/blob/master/tensorflow/contrib/eager/python/examples/nmt_with_attention/nmt_with_attention.ipynb
-* Motivate CNN: Could this not be a good solution for Images as well
-
-</textarea>
-</section>
-
 <section data-markdown class="todo">
     <textarea data-template>
 ### RNN    
@@ -274,6 +239,267 @@ Play with it and share what you find! #nlproc https://t.co/C95lBA8qNF
 </section>
 
 
+<section>
+        <h2>Recurrent Neural Networks with TensorFlow</h2>
+<h4><a href="http://zeigermann.eu">Oliver Zeigermann</a> / <a href="http://twitter.com/djcordhose">@DJCordhose</a>
+</h4>
+<p><small><a href="https://djcordhose.github.io/ai/2019_tf_supervised.html">
+https://djcordhose.github.io/ai/2019_tf_supervised.html
+</a></small></p>
+</section>
+
+<section>
+        <img src='img/applications/decisions/data.png'>
+</section>
+
+<section data-markdown>
+        <textarea data-template>
+## Challenge: Dense Networks have no memory of previous events
+
+They lack capability to deal with sequential data, which is required to predict time series or "understand" text
+            </textarea>
+            </section>
+        
+    <section data-markdown>
+        <textarea data-template>
+### Solution: RNNs - Networks with Loops
+<img src='img/nlp/colah/RNN-rolled.png' height="450px">
+
+<small>
+http://colah.github.io/posts/2015-08-Understanding-LSTMs/
+</small>
+        </textarea>
+    </section>
+        
+    <section data-markdown>
+        <textarea data-template>
+### Unrolling the loop
+#### Becomes a truly deep feed-forward network!
+<img src='img/nlp/colah/RNN-unrolled.png'>
+
+<small>
+http://colah.github.io/posts/2015-08-Understanding-LSTMs/
+</small>
+        </textarea>
+    </section>
+
+        <section data-markdown>
+            <textarea data-template>
+### Simple RNN
+
+<img src='img/nlp/fchollet_rnn.png'>
+
+<script type="math/tex; mode=display">
+output_t = \tanh(W input_t + U output_{t-1} + b)
+</script>
+    
+<small>
+<a href="https://livebook.manning.com/#!/book/deep-learning-with-python/chapter-6/129">
+    Deep Learning with Python, Chapter 6, François Chollet, Manning            
+</a>
+
+</small>
+
+</textarea>
+</section>
+
+<section>
+    <h3>Repetition Activation Functions</h3>
+    <div style="float: left">
+            <img src="img/sigmoid-activation.png" height="300px">
+            <p>
+                <small>Sigmoid, floating from 0 to 1</small>
+            </p>
+        </div>
+        <div style="float: right">
+                <img src="img/tanh-activation.png" height="300px">
+                <p>
+                <small>Tangens Hyperbolicus, floating from -1 to 1</small>
+            </p>
+        </div>
+    <small>
+        <a href="https://notebooks.azure.com/djcordhose/libraries/buch/html/kap7-iris.ipynb">
+            https://notebooks.azure.com/djcordhose/libraries/buch/html/kap7-iris.ipynb
+    </a>
+    </small>    
+</section>
+
+
+    <section data-markdown>
+            <textarea data-template>
+### Main issues with RNNs
+
+_Vanishing or exploding gradient problem:_
+* Each step in training applies the same weights to the output, also in back-propagation  
+* The further we move backwards, the bigger (explodes) or smaller (vanishes) the gradient becomes
+* Multiplying many numbers <1 closes in on 0 (vanshing) and the same for >1 approaches infinty (exploding)
+<small>
+https://towardsdatascience.com/learn-how-recurrent-neural-networks-work-84e975feaaf7
+</small>
+</textarea>
+</section>
+
+<section data-markdown>
+        <textarea data-template>
+### Intuition of effect
+
+_Effectively long term memory does not work:_
+
+* RNNs experiences difficulty in memorising words from far away in the sequence
+* Predictions based on most recent words only
+
+<small>
+    https://towardsdatascience.com/learn-how-recurrent-neural-networks-work-84e975feaaf7
+</small>
+</textarea>
+</section>
+
+
+    <section data-markdown>
+        <textarea data-template>
+### LSTM (Long short-term memory) / GRU (Gated Recurrent Unit)
+
+_allow past information
+to be reinjected at a later time, thus fighting the vanishing-gradient problem_
+
+<small>
+https://en.wikipedia.org/wiki/Long_short-term_memory
+<br>            
+<a href="https://www.manning.com/books/deep-learning-with-python">
+    Deep Learning with Python, Chapter 6.2.2, François Chollet, Manning            
+</a>            
+https://towardsdatascience.com/understanding-gru-networks-2ef37df6c9be
+<br>
+<br>
+https://datascience.stackexchange.com/questions/14581/when-to-use-gru-over-lstm
+<br>
+<br>
+https://arxiv.org/ftp/arxiv/papers/1701/1701.05923.pdf
+<br>
+https://www.dlology.com/blog/how-to-deal-with-vanishingexploding-gradients-in-keras/
+</small>
+</textarea>
+</section>
+
+<section>
+    <h3>Keras RNN Layers</h3>
+
+    <p><small>RNN Nodes</small></p>
+    <pre><code contenteditable data-trim class="fragment line-numbers python">
+model.add(SimpleRNN(units=32))
+</code></pre>
+        <p>
+
+    <p><small>Optimized RNN Nodes</small></p>
+    <pre><code contenteditable data-trim class="fragment line-numbers python">
+model.add(GRU(units=32))
+</code></pre>
+        <p>
+
+<p><small>Passes all outputs of all timesteps (not only the last one) to the next layer</small></p>
+    <pre><code contenteditable data-trim class="fragment line-numbers python">
+model.add(GRU(units=32, return_sequences=True))
+        </code></pre>
+        <p>
+
+<p><small>Adds Dropout inside feedback loop</small></p>
+    <pre><code contenteditable data-trim class="fragment line-numbers python">
+model.add(GRU(units=32, return_sequences=True, recurrent_dropout=0.2))
+        </code></pre>
+        <p>
+
+    <small>
+            <a href="https://www.tensorflow.org/api_docs/python/tf/keras/layers">
+                https://www.tensorflow.org/api_docs/python/tf/keras/layers
+            </a>
+            <a href="https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/tensorflow/sentiment-gru.ipynb">
+                https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/tensorflow/sentiment-gru.ipynb
+            </a>
+    </small>
+</p>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Introduction to Time Series Prediction 
+
+<small>
+https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/2019_tf/time_series.ipynb
+</small>
+    </textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Introduction to Text Processing for Sentiment Analysis 
+
+<small>
+https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/tensorflow/sentiment-gru-reg.ipynb
+</small>
+    </textarea>
+</section>
+
+<section data-markdown>
+        <textarea data-template>
+### Guides: Text Classification with TensorFlow and Keras
+
+* https://twitter.com/fchollet/status/1055240643314823168
+* https://developers.google.com/machine-learning/guides/text-classification/
+</textarea>
+</section>
+
+<section data-markdown>
+        <textarea data-template>
+### Also perfect for natural language Sequence to Sequence translations
+
+<img src='img/nlp/encdec.jpg'>
+
+<small>
+https://www.tensorflow.org/tutorials/seq2seq
+</small>
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### What's next?
+
+<img src='img/colah-next.png'>
+
+<small>
+https://distill.pub/2016/augmented-rnns/
+<br>
+Attention is all you need: https://arxiv.org/pdf/1706.03762.pdf
+</small>
+</textarea>
+</section>
+
+<section data-markdown>
+        <textarea data-template>
+### Have you found any inspiration?
+
+* Do you have any time series data?
+* Would you need to process text?
+* Any sequence of symbols?
+* This could easily build on embeddings
+</textarea>
+</section>
+
+<!-- <section data-markdown>
+    <textarea data-template>
+### Neural Machine Translation with Attention
+
+_Using TensorFlow and Keras_
+
+<img src='img/nmt-attention-twitter.png' height="400">
+
+<small>
+https://twitter.com/dennybritz/status/1011464747877838848/
+<br>
+https://colab.research.google.com/github/tensorflow/tensorflow/blob/master/tensorflow/contrib/eager/python/examples/nmt_with_attention/nmt_with_attention.ipynb
+</small>
+</textarea>
+</section> -->
 
 
     </div>

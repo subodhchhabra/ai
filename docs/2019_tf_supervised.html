@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 
-    <title>TensorFlow Introduction</title>
+    <title>Supervised TensorFlow</title>
 
     <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
     <meta name="author" content="Hakim El Hattab">
@@ -160,15 +160,6 @@
     </textarea>
 </section>
 
-<section>
-        <h2>Supervised Learning with TensorFlow</h2>
-<h4><a href="http://zeigermann.eu">Oliver Zeigermann</a> / <a href="http://twitter.com/djcordhose">@DJCordhose</a>
-</h4>
-<p><small><a href="https://djcordhose.github.io/ai/2019_tf_supervised.html">
-https://djcordhose.github.io/ai/2019_tf_supervised.html
-</a></small></p>
-</section>
-
 <section data-markdown class="todo">
     <textarea data-template>
 ### Make initializer determninistic by added seed
@@ -186,29 +177,6 @@ https://keras.io/initializers/
 </textarea>
 </section>
 
-
-<section data-markdown class="todo">
-    <textarea data-template>
-Batch Normalization
-
-Aerin Kim 🙏 (@aerinykim) tweeted at 6:28 AM on Wed, Dec 05, 2018:
-So far (2 days gone), this is my favorite #NeurIPS18 paper. I just love the paper that tells me why it works. It also showed that the popular previous belief "internal covariate shift" has little to do with batch norm's success. Ah! 😍
-3-min video: https://t.co/EbcCRDzyAu https://t.co/8eUUWI9G6u
-(https://twitter.com/aerinykim/status/1070188133810139136?s=03)
-</textarea>
-</section>
-
-<section data-markdown class="todo">
-    <textarea data-template>
-### How does Batch Normalization Help Optimization?
-
-* still not solved, why exactly it helps
-* Take some screenshots, . Add video as source, offer to play
-
-https://twitter.com/suzatweet/status/1070824077387071488
-</textarea>
-</section>
-
 <section data-markdown class="todo">
     <textarea data-template>
     
@@ -218,6 +186,22 @@ Excited to present our work "Visualizing the Loss Landscape of Neural Nets" at #
 </textarea>
 </section>
 
+<section>
+        <h2>Supervised Learning with TensorFlow</h2>
+<h4><a href="http://zeigermann.eu">Oliver Zeigermann</a> / <a href="http://twitter.com/djcordhose">@DJCordhose</a>
+</h4>
+<p><small><a href="https://djcordhose.github.io/ai/2019_tf_supervised.html">
+https://djcordhose.github.io/ai/2019_tf_supervised.html
+</a></small></p>
+</section>
+
+<section>
+    <h3>Example: Customer Data - Risk of Accidents</h3>
+    <img src="img/manning/all.png" height="400px" class="fragment">
+    <p class="fragment">
+        <small>How would you rank me (47) for a car having 100 mph top speed, driving 10k miles per year?</small>
+    </p>
+</section>
 
 <section data-markdown>
     <textarea data-template>
@@ -230,6 +214,462 @@ https://ranzato.github.io/publications/tutorial_deep_unsup_learning_part1_NeurIP
 </small>
 </textarea>
 </section>
+
+<section data-markdown>
+    <textarea data-template>
+### Checking our available data
+
+<img src='img/df_describe.png' height="500">
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Sample Data
+
+<img src='img/df_head.jpg' height="500">
+
+</textarea>
+</section>
+
+    <section data-markdown>
+        <textarea data-template>
+## Shared Exercise
+
+_Sketch the Architecture of our model_
+
+* How does the input look like?
+* And the output?
+* How to to connect them?
+* How to encode our data to match the network structure?
+
+Key to architecture: What do we want to predict and what do we have as  input
+    </textarea>
+    </section>
+
+ 
+<section data-markdown>
+        <textarea data-template>
+### What goes in?
+
+<img src='img/insurance/data_encoding.jpg'>
+
+</textarea>
+</section>
+
+<section data-markdown>
+        <textarea data-template>
+### What comes out?
+
+<img src='img/insurance/encoding2.jpg'>
+
+</textarea>
+</section>
+
+<section data-markdown>
+        <textarea data-template>
+### Role of the Hidden Layer(s)
+
+<img src='img/insurance/encoding3.jpg'>
+
+</textarea>
+</section>
+
+<!-- <section data-markdown>
+    <textarea data-template>
+### How do we determine the loss?
+
+<img src='img/network-sketch.jpg' height="500px">
+
+</textarea>
+</section> -->
+
+<section>
+    <h3>Next step: Encode this with Keras</h3>
+
+    <p><small>Sequential Model</small></p>
+    <pre><code contenteditable data-trim class="fragment line-numbers python">
+model = keras.Sequential()
+        </code></pre>
+
+    <p><small>Fully Connected Hidden Layer</small></p>
+    <pre><code contenteditable data-trim class="fragment line-numbers python">
+model.add(Dense(units=50, input_dim=3))
+</code></pre>
+
+        <p><small>Softmax Output Layer</small></p>
+        <pre><code contenteditable data-trim class="fragment line-numbers python">
+model.add(Dense(units=3, activation='softmax'))
+        </code></pre>
+                            
+    <small>
+            <a href="https://www.tensorflow.org/api_docs/python/tf/keras/layers">
+                https://www.tensorflow.org/api_docs/python/tf/keras/layers
+            </a>
+    </small>
+</p>
+</section>
+
+<section>
+    <h3>How does learning work?</h3>
+    <p class="fragment">This boils down to an optimization problem</p>
+    <p class="fragment">The loss to be minimized is calculated from the difference between the softmax output and the known true category</p>
+            <pre><code contenteditable data-trim class="fragment line-numbers python">
+model.compile(loss='sparse_categorical_crossentropy',
+             optimizer='adam',
+             metrics=['accuracy'])
+            </code></pre>
+        <small>
+https://machinelearningmastery.com/adam-optimization-algorithm-for-deep-learning/
+        </small>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Job of the optimizer
+
+<a href="http://playground.tensorflow.org/#activation=tanh&amp;batchSize=10&amp;dataset=xor&amp;regDataset=reg-plane&amp;learningRate=0.03&amp;regularizationRate=0&amp;noise=0&amp;networkShape=1&amp;seed=0.90689&amp;showTestData=true&amp;discretize=false&amp;percTrainData=50&amp;x=true&amp;y=true&amp;xTimesY=false&amp;xSquared=false&amp;ySquared=false&amp;cosX=false&amp;sinX=false&amp;cosY=false&amp;sinY=false&amp;collectStats=false&amp;problem=classification&amp;initZero=false&amp;hideText=false&amp;showTestData_hide=false&amp;stepButton_hide=false&amp;activation_hide=false&amp;problem_hide=true&amp;noise_hide=true&amp;regularization_hide=true&amp;dataset_hide=true&amp;batchSize_hide=true&amp;learningRate_hide=false&amp;regularizationRate_hide=true&amp;percTrainData_hide=false&amp;numHiddenLayers_hide=true&amp;discretize_hide=true">
+<img src="img/manning/optimizer.png" height="400px">
+</a>
+
+</textarea>
+</section>
+
+<section>
+<h3>What does the neural network learn?</h3>
+<p class="fragment">Optimal values of weights (+biases) for all neurons</p>
+<pre><code contenteditable data-trim class="fragment line-numbers python">
+model.summary()</code></pre>
+<pre><code contenteditable data-trim class="fragment line-numbers python">
+_________________________________________________________________
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+hidden1 (Dense)              (None, 50)                200       
+_________________________________________________________________
+softmax (Dense)              (None, 3)                 153       
+=================================================================
+Total params: 353
+Trainable params: 353
+Non-trainable params: 0
+_________________________________________________________________</code></pre>
+</section>
+
+
+<section>
+        <h3>Exercise</h3>
+        <p><em>Can you explain the number of parameters for each layer for the model described in the previous slide?</em></p>
+    
+</section>
+
+    
+<section data-markdown>
+        <textarea data-template>
+### Generalization
+
+_We do not have any idea how well our model performs, yet_
+
+</textarea>
+</section>
+
+<section data-markdown>
+        <textarea data-template>
+### Evaluating our model
+
+* The most important property of a model is if it generalizes well to unknown data
+* A machine learning model is of no use if it only works well on the data it has been trained on
+  * If it was, the easiest way to achieve this would be a dictionary translating from a set of inputs to the known output
+* Conceptually it is a little bit hard to optimize for something you do not know
+* So, we introduce a little trick here
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Split known data into training and test
+
+<img class='fragment' src='img/insurance/generalization.jpg'>
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Use some training data for validation
+
+<img class='fragment' src='img/insurance/generalization1.jpg'>
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Best known model using 2 dimensions
+
+<img src='img/manning/nn-reg.png' height="500">
+
+<p><small>up to 73% predictions correct on previously unknown data possible</small></p>
+</textarea>
+</section>
+
+<section data-markdown>
+        <textarea data-template>
+## Notebook            
+### Split data sets, train the neural network and evaluate results
+
+<small>
+https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/tensorflow/nn-training.ipynb
+</small>
+    </textarea>
+    </section>
+
+<section data-markdown>
+        <textarea data-template>
+## Exercise
+
+_Train the model_
+
+* Run the notebook as is
+* Try to improve the model
+* How well does it perform?
+* Any idea why it performs the way it does?
+
+<small>
+https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/tensorflow/nn-training.ipynb
+</small>
+    </textarea>
+    </section>
+
+<section data-markdown>
+    <textarea data-template>
+## Regularization
+    </textarea>
+</section>
+
+<section id='overfitting'>
+        <h3>The Issue: Overfitting</h2>
+    <div>
+    <div style="float: left">
+        <img src="img/scans/elements/80_percent.jpg" height="200" class="fragment" data-fragment-index='1'>
+        <p>
+            <small><em>Training Score</em></small>
+        </p>
+    </div>
+    <div style="float: left" class="fragment" data-fragment-index='5'>
+        <img src="img/scans/elements/down.jpg" height="200">
+    </div>
+    <div style="float: left" class="fragment" data-fragment-index='4'>
+        <img src="img/scans/elements/up.jpg" height="200">
+    </div>
+    <div style="float: left">
+            <img src="img/scans/elements/70_percent.jpg" height="225"  class="fragment" data-fragment-index='2'>
+            <p>
+                <small><em>Test Score</em></small>
+            </p>
+    </div>
+    </div>
+    <p style="clear: both" class="fragment" data-fragment-index='3'><em>Training and test scores clearly divert</em></p>
+
+    </section>
+
+    <section data-markdown>
+        <textarea data-template>
+### Regularization
+
+_Process to counter overfitting_
+            </textarea>
+            </section>
+    
+    <section data-markdown>
+        <textarea data-template>
+### First approach: Train for fewer epochs
+
+<img src='img/accuracy.png'>
+
+_Watch where training and validation accuracy diverge and stop training there_
+
+            </textarea>
+            </section>
+    
+<section id='overfitting-capacity'>
+        <h3>Second approach: Reduce capacity of model</h2>
+    <div style="float: left; width: 400px" class="fragment" data-fragment-index='1'>
+        <img src="img/scans/elements/model-large.jpg" height="200">
+        <p>
+            <small><em>Original model</em></small>
+        </p>
+    </div>
+    <div style="float: left; width: 200px" class="fragment" data-fragment-index='2'>
+        <br>
+        <img src="img/scans/elements/right.jpg">
+        <br>
+    </div>
+    <div style="float: left; width: 500px"   class="fragment" data-fragment-index='3'>
+            <br>
+            <img src="img/scans/elements/model-small.jpg" height="100">
+            <br>
+            <br>
+            <p>
+                <small><em>Smaller model</em><br>less hidden layers, less neurons per layer</small>
+            </p>
+    </div>
+    <p style="clear: both" class="fragment" data-fragment-index='4'><em>Intuition: Give model less capacity to simply memorize data</em></p>
+    </section>
+
+<section id='overfitting-dropout'>
+        <h3>Third approach: Use Dropout</h2>
+            <p><em>Dropouts only train a certain percentage of neurons per batch</em></p>
+    <div style="float: left; width: 400px" class="fragment" data-fragment-index='1'>
+        <img src="img/scans/elements/model-large.jpg" height="225">
+        <p>
+            <small><em>Original model</em></small>
+        </p>
+    </div>
+    <div style="float: left; width: 200px" class="fragment" data-fragment-index='2'>
+        <br>
+        <img src="img/scans/elements/right.jpg">
+        <br>
+    </div>
+    <div style="float: left; width: 500px"   class="fragment" data-fragment-index='3'>
+            <br>
+            <img src="img/scans/elements/model-emsemble.jpg" height="100">
+            <br>
+            <br>
+            <p>
+                <small><em>Ensemble of small models</em> (each one overfits on its specific batch)<br></small>
+            </p>
+    </div>
+    <p style="clear: both" class="fragment" data-fragment-index='4'><em>Intuition: Combination of models makes result more robust</em></p>
+    </section>
+
+    <section data-markdown id='overfitting-bn'>
+            <textarea data-template>
+### Fourth approach: Batch Normalization
+
+<ul>
+    <li class="fragment">Subtracts batch mean
+    <li class="fragment">Multiplies by standard deviation     
+</ul>
+
+<!-- <img src='img/scans/elements/sigmoid.jpg' class="fragment" height="200"> -->
+    
+<p class="fragment"><em>Intuition: Makes model robust by adding noise</em></p>
+
+<p class="fragment"><small><em>Bonus:</em> Lets model train faster by fighting vanishing gradients</small></p>
+<small>
+http://gradsci.org/batchnorm
+<br>
+https://www.youtube.com/watch?v=ZOabsYbmBRM
+</small>
+                </textarea>
+                </section>
+        
+
+<section data-markdown>
+        <textarea data-template>
+## Exercise
+
+_Regularize your model_
+
+* Find ouy how to apply those regularizations from the notebooks supplied
+* You can just as well start with this notebook
+* Make sure you are optimizing for test, not for train score
+* How good can you get?
+
+<small>
+https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/tensorflow/nn-reg.ipynb
+</small>
+    </textarea>
+    </section>
+
+
+
+    <section data-markdown>
+        <textarea data-template>
+### Best known model using 3 dimensions
+
+Up to 80% of accuracy
+
+<small>
+https://colab.research.google.com/github/djcordhose/deep-learning-crash-course-notebooks/blob/master/U3-M10-final-model.ipynb
+</small>
+</textarea>
+    </section>
+
+
+<section data-markdown>
+    <textarea data-template>
+## Finding Applications
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Deep Supervised Learning fits best when
+
+* the problem at hand is hard to specify (_Who is a good customer?_)
+* you have a lot of examples
+* solving the problem can tolerate some error or uncertainty
+* there is a clear, simple input and output
+                            </textarea>
+        </section>
+
+<section data-markdown>
+<textarea data-template>
+### Remember, we are not Facebook or Google
+
+<img src='img/dl-research-vs-application.png' height="500px">
+<small>https://twitter.com/casarock/status/1064438008756256768</small>
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<!-- ### Andrew Ng: Supervised Machine Learning -->
+
+<img src='img/ng_supervised.png' height="570px">
+
+<small>
+https://hbr.org/2016/11/what-artificial-intelligence-can-and-cant-do-right-now
+</small>
+    </textarea>
+    </section>
+
+<section data-markdown>
+    <textarea data-template>
+<!-- ### ML rather is research and a bit of engineering than a craft -->
+### Machine Learning = Lab Work
+<img src='img/ml_is_not_programming.jpg' height="450px">
+</textarea>
+</section>
+
+<section data-markdown>
+        <textarea data-template>
+### Finding data sets to play with
+    
+* Google released a search engine for datasets
+  * Search: https://toolbox.google.com/datasetsearch
+  * Launch blog post: https://www.blog.google/products/search/making-it-easier-discover-datasets/
+* Kaggle Datasets: https://www.kaggle.com/datasets    
+</textarea>
+</section>
+
+<section data-markdown class="todo">
+    <textarea data-template>
+### Where can I use Deep Neural Networks?
+
+* wo kann ich das bei uns einsetzen?
+* Im ersten Block nach NN Intro: wie finde ich ein Einsatzgebiet?
+* Was brauche ich? (Wann geht ML?) und Hardware
+* Checkliste machen als Anleitung
+* Pro Mal eine andere Methode einführen
+
+</textarea>
+</section>
+
+
 
 
     </div>

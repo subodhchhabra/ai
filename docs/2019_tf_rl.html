@@ -160,19 +160,6 @@
     </textarea>
 </section>
 
-<section>
-        <h2>Introduction to Reinforcement Learning</h2>
-        <h3>using the OpenAI platforms</h3>
-<!-- <p><a target="_blank" href="TODO">
-    TODO
-</a></p> -->
-<h4><a href="http://zeigermann.eu">Oliver Zeigermann</a> / <a href="http://twitter.com/djcordhose">@DJCordhose</a>
-</h4>
-<p><small><a href="https://djcordhose.github.io/ai/2019_tf_rl.html">
-https://djcordhose.github.io/ai/2019_tf_rl.html
-</a></small></p>
-</section>
-
 <section data-markdown class="todo">
     <textarea data-template>
 ### Umbau Struktur
@@ -187,12 +174,71 @@ https://djcordhose.github.io/ai/2019_tf_rl.html
 
 <section data-markdown class="todo">
     <textarea data-template>
-- Atari Consolen Image: https://en.wikipedia.org/wiki/Atari_2600#/media/File:Atari-2600-Wood-4Sw-Set.jpg
 - V9
   - lr als Range, abnehmend
   - ent_coef wieder auf 0
   - Schätzung für Optimum anhand von Gesamtkosten zwischen 1250 und 2500
     </textarea>
+</section>
+
+
+<section>
+        <h2>Introduction to Reinforcement Learning</h2>
+        <h3>using the OpenAI platforms</h3>
+<!-- <p><a target="_blank" href="TODO">
+    TODO
+</a></p> -->
+<h4><a href="http://zeigermann.eu">Oliver Zeigermann</a> / <a href="http://twitter.com/djcordhose">@DJCordhose</a>
+</h4>
+<p><small><a href="https://djcordhose.github.io/ai/2019_tf_rl.html">
+https://djcordhose.github.io/ai/2019_tf_rl.html
+</a></small></p>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Who had this or at least knows what this is?
+
+<img src='img/rl/Atari-2600-Wood-4Sw-Set.jpg' height="500px">
+
+<small>
+https://en.wikipedia.org/wiki/Atari_2600    
+</small>
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+## Nice, but what does this have to do with reinforcement learning?
+
+</textarea>
+</section>
+
+
+<section data-markdown>
+        <textarea data-template>
+### Structure
+
+* What is Reinforcement Learning?
+* Introduction to Policy Gradients with OpenAI
+* How to model an environment
+* Optional Advanced Stuff
+  * Providing customer neural networks
+  * Disucussing Overfitting 
+* Identifying applications
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+## Types of Learning
+<img src='img/types-of-ml.jpg'>
+<small>
+https://www.facebook.com/nipsfoundation/posts/795861577420073/
+<br>
+https://ranzato.github.io/publications/tutorial_deep_unsup_learning_part1_NeurIPS2018.pdf
+</small>
+</textarea>
 </section>
 
 <section data-markdown style="font-size: xx-large">
@@ -209,18 +255,6 @@ https://djcordhose.github.io/ai/2019_tf_rl.html
 </textarea>
 </section>
 
-
-<section data-markdown>
-    <textarea data-template>
-## Types of Learning
-<img src='img/types-of-ml.jpg'>
-<small>
-https://www.facebook.com/nipsfoundation/posts/795861577420073/
-<br>
-https://ranzato.github.io/publications/tutorial_deep_unsup_learning_part1_NeurIPS2018.pdf
-</small>
-</textarea>
-</section>
 
 <section data-markdown>
     <textarea data-template>
@@ -249,6 +283,8 @@ https://twitter.com/m4rkmc/status/1057485545708929024
 </small>
 </textarea>
 </section>
+
+
 
 
 
@@ -302,22 +338,6 @@ _All_ goals can be described by the maximisation of expected cumulative reward
 </textarea>
 </section>
 
-<section data-markdown>
-<textarea data-template>
-### When to do Reinforcement Learning
-
-1. When you don't have suitable data
-1. You can accurately simulate an environment
-1. Maybe express your problem as a game
-
-<!-- <small>
-TensorFlow based tool: https://github.com/deepmind/trfl/blob/master/docs/index.md
-</small> -->
-</textarea>
-</section>
-
-
-
 
 <section data-markdown style="font-size: x-large">
         <textarea data-template>
@@ -327,7 +347,6 @@ TensorFlow based tool: https://github.com/deepmind/trfl/blob/master/docs/index.m
 
 * maximize expected sum of rewards under policy pi
 * policy pi: given a state, what action do you take?
-
 
 <small>
 https://youtu.be/qaMdN6LS9rA?t=5m43s
@@ -937,8 +956,10 @@ https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/
 Estimation
 * total cost when travelling all paths (back and forth): 2500
 * all rewards: 6000
-* estimate: half the travel cost and no illegal moves: (6000 - 1250) / 6000 = .79
 * but: rewards are much more sparse while routes stay the same, maybe expect less
+* estimate: no illegal moves and between
+  * half the travel cost: (6000 - 1250) / 6000 = .79
+  * and full traval cost (6000 - 2500) / 6000 = 0.58
 * additionally: the agent only sees very little of the whole scenario
   * changes with every episode
   * was ok when network can learn fixed scenario
@@ -1249,25 +1270,35 @@ http://ai.googleblog.com/2018/08/introducing-new-framework-for-flexible.html
 </textarea>
 </section>
 
-<section>
-    <h2>Wrap Up</h2>
-    <ul>
-        <li class="fragment"> 
-
-    </ul>
-    <p>
-            <em>Introduction to Reinforcement Learning</em>
-        <br>
-        <br>
-        <small>
-    <a href="http://zeigermann.eu">Oliver Zeigermann</a> / <a href="http://twitter.com/djcordhose">@DJCordhose</a>
-        <br>
-<a href="TODO">
-    TODO</a>
-</small>
-    </p>
+<section data-markdown>
+        <textarea data-template>
+## Finding Applications
+</textarea>
 </section>
-        
+
+<section data-markdown>
+<textarea data-template>
+### When to do Reinforcement Learning
+
+1. When you don't have suitable data
+1. You can accurately simulate an environment
+1. Maybe express your problem as a game
+
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+### Do you see applications?
+
+* typically, this is especially hard
+* requires a different way of thinking
+* can you model something like a game?
+* do you already have a simulator?
+
+</textarea>
+</section>
+
 
     </div>
 
