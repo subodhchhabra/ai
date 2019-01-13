@@ -423,7 +423,7 @@ _reproducing the MNIST data set_
 
 <img src='img/mninst_ae.jpg'>
 
-<small>
+<small style="font-size: large">
 https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/2019_tf/autoencoders_intro.ipynb
 </small>
         
@@ -447,14 +447,26 @@ https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/201
 
 <section data-markdown>
     <textarea data-template>
+### What really matters 
+
+<img src='img/sean-data.png'>
+
+<small>
+https://twitter.com/SeanPedersen96/status/1063272488489099264
+</small>
+</textarea>
+</section>
+
+
+<section data-markdown>
+    <textarea data-template>
 ### Exercise: Optimize training
 
-_try to generate a more telling visualization_
+_try to generate a more telling visualizations_
 
 * make sure you understand the architecture
 * tune loss ratios
 * sizes of input encodings
-* what results do you get when you just average over the encoded inputs?
 
 <small style="font-size: large">
 https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/2019_tf/autoencoders_tabular.ipynb
@@ -463,6 +475,25 @@ https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/201
 </textarea>
 </section>
 
+<section data-markdown>
+        <textarea data-template>
+### Variational Auto Encoders (VAE)
+
+* VAE is a generative model
+* latent space learns a probability distribution modelling your data
+* actually learning mean and standard deviation of distribution
+* sampling from it can generate new data
+
+<small>
+https://blog.keras.io/building-autoencoders-in-keras.html
+<br>
+https://github.com/keras-team/keras/blob/master/examples/variational_autoencoder.py
+<br>
+https://towardsdatascience.com/intuitively-understanding-variational-autoencoders-1bfe67eb5daf
+</small>
+</textarea>
+    </section>
+    
 <section data-markdown class="todo">
     <textarea data-template>
 ### VAE
