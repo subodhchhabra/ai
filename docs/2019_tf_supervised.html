@@ -606,7 +606,37 @@ https://www.youtube.com/watch?v=ZOabsYbmBRM
 </small>
                 </textarea>
                 </section>
+
+        <section data-markdown>
+            <textarea data-template>
+### Fifth approach: L1/L2 weight Regularization
+
+* make model less complex by forcing low values for weights (less complexity, more regular)
+* adds penalty term to loss function
+* L1 (Lasso Regression): penalty is proportional to the absolute value of the weights coefficients
+  * helps drive the weights of irrelevant or barely relevant features to exactly 0
+* L2 ( Ridge Regression): penalty is proportional proportional to the square of value of the weights coefficients
+  * heavily penalizes very especially large coefficients
+
+<small style="font-size: large">
+https://colab.research.google.com/github/tensorflow/docs/blob/master/site/en/tutorials/keras/overfit_and_underfit.ipynb#scrollTo=4rHoVWcswFLa
+<br>
+https://towardsdatascience.com/l1-and-l2-regularization-methods-ce25e7fc831c    
+</small>
+                </textarea>
+                </section>
         
+        <section data-markdown>
+            <textarea data-template>
+### Sixth approach: Get more training data
+
+_if you can_
+
+if not
+* try augmenting existing data
+* use transfer learning
+              </textarea>
+                </section>
 
 <section data-markdown>
         <textarea data-template>
@@ -618,7 +648,8 @@ _Regularize your model_
 * You can just as well start with this notebook
 * Make sure you are optimizing for test, not for train score
 * How good can you get?
-
+* Advanced: Add L1/L2 weight Regularization to your model
+  * Run notebook from previous slide to see how this works
 <small>
 https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/tensorflow/nn-reg.ipynb
 </small>
