@@ -249,20 +249,65 @@ https://djcordhose.github.io/ai/2019_tf_supervised.html
 </section>
 
 <section>
-        <img src='img/applications/decisions/data.png'>
+    <h3>How does this sequence continue?</h3>
+    
+    <pre><code contenteditable data-trim class="line-numbers python">
+[10, 20, 30, 40, 50, 60, 70, 80, 90]    
+        </code></pre>
+    <p>Question: How do we train a network to predict the next number?</p>
+</section>
+
+<section>
+    <img src='img/applications/decisions/data.png'>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Types of Sequence to Sequence translations
+
+_What type do we have here?_
+
+<pre><code contenteditable data-trim class="line-numbers python">
+[10, 20, 30, 40, 50, 60, 70, 80, 90]  => [100]
+                </code></pre>
+        
+<img src='img/types_seq2seq.jpeg'>
+
+<small>
+http://karpathy.github.io/2015/05/21/rnn-effectiveness/    
+</small>
+
+</textarea>
 </section>
 
 <section data-markdown>
         <textarea data-template>
-## Challenge: Dense Networks have no memory of previous events
+### Challenge: Dense Networks have no memory of previous events
 
 They lack capability to deal with sequential data, which is required to predict time series or "understand" text
             </textarea>
             </section>
-        
+
+            <section data-markdown>
+        <textarea data-template>
+### Solution: Recurrent Neural Networks (RNNs)
+
+_If training vanilla neural nets is optimization over functions, training recurrent nets is optimization over programs._
+
+RNNs are Turing-Complete 
+
+<small>
+http://karpathy.github.io/2015/05/21/rnn-effectiveness/
+<br>
+http://binds.cs.umass.edu/papers/1995_Siegelmann_Science.pdf
+</small>
+</textarea>
+            </section>
+
+
     <section data-markdown>
         <textarea data-template>
-### Solution: RNNs - Networks with Loops
+### RNNs - Networks with Loops
 <img src='img/nlp/colah/RNN-rolled.png' height="450px">
 
 <small>
@@ -423,7 +468,7 @@ model.add(GRU(units=32, return_sequences=True, recurrent_dropout=0.2))
     <textarea data-template>
 ### Introduction to Time Series Prediction 
 
-<small>
+<small style="font-size: large">
 https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/2019_tf/time_series.ipynb
 </small>
     </textarea>
