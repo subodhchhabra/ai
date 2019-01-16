@@ -160,53 +160,12 @@
     </textarea>
 </section>
 
-<section data-markdown class="todo">
-    <textarea data-template>
-### RNN    
-https://github.com/GoogleCloudPlatform/training-data-analyst/tree/master/courses/machine_learning/deepdive/09_sequence
-</textarea>
-</section>
-
-
-<section data-markdown class="todo">
-<textarea data-template>
-https://machinelearningmastery.com/how-to-develop-lstm-models-for-time-series-forecasting/   
-</textarea>
-</section>
-
-<section data-markdown class="todo">
-    <textarea data-template>
-### Nice Seq2Seq Example
-
-Suzana Ilić (@suzatweet) tweeted at 10:33 PM on Tue, Dec 11, 2018:
-We built a funny little seq2seq-chatbot. It's mean, grumpy and sarcastic and you can play with it in your browser (with TensorFlow.js!) 
-Thanks to @ReiiYoda + @tushuhei, great working with you guys! :D 
-https://t.co/aheldyycr3 
-https://t.co/lujmZN1XNG #NeurIPS #NeurIPS4Creativity https://t.co/zSXkLTbxMX
-(https://twitter.com/suzatweet/status/1072605210357448704?s=03)
-</textarea>
-</section>
-
-<section data-markdown class="todo">
-    <textarea data-template>
-### RNN
-
-#### Using CNNs and RNNs for Music Genre Recognition – Towards Data Science
-
-https://towardsdatascience.com/using-cnns-and-rnns-for-music-genre-recognition-2435fb2ed6af
-
-#### Animated RNN, LSTM and GRU – Towards Data Science
-
-https://towardsdatascience.com/animated-rnn-lstm-and-gru-ef124d06cf45
-</textarea>
-</section>
-
 <section>
         <h2>Recurrent Neural Networks with TensorFlow</h2>
 <h4><a href="http://zeigermann.eu">Oliver Zeigermann</a> / <a href="http://twitter.com/djcordhose">@DJCordhose</a>
 </h4>
-<p><small><a href="https://djcordhose.github.io/ai/2019_tf_supervised.html">
-https://djcordhose.github.io/ai/2019_tf_supervised.html
+<p><small><a href="https://djcordhose.github.io/ai/2019_tf_rnn.html">
+https://djcordhose.github.io/ai/2019_tf_rnn.html
 </a></small></p>
 </section>
 
@@ -383,6 +342,8 @@ https://datascience.stackexchange.com/questions/14581/when-to-use-gru-over-lstm
 https://arxiv.org/ftp/arxiv/papers/1701/1701.05923.pdf
 <br>
 https://www.dlology.com/blog/how-to-deal-with-vanishingexploding-gradients-in-keras/
+<br>
+https://towardsdatascience.com/animated-rnn-lstm-and-gru-ef124d06cf45
 </small>
 </textarea>
 </section>
@@ -476,30 +437,44 @@ https://github.com/tensorflow/nmt
  ===
  864
 ```
-        </textarea>
+_Can we solve this using an encoder-decoder approach?_
+
+</textarea>
         </section>
 
+<section>
+    <h3>The Model</h3>
 
-<section data-markdown>
-        <textarea data-template>
-### Encoding addition as a Sequence to Sequence translation
+        <pre><code contenteditable data-trim class="fragment line-numbers python">
+# encoder for 7 digits, each being 0-9, + or space (12 possibilities) 
+model.add(SimpleRNN(units=128, input_shape=(7, 12)))
+</code></pre>
 
-<img src='img/nlp/rnn-adder-input.png' height="500px">
-            </textarea>
-            </section>
+    <pre><code contenteditable data-trim class="fragment line-numbers python">
+# latent space: 32
+model.add(Dense(units=32))
+</code></pre>
 
-<section data-markdown>
-        <textarea data-template>
-### Each time step generates a digit of the result
+    <pre><code contenteditable data-trim class="fragment line-numbers python">
+# decoder: have 4 temporal outputs one for each of the digits of the results
+model.add(RepeatVector(4))
 
-<img src='img/nlp/rnn-adder-output.png' height="500px">
-            </textarea>
-            </section>
+# keep all 4 temporal outputs
+model.add(RNN(units=128, return_sequences=True))            
+</code></pre>
+
+<pre><code contenteditable data-trim class="fragment line-numbers python">
+# finally decode this back to digit    
+model.add(Dense(units=12, activation='softmax'))
+    </code></pre>
+    
+<p class="fragment">That's right: Knowledge how to do addition on character level fits into 32 neurons</p>
+
+</section>
 
 <section data-markdown>
 <textarea data-template>
 ### Seeing the network at work in a notebook
-
 
 ```
 Input: "216+648"
@@ -533,14 +508,50 @@ Attention is all you need: https://arxiv.org/pdf/1706.03762.pdf
 
 <section data-markdown>
         <textarea data-template>
+## Finding applications
+
+</textarea>
+</section>
+
+
+<section data-markdown>
+    <textarea data-template>
+#### Funny Example: seq2seq-chatbot - mean, grumpy and sarcastic
+
+<img src='img/seq2seq-chatbot.jpg' height="500">
+
+<small>
+https://twitter.com/suzatweet/status/1072605210357448704
+</small>
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Example: Using CNNs and RNNs for Music Genre Recognition
+
+<img src='https://cdn-images-1.medium.com/max/1760/1*oWeQLfDKNh0xM4bH-iuW0w.gif'>
+
+<small>
+https://towardsdatascience.com/using-cnns-and-rnns-for-music-genre-recognition-2435fb2ed6af
+</small>
+</textarea>
+</section>
+
+<section data-markdown>
+        <textarea data-template>
 ### Have you found any inspiration?
 
+* Are you predicting time series or do you have seq2seq translation?
 * Do you have any time series data?
 * Would you need to process text?
 * Any sequence of symbols?
 * This could easily build on embeddings
+* Have a look at some more time series forecasting scenarios here: https://machinelearningmastery.com/how-to-develop-lstm-models-for-time-series-forecasting/
 </textarea>
 </section>
+
+
 
 <!-- <section data-markdown>
     <textarea data-template>
