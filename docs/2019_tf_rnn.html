@@ -178,29 +178,6 @@ https://djcordhose.github.io/ai/2019_tf_rnn.html
     <p>Question: How do we train a network to predict the next number?</p>
 </section>
 
-<section>
-    <img src='img/applications/decisions/data.png'>
-</section>
-
-<section data-markdown>
-    <textarea data-template>
-### Types of Sequence to Sequence translations
-
-_What type do we have here?_
-
-<pre><code contenteditable data-trim class="line-numbers python">
-[10, 20, 30, 40, 50, 60, 70, 80, 90]  => [100]
-                </code></pre>
-        
-<img src='img/types_seq2seq.jpeg'>
-
-<small>
-http://karpathy.github.io/2015/05/21/rnn-effectiveness/    
-</small>
-
-</textarea>
-</section>
-
 <section data-markdown>
         <textarea data-template>
 ### Challenge: Dense Networks have no memory of previous events
@@ -290,6 +267,43 @@ output_t = \tanh(W input_t + U output_{t-1} + b)
     </small>    
 </section>
 
+<section style="font-size: xx-large">
+    <h3>Simple Time Series Forecasting with RNNs</h3>
+
+    <p>Training Data</p>
+    <pre><code contenteditable data-trim class="fragment line-numbers python">
+[10, 20, 30] => 40
+[20, 30, 40] => 50
+[30, 40, 50] => 60
+[40, 50, 60] => 70
+[50, 60, 70] => 80
+[60, 70, 80] => 90
+                        </code></pre>
+        <p>The Model</p>
+        <pre><code contenteditable data-trim class="fragment line-numbers python">
+n_features = 1
+n_steps = 3
+
+model.add(SimpleRNN(units=50, activation='relu',
+          input_shape=(n_steps, n_features), name="RNN_Input"))
+model.add(Dense(units=1, name="Linear_Output"))
+model.compile(optimizer='adam', loss='mse')
+model.fit(X, y, epochs=500, verbose=0)
+        </code></pre>
+
+    <p>Predictions</p>
+
+    <pre><code contenteditable data-trim class="fragment line-numbers python">
+[10, 20, 30] => 39.767338
+[70, 80, 90] => 100.001076
+[100, 110, 120] => 130.40291
+[[200, 210, 220] => 231.74236
+[200, 300, 400] => 489.32404
+                        </code></pre>
+
+</section>
+
+
 
     <section data-markdown>
             <textarea data-template>
@@ -355,25 +369,21 @@ https://towardsdatascience.com/animated-rnn-lstm-and-gru-ef124d06cf45
     <pre><code contenteditable data-trim class="fragment line-numbers python">
 model.add(SimpleRNN(units=32))
 </code></pre>
-        <p>
 
     <p><small>Optimized RNN Nodes</small></p>
     <pre><code contenteditable data-trim class="fragment line-numbers python">
 model.add(GRU(units=32))
 </code></pre>
-        <p>
 
 <p><small>Passes all outputs of all timesteps (not only the last one) to the next layer</small></p>
     <pre><code contenteditable data-trim class="fragment line-numbers python">
 model.add(GRU(units=32, return_sequences=True))
         </code></pre>
-        <p>
 
 <p><small>Adds Dropout inside feedback loop</small></p>
     <pre><code contenteditable data-trim class="fragment line-numbers python">
 model.add(GRU(units=32, return_sequences=True, recurrent_dropout=0.2))
         </code></pre>
-        <p>
 
     <small>
             <a href="https://www.tensorflow.org/api_docs/python/tf/keras/layers">
@@ -388,7 +398,7 @@ model.add(GRU(units=32, return_sequences=True, recurrent_dropout=0.2))
 
 <section data-markdown>
     <textarea data-template>
-### Introduction to Time Series Prediction 
+### Advanced Time Series Prediction 
 
 <small style="font-size: large">
 https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/2019_tf/time_series.ipynb
@@ -513,6 +523,28 @@ Attention is all you need: https://arxiv.org/pdf/1706.03762.pdf
 </textarea>
 </section>
 
+<section>
+    <img src='img/applications/decisions/data.png'>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Types of Sequence to Sequence translations
+
+_What type do we have here?_
+
+<pre><code contenteditable data-trim class="line-numbers python">
+[10, 20, 30, 40, 50, 60, 70, 80, 90]  => [100]
+                </code></pre>
+        
+<img src='img/types_seq2seq.jpeg'>
+
+<small>
+http://karpathy.github.io/2015/05/21/rnn-effectiveness/    
+</small>
+
+</textarea>
+</section>
 
 <section data-markdown>
     <textarea data-template>
