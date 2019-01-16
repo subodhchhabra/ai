@@ -189,25 +189,6 @@ https://t.co/lujmZN1XNG #NeurIPS #NeurIPS4Creativity https://t.co/zSXkLTbxMX
 
 <section data-markdown class="todo">
     <textarea data-template>
-### RNN Transfer Learning / Pre-Training
-
-* Rachel Thomas (@math_rachel) tweeted at 1:30 AM on Wed, Dec 12, 2018:
-Two developments in AI in 2018:
-1. the successful application of transfer learning to NLP
-2. growing attention to dystopian misuses of AI (incl surveillance & manipulation by hate groups)
-
-Read what I and others said about AI trends @kdnuggets for '18-'19
-https://t.co/pRsVAF5ZDO
-(https://twitter.com/math_rachel/status/1072649917007568898?s=03)
-
-* https://blog.openai.com/language-unsupervised/
-* https://github.com/google-research/bert
-
-</textarea>
-</section>
-
-<section data-markdown class="todo">
-    <textarea data-template>
 ### RNN
 
 #### Using CNNs and RNNs for Music Genre Recognition – Towards Data Science
@@ -219,25 +200,6 @@ https://towardsdatascience.com/using-cnns-and-rnns-for-music-genre-recognition-2
 https://towardsdatascience.com/animated-rnn-lstm-and-gru-ef124d06cf45
 </textarea>
 </section>
-
-<section data-markdown class="todo">
-    <textarea data-template>
-### RNN Bert
-
-Jesse Vig (@jesse_vig) tweeted at 6:50 PM on Tue, Dec 18, 2018:
-What goes on in the mind of BERT? Using an interactive visualization tool, we uncovered some surprisingly intuitive patterns.
-
-Article: https://t.co/ZB9049OPwH 
-
-Colab: https://t.co/L2ll7bUi95
-Github: https://t.co/PQIoTjnyhx
-
-Play with it and share what you find! #nlproc https://t.co/C95lBA8qNF
-(https://twitter.com/jesse_vig/status/1075085876323995648?s=03)
-
-</textarea>
-</section>
-
 
 <section>
         <h2>Recurrent Neural Networks with TensorFlow</h2>
@@ -399,7 +361,6 @@ _Effectively long term memory does not work:_
 </textarea>
 </section>
 
-
     <section data-markdown>
         <textarea data-template>
 ### LSTM (Long short-term memory) / GRU (Gated Recurrent Unit)
@@ -476,34 +437,85 @@ https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/201
 
 <section data-markdown>
     <textarea data-template>
-### Introduction to Text Processing for Sentiment Analysis 
+### RNN Encoder-Decoder 
+
+_"RNN Encoder-Decoder, consists of two recurrent neural networks (RNN) that act as an encoder and a decoder pair. 
+The encoder maps a variable-length source sequence to a fixed-length vector, 
+and the decoder maps the vector representation back to a variable-length target sequence."_
 
 <small>
-https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/tensorflow/sentiment-gru-reg.ipynb
+https://arxiv.org/abs/1406.1078
+<br>
+https://machinelearningmastery.com/encoder-decoder-long-short-term-memory-networks/    
 </small>
     </textarea>
 </section>
 
 <section data-markdown>
         <textarea data-template>
-### Guides: Text Classification with TensorFlow and Keras
+### Example: Sequence to Sequence translations
 
-* https://twitter.com/fchollet/status/1055240643314823168
-* https://developers.google.com/machine-learning/guides/text-classification/
-</textarea>
-</section>
-
-<section data-markdown>
-        <textarea data-template>
-### Also perfect for natural language Sequence to Sequence translations
+* could be interpreted as sequential embedding
+* fixed-length vector between decoder and encoder is the latent space
 
 <img src='img/nlp/encdec.jpg'>
 
 <small>
-https://www.tensorflow.org/tutorials/seq2seq
+https://github.com/tensorflow/nmt
 </small>
 </textarea>
 </section>
+
+        <section data-markdown>
+            <textarea data-template>
+### Simple and theoretical example: addition digit by digit
+
+```
+ 216
++648
+ ===
+ 864
+```
+        </textarea>
+        </section>
+
+
+<section data-markdown>
+        <textarea data-template>
+### Encoding addition as a Sequence to Sequence translation
+
+<img src='img/nlp/rnn-adder-input.png' height="500px">
+            </textarea>
+            </section>
+
+<section data-markdown>
+        <textarea data-template>
+### Each time step generates a digit of the result
+
+<img src='img/nlp/rnn-adder-output.png' height="500px">
+            </textarea>
+            </section>
+
+<section data-markdown>
+<textarea data-template>
+### Seeing the network at work in a notebook
+
+
+```
+Input: "216+648"
+Output: "864"
+```
+
+Padding is handled by using a repeated sentinel character (space)
+
+<small>
+Notebook: https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/2019_tf/rnn-add-example.ipynb
+<br>
+https://machinelearningmastery.com/learn-add-numbers-seq2seq-recurrent-neural-networks/
+</small>
+</textarea>
+</section>
+
 
 <section data-markdown>
     <textarea data-template>
