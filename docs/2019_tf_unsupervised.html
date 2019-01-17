@@ -289,25 +289,67 @@ https://ranzato.github.io/publications/tutorial_deep_unsup_learning_part1_NeurIP
 
 <section data-markdown>
     <textarea data-template>
-### The Brain Maps Out Ideas and Memories Like Spaces
+#### The Brain Maps Out Ideas and Memories Like Spaces
+
+<img src='img/brain-abstract-knowledge.jpg' height="450">
 
 _might it make sense to represent abstract knowledge in numbers?_
 
-<img src='img/brain-abstract-knowledge.jpg'>
 <small>
 https://twitter.com/PhilosophyMttrs/status/1085242776688775169
 </small>
 </textarea>
 </section>
 
+<section data-markdown>
+    <textarea data-template>
+### Idea of Neural Embedding
+
+* You define a network using an embedding layer as input
+* What you want to encode goes into network as a number
+* You represent its semantics as the output
+* You train the model
+* You only keep the embedding layer that contains the abstraction
+
+</textarea>
+</section>
+
+<section>
+    <h3>Network to train embedding</h3>
+
+    <p><small>Input</small></p>
+    <pre><code contenteditable data-trim class="fragment line-numbers python">
+number_of_airports = len(airports)
+embedding_dim = 1
+sequence_length = 1
+
+model.add(Embedding(input_dim=number_of_airports, 
+                    output_dim=embedding_dim, input_length=sequence_length))
+</code></pre>
+
+    <p><small>Output</small></p>
+    <pre><code contenteditable data-trim class="fragment line-numbers python">
+# embedding will be 2d, but Dense can only handle flat input
+model.add(Flatten())
+
+# random 
+model.add(Dense(units=50, activation='relu'))
+
+model.add(Dense(units=dictionary_size, name='output', activation='softmax'))
+</code></pre>
+
+</p>
+</section>
 
 <section data-markdown>
     <textarea data-template>
-### Introduction to Embeddings 
+### Embedding Airports in the notebook
+
+_also shows encoding of input and output_
 
 <img src='img/embedding_airport.png'>
 
-<small>
+<small style="font-size: large">
 https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/2019_tf/embeddings.ipynb
 </small>
     </textarea>
