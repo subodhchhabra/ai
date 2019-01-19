@@ -255,7 +255,7 @@ output_t = \tanh(W input_t + U output_{t-1} + b)
 </section>
 
 <section>
-    <h3>Repetition Activation Functions</h3>
+    <h3>Activation Functions</h3>
     <div style="float: left">
             <img src="img/sigmoid-activation.png" height="300px">
             <p>
@@ -506,6 +506,46 @@ https://machinelearningmastery.com/learn-add-numbers-seq2seq-recurrent-neural-ne
 </small>
 </textarea>
 </section>
+
+<section>
+    <h3>We can apply all this to text as well</h3>
+
+    <p>Texts can be seen as sequences of words</p>
+        <pre><code contenteditable data-trim class="fragment line-numbers python">
+# we encode each word in an embedding
+model.add(Embedding(input_dim=dictionary_size, output_dim=embedding_dim, 
+                    input_length=text_length))
+</code></pre>
+
+<pre><code contenteditable data-trim class="fragment line-numbers python">
+# encoder
+model.add(GRU(units=32))
+    </code></pre>
+    
+    <pre><code contenteditable data-trim class="fragment line-numbers python">
+# latent space: 32
+model.add(Dense(units=32))
+</code></pre>
+
+    <pre><code contenteditable data-trim class="fragment line-numbers python">
+# decoder as a binary classifier good / bad
+model.add(tf.keras.layers.Dense(units=1, activation='sigmoid'))
+model.compile(optimizer='adam', loss='binary_crossentropy')
+    </code></pre>
+    
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Text Processing for Sentiment Analysis 
+
+<small>
+https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/tensorflow/sentiment-gru-reg.ipynb
+</small>
+    </textarea>
+</section>
+
+
 
 <section data-markdown>
         <textarea data-template>
