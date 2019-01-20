@@ -160,18 +160,8 @@
     </textarea>
 </section>
 
-<section data-markdown class="todo">
-    <textarea data-template>
-### Übungen
-* Berater dann als Übung ausarbeiten
-* RL 2 Übungen
-  1. Environment anpassen
-  1. Netzwerk für PPO und andere Parameter setzen
-    </textarea>
-</section>
-
 <section>
-        <h2>Introduction to Reinforcement Learning</h2>
+        <h2>Introduction to Deep Reinforcement Learning</h2>
         <h3>using the OpenAI platforms</h3>
 <!-- <p><a target="_blank" href="TODO">
     TODO
@@ -743,6 +733,20 @@ C --2-> S R=-0.07 totalR= 0.73 cost= 200 customerR=   0
 
 
 <section data-markdown>
+        <textarea data-template>
+### Hands-On: Come up with reasonable oberservations and a reward function
+
+* sketch what information your observations should contain on paper
+* do the same for the reward function
+* What do they *have to* include?
+* what *should* they include?
+* present your proposal and discuss 
+
+</textarea>
+</section>
+
+
+<section data-markdown>
     <textarea data-template>
 ### New Observation Model
 
@@ -968,25 +972,33 @@ https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/
 
         </section>
 
-<section data-markdown style="font-size: large">
-        <textarea data-template>
-### What next?
+        <section data-markdown>
+            <textarea data-template>
+### Possible tweaks to reward functions
 
-* better rewards
- * add reward for returning home once all other locations have been visited 
-* nn model now has many more inputs
-  * might need more neurons per layer (experiment show 2 layers / 100 units works just as well)
-  * more regularization?
-  * custom neural network code?
-* better observation?
-  * network can learn all costs and all connections as they are static
-  * rewards are not, but are given in the observation
-  * all information is there, but
-  * it is very convoluted, too hard for us as humans
-  * could we make this more accessible? Would this also help? 
-</textarea>
-</section>
+* add reward for returning home once all other locations have been visited 
+* no penalties for illegal moves
+* shortcut to save time
+  * break if overall reward becomes too negative
+  * break if too many steps
 
+_Spoiler: none of the tweaks had any effect_  
+            </textarea>
+        </section>
+
+                <section data-markdown>
+            <textarea data-template>
+### Tweaking Observations
+
+* network can learn all costs and all connections as they are static
+* rewards are not, but are given in the observation
+* all information is there, but
+* it is very convoluted, too hard for us as humans
+* could we make this more accessible? Would this also help? 
+
+_Spoiler: none of the tweaks had any effect_  
+            </textarea>
+        </section>
 
 <section data-markdown>
     <textarea data-template>
@@ -1003,17 +1015,75 @@ http://ai.googleblog.com/2018/08/introducing-new-framework-for-flexible.html
 </textarea>
 </section>
 
-<section data-markdown class="todo">
+<section data-markdown>
     <textarea data-template>
 ### Overfitting
 
-* Das wird irgendwie nicht so breit diskutiert. Die meisten arbeiten ja mit Games, da ist es vermutlich auch nicht so ein Thema, da dort natürlicherweise a) mit einem random start state begonnen wird und b) das environment selbst oft randomness verwendet um den nächsten state zu definieren. Bei problemen aus «dem echten leben» dürfte das nicht immer zutreffen.
-* https://medium.com/singular-distillation/games-games-games-fighting-overfitting-in-reinforcement-learning-b464ed20cb1d
-* hier noch ein paper (habe ich nur überflogen): https://arxiv.org/abs/1804.06893
-* https://blog.openai.com/quantifying-generalization-in-reinforcement-learning/
+* a lot of academic research is done on arcade games
+* randomness all over: naturally adversive to overfitting?
+* experiments show: agents _do_ overfit to surprisingly large training sets
+* regularization is possible, though
+
+<small>
+https://arxiv.org/abs/1810.12282
+<br>
+https://arxiv.org/abs/1804.06893
+</small>
 
 </textarea>
 </section>
+
+<section data-markdown>
+    <textarea data-template>
+### Fighting Overfitting
+
+1. L2 regularization
+1. Dropout
+1. Batch Normalization
+1. Encourage Exploration (increase entropy bonus)
+1. deeper networks (only shown for convolutions on video games)
+
+<small>
+https://arxiv.org/abs/1812.02341
+<br>
+https://blog.openai.com/quantifying-generalization-in-reinforcement-learning/
+<br>
+https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v10.ipynb
+</small>
+</textarea>
+</section>
+
+<section data-markdown>
+        <textarea data-template>
+### Hands-On: Try to improve results
+
+* tweak parameters of the `ppo2.learn` call
+* have a lookt at the links to the parameter descriptions for reference
+* check scores at the end of the notebook
+* both `mean` and `std` are important
+* choose your experiments wisely
+  * training time on Colab with GPU is 15 to 2o min
+  * either cut training time short or
+  * you will only have time for 1 or 2 experiments
+
+<small>
+https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v10.ipynb
+</small>
+
+</textarea>
+</section>
+
+<section data-markdown>
+        <textarea data-template>
+### What next?
+
+* nn model now has many more inputs
+  * might need more neurons per layer (experiment show 2 layers / 100 units works just as well)
+  * more regularization?
+  * custom neural network code?
+</textarea>
+</section>
+
 
 <section data-markdown>
         <textarea data-template>
@@ -1105,6 +1175,10 @@ https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/
 https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v7.ipynb
 
 https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v8.ipynb
+
+https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v9.ipynb
+
+https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v10.ipynb
 
 https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/openai-gym-playground.ipynb
 
