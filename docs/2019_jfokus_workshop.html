@@ -192,8 +192,8 @@ using Python, but no previous knowledge of Python or machine learning is require
             <h4><a href="http://zeigermann.eu">Oliver Zeigermann</a> / 
                 <a href="http://twitter.com/djcordhose">@DJCordhose</a>
             </h4>
-            <p><small><a href="TODO">
-                TODO
+            <p><small><a href="http://bit.ly/ml-jfokus-hands-on">
+                    http://bit.ly/ml-jfokus-hands-on
             </a></small></p>
         </section>
 
@@ -202,7 +202,7 @@ using Python, but no previous knowledge of Python or machine learning is require
     </textarea>
     </section> -->
 
-    <section data-markdown>
+    <!-- <section data-markdown>
         <textarea data-template>
 ### Our plan for today
 
@@ -212,7 +212,7 @@ using Python, but no previous knowledge of Python or machine learning is require
 1. Making sure we really generalize to unknown data
 1. Deep Learning is all the hype
 </textarea>
-</section>
+</section> -->
     
     <section data-markdown>
         <textarea data-template>
@@ -352,14 +352,17 @@ Looking at the problem from the perspective of our data
     <textarea data-template>
 ### Paper Exercise #1 - Understanding the Supervised Learning Approach
 
+_team up and discuss with your neighbors_
+
 * Manually cluster areas of different customer types on the <em>upper part</em> of the handout
 * Be sure to use a ballpen and apply pressure when drawing
 
+<a href='/exercise/2019-workshop-exercise.pdf'>Exercise as PDF</a>
     </textarea>
         </section>
 
 
-<section class="workshop">
+        <section class="workshop">
     <h3>Manual Classification - red</h3>
     <img src="img/decision-boundaries/decision-boundaries-1.jpg">
 </section>
@@ -466,7 +469,7 @@ _Feature Selection_
             </textarea>
             </section>
 
-    <section data-markdown class="workshop">
+    <section data-markdown class="detail">
     <textarea data-template>
 ### Final Check on Collected Data
 
@@ -508,6 +511,29 @@ Plotting the predictions as a background
 <img src="img/dt/dt-all.png" height="500px">
         </textarea>
         </section>
+    <section>
+<h3>Code in Scikit-learn</h3>
+
+<p>Training</p>
+<pre><code contenteditable data-trim class="fragment line-numbers python">
+from sklearn.tree import DecisionTreeClassifier
+clf = DecisionTreeClassifier()
+clf.fit(X_train, y_train)
+            </code></pre>
+        
+<p>Prediction</p>
+<pre><code contenteditable data-trim class="fragment line-numbers python">
+y_pred = clf.predict(input)
+        </code></pre>
+
+<small>
+    <a href='https://scikit-learn.org/stable/modules/classes.html'>https://scikit-learn.org/stable/modules/classes.html</a>
+    <br>
+    <a href='https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/sklearn/overview.ipynb'>
+        https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/sklearn/overview.ipynb</a>
+</small>
+        </section>
+        
 
     <section data-markdown class="detail">
             <textarea data-template>
@@ -532,36 +558,14 @@ http://scikit-learn.org/stable/modules/tree.html#tree-algorithms-id3-c4-5-c5-0-a
         </div>
     </section>
 
-    <section>
-<h3>Code in Scikit-learn</h3>
 
-<p>Training</p>
-<pre><code contenteditable data-trim class="fragment line-numbers python">
-from sklearn.tree import DecisionTreeClassifier
-clf = DecisionTreeClassifier()
-clf.fit(X_train, y_train)
-            </code></pre>
-        
-<p>Prediction</p>
-<pre><code contenteditable data-trim class="fragment line-numbers python">
-input = [[100.0, 48.0]]
-y_pred = clf.predict(input)
-> array([1]) # green
-        </code></pre>
-
-<small>
-    <a href='https://scikit-learn.org/stable/modules/classes.html'>https://scikit-learn.org/stable/modules/classes.html</a>
-</small>
-        </section>
-        
-
-    <section data-markdown>
+    <!-- <section data-markdown>
         <textarea data-template>
 ### Working with Colab Notebooks
 
 https://colab.research.google.com
         </textarea>
-    </section>
+    </section> -->
 
 <section data-markdown>
 <textarea data-template>
@@ -608,10 +612,10 @@ https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/skl
     <textarea data-template>
 ### Exercise on Paper #3 - How well did you generalize?
 
-<p>Turn the page and redraw the lines you printed through from the first page</p>
-<p>Get an estimate of the misclassified samples on both diagrams</p>
-<p>What do you think, is this result worse?</p>
-<p>What would you have done differently if you had been given this information before (that it is all about generalisation)?</p>
+* Turn the page and redraw the lines you printed through from the first page
+* Get an estimate of the misclassified samples on both diagrams
+* What do you think, is this result worse?
+* What would you have done differently if you had known this is all about generalization?
 
     </textarea>
         </section>
@@ -651,8 +655,8 @@ _Process to counter overfitting_
 
 Each ML strategy has its own means of Regularization, e.g.
 * KNN: more neighbors
-* Decision Trees: reduce depth, use ensenbles
-* SVM: gamma (how many points to use) and cost (of misclassified data)
+* Decision Trees: reduce depth, use ensembles
+* SVM: gamma (how many support vectors to use) and cost (of misclassified data)
 * NN: Dropout, Batch Normalization, Reduced Capacity, Reduced Training Time
             </textarea>
             </section>
@@ -699,7 +703,7 @@ Using neural networks with TensorFlow
         <textarea data-template>
 ### Foundation of Deep Neural Networks
 
-<img src='img/insurance/neuron213.jpg'>
+<img src='img/insurance/neuron213.jpg' height="550px">
 
 </textarea>
 </section>
@@ -708,7 +712,7 @@ Using neural networks with TensorFlow
     <textarea data-template>
 ### From Neuron to Network 
 <a href='https://playground.tensorflow.org'>    
-<img src='img/tf-plaground.png' height="500px">
+<img src='img/tf-plaground.png' height="450px">
 </a>
 <small>
 https://playground.tensorflow.org
@@ -722,9 +726,10 @@ https://playground.tensorflow.org
 ### Exercise
 _How many neurons do you need to decently separate the two classes from each other?_
 
-* You might have noticed that two neurons do not give good results. 
+* You might have noticed that two neurons do not give good results
 * Can you figure out a minimal number of neurons to get a good result? 
-* As weights and biases are initialized randomly, training results are not deterministic. You might have to train several times.
+* What kind of shape can a single neuron draw?
+<!-- * As weights and biases are initialized randomly, training results are not deterministic. You might have to train several times. -->
 
 <a href="http://playground.tensorflow.org/#activation=tanh&amp;batchSize=10&amp;dataset=xor&amp;regDataset=reg-plane&amp;learningRate=0.03&amp;regularizationRate=0&amp;noise=0&amp;networkShape=2&amp;seed=0.90689&amp;showTestData=false&amp;discretize=true&amp;percTrainData=50&amp;x=true&amp;y=true&amp;xTimesY=false&amp;xSquared=false&amp;ySquared=false&amp;cosX=false&amp;sinX=false&amp;cosY=false&amp;sinY=false&amp;collectStats=false&amp;problem=classification&amp;initZero=false&amp;hideText=false&amp;showTestData_hide=true&amp;stepButton_hide=false&amp;activation_hide=true&amp;problem_hide=true&amp;noise_hide=true&amp;regularization_hide=true&amp;dataset_hide=true&amp;batchSize_hide=true&amp;learningRate_hide=true&amp;regularizationRate_hide=true&amp;percTrainData_hide=true&amp;numHiddenLayers_hide=true&amp;discretize_hide=true">
 https://playground.tensorflow.org
@@ -743,13 +748,54 @@ https://playground.tensorflow.org
     </div>
 </section>
 -->
-<section data-markdown class="nn">
+<!-- <section data-markdown class="nn">
 <textarea data-template>
 ### Keras is TensorFlow's high level API
 
 * https://www.tensorflow.org 
 * https://www.tensorflow.org/guide/low_level_intro 
 * https://www.tensorflow.org/guide/keras 
+
+</textarea>
+</section> -->
+
+<section data-markdown>
+    <textarea data-template>
+### Modelling our problem for Neural Networks        
+
+* How does the input look like?
+* And the output?
+* How to to connect them?
+* How to encode our data to match the network structure?
+
+_Key to architecture: What do we want to predict and what do we have as input_
+</textarea>
+</section>
+
+
+<section data-markdown>
+    <textarea data-template>
+### What goes in?
+
+<img src='img/insurance/data_encoding.jpg'>
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### What comes out?
+
+<img src='img/insurance/encoding2.jpg'>
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Role of the Hidden Layer(s)
+
+<img src='img/insurance/encoding3.jpg'>
 
 </textarea>
 </section>
@@ -763,30 +809,42 @@ https://playground.tensorflow.org
 </textarea>
 </section>
 
-    <section class="nn">
-<h3>Code using Keras High Level API</h3>
+    <section>
+<h3>Code in TensorFlow using Keras API</h3>
 
-<p>Network Setup</p>
-<pre><code contenteditable data-trim class="line-numbers python">
-model = keras.Sequential()
+<p>Model</p>
+<pre><code contenteditable data-trim class="fragment line-numbers python">
+model.add(Dense(units=50, input_dim=3))
+model.add(Dense(units=3, activation='softmax'))
+model.compile(loss='categorical_crossentropy')
+                    </code></pre>
 
-model.add(Dense(100, name='hidden1', activation='relu', input_dim=3))
-model.add(Dense(100, name='hidden2', activation='relu'))
-model.add(Dense(3, name='softmax', activation='softmax'))
-</code></pre>
+<p>Training</p>
+<pre><code contenteditable data-trim class="fragment line-numbers python">
+model.fit(X_train, y_train, epochs=1000, batch_size=1000)
+                    </code></pre>
+                    
+<p>Prediction</p>
+<pre><code contenteditable data-trim class="fragment line-numbers python">
+y_pred = model.predict([[100, 47, 10]])
+        </code></pre>
+
 <small>
-    <a href='https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/sklearn/overview.ipynb'>
-        https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/sklearn/overview.ipynb</a>
-</small>
-    
-    </section>
+Plain version: <a href='https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/tensorflow/nn-training.ipynb'>
+        https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/tensorflow/nn-training.ipynb</a>
+<br>
+Regularized: <a href='https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/tensorflow/nn-reg.ipynb'>
+            https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/tensorflow/nn-reg.ipynb</a>
+    </small>
+        </section>
+
 
     <section data-markdown class="workshop">
     <textarea data-template>
 ### Where to go from here
 
 * Find yourself some datasets to experiment with: https://toolbox.google.com/datasetsearch
-* Visit my talk on Tuesday: https://www.jfokus.se/jfokus19/talks/2786
+* Visit my broader talk on Tuesday: https://www.jfokus.se/jfokus19/talks/2786
 * Watch my Deep Learning Crash Course: https://www.manning.com/livevideo/deep-learning-crash-course?a_aid=djcordhose&a_bid=e8e77cbf
 </textarea>
 </section>
@@ -1076,26 +1134,25 @@ _Measures_
     </section>
 
 
-<section style="font-size: xx-large" class="talk">
+<section style="font-size: xx-large">
     <h2>Wrap-Up</h2>
     <ul>
         <li class="fragment">Machine Learning can learn from existing data and generalize from it
         <li class="fragment">Sometimes, it can be an alternative to explicit, classic business logic
-        <li class="fragment">No machine has common knowledge of the world, though
-        <li class="fragment">"Can the AI not handle this?" is thus never a reasonable question
-        <li class="fragment">"the AI" does not exist
-        <li class="fragment">Machine Learning is an engineering effort. There is no strong AI that you just throw a problem at and it will solve it automatically. 
-                <a href='https://twitter.com/DJCordhose/status/1070304319218569218'>Dr. Sebastian Wieczorek, Head of AI @SAP</a>
+        <li class="fragment">Classic Machine Learning strategies are often enough
+        <li class="fragment">Decision Trees and Random Forests are powerful strategies provided by Scikit-learn
+        <li class="fragment">TensorFlow lets you create your own Neural Networks
+        <li class="fragment">Colab is a free service for executing your Python code using Scikit-learn and TensorFlow
     </ul>
     <br>
     <p>
-            <em>JFokus 2019: Will Machine Learning kill Business Logic?</em>
+            <em>JFokus 2019: Machine Learning for Software Developers</em>
         <br>
         <br>
     <a href="http://zeigermann.eu">Oliver Zeigermann</a> / <a href="http://twitter.com/djcordhose">@DJCordhose</a></a>
         <br>
-    <a href="TODO">
-        TODO
+    <a href="http://bit.ly/ml-jfokus-hands-on">
+        http://bit.ly/ml-jfokus-hands-on
     </a>
     </p>
 </section>
