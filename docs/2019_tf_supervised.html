@@ -130,7 +130,11 @@
 
             .reveal {
                 color: black !important;
-             }       
+             }
+
+             .smaller {
+                font-size: xx-large !important;       
+             }
 
           </style>
       
@@ -153,28 +157,12 @@
 <div class="reveal">
     <div class="slides">
 
-<section data-markdown class="preparation">
+<!-- <section data-markdown class="preparation">
         <textarea data-template>
 ### Preparation
 
     </textarea>
-</section>
-
-<section data-markdown class="todo">
-    <textarea data-template>
-### Early stopping callback in tensorflow for regularization
-
-</textarea>
-</section>
-
-<section data-markdown class="todo">
-    <textarea data-template>
-    
-Hao Li (@ljk628) tweeted at 2:47 AM on Tue, Dec 04, 2018:
-Excited to present our work "Visualizing the Loss Landscape of Neural Nets" at #NeurIPS2018! Please checkout our poster on Dec 4th 10:45am at Room 210 & 230 AB #129. Code is available at https://t.co/ijlvtZgSgh. https://t.co/e5QACdKL2j
-(https://twitter.com/ljk628/status/1069770013484167175?s=03)
-</textarea>
-</section>
+</section> -->
 
 <section>
         <h2>Supervised Learning with TensorFlow</h2>
@@ -328,26 +316,6 @@ https://machinelearningmastery.com/adam-optimization-algorithm-for-deep-learning
 </section> -->
 
 <section data-markdown>
-        <textarea data-template>
-    ### Intuition for the learning process
-    
-    _network stretches and folds the paper until it can find a line to separate red from blue_
-    
-    <video controls 
-            poster='video/layer-linear.jpg'
-            src="video/layer.mp4" type="video/mp4" height="350"></video>
-    
-    <small>
-    https://twitter.com/random_forests/status/1084618439602298881
-    <br>
-    http://colah.github.io/posts/2014-03-NN-Manifolds-Topology/
-    <br>
-    https://cs.stanford.edu/people/karpathy/convnetjs/
-    </small>
-    </textarea>
-    </section>
-    
-<section data-markdown>
     <textarea data-template>
 ### Intuition for the learning process
 
@@ -391,10 +359,15 @@ _________________________________________________________________</code></pre>
 </section>
 
 
-<section>
-        <h3>Exercise</h3>
-        <p><em>Can you explain the number of parameters for each layer for the model described in the previous slide?</em></p>
-    
+<section data-markdown>
+        <textarea data-template>
+### Exercise
+
+<img src='img/insurance/neuron213.jpg' height="350px">
+
+_Can you explain the number of parameters for each layer for the model described in the previous slide?_
+
+</textarea>
 </section>
 
     
@@ -498,7 +471,7 @@ https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/ten
         <img src="img/scans/elements/up.jpg" height="200">
     </div>
     <div style="float: left">
-            <img src="img/scans/elements/70_percent.jpg" height="225"  class="fragment" data-fragment-index='2'>
+            <img src="img/scans/elements/70_percent.jpg" height="200"  class="fragment" data-fragment-index='2'>
             <p>
                 <small><em>Test Score</em></small>
             </p>
@@ -525,6 +498,29 @@ https://stats.stackexchange.com/questions/223486/modelling-with-more-variables-t
 </small>
             </textarea>
             </section>
+<section>
+        <h3>Illustration using Loss Landscape</h2>
+    <div>
+    <div style="float: left"  class="fragment">
+        <img src="img/resnet56_noshort_small.jpg" height="350">
+        <p>
+            <small><em>deep network, sharp surface, many solutions</em></small>
+        </p>
+    </div>
+    <div style="float: right"  class="fragment">
+            <img src="img/resnet56_small.jpg" height="350">
+            <p>
+                <small><em>residual shortcuts, smooth surface, naturally converging</em></small>
+            </p>
+    </div>
+    <p style="clear: both"><small>ResNet Architecture having 56 layers
+<br>
+<a href='https://github.com/tomgoldstein/loss-landscape#visualizing-3d-loss-surface'>
+https://github.com/tomgoldstein/loss-landscape#visualizing-3d-loss-surface
+</a>
+    </small></p>
+
+    </section>
     
     <section data-markdown>
         <textarea data-template>
@@ -533,6 +529,14 @@ https://stats.stackexchange.com/questions/223486/modelling-with-more-variables-t
 <img src='img/accuracy.png'>
 
 _Watch where training and validation accuracy diverge and stop training there_
+
+<small>
+Early stopping possible: 
+<br>
+https://keras.io/callbacks/#earlystopping
+<br>
+https://www.tensorflow.org/api_docs/python/tf/keras/callbacks/EarlyStopping
+</small>    
 
             </textarea>
             </section>
@@ -610,7 +614,7 @@ https://www.youtube.com/watch?v=ZOabsYbmBRM
                 </textarea>
                 </section>
 
-        <section data-markdown>
+        <section data-markdown style="font-size: xx-large">
             <textarea data-template>
 ### Fifth approach: L1/L2 weight Regularization
 
@@ -641,18 +645,21 @@ if not
               </textarea>
                 </section>
 
-<section data-markdown>
+<section data-markdown class="smaller">
         <textarea data-template>
 ## Exercise
 
 _Regularize your model_
 
-* Find ouy how to apply those regularizations from the notebooks supplied
+* Find out how to apply those regularizations from the notebooks supplied
 * You can just as well start with this notebook
 * Make sure you are optimizing for test, not for train score
 * How good can you get?
-* Advanced: Add L1/L2 weight Regularization to your model
-  * Run notebook from previous slide to see how this works
+* Advanced: 
+  1. Add Early Stopping Callback
+  1. Add L1/L2 weight Regularization to your model
+     * Run notebook from previous slide to see how this works
+
 <small>
 https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/tensorflow/nn-reg.ipynb
 </small>
@@ -682,13 +689,44 @@ https://colab.research.google.com/github/djcordhose/deep-learning-crash-course-n
 
 <section data-markdown>
     <textarea data-template>
-### Deep Supervised Learning fits best when
+<!-- ### ML rather is research and a bit of engineering than a craft -->
+### Machine Learning = Lab Work
+<img src='img/ml_is_not_programming.jpg' height="450px">
+</textarea>
+</section>
+
+    <section data-markdown>
+        <textarea data-template>
+### Supervised Machine Learning fits best when
 
 * the problem at hand is hard to specify (_Who is a good customer?_)
 * you have a lot of examples
 * solving the problem can tolerate some error or uncertainty
 * there is a clear, simple input and output
-                            </textarea>
+* you want to replace a gut feeling
+            </textarea>
+            </section>
+
+<section data-markdown>
+    <textarea data-template>
+<img src='img/twitter-fcholett-bias.png' height="580px">
+
+<small>
+https://twitter.com/fchollet/status/1050227462162894848
+</small>
+        </textarea>
+        </section>
+
+    <section data-markdown>
+    <textarea data-template>
+#### Counter-Factual Gut Feeling of German Minister of Transportation
+
+<img src='img/bauchgefuel-tempo.jpg' height="500px">
+
+<small>
+https://twitter.com/gri_mm/status/1089819905728368640
+</small>
+        </textarea>
         </section>
 
 <section data-markdown>
@@ -697,6 +735,18 @@ https://colab.research.google.com/github/djcordhose/deep-learning-crash-course-n
 
 <img src='img/dl-research-vs-application.png' height="500px">
 <small>https://twitter.com/casarock/status/1064438008756256768</small>
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Machine Learning Reasearch is done at Academia or Google
+
+_You probably look for Applied Machine Learning_
+
+<small>
+https://hackernoon.com/why-businesses-fail-at-machine-learning-fbff41c4d5db
+</small>
 </textarea>
 </section>
 
@@ -713,37 +763,16 @@ https://hbr.org/2016/11/what-artificial-intelligence-can-and-cant-do-right-now
     </section>
 
 <section data-markdown>
-    <textarea data-template>
-<!-- ### ML rather is research and a bit of engineering than a craft -->
-### Machine Learning = Lab Work
-<img src='img/ml_is_not_programming.jpg' height="450px">
-</textarea>
-</section>
-
-<section data-markdown>
         <textarea data-template>
 ### Finding data sets to play with
-    
+
 * Google released a search engine for datasets
   * Search: https://toolbox.google.com/datasetsearch
   * Launch blog post: https://www.blog.google/products/search/making-it-easier-discover-datasets/
 * Kaggle Datasets: https://www.kaggle.com/datasets    
+* TensorFlow datasets (directly from Colab): https://github.com/tensorflow/
 </textarea>
 </section>
-
-<section data-markdown class="todo">
-    <textarea data-template>
-### Where can I use Deep Neural Networks?
-
-* wo kann ich das bei uns einsetzen?
-* Im ersten Block nach NN Intro: wie finde ich ein Einsatzgebiet?
-* Was brauche ich? (Wann geht ML?) und Hardware
-* Checkliste machen als Anleitung
-* Pro Mal eine andere Methode einführen
-
-</textarea>
-</section>
-
 
 
 
