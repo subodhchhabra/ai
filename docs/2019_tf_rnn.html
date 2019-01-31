@@ -153,19 +153,12 @@
 <div class="reveal">
     <div class="slides">
 
-<section data-markdown class="preparation">
-        <textarea data-template>
-### Preparation
-
-    </textarea>
-</section>
-
-<section data-markdown class="preparation">
+<!-- <section data-markdown class="preparation">
     <textarea data-template>
 ### Preparation
 
 </textarea>
-</section>
+</section> -->
 
 
 <section>
@@ -254,7 +247,7 @@ output_t = \tanh(W input_t + U output_{t-1} + b)
 </textarea>
 </section>
 
-<section>
+<!-- <section>
     <h3>Activation Functions</h3>
     <div style="float: left">
             <img src="img/sigmoid-activation.png" height="300px">
@@ -273,12 +266,22 @@ output_t = \tanh(W input_t + U output_{t-1} + b)
             https://notebooks.azure.com/djcordhose/libraries/buch/html/kap7-iris.ipynb
     </a>
     </small>    
-</section>
+</section> -->
 
-<section style="font-size: xx-large">
-    <h3>Simple Time Series Forecasting with RNNs</h3>
+<section data-markdown>
+        <textarea data-template>
+### Question
 
-    <p>Training Data</p>
+_Even having a network that can deal with time seqeuences, how do you train it using our data?_
+
+        </textarea>
+    </section>
+
+<section>
+    <h3>First Step: Slice and Splice data to have a training set</h3>
+
+
+    <p>Training Data, sliced to only use 3 past events</p>
     <pre><code contenteditable data-trim class="fragment line-numbers python">
 [10, 20, 30] => 40
 [20, 30, 40] => 50
@@ -287,16 +290,19 @@ output_t = \tanh(W input_t + U output_{t-1} + b)
 [50, 60, 70] => 80
 [60, 70, 80] => 90
                         </code></pre>
+</section>
+
+<section>
+    <h3>Simple Time Series Forecasting with RNNs</h3>
         <p>The Model</p>
         <pre><code contenteditable data-trim class="fragment line-numbers python">
 n_features = 1
 n_steps = 3
 
-model.add(SimpleRNN(units=50, activation='relu',
-          input_shape=(n_steps, n_features), name="RNN_Input"))
+model.add(SimpleRNN(units=50, activation='relu', name="RNN_Input"))
 model.add(Dense(units=1, name="Linear_Output"))
 model.compile(optimizer='adam', loss='mse')
-model.fit(X, y, epochs=500, verbose=0)
+model.fit(X, y)
         </code></pre>
 
     <p>Predictions</p>
@@ -305,11 +311,24 @@ model.fit(X, y, epochs=500, verbose=0)
 [10, 20, 30] => 39.767338
 [70, 80, 90] => 100.001076
 [100, 110, 120] => 130.40291
-[[200, 210, 220] => 231.74236
+[200, 210, 220] => 231.74236
 [200, 300, 400] => 489.32404
                         </code></pre>
 
 </section>
+
+<section data-markdown>
+        <textarea data-template>
+### Notebook: Time Series Prediction
+
+_only look at introductory part_
+
+<small style="font-size: large">
+https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/2019_tf/time_series.ipynb
+</small>
+        </textarea>
+    </section>
+    
 
     <section data-markdown>
             <textarea data-template>
@@ -319,6 +338,7 @@ _Vanishing or exploding gradient problem:_
 * Each step in training applies the same weights to the output, also in back-propagation  
 * The further we move backwards, the bigger (explodes) or smaller (vanishes) the gradient becomes
 * Multiplying many numbers <1 closes in on 0 (vanshing) and the same for >1 approaches infinty (exploding)
+
 <small>
 https://towardsdatascience.com/learn-how-recurrent-neural-networks-work-84e975feaaf7
 </small>
@@ -369,34 +389,32 @@ https://towardsdatascience.com/animated-rnn-lstm-and-gru-ef124d06cf45
 </section>
 
 <section>
-    <h3>Keras RNN Layers</h3>
+    <h3>Advanced Keras RNN Layers</h3>
 
-    <p><small>RNN Nodes</small></p>
+    <p><small>LSTM / GRU Nodes</small></p>
     <pre><code contenteditable data-trim class="fragment line-numbers python">
-model.add(SimpleRNN(units=32))
+model.add(LSTM(units=rnn_units))
+model.add(GRU(units=rnn_units))
 </code></pre>
 
-    <p><small>Optimized RNN Nodes</small></p>
+<p><small>Bidirectional RNNs</small></p>
     <pre><code contenteditable data-trim class="fragment line-numbers python">
-model.add(GRU(units=32))
+model.add(Bidirectional(SimpleRNN(units=rnn_units)))        
 </code></pre>
 
 <p><small>Passes all outputs of all timesteps (not only the last one) to the next layer</small></p>
     <pre><code contenteditable data-trim class="fragment line-numbers python">
-model.add(GRU(units=32, return_sequences=True))
+model.add(GRU(units=rnn_units, return_sequences=True))
         </code></pre>
 
 <p><small>Adds Dropout inside feedback loop</small></p>
     <pre><code contenteditable data-trim class="fragment line-numbers python">
-model.add(GRU(units=32, return_sequences=True, recurrent_dropout=0.2))
+model.add(GRU(units=rnn_units, return_sequences=True, recurrent_dropout=0.2))
         </code></pre>
 
     <small>
             <a href="https://www.tensorflow.org/api_docs/python/tf/keras/layers">
                 https://www.tensorflow.org/api_docs/python/tf/keras/layers
-            </a>
-            <a href="https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/tensorflow/sentiment-gru.ipynb">
-                https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/tensorflow/sentiment-gru.ipynb
             </a>
     </small>
 </p>
@@ -404,21 +422,31 @@ model.add(GRU(units=32, return_sequences=True, recurrent_dropout=0.2))
 
 <section data-markdown>
     <textarea data-template>
-### Advanced Time Series Prediction
+### Optional: Advanced Time Series Prediction
+
+_start with advanced part_
 
 <small style="font-size: large">
-https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/2019_tf/time_series.ipynb
+        https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/2019_tf/time_series.ipynb#scrollTo=IWl0BJUJMJ_x
 </small>
     </textarea>
 </section>
 
 <section data-markdown>
+        <textarea data-template>
+## Open Question
+### How would you map any amount of input time steps to any amount of output time steps?
+            </textarea>
+</section>
+    
+<section data-markdown>
     <textarea data-template>
-### RNN Encoder-Decoder 
+### Surprising Solution: RNN Encoder-Decoder
 
-_"RNN Encoder-Decoder, consists of two recurrent neural networks (RNN) that act as an encoder and a decoder pair. 
-The encoder maps a variable-length source sequence to a fixed-length vector, 
-and the decoder maps the vector representation back to a variable-length target sequence."_
+* RNN Encoder-Decoder consists of two recurrent neural networks (RNN)
+* they act as an encoder and a decoder pair
+* encoder maps a variable-length source sequence to _a fixed-length vector_
+* decoder maps the vector representation back to a variable-length target sequence
 
 <small>
 https://arxiv.org/abs/1406.1078
@@ -442,6 +470,14 @@ https://github.com/tensorflow/nmt
 </small>
 </textarea>
 </section>
+<section data-markdown>
+        <textarea data-template>
+## Does this really work?
+
+Remember: we are loosing all the temporal information in the latent representation
+
+</textarea>
+</section>
 
         <section data-markdown>
             <textarea data-template>
@@ -451,8 +487,7 @@ https://github.com/tensorflow/nmt
  216
 +648
  ===
- 864
-```
+ 864```
 _Can we solve this using an encoder-decoder approach?_
 
 </textarea>
@@ -462,7 +497,8 @@ _Can we solve this using an encoder-decoder approach?_
     <h3>The Model</h3>
 
         <pre><code contenteditable data-trim class="fragment line-numbers python">
-# encoder for 7 digits, each being 0-9, + or space (12 possibilities) 
+# encoder for 7 digits
+# each being 0-9, + or space (12 possibilities encoded one-hot) 
 model.add(SimpleRNN(units=128, input_shape=(7, 12)))
 </code></pre>
 
@@ -480,11 +516,11 @@ model.add(RNN(units=128, return_sequences=True))
 </code></pre>
 
 <pre><code contenteditable data-trim class="fragment line-numbers python">
-# finally decode this back to digit    
+# finally decode this back to digit as one-hot    
 model.add(Dense(units=12, activation='softmax'))
     </code></pre>
     
-<p class="fragment">That's right: Knowledge how to do addition on character level fits into 32 neurons</p>
+<!-- <p class="fragment">That's right: Knowledge how to do addition on character level fits into 32 neurons</p> -->
 
 </section>
 
@@ -494,8 +530,7 @@ model.add(Dense(units=12, activation='softmax'))
 
 ```
 Input: "216+648"
-Output: "864"
-```
+Output: "864"```
 
 Padding is handled by using a repeated sentinel character (space)
 
