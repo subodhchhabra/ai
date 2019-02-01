@@ -193,6 +193,29 @@ https://en.wikipedia.org/wiki/Atari_2600
 </section>
 
 <section data-markdown>
+    <textarea data-template>
+### Learning to play Pong
+
+<img src='img/rl/pong/pong-random.gif' height="500">
+<small>
+    https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/pg-from-scratch.ipynb
+    </small>
+    
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### How would you train a machine to play pong?
+
+* we do not have any static training data
+* but a clear objective: win the match
+
+</textarea>
+</section>
+
+
+<!-- <section data-markdown>
         <textarea data-template>
 ### Structure
 
@@ -204,7 +227,7 @@ https://en.wikipedia.org/wiki/Atari_2600
   * Disucussing Overfitting 
 * Identifying applications
 </textarea>
-</section>
+</section> -->
 
 <section data-markdown>
     <textarea data-template>
@@ -215,18 +238,6 @@ https://www.facebook.com/nipsfoundation/posts/795861577420073/
 <br>
 https://ranzato.github.io/publications/tutorial_deep_unsup_learning_part1_NeurIPS2018.pdf
 </small>
-</textarea>
-</section>
-
-<section data-markdown>
-    <textarea data-template>
-### Learning to play Pong
-
-<img src='img/rl/pong/pong-random.gif' height="500">
-<small>
-    https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/pg-from-scratch.ipynb
-    </small>
-    
 </textarea>
 </section>
 
@@ -284,7 +295,7 @@ https://openai.com/systems/
     <textarea data-template>
 ## Finding a good Policy
 
-_select an action based on the observed state of our consultant environment_
+_select an action based on the observed state of our environment_
 
 </textarea>
 </section>
@@ -321,12 +332,35 @@ _As we have no idea, try a bunch of stuff and see what happens. In the future do
 
 <section data-markdown>
     <textarea data-template>
+### Loss objective in Policy Gradient
+
+<img src='img/rl/pg-loss.jpg' height="500">
+<small>
+Andrej Karpathy, Deep RL Bootcamp: https://youtu.be/tqrcjHuNdmQ?t=644    
+</small>
+</textarea>
+</section>
+
+
+<section data-markdown>
+    <textarea data-template>
 ### Policy Gradient Rollout
 
 <img src='img/rl/pg-rollout.jpg' height="500">
 <small>
-Andrej Karpathy, Deep RL Bootcamp: https://www.youtube.com/watch?v=tqrcjHuNdmQ    
+Andrej Karpathy, Deep RL Bootcamp: https://youtu.be/tqrcjHuNdmQ?t=571    
 </small>
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### But: Do actions at the beginning of the episode contribute to a win/loss as much as at the end?
+
+Introducing Discounting as a modulation of blame
+
+Assumption: Blame actions in an exponentially decreasing manner
+
 </textarea>
 </section>
 
@@ -372,7 +406,9 @@ batch_size = 10, learning_rate = 1e-4, gamma = 0.99, 2500 episodes
 
 <section data-markdown>
     <textarea data-template>
-### Our Example: Consultant Travel
+### Our Example: Berater
+
+Resource Plannung using the example of Consultant Travel
 
 * Visit each customer and return home
 * Reward per customer visited 1000
@@ -402,31 +438,20 @@ batch_size = 10, learning_rate = 1e-4, gamma = 0.99, 2500 episodes
 
 <section data-markdown>
 <textarea data-template>
-### Reinforcement Learning Challenges
+### Modelling our problem
 
-1. Model your problem into an environment 
-  1. What is the observation space?
-  1. What is the action space?
-  1. What is the current situation?
-  1. How rewarding is the current situation?
-1. Give your agent a learning policy powerful enough to master your problem
-
-</textarea>
-</section>
-
-<section data-markdown>
-    <textarea data-template>
-## Step 1: Model environment
-
-</textarea>
-</section>
-
-<section data-markdown>
-    <textarea data-template>
-### Consultant Travel: Actions
-
-<img src='img/rl/berater/routes-actions.jpg' height="500">
-
+<div  style="max-width: 45%; float: left">
+<br>
+<img src="img/rl.png">
+</div>
+<div style="max-width: 50%; float: right">
+<br>
+<ol>
+<li>how do _Observations_ look like</li>
+<li>what _Actions_ are possible  
+<li>what _Reward_ do you get for a certain action given a certain observation? 
+</ol>
+</div>
 </textarea>
 </section>
 
@@ -463,26 +488,164 @@ https://spinningup.openai.com/en/latest/spinningup/rl_intro.html
 
 <section data-markdown>
     <textarea data-template>
-### Our Observation Model
+## Generalizing Environment
 
-calculate all combined rewards for all routes
+before we start modelling
+* solving a single graph is not very realistic
+* graph should be larger
+* and have variations
 
-<pre><code contenteditable data-trim class="line-numbers python">
-# Initial position and rewards
-[  0. 900. 600. 800. 750. 600. 750.]    
+</textarea>
+</section>
 
-# Final position and rewards
-[   0. -100. -400. -200. -250. -400. -250.]
+<section data-markdown>
+    <textarea data-template>
+### Larger Graph
 
-</code></pre>
+<img src='img/rl/berater/graph-large.png' height="500">
 
-very friendly for learning
+</textarea>
+</section>
+<section data-markdown>
+    <textarea data-template>
+### Graph with costs
+
+<img src='img/rl/berater/graph-large-costs.png' height="500">
 
 <small>
-https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v4.ipynb    
+_for each consultant we will reset half of the rewards to zero_
 </small>
 </textarea>
 </section>
+
+<section data-markdown>
+        <textarea data-template>
+### Hands-On: Create your model
+
+* informally come up with a proposal for your model
+* work in teams
+* present your proposal and discuss 
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Modelling actions
+
+<img src='img/rl/berater/graph-large-actions.png' height="500">
+
+<small>
+_invalid action gives -1000 reward and no change in observation_
+</small>
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Observation Model
+
+_only show rewards for the routes agent can take from current position_
+
+<pre><code contenteditable data-trim class="line-numbers python">
+# Initial position and rewards
+[    0.   700.   900.   800. -1000.]    
+
+# Final position and rewards
+[    0.  -300.  -100.  -200. -1000.]
+
+</code></pre>
+
+</textarea>
+</section>
+
+<section data-markdown>
+        <textarea data-template>
+### Experiment to see if model is sufficient
+
+* use yourself to simulate the agent
+* show yourself local observations and reward for each step and choose an action
+* would this be sufficent for a good reward?
+
+<small>
+Idea Courtesy of Christian Hidber    
+</small>
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### New experimental observation
+
+_append all rest rewards_
+
+<pre><code contenteditable data-trim class="line-numbers python">
+# Initial position and rewards
+[    0.   700.   900.   800. -1000.     0.  1000.  1000.  1000.     0.
+0.  1000.     0.     0.     0.  1000.  1000.     0.     0.]    
+
+# Final position and rewards
+[    0.  -300.  -100.  -200. -1000.     0.     0.     0.     0.     0.
+     0.     0.     0.     0.     0.     0.     0.     0.     0.]
+
+</code></pre>
+
+Cumulated Reward: 13000, penalty: 3500, normalized: 0.73
+
+</textarea>
+</section>
+
+<section data-markdown>
+        <textarea data-template>
+### Possible tweaks to reward functions
+
+* add reward for returning home once all other locations have been visited 
+* no penalties for illegal moves
+* shortcut to save time
+  * break if overall reward becomes too negative
+  * break if too many steps
+
+_Spoiler: none of the tweaks had any effect_  
+        </textarea>
+    </section>
+
+            <section data-markdown>
+        <textarea data-template>
+### Tweaking Observations
+
+* network can learn all costs and all connections as they are static
+* rewards are not, but are given in the observation
+* all information is there, but
+  * it is very convoluted, too hard for us as humans
+  * could we make this more accessible? Would this also help? 
+
+_Spoiler: none of the tweaks had any effect_  
+        </textarea>
+    </section>
+
+<section data-markdown>
+    <textarea data-template>
+### We also need to reconsider our learning strategy before we can move on
+
+* Vanilla Policy Gradient is nice, but has limitations
+
+</textarea>
+</section>
+
+<section data-markdown>
+        <textarea data-template>
+### Issues of Vanilla Policy Gradient  
+
+_advantage is total (discounted) return, need to wait till end of episode for update_
+
+* problem 1: high Variance / catastrophic failure
+  * Extreme episode can give large advantage and push policy over the cliff to a bad track
+* problem 2: police update late
+  * bad for long episodes
+  * sample efficiency bad
+</textarea>
+</section>
+
 
 <section data-markdown style="font-size: xx-large">
     <textarea data-template>
@@ -529,20 +692,6 @@ https://www.youtube.com/watch?v=HzA8LRqhujk
 </textarea>
 </section>
 
-
-<section data-markdown>
-        <textarea data-template>
-### Returning to Vanilla Policy Gradient: Issues 
-
-_advantage is total (discounted) return, need to wait till end of episode for update_
-
-* problem 1: high Variance / catastrophic failure
-  * Extreme episode can give large advantage and push policy over the cliff to a bad track
-* problem 2: police update late
-  * bad for long episodes
-  * sample efficiency bad
-</textarea>
-</section>
 
 <section data-markdown>
     <textarea data-template>
@@ -699,72 +848,6 @@ Especially:
             </textarea>
         </section>
             
-<section>
-<h3>Perfect Path and Reward using PPO</h3>
-
-<pre><code contenteditable data-trim class="line-numbers python">
-S --0-> A R= 0.30 totalR= 0.30 cost= 100 customerR=1000
-A --0-> B R= 0.25 totalR= 0.55 cost= 250 customerR=1000
-B --1-> C R= 0.25 totalR= 0.80 cost= 250 customerR=1000
-C --2-> S R=-0.07 totalR= 0.73 cost= 200 customerR=   0
-                </code></pre>
-
-<img src='img/rl/berater/routes-actions.jpg' height="350">
-
-<p>Cumulated Reward: 3000, penalty: 800, normalized: 0.73</p>
-        </section>
-            
-
-<section data-markdown>
-    <textarea data-template>
-## Step 3: Generalizing Environment
-
-</textarea>
-</section>
-
-<section data-markdown>
-    <textarea data-template>
-### Complete Graph
-
-<img src='img/rl/berater/graph-large-actions.png' height="500">
-
-</textarea>
-</section>
-
-
-<section data-markdown>
-        <textarea data-template>
-### Hands-On: Come up with reasonable oberservations and a reward function
-
-* sketch what information your observations should contain on paper
-* do the same for the reward function
-* What do they *have to* include?
-* what *should* they include?
-* present your proposal and discuss 
-
-</textarea>
-</section>
-
-
-<section data-markdown>
-    <textarea data-template>
-### New Observation Model
-
-_only show rewards for the routes agent can take from current position_
-
-<pre><code contenteditable data-trim class="line-numbers python">
-# Initial position and rewards
-[    0.   700.   900.   800. -1000.]    
-
-# Final position and rewards
-[    0.  -300.  -100.  -200. -1000.]
-
-</code></pre>
-
-
-</textarea>
-</section>
-
 <section data-markdown>
     <textarea data-template>
 ### What is the optimum?
@@ -886,40 +969,6 @@ https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/
 
 <section data-markdown>
         <textarea data-template>
-### Experiment to see if model is sufficient
-
-* use yourself to simulate the agent
-* show yourself local observations and reward for each step and choose an action
-* would this be sufficent for a good reward?
-
-<small>
-Idea Courtesy of Christian Hidber    
-</small>
-</textarea>
-</section>
-
-<section data-markdown>
-    <textarea data-template>
-### New experimental observation
-
-_append all rest rewards_
-
-<pre><code contenteditable data-trim class="line-numbers python">
-# Initial position and rewards
-[    0.   700.   900.   800. -1000.     0.  1000.  1000.  1000.     0.
-0.  1000.     0.     0.     0.  1000.  1000.     0.     0.]    
-
-# Final position and rewards
-[    0.  -300.  -100.  -200. -1000.     0.     0.     0.     0.     0.
-     0.     0.     0.     0.     0.     0.     0.     0.     0.]
-</code></pre>
-
-
-</textarea>
-</section>
-
-<section data-markdown>
-        <textarea data-template>
 ### Clear improvement of rewards
 
 * but still not close to 0.8
@@ -965,55 +1014,12 @@ B --0-> S R=-0.02 totalR= 0.68 cost= 100 customerR=   0
 </div>
 
 <small>
-<a href="https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v8.ipynb">
-https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v8.ipynb
+<a href="https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v9.ipynb">
+https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v9.ipynb
 </a>
 </small>
 
         </section>
-
-        <section data-markdown>
-            <textarea data-template>
-### Possible tweaks to reward functions
-
-* add reward for returning home once all other locations have been visited 
-* no penalties for illegal moves
-* shortcut to save time
-  * break if overall reward becomes too negative
-  * break if too many steps
-
-_Spoiler: none of the tweaks had any effect_  
-            </textarea>
-        </section>
-
-                <section data-markdown>
-            <textarea data-template>
-### Tweaking Observations
-
-* network can learn all costs and all connections as they are static
-* rewards are not, but are given in the observation
-* all information is there, but
-* it is very convoluted, too hard for us as humans
-* could we make this more accessible? Would this also help? 
-
-_Spoiler: none of the tweaks had any effect_  
-            </textarea>
-        </section>
-
-<section data-markdown>
-    <textarea data-template>
-### Dopamine
-
-* alternative for trying out new strategies
-* Research centered
-* restricted to Atair games
-* so not so much for building your own environments
-
-<small>
-http://ai.googleblog.com/2018/08/introducing-new-framework-for-flexible.html
-</small>
-</textarea>
-</section>
 
 <section data-markdown>
     <textarea data-template>
@@ -1058,32 +1064,50 @@ https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/
 ### Hands-On: Try to improve results
 
 * tweak parameters of the `ppo2.learn` call
-* have a lookt at the links to the parameter descriptions for reference
+* have a look at the links to the parameter descriptions for reference
 * check scores at the end of the notebook
 * both `mean` and `std` are important
 * choose your experiments wisely
-  * training time on Colab with GPU is 15 to 2o min
+  * training time on Colab with GPU is 15 to 20 min
   * either cut training time short or
   * you will only have time for 1 or 2 experiments
 
 <small>
 https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v10.ipynb
 </small>
-
 </textarea>
 </section>
 
-<section data-markdown>
-        <textarea data-template>
-### What next?
+<section data-markdown style="font-size: large">
+    <textarea data-template>
+### Histoty of all All Berater Versions
 
-* nn model now has many more inputs
-  * might need more neurons per layer (experiment show 2 layers / 100 units works just as well)
-  * more regularization?
-  * custom neural network code?
+first version with local observation, just position, not enough information to train properly: https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater.ipynb
+
+complete graph as observation, now trains: https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v2.ipynb
+
+dqn instead of PPO: https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v3.ipynb
+
+plotting of learning history, return to ppo for better performance: https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v4.ipynb
+
+as preparation for larger networks changed observation to position plus local paths, still trains well: https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v5.ipynb
+
+larger and more complex customer graph: https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v6.ipynb
+
+per episode set certain rewards to 0 to simulate different customers per consultant: https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v7.ipynb
+
+added all rest rewards to observation: https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v8.ipynb
+
+Best-first search as optimal baseline: https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v9.ipynb
+
+Regularization, scoring code: https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v10.ipynb
+
+Explicit NN, relu activation: https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v11.ipynb
+
+A2C instead of PPO: https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v12.ipynb
+
 </textarea>
 </section>
-
 
 <section data-markdown>
         <textarea data-template>
@@ -1138,7 +1162,77 @@ https://twitter.com/m4rkmc/status/1057485545708929024
 * requires a different way of thinking
 * can you model something like a game?
 * do you already have a simulator?
+* how would you model your environment?
+</textarea>
+</section>
 
+<section data-markdown>
+    <textarea data-template>
+### Alternatives to OpenAI
+
+* environments are without alternatives
+* code quality, comprehensiveness, and stability of baselines is questionable
+* rather academic approach
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Dopamine
+
+* works on OpenAI envs
+* alternative for trying out new strategies
+* research centered
+* only contains basic baselines
+
+<small>
+http://ai.googleblog.com/2018/08/introducing-new-framework-for-flexible.html
+<br>
+https://github.com/google/dopamine
+<br>
+https://github.com/google/dopamine/tree/master/baselines
+<br>
+https://google.github.io/dopamine/baselines/plots.html
+</small>
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Deep Reinforcement Learning for Keras
+
+* works on OpenAI envs
+* code style much more approachable and consistent OO style
+* Keras models
+* does not contain A2C/A3C or PPO
+
+<small>
+https://github.com/keras-rl/keras-rl
+<br>
+https://keras-rl.readthedocs.io/en/latest/core/
+<br>
+https://github.com/keras-rl/keras-rl/blob/master/rl/agents/dqn.py
+</small>
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Deep Reinforcement Learning with TensorFlow 2.0
+
+* works on OpenAI envs
+* just a single implementation for A2C
+* TF 2.0 Keras Style
+* Everything in one notebook
+* short and very obvious
+* very nice code style
+
+<small>
+http://inoryy.com/post/tensorflow2-deep-reinforcement-learning/
+<br>
+https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/actor-critic-agent-with-tensorflow2.ipynb
+</small>
 </textarea>
 </section>
 
@@ -1156,36 +1250,6 @@ https://twitter.com/m4rkmc/status/1057485545708929024
 </textarea>
 </section>
 
-<section data-markdown style="font-size: large">
-        <textarea data-template>
-### All Berater Versions
-    
-first version with local observation, just position, not enough information to train properly: https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater.ipynb
-
-complete graph as observation, now trains: https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v2.ipynb
-
-dqn instead of PPO: https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v3.ipynb
-
-plotting of learning history, return to ppo for better performance: https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v4.ipynb
-
-as preparation for larger networks changed observation to position plus local paths, still trains well: https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v5.ipynb
-
-larger and more complex customer graph: https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v6.ipynb
-
-per episode set certain rewards to 0 to simulate different customers per consultant: https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v7.ipynb
-
-added all rest rewards to observation: https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v8.ipynb
-
-Best-first search as optimal baseline: https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v9.ipynb
-
-Regularization, scoring code: https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v10.ipynb
-
-Explicite NN, relu activation: https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v11.ipynb
-
-A2C instead of PPO: https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v12.ipynb
-
-</textarea>
-</section>
 
 <section data-markdown style="font-size: large">
     <textarea data-template>
@@ -1205,6 +1269,7 @@ https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/
 
 </textarea>
 </section>
+
 
     </div>
 
