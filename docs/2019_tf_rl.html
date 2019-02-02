@@ -1222,7 +1222,7 @@ https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/
 
 <section data-markdown>
         <textarea data-template>
-### Bottom Line
+### Bottom Line, variation in stops
 
 * approach is robust to changes in stops in general
   * lowering stops needed init seed changed (bad)  
@@ -1230,8 +1230,11 @@ https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/
 * total rewards go down when there are less stops (expected)
 * length of path stays constant for more stops (did not quite expect that)
 * length of path goes down constant for less stops (also did not quite expect that)
+* _next step: train general model having random number of stops_
 </textarea>
 </section>
+
+
 
 <section data-markdown style="font-size: large">
     <textarea data-template>
