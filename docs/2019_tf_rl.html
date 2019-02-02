@@ -272,8 +272,12 @@ http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching_files/intro_RL.pdf
 
 <div style="clear: both;">
     <br>
-    <p >The Agent’s job is to maximise the cumulative Reward</p>        
+    <p >The Agent’s job is to maximise the cumulative Reward</p>
 </div>
+
+<small>
+http://gym.openai.com/docs/    
+</small>
 
 </textarea>
 </section>
@@ -488,12 +492,14 @@ https://spinningup.openai.com/en/latest/spinningup/rl_intro.html
 
 <section data-markdown>
     <textarea data-template>
-## Generalizing Environment
+### Generalizing Environment to subsets of of customers to be visited
 
 before we start modelling
 * solving a single graph is not very realistic
 * graph should be larger
 * and have variations
+* simulating that not all customers will be visited by a single consultant
+* with each episode randomly set reward for half the locations to 0
 
 </textarea>
 </section>
@@ -506,11 +512,21 @@ before we start modelling
 
 </textarea>
 </section>
+
 <section data-markdown>
     <textarea data-template>
 ### Graph with costs
 
 <img src='img/rl/berater/graph-large-costs.png' height="500">
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Graph with Selection of places to visit
+
+<img src='img/rl/berater/graph-large-zeros.jpg' height="500">
 
 <small>
 _for each consultant we will reset half of the rewards to zero_
@@ -522,7 +538,10 @@ _for each consultant we will reset half of the rewards to zero_
         <textarea data-template>
 ### Hands-On: Create your model
 
+<img src="img/rl.png" height="250">
+
 * informally come up with a proposal for your model
+* use paper and pen as a tool
 * work in teams
 * present your proposal and discuss 
 
@@ -566,6 +585,7 @@ _only show rewards for the routes agent can take from current position_
 * use yourself to simulate the agent
 * show yourself local observations and reward for each step and choose an action
 * would this be sufficent for a good reward?
+* if you play this through, what would be your accumulated reward?
 
 <small>
 Idea Courtesy of Christian Hidber    
@@ -622,6 +642,78 @@ _Spoiler: none of the tweaks had any effect_
 _Spoiler: none of the tweaks had any effect_  
         </textarea>
     </section>
+
+<section data-markdown style="font-size: xx-large">
+    <textarea data-template>
+### OpenAI Environment interface
+
+* you can subclass `gym.Env`
+* `step`: let environment react to action
+* `action_space`: The Space object corresponding to valid actions
+* `observation_space`: The Space object corresponding to valid observations
+* `reward_range`: A tuple corresponding to the min and max possible rewards 
+
+<pre><code contenteditable data-trim class="line-numbers python">
+env = BeraterEnv()
+observation = env.reset()
+print(observation)
+
+for t in range(1000):
+    action = env.action_space.sample()
+    observation, reward, done, _ = env.step(action)
+    if done:
+        break
+env.close()        
+</code></pre>
+
+<small>
+https://github.com/openai/gym/blob/master/gym/core.py
+</small>
+
+</textarea>
+</section>
+
+<section data-markdown style="font-size: xx-large">
+    <textarea data-template>
+### Our Environment
+
+<pre><code contenteditable data-trim class="line-numbers python">
+self.map = {
+    'S': [('A', 300), ('B', 100), ('C', 200 )],
+    'A': [('S', 300), ('B', 100), ('E', 100 ), ('D', 100 )],
+    'B': [('S', 100), ('A', 100), ('C', 50 ), ('K', 200 )],
+    'C': [('S', 200), ('B', 50), ('M', 100 ), ('L', 200 )],
+    'D': [('A', 100), ('F', 50)],
+    'E': [('A', 100), ('F', 100), ('H', 100)],
+    'F': [('D', 50), ('E', 100), ('G', 200)],
+    'G': [('F', 200), ('O', 300)],
+    'H': [('E', 100), ('K', 300)],
+    'K': [('B', 200), ('H', 300)],
+    'L': [('C', 200), ('M', 50)],
+    'M': [('C', 100), ('L', 50), ('N', 100)],
+    'N': [('M', 100), ('O', 100)],
+    'O': [('N', 100), ('G', 300)]
+}
+positions = len(self.map)
+</code></pre>
+
+<pre><code contenteditable data-trim class="line-numbers python">
+max_paths = 4
+self.action_space = spaces.Discrete(max_paths)
+# observations: position, reward of all 4 local paths, rest reward of all locations
+# non existing path is -1000 and no position change
+low = np.append(np.append([0], np.full(max_paths, -1000)), np.full(positions, 0))
+high = np.append(np.append([positions - 1], np.full(max_paths, 1000)), np.full(positions, 1000))
+self.observation_space = spaces.Box(low=low, high=high, dtype=np.float32)
+self.reward_range = (-1, 1)
+</code></pre>
+
+<small>
+https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v9.ipynb
+</small>
+
+</textarea>
+</section>
 
 <section data-markdown>
     <textarea data-template>
@@ -847,179 +939,109 @@ Especially:
 * Lecture 5: Natural Policy Gradients, TRPO, PPO: https://youtu.be/xvRrgxcpaHY
             </textarea>
         </section>
+
+<section data-markdown>
+    <textarea data-template>
+### Bringing it all together using PPO
+
+<pre><code contenteditable data-trim class="line-numbers python">
+model = ppo2.learn(
+    env=env,
+    network='mlp',
+    num_hidden=100,
+    num_layers=2,
+    lr=lr_range, # linearly from 1e-2 to 1e-4
+    gamma=1.0,
+    ent_coef=0,
+    total_timesteps=500000)
+</code></pre>
+
+<small>
+https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v9.ipynb
+</small>
+
+</textarea>
+</section>
+
+<section data-markdown>
+        <textarea data-template>
+### Rewards
+
+<img src='img/rl/berater/v9-learning-curve.png'>
+
+Average Reward at end of training: ~ .69
+<br>
+Average length of path: ~ 17
+
+<small>
+https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v9.ipynb
+</small>
+            </textarea>
+        </section>
+
+<section style="font-size: xx-large">
+<h3>Sample Run</h3>
+<pre><code contenteditable data-trim class="line-numbers python">
+{'S': 0, 'A': 0, 'B': 1000, 'C': 1000, 'D': 1000, 'E': 1000, 
+ 'F': 0, 'G': 0, 'H': 0, 'K': 1000, 'L': 1000, 'M': 0, 'N': 0, 'O': 0}    
+</code></pre>
+
+<div style="float: left; width: 700px;">
+<pre><code contenteditable data-trim class="line-numbers python">
+S --2-> C R= 0.13 totalR= 0.13 cost= 200 customerR=1000
+C --1-> B R= 0.16 totalR= 0.29 cost=  50 customerR=1000
+B --3-> K R= 0.13 totalR= 0.42 cost= 200 customerR=1000
+K --0-> B R=-0.03 totalR= 0.39 cost= 200 customerR=   0
+B --2-> C R=-0.01 totalR= 0.38 cost=  50 customerR=   0
+C --2-> M R=-0.02 totalR= 0.37 cost= 100 customerR=   0
+M --1-> L R= 0.16 totalR= 0.52 cost=  50 customerR=1000
+L --0-> C R=-0.03 totalR= 0.49 cost= 200 customerR=   0
+C --1-> B R=-0.01 totalR= 0.48 cost=  50 customerR=   0
+B --1-> A R=-0.02 totalR= 0.47 cost= 100 customerR=   0
+A --2-> E R= 0.15 totalR= 0.62 cost= 100 customerR=1000
+E --1-> F R=-0.02 totalR= 0.60 cost= 100 customerR=   0
+F --0-> D R= 0.16 totalR= 0.76 cost=  50 customerR=1000
+D --0-> A R=-0.02 totalR= 0.74 cost= 100 customerR=   0
+A --1-> B R=-0.02 totalR= 0.72 cost= 100 customerR=   0
+B --0-> S R=-0.02 totalR= 0.71 cost= 100 customerR=   0
+</code></pre>
+</div>
+<div style="float: right;">
+    <img src='img/rl/berater/v9-sample-solution-zeros.jpg' height="350">
+</div>
+
+<div style="clear: both;">
+Optimum: 6000, penalty: 1750, normalized total reward: .71,    
+</div>
+<small>
+https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v9.ipynb
+</small>
+    
+
+        </section>
+
+        <section data-markdown>
+                <textarea data-template>
+## Is this even good?
+</textarea>
+        </section>
             
 <section data-markdown>
     <textarea data-template>
 ### What is the optimum?
 
-could be calculated by deterministic baseline (https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm)
-
-Estimation
-* random has reward of -5.51
-* total cost when travelling all paths (back and forth): 5000
-* additional pernalty for illegal moves 1000
-* all rewards: 13000
-* perfect score???
-* estimate: half the travel cost and no illegal moves: (13000 - 2500) / 13000 = .80
-
-</textarea>
-</section>
-
-<section style="font-size: xx-large">
-<h3>Path after training</h3>
-<div style="float: left; width: 700px;">
-<pre><code contenteditable data-trim class="line-numbers python">
-S --1-> B R= 0.07 totalR= 0.07 cost= 100 customerR=1000
-B --3-> K R= 0.06 totalR= 0.13 cost= 200 customerR=1000
-K --1-> H R= 0.05 totalR= 0.18 cost= 300 customerR=1000
-H --0-> E R= 0.07 totalR= 0.25 cost= 100 customerR=1000
-E --0-> A R= 0.07 totalR= 0.32 cost= 100 customerR=1000
-A --3-> D R= 0.07 totalR= 0.39 cost= 100 customerR=1000
-D --1-> F R= 0.07 totalR= 0.47 cost=  50 customerR=1000
-F --2-> G R= 0.06 totalR= 0.53 cost= 200 customerR=1000
-G --1-> O R= 0.05 totalR= 0.58 cost= 300 customerR=1000
-O --0-> N R= 0.07 totalR= 0.65 cost= 100 customerR=1000
-N --0-> M R= 0.07 totalR= 0.72 cost= 100 customerR=1000
-M --0-> C R= 0.07 totalR= 0.79 cost= 100 customerR=1000
-C --3-> L R= 0.06 totalR= 0.85 cost= 200 customerR=1000
-L --0-> C R=-0.02 totalR= 0.83 cost= 200 customerR=   0
-C --1-> B R=-0.00 totalR= 0.83 cost=  50 customerR=   0
-B --0-> S R=-0.01 totalR= 0.82 cost= 100 customerR=   0
-</code></pre>
-</div>
-<div style="float: right;">
-    <img src='img/rl/berater/sample-solution.jpg' height="350">
-</div>
-
-<small>
-<a href="https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v6.ipynb">
-https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v6.ipynb
-</a>
-</small>
-
-        </section>
-
-<section data-markdown>
-    <textarea data-template>
-### Generalize to sub sets of of customers to be visited
-
-* simulating that not all customers will be visited by a single consultant
-* with each episode randomly set reward for half the locations to 0
-
-Estimation
-* total cost when travelling all paths (back and forth): 2500
-* all rewards: 6000
-* but: rewards are much more sparse while routes stay the same, maybe expect less
-* estimate: no illegal moves and between
-  * half the travel cost: (6000 - 1250) / 6000 = .79
-  * and full traval cost (6000 - 2500) / 6000 = 0.58
-* additionally: the agent only sees very little of the whole scenario
-  * changes with every episode
-  * was ok when network can learn fixed scenario
+* generally you just do not know
+* the more score the better
+* baselines can help in Reinforcement Learning as well
+* in our special case, there is a deterministic baseline
+  * best first search (https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm)
+  * guarentees to find optimal solution
+  * exponential complexity
+  * but works fine for our size of the problem
+  * optimal score between .73 and .74 with very low variance
 
 </textarea>
 </section>
-
-<section data-markdown>
-        <textarea data-template>
-### Rewards do not look too good
-
-<img src='img/rl/berater/v7-learning-curve.png'>
-
-<small>
-https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v7.ipynb
-</small>
-            </textarea>
-        </section>
-            
-
-<section style="font-size: xx-large">
-<h3>Path after training</h3>
-<div style="float: left; width: 700px;">
-<pre><code contenteditable data-trim class="line-numbers python">
-S --0-> A R= 0.12 totalR= 0.12 cost= 300 customerR=1000
-A --2-> E R= 0.15 totalR= 0.27 cost= 100 customerR=1000
-E --2-> H R= 0.15 totalR= 0.42 cost= 100 customerR=1000
-H --0-> E R=-0.02 totalR= 0.40 cost= 100 customerR=   0
-E --1-> F R=-0.02 totalR= 0.38 cost= 100 customerR=   0
-F --0-> D R= 0.16 totalR= 0.54 cost=  50 customerR=1000
-D --0-> A R=-0.02 totalR= 0.52 cost= 100 customerR=   0
-A --2-> E R=-0.02 totalR= 0.51 cost= 100 customerR=   0
-E --1-> F R=-0.02 totalR= 0.49 cost= 100 customerR=   0
-F --2-> G R=-0.03 totalR= 0.46 cost= 200 customerR=   0
-G --1-> O R=-0.05 totalR= 0.41 cost= 300 customerR=   0
-O --0-> N R=-0.02 totalR= 0.39 cost= 100 customerR=   0
-N --0-> M R=-0.02 totalR= 0.37 cost= 100 customerR=   0
-M --1-> L R= 0.16 totalR= 0.53 cost=  50 customerR=1000
-L --0-> C R= 0.13 totalR= 0.67 cost= 200 customerR=1000
-C --0-> S R=-0.03 totalR= 0.63 cost= 200 customerR=   0
-</code></pre>
-</div>
-<div style="float: right;">
-    <img src='img/rl/berater/sample-solution-generalized.jpg' height="350">
-</div>
-
-<small>
-<a href="https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v7.ipynb">
-https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v7.ipynb
-</a>
-</small>
-
-        </section>
-
-<section data-markdown>
-        <textarea data-template>
-### Clear improvement of rewards
-
-* but still not close to 0.8
-* drop outs probably due to high Exploration
-
-<img src='img/rl/berater/v8-learning-curve.png'>
-
-<small>
-https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v8.ipynb
-</small>
-            </textarea>
-        </section>
-
-<section style="font-size: xx-large">
-<h3>Path after training</h3>
-<div style="float: left; width: 700px;">
-<pre><code contenteditable data-trim class="line-numbers python">
-{ 'S': 0, 'A': 0, 'B': 0, 'C': 1000, 'D': 1000, 
-  'E': 0, 'F': 0, 'G': 1000, 'H': 0, 'K': 1000, 
-  'L': 1000, 'M': 1000, 'N': 0, 'O': 0}
-
-S --1-> B R=-0.02 totalR=-0.02 cost= 100 customerR=   0
-B --2-> C R= 0.16 totalR= 0.14 cost=  50 customerR=1000
-C --2-> M R= 0.15 totalR= 0.29 cost= 100 customerR=1000
-M --1-> L R= 0.16 totalR= 0.45 cost=  50 customerR=1000
-L --1-> M R=-0.01 totalR= 0.44 cost=  50 customerR=   0
-M --1-> L R=-0.01 totalR= 0.43 cost=  50 customerR=   0
-L --1-> M R=-0.01 totalR= 0.42 cost=  50 customerR=   0
-M --2-> N R=-0.02 totalR= 0.41 cost= 100 customerR=   0
-N --1-> O R=-0.02 totalR= 0.39 cost= 100 customerR=   0
-O --1-> G R= 0.12 totalR= 0.51 cost= 300 customerR=1000
-G --0-> F R=-0.03 totalR= 0.47 cost= 200 customerR=   0
-F --0-> D R= 0.16 totalR= 0.63 cost=  50 customerR=1000
-D --0-> A R=-0.02 totalR= 0.62 cost= 100 customerR=   0
-A --1-> B R=-0.02 totalR= 0.60 cost= 100 customerR=   0
-B --3-> K R= 0.13 totalR= 0.73 cost= 200 customerR=1000
-K --0-> B R=-0.03 totalR= 0.70 cost= 200 customerR=   0
-B --0-> S R=-0.02 totalR= 0.68 cost= 100 customerR=   0   
-</code></pre>
-</div>
-<div style="float: right;">
-    <img src='img/rl/berater/sample-solution-global.jpg' height="350">
-</div>
-
-<small>
-<a href="https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v9.ipynb">
-https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v9.ipynb
-</a>
-</small>
-
-        </section>
 
 <section data-markdown>
     <textarea data-template>
@@ -1053,34 +1075,98 @@ https://arxiv.org/abs/1804.06893
 https://arxiv.org/abs/1812.02341
 <br>
 https://blog.openai.com/quantifying-generalization-in-reinforcement-learning/
-<br>
-https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v10.ipynb
 </small>
 </textarea>
 </section>
 
 <section data-markdown>
-        <textarea data-template>
-### Hands-On: Try to improve results
+    <textarea data-template>
+### Regularized Model
 
-* tweak parameters of the `ppo2.learn` call
-* have a look at the links to the parameter descriptions for reference
-* check scores at the end of the notebook
-* both `mean` and `std` are important
-* choose your experiments wisely
-  * training time on Colab with GPU is 15 to 20 min
-  * either cut training time short or
-  * you will only have time for 1 or 2 experiments
+<pre><code contenteditable data-trim class="line-numbers python">
+model = ppo2.learn(
+    env=env,
+    network='mlp',
+    num_hidden=500, # more 
+    num_layers=3, # more 
+    layer_norm=True, # added 
+    activation=tf.nn.relu, # trains faster
+    lr=lr_range, # linearly from 1e-2 to 1e-4
+    gamma=1.0,
+    ent_coef=0.05, # from 0
+    # we on longer fear overfitting, dare to train longer
+    total_timesteps=1000000
+) 
+</code></pre>
 
 <small>
-https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v10.ipynb
+https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v11.ipynb
+</small>
+
+</textarea>
+</section>
+
+
+<section data-markdown>
+    <textarea data-template>
+### Results at end of training
+
+<pre><code contenteditable data-trim class="line-numbers python">
+--------------------------------------
+| eplenmean          | 14.5          |
+| eprewmean          | 0.73708344    |
+| policy_loss        | -0.001574069  |
+| total_timesteps    | 983040        |
+| value_loss         | 0.00053364615 |
+--------------------------------------
+</code></pre>
+
+<small>
+https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v11.ipynb
+</small>
+
+</textarea>
+</section>
+
+<section data-markdown>
+        <textarea data-template>
+### Regularized Model: Rewards
+
+<img src='img/rl/berater/v11-learning-curve.png'>
+
+Average Reward at end of training: ~ .73 (from .69, optimum .73 - .74)
+<br>
+Average length of path: ~ 17 (from 15)
+
+<small>
+https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v11.ipynb
+</small>
+            </textarea>
+        </section>
+        
+        <section data-markdown>
+        <textarea data-template>
+### Hands-On: Experiment with the number of places to visit
+
+1. change the number of visits per consultant
+   * as the defaullt a consultant needs to visit half the customers
+   * how do the results change when you bring that number up or down?
+1. execute your notebook
+   * how long does the training take?
+   * look at the intermediate results and decide how long who are willing to let this train 
+   * find spot where total timesteps of training are specificed and adjust that
+
+_what results do you see_
+
+<small>
+https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v11.ipynb
 </small>
 </textarea>
 </section>
 
 <section data-markdown style="font-size: large">
     <textarea data-template>
-### Histoty of all All Berater Versions
+### Histoty of all all Berater versions (the real story)
 
 first version with local observation, just position, not enough information to train properly: https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater.ipynb
 
