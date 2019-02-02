@@ -153,12 +153,12 @@
 <div class="reveal">
     <div class="slides">
 
-<section data-markdown class="preparation">
+<!-- <section data-markdown class="preparation">
         <textarea data-template>
 ### Preparation
 
     </textarea>
-</section>
+</section> -->
 
 <section>
         <h2>Introduction to Deep Reinforcement Learning</h2>
@@ -240,6 +240,18 @@ https://ranzato.github.io/publications/tutorial_deep_unsup_learning_part1_NeurIP
 </small>
 </textarea>
 </section>
+
+<section data-markdown>
+    <textarea data-template>
+### LeCun vs Brockman on RL
+
+<img src='img/rl/lecun-vs-brockman.jpg' height="500px">
+<small>
+https://twitter.com/ylecun/status/1091148826851840000
+</small>
+</textarea>
+</section>
+
 
 <section data-markdown>
     <textarea data-template>
@@ -1112,13 +1124,11 @@ https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/
 ### Results at end of training
 
 <pre><code contenteditable data-trim class="line-numbers python">
---------------------------------------
 | eplenmean          | 14.5          |
 | eprewmean          | 0.73708344    |
 | policy_loss        | -0.001574069  |
 | total_timesteps    | 983040        |
 | value_loss         | 0.00053364615 |
---------------------------------------
 </code></pre>
 
 <small>
@@ -1136,7 +1146,7 @@ https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/
 
 Average Reward at end of training: ~ .73 (from .69, optimum .73 - .74)
 <br>
-Average length of path: ~ 17 (from 15)
+Average length of path: ~ 15 (from 17)
 
 <small>
 https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v11.ipynb
@@ -1144,23 +1154,82 @@ https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/
             </textarea>
         </section>
         
-        <section data-markdown>
+    <section data-markdown style="font-size: xx-large">
         <textarea data-template>
-### Hands-On: Experiment with the number of places to visit
+### Hands-On: How robust is this approach?
 
-1. change the number of visits per consultant
-   * as the defaullt a consultant needs to visit half the customers
-   * how do the results change when you bring that number up or down?
+1. increate the number of visits per consultant
 1. execute your notebook
    * how long does the training take?
-   * look at the intermediate results and decide how long who are willing to let this train 
+   * just from intermediate results how long who are willing to let this train 
    * find spot where total timesteps of training are specificed and adjust that
+   * consider running  experiments in parallel (open notebook many times)
 
-_what results do you see_
+Questions:
+1. how does the optimum change? did you expect that?
+1. can the approach handle the change, does it still learn properly?
+1. what is my dark secret to success?
 
 <small>
 https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v11.ipynb
 </small>
+</textarea>
+</section>
+
+<section data-markdown>
+        <textarea data-template>
+### Results after lowering stops (4000 instead of 6000)
+
+<pre><code contenteditable data-trim class="line-numbers python">
+| eplenmean          | 13.3          |
+| eprewmean          | 0.66050005    |
+| policy_loss        | -0.0014504729 |
+| total_timesteps    | 983040        |
+| value_loss         | 0.00049987464 |
+</code></pre>
+
+Average Reward at end of training: ~ .67 (from .73, optimum .67 - .68)
+<br>
+Average length of path: ~ 13 (from 15)
+
+<small>
+https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v11-lower.ipynb
+</small>
+</textarea>
+</section>
+
+<section data-markdown>
+        <textarea data-template>
+### Results after upping stops (8000 instead of 6000)
+
+<pre><code contenteditable data-trim class="line-numbers python">
+| eplenmean          | 15.3          |
+| eprewmean          | 0.77743745    |
+| policy_loss        | -0.0028271498 |
+| total_timesteps    | 983040        |
+| value_loss         | 0.0003087244  |
+</code></pre>
+
+Average Reward at end of training: ~ .78 (from .73, optimum .78)
+<br>
+Average length of path: ~ 15 (from 15)
+
+<small>
+https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v11-higher.ipynb
+</small>
+</textarea>
+</section>
+
+<section data-markdown>
+        <textarea data-template>
+### Bottom Line
+
+* approach is robust to changes in stops in general
+  * lowering stops needed init seed changed (bad)  
+* total rewards go up when there are more stops (expected)
+* total rewards go down when there are less stops (expected)
+* length of path stays constant for more stops (did not quite expect that)
+* length of path goes down constant for less stops (also did not quite expect that)
 </textarea>
 </section>
 
