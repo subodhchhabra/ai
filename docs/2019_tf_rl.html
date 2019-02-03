@@ -751,7 +751,7 @@ _advantage is total (discounted) return, need to wait till end of episode for up
 </section>
 
 
-<section data-markdown style="font-size: xx-large">
+<!-- <section data-markdown style="font-size: xx-large">
     <textarea data-template>
 ### Algorithms: More general
 
@@ -764,13 +764,13 @@ _advantage is total (discounted) return, need to wait till end of episode for up
   * use powerful function approximation methods to compactly represent value functions
   * allows dealing with large, high-dimensional state- and action-spaces
 </textarea>
-</section>
+</section> -->
 
 <section data-markdown>
     <textarea data-template>
 ### Algorithm Overview
 
-<img src='img/rl/rl_algorithms_9_15.svg'>
+<img src='img/rl/rl_algorithms_9_15.svg' height="500">
 
 <small>
 https://spinningup.openai.com/en/latest/spinningup/rl_intro2.html    
@@ -779,7 +779,7 @@ https://spinningup.openai.com/en/latest/spinningup/rl_intro2.html
 </textarea>
 </section>
 
-<section data-markdown>
+<!-- <section data-markdown>
         <textarea data-template>
 ### World Models
 
@@ -794,8 +794,7 @@ https://www.youtube.com/watch?v=HzA8LRqhujk
 </small>
 
 </textarea>
-</section>
-
+</section> -->
 
 <section data-markdown>
     <textarea data-template>
@@ -868,8 +867,7 @@ https://blog.openai.com/openai-baselines-ppo/
 ### PPO Improvements over A2C
 
 * _stable and steady improvement_:  New policy will not change too much from step to step
-* Entropy parameter defines Exploitation vs Exploration
-* PPO can run highly parallel
+* Entropy parameter tunes Exploitation vs Exploration
 
 <small>
 https://blog.openai.com/openai-baselines-ppo/
@@ -880,7 +878,7 @@ https://stackoverflow.com/questions/46422845/what-is-the-way-to-understand-proxi
 </textarea>
 </section>
 
-<section data-markdown>
+<!-- <section data-markdown>
     <textarea data-template>
 ### PPO Overview
 
@@ -891,9 +889,9 @@ Arxiv Insights: https://www.youtube.com/watch?v=5P7I-xPq8u8
 </small>
 
 </textarea>
-</section>
+</section> -->
 
-<section data-markdown>
+<!-- <section data-markdown>
         <textarea data-template>
 ### Minimum Objective for Practitioners
 
@@ -906,7 +904,7 @@ Like with a car
 - you do not need to understand how the engine of your car works
 - Unless maybe you are a race driver. Are you?
 </textarea>
-</section>
+</section> -->
 
 <section data-markdown style="font-size: x-large">
     <textarea data-template>
@@ -935,22 +933,6 @@ GAE (lambda): https://arxiv.org/abs/1506.02438
 
 </textarea>
 </section>
-
-<section data-markdown style="font-size: xx-large">
-        <textarea data-template>
-### Best Resource for further learning
-
-Deep RL Bootcamp 26-27 August 2017, Berkeley CA
-
-https://sites.google.com/view/deep-rl-bootcamp/lectures
-
-Especially:
-* Lecture 1: Motivation + Overview + Exact Solution Methods: https://www.youtube.com/watch?v=qaMdN6LS9rA
-* Lecture 4A: Policy Gradients and Actor Critic: https://www.youtube.com/watch?v=S_gwYj1Q-44
-* Lecture 4B: Pong from Pixels: https://www.youtube.com/watch?v=tqrcjHuNdmQ
-* Lecture 5: Natural Policy Gradients, TRPO, PPO: https://youtu.be/xvRrgxcpaHY
-            </textarea>
-        </section>
 
 <section data-markdown>
     <textarea data-template>
@@ -1025,11 +1007,6 @@ B --0-> S R=-0.02 totalR= 0.71 cost= 100 customerR=   0
 <div style="clear: both;">
 Optimum: 6000, penalty: 1750, normalized total reward: .71,    
 </div>
-<small>
-https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v9.ipynb
-</small>
-    
-
         </section>
 
         <section data-markdown>
@@ -1234,8 +1211,6 @@ https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/
 </textarea>
 </section>
 
-
-
 <section data-markdown style="font-size: large">
     <textarea data-template>
 ### Histoty of all all Berater versions (the real story)
@@ -1407,6 +1382,23 @@ https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/
   * Free PDF: https://sites.ualberta.ca/~szepesva/papers/RLAlgsInMDPs.pdf
 </textarea>
 </section>
+
+<section data-markdown style="font-size: xx-large">
+        <textarea data-template>
+### Best Resource for further learning
+
+Deep RL Bootcamp 26-27 August 2017, Berkeley CA
+
+https://sites.google.com/view/deep-rl-bootcamp/lectures
+
+Especially:
+* Lecture 1: Motivation + Overview + Exact Solution Methods: https://www.youtube.com/watch?v=qaMdN6LS9rA
+* Lecture 4A: Policy Gradients and Actor Critic: https://www.youtube.com/watch?v=S_gwYj1Q-44
+* Lecture 4B: Pong from Pixels: https://www.youtube.com/watch?v=tqrcjHuNdmQ
+* Lecture 5: Natural Policy Gradients, TRPO, PPO: https://youtu.be/xvRrgxcpaHY
+            </textarea>
+        </section>
+
 
 
 <section data-markdown style="font-size: large">
