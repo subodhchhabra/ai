@@ -376,6 +376,8 @@ Plotting the predictions as a background
     <section>
 <h3>Code in Scikit-learn</h3>
 
+<p><em>Scikit-learn: most popular classic machine learning lib</em></p>
+
 <p>Training</p>
 <pre><code contenteditable data-trim class="fragment line-numbers python">
 from sklearn.tree import DecisionTreeClassifier
@@ -391,8 +393,8 @@ y_pred = clf.predict(input)
 <small>
     <a href='https://scikit-learn.org/stable/modules/classes.html'>https://scikit-learn.org/stable/modules/classes.html</a>
     <br>
-    <a href='https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/sklearn/overview.ipynb'>
-        https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/sklearn/overview.ipynb</a>
+    <a href='https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/sklearn/dt-intro.ipynb'>
+        https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/sklearn/dt-intro.ipynb</a>
 </small>
         </section>
         
@@ -475,6 +477,47 @@ Using neural networks with TensorFlow
 <small class="fragment">Up to 80% accuracy on test data using a regularized neural networks</small>
 </textarea>
     </section>
+
+    <section style="font-size: xx-large">
+    <!-- <section> -->
+            <h3>Code in TensorFlow using Keras API</h3>
+
+<p><em>TensorFlow: most popular deep learning lib</em></p>
+
+<pre><code contenteditable data-trim class="fragment line-numbers python">
+# model    
+model = keras.Sequential()
+
+model.add(Dense(200, name='hidden1', input_dim=3))
+model.add(BatchNormalization())
+model.add(Activation('relu'))
+model.add(Dropout(0.6))
+
+model.add(Dense(500, name='hidden2'))
+model.add(BatchNormalization())
+model.add(Activation('relu'))
+model.add(Dropout(0.6))
+
+model.add(Dense(3, name='softmax', activation='softmax', optimizer='adam'))
+
+model.compile(loss='categorical_crossentropy')
+                    </code></pre>
+
+<pre><code contenteditable data-trim class="fragment line-numbers python">
+# training
+model.fit(X_train, y_train, epochs=2000)
+                    </code></pre>
+                    
+<pre><code contenteditable data-trim class="fragment line-numbers python">
+# prediction
+y_pred = model.predict([[100, 47, 10]])
+        </code></pre>
+
+<small>
+<a href='https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/tensorflow/nn-reg.ipynb'>
+            https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/tensorflow/nn-reg.ipynb</a>
+    </small>
+        </section>
 
 <!-- <section data-markdown>
     <textarea data-template>
@@ -672,7 +715,7 @@ https://hbr.org/2016/11/what-artificial-intelligence-can-and-cant-do-right-now
         </textarea>
         </section>
 
-        <section data-markdown style="font-size: xx-large">
+        <!-- <section data-markdown style="font-size: xx-large">
     <textarea data-template>
 ### Practial Example: Customer Churn / Conversion
 
@@ -693,7 +736,7 @@ How do we know who is active?
 
 Customer before and after conversion
         </textarea>
-        </section>
+        </section> -->
         
 <!-- <section data-markdown>
     <textarea data-template>
@@ -705,7 +748,7 @@ https://twitter.com/ilyasut/status/1070436619755241472
         </textarea>
         </section> -->
 
-        <section data-markdown>
+        <!-- <section data-markdown>
     <textarea data-template>
 ### Exciting Example
 
@@ -716,10 +759,8 @@ https://medium.com/tensorflow/using-nucleus-and-tensorflow-for-dna-sequencing-er
 https://colab.research.google.com/github/google/nucleus/blob/master/nucleus/examples/dna_sequencing_error_correction.ipynb
 </small>
         </textarea>
-        </section>
-
+        </section> -->
         
-
 <section data-markdown>
     <textarea data-template>
 ## Is Supervised Machine Learning all there is?
