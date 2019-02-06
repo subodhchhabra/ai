@@ -232,6 +232,22 @@ https://twitter.com/TedPetrou
 </textarea>
 </section>
 
+<section data-markdown>
+    <textarea data-template>
+### Hands-On: Prepare the data 
+
+* execute the notebook until to reach _stop here_
+* make sure you understand each step, if not
+  * clarify with your neighbor and if this does not help
+  * ask Olli
+* use notebook's help to find out how to skip the group from the scatter plot
+
+<small>
+https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/tensorflow/nn-prep.ipynb
+</small>
+
+</textarea>
+</section>
 
 <section data-markdown>
         <textarea data-template>
@@ -320,7 +336,7 @@ model.add(Dense(units=3, activation='softmax'))
 </section>
 
 
-<section data-markdown>
+<!-- <section data-markdown>
     <textarea data-template>
 ### How do we determine the loss?
 
@@ -328,7 +344,7 @@ model.add(Dense(units=3, activation='softmax'))
 
 </textarea>
 </section>
-
+ -->
 <section>
     <h3>How does learning work?</h3>
     <p class="fragment">This boils down to an optimization problem</p>
@@ -339,10 +355,29 @@ model.compile(loss='sparse_categorical_crossentropy',
              metrics=['accuracy'])
             </code></pre>
         <small>
+<a href='https://machinelearningmastery.com/adam-optimization-algorithm-for-deep-learning/'>
 https://machinelearningmastery.com/adam-optimization-algorithm-for-deep-learning/
+</a>
         </small>
 </section>
 
+<section data-markdown>
+        <textarea data-template>
+### Hands-On: Implement the first training
+
+* continue the previous notebook from _stop here_
+* make sure you understand each step, if not
+    * clarify with your neighbor and if this does not help
+    * ask Olli
+* make sure the model in the notebook matches our network architecture and if not, adapt it
+
+<small>
+https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/tensorflow/nn-prep.ipynb#scrollTo=ODSrdLfF-X-g
+</small>
+
+</textarea>
+    </section>
+    
 <!-- <section data-markdown>
     <textarea data-template>
 ### Job of the optimizer
