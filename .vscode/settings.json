@@ -24,5 +24,6 @@
     "python.pythonPath": "C:\\ProgramData\\Anaconda3\\python.exe",
     "workbench.colorCustomizations": {
         "activityBar.background": "#00AA00"
-    }
+    },
+    "python.linting.pylintEnabled": true
 }
