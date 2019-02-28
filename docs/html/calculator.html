@@ -56,7 +56,7 @@
             </div>
         </div>
     </main>
-    <script src="tfjs@0.12.0"> </script>
+    <script src="tf.js"> </script>
     <script>
         const resultField = document.querySelector('#result');
 
@@ -67,7 +67,6 @@
         function clearButtons() {
             const buttons = document.querySelectorAll('button.risk');
             buttons.forEach(btn => btn.style.display = 'none');
-            console.log(buttons);
         }
 
         const calcBtn = document.querySelector('#calc-btn');
@@ -95,7 +94,7 @@
         // init
         let model = null;
         (async () => {
-            model = await tf.loadModel('ml_insurance/model.json');
+            model = await tf.loadLayersModel('ml_insurance/model.json');
         })();
 
 
