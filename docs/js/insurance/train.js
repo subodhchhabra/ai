@@ -44,7 +44,7 @@
   const y = tf.oneHot(tf.tensor1d(groups, 'int32'), 3);
 
   const history = await model.fit(X, y, {
-    epochs: 500,
+    epochs: 50,
     validationSplit: 0.2,
     batchSize: 500,
     callbacks: {

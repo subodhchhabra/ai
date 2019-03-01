@@ -12,7 +12,7 @@ let model = null;
 (async () => {
   model = await tf.loadLayersModel('indexeddb://insurance');
   model.predict(tf.tensor([[48, 100, 10]])).print();
-  calcBtn.style.display = 'inline';
+  calcBtn.disabled = null;
 })();
 
 function clearButtons() {
