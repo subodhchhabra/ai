@@ -154,7 +154,9 @@
 <div class="reveal">
     <div class="slides">
 
-<!-- JAX Talk
+<!-- 
+    
+JAX Talk
 
 60 minutes
 
@@ -171,6 +173,8 @@ Learning implementieren können. Dieser Talk eignet sich für jeden, der sich mi
 setzt kein Wissen über Machine Learning voraus.
 
 MD Dev Days Talk
+
+60 minutes
 
 https://www.md-devdays.de/Act?id=1000077
 
@@ -210,48 +214,20 @@ Look at our new technology  that takes fitness to the next level! AI analyses 
 </textarea>
 </section>
 
-<section data-markdown class="todo">
-        <textarea data-template>
-### Bullet Points
-
-* If your company wants to ramp up in AI, how should you choose your first few projects? I just wrote a Harvard Business Review @HarvardBiz article with practical suggestions. This fleshes out the first step from the AI Transformation Playbook. https://t.co/PaDN6oIm2l
-(https://twitter.com/AndrewYNg/status/1096152963549093888?s=03)
-  *  https://hbr.org/2019/02/how-to-choose-your-first-ai-project
-
-
-</textarea>
-</section>
-
-<section data-markdown class="todo">
-        <textarea data-template>
-
-good talk but not exactly what I expected (it was mostly a technical summary rather than discussion of if ML will kill business logic)
-</textarea>
-</section>
-
-<section data-markdown class="todo">
-    <textarea data-template>
-* Übersicht einbauen wo auch Unsupervised vs Supervised
-* Klar stellen: Representational Learning, you learn from data not by being explained concepts
-
-https://medium.com/tensorflow/mit-deep-learning-basics-introduction-and-overview-with-tensorflow-355bcd26baf0
-</textarea>
-</section>
-
-        <section>
+<section>
             <br>
             <br>
-            <h2>Will Machine Learning kill Business Logic?</h2>
+            <h2>Machine Learning: das Ende der Businesslogik?</h2>
             <br>
             <br>
-            <p><a target="_blank" href="https://www.jfokus.se/jfokus19/talks/2786">
-                JFokus, Stockholm, February 2019
+            <p><a target="_blank" href="https://jax.de/big-data-machine-learning/machine-learning-das-ende-der-businesslogik/">
+                JAX, Mainz, Mai 2019
             </a></p>
             <h4><a href="http://zeigermann.eu">Oliver Zeigermann</a> / 
                 <a href="http://twitter.com/djcordhose">@DJCordhose</a>
             </h4>
-            <p><small><a href="http://bit.ly/ml-jfokus-intro">
-                    http://bit.ly/ml-jfokus-intro
+            <p><small><a href="TODO">
+                    TODO
             </a></small></p>
         </section>
     <section data-markdown>
@@ -429,10 +405,24 @@ https://towardsdatascience.com/the-real-reason-ai-is-difficult-10b64a230c5e
 <textarea data-template>
 ## Core Question
 
-### Can a machine learn to drawing decision bondaries?
+### Can a machine learn to automatically draw decision bondaries?
+
 </textarea>
 </section>
 
+<section data-markdown>
+<textarea data-template>
+### Yes, by learning from data samples!
+
+* This is also called representaion learning, or feature learning
+* We do not teach abstract concepts or rules of reasoining
+* We simply show data to the a machine
+
+<small>
+https://en.wikipedia.org/wiki/Feature_learning    
+</small>
+</textarea>
+</section>
 
 <section data-markdown>
 <textarea data-template>
@@ -500,6 +490,44 @@ y_pred = clf.predict(input)
         </div>
     </section>
 
+    <section data-markdown>
+            <textarea data-template>
+## Supervised Learning Process Flow
+
+
+        </textarea>
+        </section>
+    
+    <section data-markdown>
+            <textarea data-template>
+### Training
+
+<img src='img/flow-train.jpg'>
+
+        </textarea>
+        </section>
+        
+    <section data-markdown>
+            <textarea data-template>
+### Metrics
+
+<script type="math/tex; mode=display">
+accuracy = {\frac {correct\;predictions}{number\;of\;samples}}
+</script>
+    
+_often given for training and test data separately_
+        </textarea>
+        </section>
+
+    <section data-markdown>
+            <textarea data-template>
+### Prediction
+
+<img src='img/flow-prediction.jpg' height="500">
+
+        </textarea>
+        </section>
+<!-- 
 <section data-markdown>
         <textarea data-template>
 ### Machine Learning is all about Generalization
@@ -558,11 +586,11 @@ Each ML strategy has its own means of Regularization, e.g.
 * NN: Dropout, Batch Normalization, Reduced Capacity, Reduced Training Time
             </textarea>
             </section>
-    
+     -->
 
 <section data-markdown>
         <textarea data-template>
-### Best Known Results after regularization
+### Best Known Results
 
 Using neural networks with TensorFlow
 
@@ -612,6 +640,18 @@ y_pred = model.predict([[100, 47, 10]])
     </small>
         </section>
 
+<section data-markdown>
+    <textarea data-template>
+#### Overview Practical Neural Network Architectures
+
+<img src='img/encoder-decoder-everywhere.png' height="530">
+
+<small style="font-size: large">
+https://medium.com/tensorflow/mit-deep-learning-basics-introduction-and-overview-with-tensorflow-355bcd26baf0
+</small>
+    </textarea>
+</section>
+
 <!-- <section data-markdown>
     <textarea data-template>
 ### How does this behave in the real world?
@@ -624,7 +664,7 @@ https://twitter.com/brenankeller/status/1068615953989087232
 </textarea>
 </section> -->
 
-<section data-markdown>
+<!-- <section data-markdown>
     <textarea data-template>
 ### Revisiting the Risk Calculator
 
@@ -680,7 +720,7 @@ https://towardsdatascience.com/making-your-neural-network-say-i-dont-know-bayesi
 </small>
 </textarea>
     </section>
-
+ -->
     <section data-markdown>
         <textarea data-template>
     
@@ -701,7 +741,7 @@ https://towardsdatascience.com/making-your-neural-network-say-i-dont-know-bayesi
             </textarea>
             </section>
 
-<!-- <section data-markdown>
+<section data-markdown>
     <textarea data-template>
 <img src='img/twitter-fcholett-bias.png' height="580px">
 
@@ -709,7 +749,7 @@ https://towardsdatascience.com/making-your-neural-network-say-i-dont-know-bayesi
 https://twitter.com/fchollet/status/1050227462162894848
 </small>
         </textarea>
-        </section> -->
+        </section>
 
     <section data-markdown>
     <textarea data-template>
@@ -724,7 +764,7 @@ https://twitter.com/gri_mm/status/1089819905728368640
         </section>
 
 
-<!-- <section data-markdown>
+<section data-markdown>
     <textarea data-template>
 ### Remember, you are not Facebook or Google
 
@@ -779,7 +819,7 @@ https://www.theverge.com/2019/1/28/18197520/ai-artificial-intelligence-machine-l
 https://www.nytimes.com/2018/09/22/opinion/sunday/ai-china-united-states.html
 </small>
 </textarea>
-</section> -->
+</section>
     
 <section data-markdown>
     <textarea data-template>
@@ -792,6 +832,24 @@ https://hbr.org/2016/11/what-artificial-intelligence-can-and-cant-do-right-now
 </small>
         </textarea>
         </section>
+
+<section data-markdown>
+        <textarea data-template>
+### If your company wants to ramp up in AI, how should you choose your first few projects?
+
+1. Look for a quick wins (ideally within 6-12 months) and have a high chance of success
+1. It should be meaningful enough so that a success convinces other company leaders to invest in further AI projects
+1. Build something specific to your industry
+1. Create value: reduce cost, increasing revenue, or launch new lines of business
+
+<small>
+https://twitter.com/AndrewYNg/status/1096152963549093888
+<br>
+https://hbr.org/2019/02/how-to-choose-your-first-ai-project
+</small>
+</textarea>
+</section>
+
 
         <!-- <section data-markdown style="font-size: xx-large">
     <textarea data-template>
@@ -847,7 +905,21 @@ https://colab.research.google.com/github/google/nucleus/blob/master/nucleus/exam
 
 <section data-markdown>
     <textarea data-template>
-## Types of Learning
+### Types of Learning in our Brains
+
+<img src='img/brain-and-ml.jpg' height="450px">
+<small>
+https://twitter.com/hardmaru/status/1101535801278693376
+<br>
+http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.178.2123&rep=rep1&type=pdf
+</small>
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Types of Machine Learning
+
 <img src='img/types-of-ml.jpg'>
 <small>
 https://www.facebook.com/nipsfoundation/posts/795861577420073/
@@ -882,7 +954,7 @@ https://ranzato.github.io/publications/tutorial_deep_unsup_learning_part1_NeurIP
 
             <section data-markdown>
                 <textarea data-template>
-<img src='img/which-is-worse.jpg'>
+<img src='img/which-is-worse.jpg' height="500px">
 
 <small>
 https://twitter.com/dataandpolitics/status/1094432524997058560
@@ -893,7 +965,7 @@ https://www.mcsweeneys.net/articles/trolley-problems-that-make-you-a-millennial-
         </textarea>
         </section>
 
-            <!-- <section data-markdown>
+            <section data-markdown>
                     <textarea data-template>             
 ### The easy answer
 
@@ -912,7 +984,7 @@ https://www.mcsweeneys.net/articles/trolley-problems-that-make-you-a-millennial-
 ## The harder answer ...
             
             </textarea>
-            </section> -->
+            </section>
 
         <section>
             <h3>There is no general AI</h3>
@@ -1000,16 +1072,22 @@ _Software Development_
 </textarea>
     </section>
 
-    <section data-markdown class="todo">
+    <section data-markdown>
         <textarea data-template>
-            
-<img src='img/ng-process.jpg'>
+### ML needs to solve challenges for production
+
+<img src='img/ng-process.jpg' height="500">
 
 <small>
 https://twitter.com/AndrewYNg/status/1080886439380869122    
 </small>
 
-What’s your ML Test Score? A rubric for ML production systems
+        </textarea>
+    </section>
+
+    <section data-markdown>
+        <textarea data-template>
+### What’s your ML Test Score? A rubric for ML production systems
 
 <small>
 https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/45742.pdf
@@ -1021,6 +1099,7 @@ https://nips.cc/Conferences/2016/Schedule?showEvent=6255
 
         </textarea>
     </section>
+
 
     <section data-markdown>
         <textarea data-template>
@@ -1110,13 +1189,13 @@ Ellen Friedman, Tales from the Field: The Future is Now, Jfokus 2019
     </ul>
     <br>
     <p>
-            <em>JFokus 2019: Will Machine Learning kill Business Logic?</em>
+            <em>JAX 2019: Machine Learning: das Ende der Businesslogik?</em>
         <br>
         <br>
     <a href="http://zeigermann.eu">Oliver Zeigermann</a> / <a href="http://twitter.com/djcordhose">@DJCordhose</a></a>
         <br>
-    <a href="http://bit.ly/ml-jfokus-intro">
-        http://bit.ly/ml-jfokus-intro
+    <a href="http://bit.ly/ml-jax-intro">
+        http://bit.ly/ml-jax-intro
     </a>
     </p>
 </section>
@@ -1211,6 +1290,11 @@ Ellen Friedman, Tales from the Field: The Future is Now, Jfokus 2019
 
         transition: 'fade', // none/fade/slide/convex/concave/zoom
 
+        math: {
+            mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+            config: 'TeX-AMS_HTML-full'  // See http://docs.mathjax.org/en/latest/config-files.html
+        },
+
         // Optional reveal.js plugins
         dependencies: [
             {
@@ -1238,7 +1322,8 @@ Ellen Friedman, Tales from the Field: The Future is Now, Jfokus 2019
             {src: 'reveal.js/plugin/zoom-js/zoom.js', async: true},
             {src: 'reveal.js/plugin/notes/notes.js', async: true},
             // https://github.com/mikemiles86/reveal-line-numbers
-            {src: 'lib/js/line-numbers.js'}
+            {src: 'lib/js/line-numbers.js'},
+            { src: 'reveal.js/plugin/math/math.js', async: true }
         ]
     });
 
