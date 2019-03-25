@@ -244,6 +244,14 @@ Teil 1
 
 Teil 2
 * Dense Intro mit Softmax/Crosscategorical/Regularisation
+* Bild von Neuron -> Node (bemerken, dass es nicht so ganz hinkommt)
+  * https://medium.com/the-spike/your-cortex-contains-17-billion-computers-9034e42d34f2
+    * https://cdn-images-1.medium.com/max/1600/0*lJDg8vvIavv16AcW.
+  * http://cns.iaf.cnrs-gif.fr/alain_geometries.html
+    * http://cns.iaf.cnrs-gif.fr/fig/51-2b.gif
+  * https://twitter.com/hardmaru/status/1109986348545368064
+  * https://twitter.com/markdhumphries  
+
 
 Teil 3
 * RNN Intro, den ganzen Embedding-Kram weglassen, nur Zeitreihen vorhersagen
@@ -253,9 +261,117 @@ Teil 4
 
 * CNN : 2019_tf_cnn.html
 
-Die Story komplett um Fashion MNINST machen und nichts Fortgeschrittenes
+Die Story komplett um Fashion MNIST machen und nichts Fortgeschrittenes
 </textarea>
 </section>
+
+
+<section data-markdown>
+        <textarea data-template>
+### Best Known Results
+
+Using neural networks with TensorFlow
+
+<img src='img/manning/nn-reg.png' height="450">
+<small class="fragment">Up to 80% accuracy on test data using a regularized neural networks</small>
+</textarea>
+    </section>
+
+    <section style="font-size: xx-large">
+    <!-- <section> -->
+            <h3>Code in TensorFlow using Keras API</h3>
+
+<p><em>TensorFlow: most popular deep learning lib</em></p>
+
+<pre><code contenteditable data-trim class="fragment line-numbers python">
+# model    
+model = keras.Sequential()
+
+model.add(Dense(200, name='hidden1', activation='relu', input_dim=3))
+model.add(BatchNormalization())
+model.add(Dropout(0.6))
+
+model.add(Dense(500, name='hidden2', activation='relu', ))
+model.add(BatchNormalization())
+model.add(Dropout(0.6))
+
+model.add(Dense(3, name='softmax', activation='softmax', optimizer='adam'))
+
+model.compile(loss='categorical_crossentropy')
+                    </code></pre>
+
+<pre><code contenteditable data-trim class="fragment line-numbers python">
+# training
+model.fit(X_train, y_train, epochs=2000)
+                    </code></pre>
+                    
+<pre><code contenteditable data-trim class="fragment line-numbers python">
+# prediction
+y_pred = model.predict([[100, 47, 10]])
+        </code></pre>
+
+<small>
+<a href='https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/tensorflow/nn-reg.ipynb'>
+            https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/tensorflow/nn-reg.ipynb</a>
+    </small>
+        </section>
+
+<section data-markdown>
+    <textarea data-template>
+#### Overview Practical Neural Network Architectures
+
+<img src='img/encoder-decoder-everywhere.png' height="530">
+
+<small style="font-size: large">
+https://medium.com/tensorflow/mit-deep-learning-basics-introduction-and-overview-with-tensorflow-355bcd26baf0
+</small>
+    </textarea>
+</section>
+
+
+<section data-markdown class="todo">
+        <textarea data-template>
+die folgenden Prozess einbauen
+
+            </textarea>
+        </section>
+    
+<section data-markdown>
+        <textarea data-template>
+## Supervised Learning Process Flow
+    </textarea>
+    </section>
+
+<section data-markdown>
+        <textarea data-template>
+### Training
+
+<img src='img/flow-train.jpg'>
+
+    </textarea>
+    </section>
+    
+<section data-markdown>
+        <textarea data-template>
+### Metrics
+
+<script type="math/tex; mode=display">
+accuracy = {\frac {correct\;predictions}{number\;of\;samples}}
+</script>
+
+_often given for training and test data separately_
+    </textarea>
+    </section>
+
+<section data-markdown>
+        <textarea data-template>
+### Prediction
+
+<img src='img/flow-prediction.jpg' height="500">
+
+    </textarea>
+    </section>
+
 
 <section data-markdown>
         <textarea data-template>
