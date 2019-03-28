@@ -265,6 +265,45 @@ Die Story komplett um Fashion MNIST machen und nichts Fortgeschrittenes
 </textarea>
 </section>
 
+<section data-markdown style='font-size: xx-large'>
+    <textarea data-template>
+### How big should your network be
+
+* Universal Approximation Theorem: 
+one hidden layer containing a finite number of neurons can approximate any continuous functions to arbitrary accuracy
+  * does not guarantee whether the model can be trained or generalizes properly
+* There exists a two-layer neural network with ReLU activations 
+and 2n+d weights that can represent any function on a sample of size n in d dimensions
+  * can learn unstructured random noise perfectly
+* these are theoretical insights
+  * what really works needs to be shown be experiment
+  * more layers might reduce overall number of neurons
+  * 2-3 hidden layers is a good rule of thumb
+
+<small>
+https://lilianweng.github.io/lil-log/2019/03/14/are-deep-neural-networks-dramatically-overfitted.html
+https://arxiv.org/abs/1611.03530    
+</small>
+    </textarea>
+</section>
+
+<section data-markdown style='font-size: xx-large'>
+    <textarea data-template>
+### Local minima?
+
+* local optimal points in the objective landscape almost always lay in saddle-points or plateaus rather than valleys
+* there is always a subset of dimensions containing paths to leave local optima and keep on exploring
+
+<img src='img/optimization-landscape-shape.png'>  
+
+<small>
+https://lilianweng.github.io/lil-log/2019/03/14/are-deep-neural-networks-dramatically-overfitted.html
+https://arxiv.org/abs/1406.2572
+<br>
+https://www.offconvex.org/2016/03/22/saddlepoints/
+</small>
+    </textarea>
+</section>
 
 <section data-markdown>
         <textarea data-template>
@@ -1418,10 +1457,16 @@ _Watch where training and validation accuracy diverge and stop training there_
 
 <!-- <img src='img/scans/elements/sigmoid.jpg' class="fragment" height="200"> -->
     
+<p class="fragment"><em>a smoother manifold is beneficial for optimization by providing more predictive gradients and 
+    allowing for larger learning rates</em> 
 <p class="fragment"><em>Intuition: Makes model robust by adding noise</em></p>
 
 <p class="fragment"><small><em>Bonus:</em> Lets model train faster by fighting vanishing gradients</small></p>
-    
+
+<small>
+https://lilianweng.github.io/lil-log/2019/03/14/are-deep-neural-networks-dramatically-overfitted.html
+https://arxiv.org/abs/1805.11604    
+</small>
                 </textarea>
                 </section>
         
