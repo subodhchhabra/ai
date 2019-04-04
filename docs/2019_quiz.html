@@ -156,7 +156,10 @@
     <section data-markdown>
         <textarea data-template>
 # Quiz
-## Täuschungen aus Wissenschaft, Statistik und Wahrnehmung
+
+https://djcordhose.github.io/ai/2019_quiz.html
+
+<!-- ## Täuschungen aus Wissenschaft, Statistik und Wahrnehmung -->
 <!-- <br>
 <br>
 #### <a href="http://zeigermann.eu">Oliver Zeigermann</a> / <a href="http://twitter.com/djcordhose">@DJCordhose</a> -->
@@ -167,7 +170,7 @@
     <section data-markdown class="embarc">
     <textarea data-template>
 
-### 10 Fragen
+### 12 Fragen
 ## Zwei Teams spielen gegeneinander
 ### Bei schnellen Antworten zählt die schnellste richtige, keine zweite Antwort möglich
 
@@ -176,7 +179,7 @@ _Bildet jetzt Teams_
     </textarea>
     </section>
 
-    <section data-markdown class="todo m3">
+    <section data-markdown class="todo m3 code">
             <textarea data-template>
 ### Welcher Code funktioniert?
         
@@ -188,13 +191,13 @@ _Bildet jetzt Teams_
 </textarea>
 </section>
 
-<section data-markdown>
+<section data-markdown  class="data-viz">
         <textarea data-template>
-### Data-Viz: Was war die erste Millionen-Stadt?
-    
+### Was war die erste Millionen-Stadt?
+
+https://twitter.com/i/status/1107595419557740549
+
 <small>
-https://twitter.com/DinaPomeranz/status/1107595419557740549    
-<br>
 https://observablehq.com/@johnburnmurdoch/bar-chart-race-the-most-populous-cities-in-the-world
 <br>
 https://flourish.studio/2019/03/21/bar-chart-race/
@@ -204,21 +207,9 @@ https://twitter.com/mbostock/status/1108852672839315456
 </textarea>
 </section>
 
-<section data-markdown>
+<section data-markdown class="perception">
     <textarea data-template>
-### Data-Viz: Welches ist das häufigste Element in der Erdkruste
-
-<img src='img/quiz/periodicTable.png' class="fragment">
-
-<small>
-https://research.google.com/bigpicture/elements/
-</small>
-</textarea>
-</section>
-
-<section data-markdown>
-    <textarea data-template>
-### Wahrnehmung: Wie viele 5en?
+### Wie viele 5en? (die schnellste Antwort zählt)
 
 <img src='img/quiz/5s.png' class="fragment">
 
@@ -242,9 +233,9 @@ https://twitter.com/chubicki/status/1000457946734759936
 </textarea>
 </section>
 
-<section data-markdown>
+<section data-markdown  class="perception">
     <textarea data-template>
-### Wahrnehmung: Emergenz
+### Emergenz
 
 Was ist auf diesem Bild? schnellste richtige Antwort gewinnt
 
@@ -258,7 +249,7 @@ P. Sinha & T. Adelson (1997)
 </textarea>
 </section>
 
-<section data-markdown>
+<section data-markdown class="fallacy">
     <textarea data-template>
 ### Logik
 
@@ -269,7 +260,7 @@ _Warum ist das ein schwacher Witz?_
 </textarea>
 </section>
 
-<section data-markdown>
+<section data-markdown class="info">
     <textarea data-template>
 ### Info-Runde: Bias 1
 
@@ -310,6 +301,19 @@ https://thebestschools.org/magazine/25-popular-science-myths-debunked/
 </textarea>
 </section>
 
+<section data-markdown class="data-viz">
+    <textarea data-template>
+### Welches ist das häufigste Element in der Erdkruste
+
+<img src='img/quiz/periodicTable.png' class="fragment" height="400px">
+
+<small>
+https://research.google.com/bigpicture/elements/
+</small>
+</textarea>
+</section>
+
+
 <section data-markdown>
     <textarea data-template>
 ### Sequentielle Wahrnehmung #2
@@ -324,7 +328,7 @@ https://twitter.com/SteveFranconeri/status/996309506425544705
 </textarea>
 </section>
 
-<section data-markdown>
+<section data-markdown class="fallacy">
     <textarea data-template>
 ### Rein Logisch betrachtet
 
@@ -368,18 +372,18 @@ https://twitter.com/dumb_hannah/status/891678558841708544
 </textarea>
 </section>
 
-<section data-markdown>
+<section data-markdown class="statics">
     <textarea data-template>
 ### Statistik
 
-Nehmen wir, 90% aller Statistiker sind schütern und nur 5% aller Verkäufer
+Nehmen wir an, 90% aller Statistiker sind schütern und nur 5% aller Verkäufer
 
 _Du triffst einen schüchternen Menschen, ist er eher Statistiker oder Verkäufer?_
 
 </textarea>
 </section>
 
-<section data-markdown>
+<section data-markdown class="info">
     <textarea data-template>
 ### Info-Runde: Bias 2
 
@@ -388,7 +392,7 @@ _Du triffst einen schüchternen Menschen, ist er eher Statistiker oder Verkäufe
 </section>
 
 
-<section data-markdown>
+<section data-markdown class="m3">
     <textarea data-template>
 ### Psychologie
 
@@ -436,6 +440,9 @@ _4x Abholer_
 <script src="lib/jquery-2.2.4.js"></script>
 
 <script>
+        $('.m3').remove();
+        $('.info').remove();
+        $('.fallacy').remove();
         $('.slido').remove();
         if (window.location.hostname.indexOf('localhost') !== -1) {
             // only applies to local version
