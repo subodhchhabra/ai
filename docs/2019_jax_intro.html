@@ -204,20 +204,12 @@ sich mit Softwareentwicklung beschäftigt, und setzt kein Wissen über Machine L
             </a></small></p>
         </section>
 
-        <section data-markdown class="todo">
-            <textarea data-template>
-### Und warum Machine Learning uns Entwickler braucht
-
-https://towardsdatascience.com/the-third-wave-data-scientist-1421df7433c9
-    </textarea>
-</section>
-
         <section data-markdown style="font-size: x-large">
                 <textarea data-template>
 ### Scenarios
 
 1. Classic Supervised Machine Learning: tabular data to predict risk classes (slides / notebooks / web app: https://djcordhose.github.io/crash-risk-calculator/) 
-1. Deep Supervised Machine Learning: time series data for better UX (web app: https://github.com/DJCordhose/ux-by-tfjs)
+1. Deep Supervised Machine Learning: time series data for better UX (web app: https://github.com/DJCordhose/ux-by-tfjs / http://djcordhose.github.io/ux-by-tfjs/dist)
 1. Deep Reinforcement Learning: graph data for route planning (notebook: https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v11.ipynb)
 1. Deep Unsupervised Learning: categorical airline data to embeddings for clustering (poster: https://djcordhose.github.io/ai/poster-sf.png)
 
@@ -226,14 +218,21 @@ https://towardsdatascience.com/the-third-wave-data-scientist-1421df7433c9
         <section data-markdown>
                 <textarea data-template>
 ## Scenario #1
+
+### Classic Supervised Machine Learning: Learning from tabular data
     </textarea>
 </section>
 
-                                    
+<section data-markdown class="todo">
+    <textarea data-template>
+Kürzen
+    </textarea>
+</section>
+                                
 
     <section data-markdown>
         <textarea data-template>
-### Scenario #1
+### Predicting Crash Risk
 
 * We are CTO of a highly innovative Car Insurance Company
 * Different from other insurance companies we determine the rate by the actual number of accidents per customer
@@ -392,6 +391,7 @@ return green # otherwise: low risk
 * This is also called representation learning, or feature learning
 * We do not teach abstract concepts or rules of reasoning
 * We simply show data to the a machine
+* And teach the right answer, which we know
 
 <small>
 https://en.wikipedia.org/wiki/Feature_learning    
@@ -465,26 +465,83 @@ y_pred = clf.predict(input)
         </div>
     </section>
 
-
 <section data-markdown>
         <textarea data-template>
 ## Scenario #2
 
+### Deep Supervised Machine Learning: time series data for better UX
+
+</textarea>
+</section>
+
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Improve UX by predictive highlights
+
+<img src='img/ux/app.gif'>
+
+<small>
+http://djcordhose.github.io/ux-by-tfjs/dist
+</small>
 </textarea>
 </section>
 
     <section data-markdown>
-            <textarea data-template>
-#### Deep Supervised Machine Learning: time series data for better UX
+        <textarea data-template>
+### Data Collection
 
-<img src='img/ux-predict.gif' height="500px">
+<img src='img/ux/mouse-positions.png' class="fragment">
 
 <small>
-https://github.com/DJCordhose/ux-by-tfjs    
+What data would you collect?    
 </small>
-        </textarea>
-    </section>
-    
+    </textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### TensorFlow.js
+
+<img src='img/ux/tfjs.png'>
+
+<small>
+https://www.tensorflow.org/js/    
+</small>
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Training
+
+<img src='img/ux/accuracy-reg.png' height="500px">
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Evaluation
+
+<img src='img/ux/confusion-right-for-middle.png' height="550px">
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Results
+
+<img src='img/ux/simpleRNN.gif' class="fragment">
+
+</textarea>
+</section>
+
 <section data-markdown>
     <textarea data-template>
 ### Types of Machine Learning
@@ -525,42 +582,143 @@ https://sites.google.com/view/berkeley-cs294-158-sp19/home
         <textarea data-template>
 ## Scenario #3
 
+### Deep Reinforcement Learning: graph data for route planning
 </textarea>
 </section>
 
 <section data-markdown>
         <textarea data-template>
-#### Deep Reinforcement Learning: graph data for route planning
+### Find the near optimal route
 
 <img src='img/rl/berater/graph-large-zeros.jpg' height="500px">
 
-<small style="font-size: x-large">
-https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v11.ipynb    
-</small>
     </textarea>
 </section>
+
+<section data-markdown>
+<textarea data-template>
+### Reinforcement Learning
+
+<div  style="max-width: 45%; float: left">
+<br>
+<img src="img/rl.png">
+</div>
+<div style="max-width: 50%; float: right">
+<br>
+<ol>
+    <li>Based on _Observations_ an _Agent_ executes </li>
+<li>_Actions_ within a given  
+<li>_Environment_ which lead to positive or negative 
+<li>_Rewards_.
+</ol>
+</div>
+
+<div style="clear: both;">
+    <br>
+    <p >The Agent’s job is to maximise the cumulative Reward</p>
+</div>
+
+<small>
+http://gym.openai.com/docs/    
+</small>
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### OpenAI Platforms
+
+<img src='img/rl/openai.jpg' height="500px">
+
+<small>
+https://openai.com/systems/
+</small>
+</textarea>
+</section>
+
+<section data-markdown>
+        <textarea data-template>
+### Rewards while training
+
+<img src='img/rl/berater/v11-learning-curve.png'>
+
+Average Reward at end of training: ~ .73 (optimum .73 - .74)
+<br>
+Average length of path: ~ 15
+
+<small>
+https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v11.ipynb
+</small>
+            </textarea>
+        </section>
+
+
+<section data-markdown>
+    <textarea data-template>
+### Learning to Play Chess using Reinforcement Learning
+
+<a href='https://frpays.github.io/lc0-js/engine.html'>
+<img src='img/rl/lczero.jpg' height="400px">
+</a>
+<small>
+https://frpays.github.io/lc0-js/engine.html
+<br>
+https://twitter.com/frpays/status/1077672273673359361
+</small>
+</textarea>
+</section>
+
 
 <section data-markdown>
         <textarea data-template>
 ## Scenario #4
 
+### Deep Unsupervised Learning: Categorical airline data to embeddings for clustering
 </textarea>
 </section>
 
 <section data-markdown>
         <textarea data-template>
-#### Deep Unsupervised Learning: categorical airline data to embeddings for clustering
+### Similarities of Airlines and Outliers 
 
 <img src='img/embeddings/airline-embedded-cluster.png' height="450px">
 
 <small>
 <a href='.//poster-sf.png'>https://djcordhose.github.io/ai/poster-sf.png</a>
+</small>
+    </textarea>
+</section>
+
+<section data-markdown>
+        <textarea data-template>
+### Step I: Bring airline into a number
+
+Similar numbers also indicate similarity of airline
+
+<img src='img/embeddings/1d_embedding_airport.png' height="450px">
 <br>
+<small>
 http://bit.ly/embed-airlines
 </small>
     </textarea>
 </section>
 
+
+<section>
+        <h3>Creating a neural embedding</h3>
+        <img src="img/embeddings/embedding-train.png" height="200px" class="fragment">
+        <span class="fragment" style="position: relative; top: -105px; font-size: 60px"><strong>=></strong></span>
+        <img src="img/embeddings/embedding-predict.png" height="200px" class="fragment">
+    </section>
+
+<section data-markdown>
+        <textarea data-template>
+### Step II: Cluster in 2d against other value
+
+<img src='img/embeddings/airline-embedded-cluster.png' height="550px">
+    </textarea>
+</section>
 
     <section data-markdown>
         <textarea data-template>
@@ -579,6 +737,16 @@ Ellen Friedman, Tales from the Field: The Future is Now, Jfokus 2019
     </section>
 
     <section data-markdown>
+            <textarea data-template>
+### Machine Learning needs us as well
+<img src='img/3rd-wave.png' height="500px">
+    <small>
+https://towardsdatascience.com/the-third-wave-data-scientist-1421df7433c9
+    </small>
+                </textarea>
+        </section>
+    
+    <section data-markdown>
         <textarea data-template>
 #### Classic Software Engineering is Complex, Machine Learning often Chaotic
 
@@ -591,20 +759,13 @@ https://en.m.wikipedia.org/wiki/Cynefin_framework
             </textarea>
     </section>
 
-
-
 <section style="font-size: xx-large">
     <h2>Wrap-Up</h2>
     <ul>
         <li class="fragment">Machine Learning can learn from existing data and generalize from it
         <li class="fragment">Sometimes, it can be an alternative to explicit, classic business logic
-        <li class="fragment">No machine has common knowledge of the world, though
-        <!-- <li class="fragment">"Can the AI not handle this?" is thus never a reasonable question
-        <li class="fragment">"the AI" does not exist -->
-        <li class="fragment">Machine Learning is an engineering effort. There is no strong AI that you just throw a problem at and it will solve it automatically. 
-                <a href='https://twitter.com/DJCordhose/status/1070304319218569218'>Dr. Sebastian Wieczorek, Head of AI @SAP</a>
-        <!-- <li class="fragment">Integrating ML solutions with classic software is a challenge -->
-        <li class="fragment">ML approach might be a mismatch with classic and agile approaches
+        <li class="fragment">Reinforcement Learning does not need any static data
+        <li class="fragment">Unsupervised Learning does not need a teacher knowing the ground truth
     </ul>
     <br>
     <p>
