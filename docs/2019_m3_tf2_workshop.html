@@ -240,13 +240,13 @@ http://bit.ly/m3-tf2
   * https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/tf2/nn-training.ipynb
   * https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/tf2/nn-reg.ipynb
   * https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/tf2/nn-final.ipynb
+
   * https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/tf2/time-series.ipynb (und advanced part löschen)
   * https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/tf2/rnn-add-example.ipynb
   * https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/tf2/sentiment.ipynb
+  
+  * https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/t2/fashion_mnist_resnet.ipynb
 
-
-* CNN : 2019_tf_cnn.html
-  * Die Story komplett um Fashion MNIST machen und nichts Fortgeschrittenes
         </textarea>
     </section>
 
@@ -1292,6 +1292,32 @@ https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/tf2
     </textarea>
 </section>
 
+<section data-markdown>
+        <textarea data-template>
+### Advanced Example: Predicting mouse clicks based on mouse movements
+    
+<img src='img/ux/simpleRNN.gif' height="350">
+
+<small>
+Notebook: https://colab.research.google.com/github/DJCordhose/deep-learning-crash-course-notebooks/blob/master/tf-v2/ux-rnn.ipynb
+<br>
+web app: http://djcordhose.github.io/ux-by-tfjs/dist
+</small>
+
+<!-- 
+
+Wir machen nur Exercise Step 3, die anderen funktionieren nicht stabil und sind zu umständlich
+
+## Exercise
+1. Go to http://djcordhose.github.io/ux-by-tfjs/dist and create at least 200 training events specific to your machine and your user beahvior
+2. Export them into a file and load them into this notebook instead of the default data set
+3. *Experiment with the model (training should be really fast) like suggested in the cell for the model*
+4. Download that model and use it for the real application
+5. Is there a difference between good score in metrics and performance in real life? If so, how can you explain?
+ -->
+</textarea>
+</section>
+
 
 <section data-markdown>
         <textarea data-template>
@@ -1307,9 +1333,9 @@ https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/tf2
 
 <section data-markdown>
         <textarea data-template>
-### Fashion MNIST example
+### Example: Fashion MNIST
 
-28x28 grayscale images of fashion Items
+Learn to recognize 28x28 grayscale images of fashion Items
 
 <img src="img/fashion-mnist-sprite.png" height="300px">
 
@@ -1319,16 +1345,257 @@ https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/tf2
 </textarea>
 </section>
 
-
-
-
-<section data-markdown class="todo">
+<section data-markdown>
     <textarea data-template>
-### Easy introduction to CNN
+### Challenges for Images Recognition
 
+1. Feeding all pixels into Dense Layers will work, but slow and many parameters 
+1. Manual Feature extraction from images is tedious and error prone
+1. Convolutional networks will learn feature extraction before passing few features to Dense Layer Classifiers
+
+<small>
 https://towardsdatascience.com/simple-introduction-to-convolutional-neural-networks-cdf8d3077bac
-
+</small>
 </textarea>
+</section>
+
+<section>
+    <h3>Architectures of Convolutional Neural Networks: VGG</h3>
+        <img src="img/sketch/vgg.png" height="350px">
+        <p>
+            <small>There are a number of specialized neural network layers</small>
+        </p>
+</section>
+
+
+<section data-markdown>
+    <textarea data-template>
+### Convolutional Blocks: Cascading many Convolutional Layers having down sampling in between
+
+![Applying filters](http://cs231n.github.io/assets/cnn/cnn.jpeg)
+
+http://cs231n.github.io/convolutional-networks/#conv
+</textarea>
+</section>
+
+<section data-markdown style="font-size: x-large">
+    <textarea data-template>
+### Example of a Convolution
+![Dog](https://github.com/DJCordhose/speed-limit-signs/raw/master/img/conv/dog.png)
+#### Many convolutional filters applied over all channels
+![Dog after Convolutional Filters applied](https://github.com/DJCordhose/speed-limit-signs/raw/master/img/conv/dog-conv1.png)
+http://cs.stanford.edu/people/karpathy/convnetjs/demo/cifar10.html
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### How Filter Kernels work
+
+<img src='img/cnn-kernels.gif' height="500">
+<small>
+http://sigmoidprime.com/post/the-inner-workings-of-convolutional-nets/
+<br>
+https://twitter.com/wster/status/1079741301418049537
+</small>
+</textarea>
+</section>
+
+
+<section>
+    <h3>How do Convolutions work - Image Kernels</h3>
+    <p><small>You might know from Photoshop etc., used in Convolutional Neural Networks</small></p>
+    <a href="http://setosa.io/ev/image-kernels/" target="_blank">
+        <img src="img/browser/setosa_io_image-kernels.png" height="300px">
+    </a>
+    <p>
+        <small>
+            <a href="http://setosa.io/ev/image-kernels/" target="_blank">http://setosa.io/ev/image-kernels/</a>
+        </small>
+    </p>
+</section>
+
+
+<section style="font-size: xx-large">
+<h3>Experiment with Image Kernels</h3>
+<ol>
+    <li class="fragment">How can a matrix of numbers represent an image? How could you encode color?</li>
+    <li class="fragment">Explain the effect the filter kernels Sharpen and Blur have on the sample image - explain the effect of the specific values to the result</li>
+    <li class="fragment">Starting from the identity kernel - how can you create a filter that highlights edges on the top of shown digits? What about the bottom?</li>
+</ol>
+<p>
+        <small>
+            <a href="http://setosa.io/ev/image-kernels/" target="_blank">http://setosa.io/ev/image-kernels/</a>
+            <br>
+            <br>
+
+            Sample image: <a 
+            href="https://github.com/DJCordhose/speed-limit-signs/raw/master/data/real-world/4/100-sky-cutoff-detail.jpg" target="_blank">
+            https://github.com/DJCordhose/speed-limit-signs/raw/master/data/real-world/4/100-sky-cutoff-detail.jpg</a>
+            <br>
+            
+            <br>Colab Notebook if you prefer code: 
+            <a href='https://colab.research.google.com/github/Machine-Learning-Tokyo/DL-workshop-series/blob/master/ConvKernels.ipynb'>
+            https://colab.research.google.com/github/Machine-Learning-Tokyo/DL-workshop-series/blob/master/ConvKernels.ipynb
+        </a>
+            
+        </small>
+    </p>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Downsampling Layer: Reduces data sizes and risk of overfitting
+![Pooling](http://cs231n.github.io/assets/cnn/pool.jpeg)
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Max Pooling
+![Max Pooling](http://cs231n.github.io/assets/cnn/maxpool.jpeg)
+http://cs231n.github.io/convolutional-networks/#pool
+</textarea>
+</section>
+
+<!-- <section data-markdown>
+    <textarea data-template>
+### Typical Architecture of a CNN 
+![VGG architecture](img/sketch/vgg.png)
+
+_The classifier more or less is what we used for our previous example_    
+</textarea>
+</section> -->
+
+    <section>
+            <h3>MNIST - Using a model <em>already trained</em></h3>
+            <p>Exploring the different types layers together</p>
+            <a href="https://transcranial.github.io/keras-js/#/mnist-cnn" target="_blank">
+                <img src="img/browser/keras-browser.png" height="350px">
+            </a>
+            <p><small>
+                <a href="https://transcranial.github.io/keras-js/#/mnist-cnn" target="_blank">https://transcranial.github.io/keras-js/#/mnist-cnn</a>
+            </small></p>
+        </section>
+
+    <section>
+            <h3>Keras layers</h3>
+
+            <p><small>Convolution</small></p>
+            <pre><code contenteditable data-trim class="fragment line-numbers javascript">
+    model.add(Conv2D(filters=32, padding='same', activation='relu'))
+                </code></pre>
+
+                <p><small>Max Pooling</small></p>
+                <pre><code contenteditable data-trim class="fragment line-numbers javascript">
+model.add(MaxPooling2D())
+                </code></pre>
+                                    
+                <p><small>Flatten 2d to make it accessible to Dense layers</small></p>
+            <pre><code contenteditable data-trim class="fragment line-numbers javascript">
+model.add(Flatten())
+            </code></pre>
+        <p>
+            <small>
+                    <a href="https://www.tensorflow.org/api_docs/python/tf/keras/layers">
+                        https://www.tensorflow.org/api_docs/python/tf/keras/layers
+                    </a>
+            </small>
+        </p>
+    </section>
+
+<!-- <section data-markdown>
+    <textarea data-template>
+### Complete VGG in Code
+
+<img src='img/vgg-keras.jpg' height="500">
+<small>
+https://colab.research.google.com/github/Machine-Learning-Tokyo/DL-workshop-series/blob/master/ConvNets.ipynb
+</small>
+</textarea>
+</section> -->
+
+
+        <section data-markdown>
+                <textarea data-template>
+### Exercise
+
+_Can you improve the model for Fashion MNIST notebook?_
+
+* other/more/less layers
+* different sequence, less/more filters
+* prevent overfitting even better
+* For CNN you use the same means of regularization as in other standardN NNs 
+
+<small>
+https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/tf2/fashion-mnist.ipynb
+</small>
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Standard CNN Architectures
+
+![Performance of CNN Architectures](https://cdn-images-1.medium.com/max/1600/1*kBpEOy4fzLiFxRLjpxAX6A.png)
+
+<small>
+https://medium.com/towards-data-science/neural-network-architectures-156e5bad51ba
+</small>
+</textarea>
+</section>
+    
+<section>
+    <h3>One Example: Google Inception V3</h3>
+    <img src="img/inception_v3_architecture.png" height="400px">
+    <p>
+        <small>
+            Paper: <a href="https://arxiv.org/abs/1409.4842" target="_blank">Going Deeper with Convolutions</a>
+            <br>
+            <a href="https://stackoverflow.com/questions/39352108/does-the-inception-model-have-two-softmax-outputs" target="_blank">
+            Why two classifiers?</a>
+        </small>
+    </p>
+</section>
+
+<section data-markdown style="font-size: xx-large">
+    <textarea data-template>
+### Fashion MNIST using ResNet / MobileNet
+
+<small>ResNet</small>
+<br>
+<img src='img/resnet-history.png' height="200px">
+
+<small>MobileNet</small>
+<br>
+<img src='img/mobilnet-historie.png' height="200px">
+<small>
+https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/t2/fashion_mnist_resnet.ipynb
+</small>
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Transfer Learning
+
+* Keras provides a lot of pre-defined network architectures for image classification (like ResNet and MobileNet)
+* You can get each of them pre-trained on a generic image data set (ImageNet)
+* You can either use them as is
+* Or retrain (fine tune weights) with your own images
+* https://blog.keras.io/building-powerful-image-classification-models-using-very-little-data.html
+* Might be helpful if you do not have a lot of data
+
+<small>
+https://keras.io/applications/
+</small>
+    </textarea>
+</section>
+
+<section>
+    <h4>ImageNet dataset to classify images</h4>
+    <img src="img/deep-dream/imagenet.png" height="500px">
+    <p><small><a href="http://image-net.org/" target="_blank">http://image-net.org/</a></small></p>
 </section>
 
 
@@ -1341,31 +1608,6 @@ https://towardsdatascience.com/simple-introduction-to-convolutional-neural-netwo
   * Launch blog post: https://www.blog.google/products/search/making-it-easier-discover-datasets/
 * Kaggle Datasets: https://www.kaggle.com/datasets
 * TensorFlow Datasets: https://medium.com/tensorflow/introducing-tensorflow-datasets-c7f01f7e19f3
-</textarea>
-</section>
-
-<section data-markdown>
-    <textarea data-template>
-### If you liked this
-
-_there are two more talks by me_
-
-* _Comparing Machine Learning Strategies using Scikit-learn and TensorFlow_: How does what you saw today relate to "classic" machine learning and why would you care?
-* _Machine Learning from Idea to Production_: How do you go on from here? Was this even the easy part?
-
-
-</textarea>
-</section>
-
-<section data-markdown>
-        <textarea data-template>
-### Stay in Contact
-
-* questions are free
-* you can also hire me to investigate what to do with ML in your company
-
-<a href="http://zeigermann.eu">Oliver Zeigermann</a> / <a href="http://twitter.com/djcordhose">@DJCordhose</a>
-
 </textarea>
 </section>
 
