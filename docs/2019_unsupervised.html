@@ -944,7 +944,7 @@ https://projector.tensorflow.org
             // do we want this???
             $('li').addClass('fragment')
 
-            if (window.location.hostname.indexOf('localhost') !== -1) {
+            if (window.location.hostname.indexOf('localhost') !== -1 && !printMode) {
                 // only applies to presentation version
                 Reveal.configure({ controls: false });
             } else {

@@ -139,7 +139,8 @@
         var link = document.createElement('link');
         link.rel = 'stylesheet';
         link.type = 'text/css';
-        link.href = window.location.search.match(/print-pdf/gi) ? 'reveal.js/css/print/pdf.css' : 'reveal.js/css/print/paper.css';
+        var printMode = window.location.search.match(/print-pdf/gi);
+        link.href = printMode ? 'reveal.js/css/print/pdf.css' : 'reveal.js/css/print/paper.css';
         document.getElementsByTagName('head')[0].appendChild(link);
     </script>
 
@@ -191,9 +192,7 @@ und auch das Weltklasse-Schachprogramm Stochfish schlägt.
 </a></small></p>
 </section>
 
-
-
-<section data-markdown class="mlconf">
+<section data-markdown>
         <textarea data-template>
 ### Lc0 Wins Computer Chess Championship, Makes History
 
@@ -207,14 +206,33 @@ https://www.chess.com/news/view/lc0-wins-computer-chess-championship-makes-histo
 </textarea>
 </section>
 
-<section data-markdown class="mlconf">
+<section data-markdown>
+        <textarea data-template>
+### Leela Chess Zero = LC0
+
+_Open Source Implementation and collective training based on the ideas presented in AlphaZero_
+
+<small>
+https://en.wikipedia.org/wiki/Leela_Chess_Zero
+<br>
+https://lczero.org/
+<br>
+https://github.com/LeelaChessZero/lc0
+<br>
+https://en.wikipedia.org/wiki/AlphaZero
+</small>
+
+</textarea>
+</section>
+
+<section data-markdown class="mlconf todo">
     <textarea data-template>
 
 https://www.chess.com/article/view/live-now-neural-nakamura-analyzes-top-neural-network-computer-chess-games
 </textarea>
 </section>
 
-<section data-markdown class="todo">
+<section data-markdown class="preparation">
         <textarea data-template>
 Spiel ganz durchlaufen lassen in fast und bisschen herum labern
 
@@ -253,26 +271,6 @@ https://www.chessworld.net/chessclubs/ltpgnviewer32/ltpgnboard.asp?GameID=502421
 
 </textarea>
 </section>
-
-<section data-markdown>
-        <textarea data-template>
-### Leela Chess Zero = LC0
-
-_Open Source Implementation and collective training based on the ideas presented in AlphaZero_
-
-<small>
-https://en.wikipedia.org/wiki/Leela_Chess_Zero
-<br>
-https://lczero.org/
-<br>
-https://github.com/LeelaChessZero/lc0
-<br>
-https://en.wikipedia.org/wiki/AlphaZero
-</small>
-
-</textarea>
-</section>
-
 
 <section data-markdown>
     <textarea data-template>
@@ -630,7 +628,7 @@ https://en.wikipedia.org/wiki/Alpha%E2%80%93beta_pruning
 </textarea>
 </section>
 
-<section data-markdown >
+<section data-markdown  class="mlconf">
     <textarea data-template>
 ### Why don't we just take the next move with the best evaluation?
 
@@ -644,7 +642,7 @@ https://www.embarc.de/schachbegriffe-auf-englisch/
 <!-- http://www.dokchess.de/_downloads/szoerner_majug2012_architekturentwurf_schach_deploy.pdf -->
 
 
-<section data-markdown>
+<section data-markdown class="mlconf">
     <textarea data-template>
 ### Checkmate unavoidable?
 
@@ -654,7 +652,7 @@ FEN: 2R5/8/p7/7p/6pP/5pP1/5P1K/k4q2 w - - 0 1
 </textarea>
 </section>
 
-<section data-markdown>
+<section data-markdown class="mlconf">
     <textarea data-template>
 ### Using a heuristic to avoid loss of a piece
 
@@ -664,7 +662,7 @@ Random move of Rook, but no loss
 </textarea>
 </section>
 
-<section data-markdown>
+<section data-markdown class="mlconf">
     <textarea data-template>
 ### But Checkmate in next move
 
@@ -674,7 +672,7 @@ Rook saved, but not effectively used
 </textarea>
 </section>
 
-<section data-markdown>
+<section data-markdown class="mlconf">
     <textarea data-template>
 ### Rewind to initial position
 
@@ -683,7 +681,7 @@ Rook saved, but not effectively used
 This time we look ahead
 </textarea>
 </section>
-<section data-markdown>
+<section data-markdown class="mlconf">
     <textarea data-template>
 ### Certain loss of Rook
 
@@ -692,7 +690,7 @@ This time we look ahead
 Bad local evaluation, Queen will take Rook
 </textarea>
 </section>
-<section data-markdown>
+<section data-markdown class="mlconf">
     <textarea data-template>
 ### Of course Queen has to capture Rook
 
@@ -720,16 +718,6 @@ https://en.wikipedia.org/wiki/Stockfish_(chess)
 </textarea>
 </section>
 
-<section data-markdown class="slido">
-    <textarea data-template>
-### Everything clear?
-
-<img src='img/slido.jpg' height="450">
-
-https://slido.com / DJCORDHOSE
-</textarea>
-        </section>
-
 <section data-markdown>
     <textarea data-template>
 ## Part III
@@ -739,9 +727,12 @@ https://slido.com / DJCORDHOSE
 
     <section data-markdown>
             <textarea data-template>
-### Reasonable Heuristic for evaluation of position is cruical for deterministic search
+### Heuristics                
+Reasonable Heuristics for evaluation of position is crucial for deterministic search
 
-* Good solutions available for Chess
+* Reasonable solutions available for Chess
+  * fast
+  * accurate 
 * No good solutions for Go
     * Only a win as a state is a reliable indication
     * Need to search to the end
@@ -932,16 +923,6 @@ Update Scores
             </textarea>
             </section> -->
             
-<section data-markdown class="slido">
-    <textarea data-template>
-### Before we take the final hop
-
-<img src='img/slido.jpg' height="450">
-
-https://slido.com / DJCORDHOSE
-</textarea>
-        </section>
-
 <section data-markdown>
     <textarea data-template>
 ## Part IV
@@ -1090,7 +1071,7 @@ _A chess engine was hard-core AI In the 90s_
 <script>
         $('.mlconf').remove();
     
-        if (window.location.hostname.indexOf('localhost') !== -1) {
+        if (window.location.hostname.indexOf('localhost') !== -1 && !printMode) {
             // only applies to local version
             $('.remote').remove();
         } else {
@@ -1103,7 +1084,7 @@ _A chess engine was hard-core AI In the 90s_
                 // do we want this???
                 $('li').addClass('fragment')
 
-            if (window.location.hostname.indexOf('localhost') !== -1) {
+            if (window.location.hostname.indexOf('localhost') !== -1 && !printMode) {
                 // only applies to presentation version
                 Reveal.configure({ controls: false });
             } else {
