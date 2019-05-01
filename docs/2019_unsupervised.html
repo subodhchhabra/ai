@@ -268,7 +268,7 @@ Lernziele:
 <section>
             <h2>Einführung in Unsupervised Machine Learning</h2>
             <p><a target="_blank" href="https://www.m3-konferenz.de/lecture.php?id=8151">
-                m3, Mai 2019
+                M3, Mannheim, Mai 2019
             </a></p>
             <h4><a href="http://zeigermann.eu">Oliver Zeigermann</a> / <a href="http://twitter.com/djcordhose">@DJCordhose</a>
             </h4>
@@ -418,17 +418,6 @@ structure out of nothing
 
 <section data-markdown>
 <textarea data-template>
-<img src="img/unsupervised/cluster_compare.png" height="550px">
-
-<p><small><a href="http://scikit-learn.org/stable/auto_examples/cluster/plot_cluster_comparison.html">
-http://scikit-learn.org/stable/auto_examples/cluster/plot_cluster_comparison.html
-</a></small></p>
-
-</textarea>
-</section>
-
-<section data-markdown>
-<textarea data-template>
 <img src="img/unsupervised/sphx_glr_plot_cluster_comparison_001.png" height="550px">
 
 <p><small><a href="http://scikit-learn.org/stable/modules/clustering.html">
@@ -436,10 +425,6 @@ http://scikit-learn.org/stable/modules/clustering.html
 </a></small></p>
 
 </textarea>
-</section>
-
-<section>
-    <h3>Which one is our favorite?</h3>
 </section>
 
 <section>
@@ -459,8 +444,6 @@ http://scikit-learn.org/stable/modules/clustering.html
 <section>
     <h3>A quick guess: What is the crucial factor here?</h3>
 </section>
-
-
 
 <section>
         <h1>Part II</h2>
@@ -657,6 +640,28 @@ https://projector.tensorflow.org
 </section>
 
 <section>
+<h3>UMAP: Alternative to t-SNE</h3>
+<p><small>Searching for a low dimensional projection of the data that has the closest possible equivalent fuzzy topological structure (Riemannian manifold).</small></p>
+<div style="float: left">
+        <img src="img/unsupervised/umap_example_mnist1.png" height="300px">
+        <p>
+            <small>MNIST Digit Dataset</small>
+        </p>
+    </div>
+    <div style="float: right">
+            <img src="img/unsupervised/umap_example_fashion_mnist1.png" height="300px">
+            <p>
+            <small>Fashion Items</small>
+        </p>
+    </div>
+<small>
+    <a href="https://github.com/lmcinnes/umap">
+https://github.com/lmcinnes/umap
+</a>
+</small>    
+        </section>
+
+<section>
         <h1>Part III</h1>
         <h2>Unsupervised Deep Learning</h2>
     </section>
@@ -667,6 +672,7 @@ https://projector.tensorflow.org
 
 * reproduce an input while going through a bottleneck
 * latent representation is what you are interested in
+* works on all kinds of data, e.g. image, audio, and tabular
 
 <img src='img/autoencoder_schema.jpg'>
 
@@ -685,7 +691,6 @@ https://blog.keras.io/building-autoencoders-in-keras.html
 * data denoising
 * dimensionality reduction / clustering (for data visualization)
 * building an abstract representation for further use
-* works on all kinds of data, e.g. image, audio, and tabular
 
 <small>
 https://blog.keras.io/building-autoencoders-in-keras.html
@@ -788,25 +793,55 @@ https://minsuk.com/research/papers/kahng-ganlab-vast2018.pdf
 
 <section data-markdown>
     <textarea data-template>
-### Neural Embeddings
-
-* You define a network using an embedding layer as input
-* What you want to encode goes into network as a number
-* You represent its semantics as the output
-* You train the model
-* You only keep the embedding layer that contains the abstraction
-
+## Neural Embeddings
 </textarea>
 </section>
 
 <section data-markdown>
     <textarea data-template>
-### Sketch of such a network
+### How to embed similarities of concepts/categories/words into numbers?
 
-<img src='img/sketch/sketch_idea_embedding.png' height="550px">
+<img src='img/embeddings/embedding-airlines.jpg' style="float: left" height="350px">
+<img src='img/embeddings/airline-embedding-empty.png' style="float: right" height="350px">
 
-</textarea>
-</section>
+<small>
+There are indications we store concepts in the same way as distances in space    
+</small>
+
+        </textarea>
+    </section>
+
+<section data-markdown>
+    <textarea data-template>
+### What you can do with Embeddings: Clustering on concepts
+
+<img src='img/embeddings/airline-embedded-cluster.png'>
+
+<small>
+Only works if an embedding really encodes similarities    
+</small>
+
+        </textarea>
+    </section>
+
+<section data-markdown>
+    <textarea data-template>
+### How to encode similarities into embeddings?
+
+<img src='img/embeddings/embedding-train.png'>
+
+
+        </textarea>
+    </section>
+
+<section data-markdown>
+    <textarea data-template>
+### How to extract embeddings
+
+<img src='img/embeddings/embedding-predict.png'>
+
+        </textarea>
+    </section>
 
 <section data-markdown>
     <textarea data-template>
@@ -850,7 +885,7 @@ https://projector.tensorflow.org
 </textarea>
 </section>
 
-<section data-markdown>
+<section data-markdown class="local">
         <textarea data-template>
 ### If you liked this, stay in this room
 
@@ -866,11 +901,10 @@ https://projector.tensorflow.org
 ### Wrapping Up
 
 * Clustering can find common groups and outliers
-* DBSCAN is the cluster implementation to try first
 * Dimensionality reduction is useful for data visualization and getting rid of features
-* PCA is good for feature reduction
-* T-SNE is a state-of-the-art for data viz
-* UMAP might become a player soon
+* Unsupervised Deep Learning is very powerful to
+  * create latent representations
+  * create new data
 
 <p>
 <small>
