@@ -197,25 +197,8 @@ Load while there is internet
 * https://beta.observablehq.com/@djcordhose/how-to-build-a-teachable-machine-with-tensorflow-js#knndataset
 * https://dash-gallery.plotly.host/dash-svm
 * https://playground.tensorflow.org
+* http://durtal.github.io/interactives/Football-Voronoi/
     </textarea>
-</section>
-
-<section data-markdown class="todo">
-        <textarea data-template>
-
-https://www.leuphana.de/universitaet/personen/ulf-brefeld.html#publications (Ulf Brefeld, forscht mit Fußballdaten)
-https://link.springer.com/article/10.1007%2Fs10994-018-5725-1 (Diagramme)
-https://pdfs.semanticscholar.org/2cc5/4a4530343bc83d2ea81a493423bd15a01526.pdf (von 2004, statistischer Vergleich von "Wer hat mehr Fläche?")
-http://durtal.github.io/interactives/Football-Voronoi/ (animierte Voronois, Fußball + NBA)
-https://www.youtube.com/watch?v=PGy1rATkViA (Intuition knn + Voronoi)
-
-Analyse-Fragen im Fußball:
-Wer kontrolliert welchen Bereich? 
-In welchen Bereich sollte der nächste Pass?
-Entstehen irgendwo in Nähe des gegnerischen Tores "zones of control"?
-Voronoi-Zellen sind "statisch", aber bieten Ansatz für statistische Vergleiche, wer kontrolliert wo die meiste Fläche?
-Advanced Movement Models: Probabilistic movement models and zones of control (Brefeld), verwendet Bewegungsrichtung und Geschwindigkeit, berechnet Wahrscheinlichkeitsverteilung, welche Positionen auf dem Feld sind unter realistischen Annahmen tatsächlich erreichbar?
-</textarea>
 </section>
 
         <section>
@@ -223,8 +206,8 @@ Advanced Movement Models: Probabilistic movement models and zones of control (Br
         <p><a target="_blank" href="https://www.m3-konferenz.de/lecture.php?id=8021">
             M3, Mannheim, Mai 2019
         </a></p>
-        <h4><a href="http://zeigermann.eu">Oliver Zeigermann</a> / <a href="http://twitter.com/djcordhose">@DJCordhose</a>
-        </h4>
+        <h4><a href="http://zeigermann.eu">Oliver Zeigermann</a> / <a href="http://twitter.com/djcordhose">@DJCordhose</a></h4>
+        <h4>In Abwesenheit: Stefan Kühn</h4>
         <p><small><a href="http://bit.ly/m3-ml-strategies">
             http://bit.ly/m3-ml-strategies
         </a></small></p>
@@ -266,15 +249,6 @@ How do different _Supervised_ Machine Learning strategies draw those boundaries 
 * Best for TensorFlow is found using manual experiment
         </textarea>
     </section>
-
-
-    <section data-markdown>
-        <textarea data-template>
-### Best Model means best Generalization
-
-<img src='img/MELLI.jpg' height="600px">
-            </textarea>
-            </section>
 
     <section>
 <h3>Code in Scikit-learn</h3>
@@ -603,6 +577,125 @@ Link: https://colab.research.google.com/github/djcordhose/ai/blob/master/noteboo
 </textarea>
 </section>
 
+<section data-markdown>
+        <textarea data-template>
+### Bonus Track: Decision Boundaries im Profisfußball
+
+Arbeit von Stefan Kühn
+            </textarea>
+        </section>
+<!-- 
+https://www.leuphana.de/universitaet/personen/ulf-brefeld.html#publications (Ulf Brefeld, forscht mit Fußballdaten)
+https://link.springer.com/article/10.1007%2Fs10994-018-5725-1 (Diagramme)
+https://pdfs.semanticscholar.org/2cc5/4a4530343bc83d2ea81a493423bd15a01526.pdf (von 2004, statistischer Vergleich von "Wer hat mehr Fläche?")
+http://durtal.github.io/interactives/Football-Voronoi/ (animierte Voronois, Fußball + NBA)
+https://www.youtube.com/watch?v=PGy1rATkViA (Intuition knn + Voronoi)
+
+Analyse-Fragen im Fußball:
+Wer kontrolliert welchen Bereich? 
+In welchen Bereich sollte der nächste Pass?
+Entstehen irgendwo in Nähe des gegnerischen Tores "zones of control"?
+Voronoi-Zellen sind "statisch", aber bieten Ansatz für statistische Vergleiche, wer kontrolliert wo die meiste Fläche?
+Advanced Movement Models: Probabilistic movement models and zones of control (Brefeld), verwendet Bewegungsrichtung und Geschwindigkeit, berechnet Wahrscheinlichkeitsverteilung, welche Positionen auf dem Feld sind unter realistischen Annahmen tatsächlich erreichbar?
+ -->
+
+ <section data-markdown>
+        <textarea data-template>
+### Analyse-Fragen im Fußball
+
+* Wer kontrolliert welchen Bereich? 
+* In welchen Bereich sollte der nächste Pass?
+* Entstehen irgendwo in Nähe des gegnerischen Tores "zones of control"?
+ 
+</textarea>
+        </section>
+
+        <section data-markdown>
+                <textarea data-template>
+### Voronoi-Zellen 
+        
+Wie Decision Boundaries bei KNN, n=1
+<img src='img/sport/football/knn-to-voronoi.png' height="450px">
+
+<small>
+Victor Lavrenko, https://www.youtube.com/watch?v=PGy1rATkViA    
+</small>
+        
+                    </textarea>
+                </section>
+        
+ 
+<section data-markdown>
+        <textarea data-template>
+### Voronoi-Zellen für Fußball
+
+* sind "statisch": nur Position
+* bieten Ansatz für statistische Vergleiche
+* wer kontrolliert wo die meiste Fläche?
+
+            </textarea>
+        </section>
+        
+<section data-markdown>
+        <textarea data-template>
+#### Initial Position
+
+<img src='img/sport/football/voronoi1.png' height="500px">
+
+<small>
+Voronoi Analysis of a Soccer Game, S. Kim,    
+https://pdfs.semanticscholar.org/2cc5/4a4530343bc83d2ea81a493423bd15a01526.pdf
+</small>
+            </textarea>
+        </section>
+
+        <section data-markdown>
+        <textarea data-template>
+#### Situation in Match with Ball
+
+<img src='img/sport/football/voronoi2.png' height="500px">
+
+<small>
+Voronoi Analysis of a Soccer Game, S. Kim,    
+https://pdfs.semanticscholar.org/2cc5/4a4530343bc83d2ea81a493423bd15a01526.pdf
+</small>
+            </textarea>
+        </section>
+
+        <section data-markdown>
+        <textarea data-template>
+### Interaktive Version
+
+<a href='http://durtal.github.io/interactives/Football-Voronoi/'>
+<img src='img/sport/football/voronoi-interactive.png' height="500px">
+</a>
+
+<small>
+http://durtal.github.io/interactives/Football-Voronoi/
+</small>
+            </textarea>
+        </section>
+
+
+        <section data-markdown>
+        <textarea data-template>
+### Ausblick: Advanced Movement Models
+
+_Probabilistic movement models and zones of control (Brefeld)_
+
+* verwendet Bewegungsrichtung und Geschwindigkeit
+* berechnet Wahrscheinlichkeitsverteilung
+* welche Positionen auf dem Feld sind unter realistischen Annahmen tatsächlich erreichbar?
+
+<br>
+<small>
+https://link.springer.com/article/10.1007%2Fs10994-018-5725-1
+<br>
+https://www.leuphana.de/universitaet/personen/ulf-brefeld.html
+</small>
+            </textarea>
+        </section>
+
 <section>
         <h2>Wrap Up</h2>
         <ul>
@@ -645,7 +738,7 @@ Link: https://colab.research.google.com/github/djcordhose/ai/blob/master/noteboo
             // do we want this???
             $('li').addClass('fragment')
 
-            if (window.location.hostname.indexOf('localhost') !== -1) {
+            if (window.location.hostname.indexOf('localhost') !== -1 && !printMode) {
                 // only applies to presentation version
                 Reveal.configure({ controls: false });
             } else {
