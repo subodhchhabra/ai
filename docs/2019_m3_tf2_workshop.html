@@ -262,7 +262,7 @@ Teil 3
 
 Teil 4
 * https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/tf2/fashion-mnist.ipynb
-* https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/t2/fashion_mnist_resnet.ipynb
+* https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/tf2/fashion-mnist-resnet.ipynb
 
 </textarea>
 </section>
@@ -271,15 +271,12 @@ Teil 4
 <section data-markdown class="todo">
         <textarea data-template>
 
-* Übungen für Teil 3 und 4 überlegen
+* Übungen für Teil  4 überlegen
 
 * Alle anderen Notebooks nach TF2 konvertieren, in den Ordner und Links updaten
 
-  * https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/tf2/time-series.ipynb (und advanced part löschen)
-  * https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/tf2/rnn-add-example.ipynb
-  * https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/tf2/sentiment.ipynb
-  
-  * https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/t2/fashion_mnist_resnet.ipynb
+* https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/tf2/fashion-mnist.ipynb
+* https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/t2/fashion_mnist_resnet.ipynb
 
         </textarea>
     </section>
@@ -1030,8 +1027,16 @@ model.fit(X, y)
 
 <section data-markdown>
         <textarea data-template>
-### Notebook: Time Series Prediction
+## Exercise: Time Series Prediction
 
+_Train the model_
+
+* go through the notebook as it is
+* Try to improve the model
+  * Change activation function
+  * More nodes? less nodes?
+  * What else might help improving the results?
+                
 <small style="font-size: large">
 https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/tf2/time-series.ipynb
 </small>
@@ -1106,11 +1111,6 @@ model.add(LSTM(units=rnn_units))
 model.add(GRU(units=rnn_units))
 </code></pre>
 
-<p><small>Bidirectional RNNs</small></p>
-    <pre><code contenteditable data-trim class="fragment line-numbers python">
-model.add(Bidirectional(SimpleRNN(units=rnn_units)))        
-</code></pre>
-
 <p><small>Passes all outputs of all timesteps (not only the last one) to the next layer</small></p>
     <pre><code contenteditable data-trim class="fragment line-numbers python">
 model.add(GRU(units=rnn_units, return_sequences=True))
@@ -1120,13 +1120,17 @@ model.add(GRU(units=rnn_units, return_sequences=True))
     <pre><code contenteditable data-trim class="fragment line-numbers python">
 model.add(GRU(units=rnn_units, return_sequences=True, recurrent_dropout=0.2))
         </code></pre>
-
+    </p>
     <small>
             <a href="https://www.tensorflow.org/api_docs/python/tf/keras/layers">
                 https://www.tensorflow.org/api_docs/python/tf/keras/layers
             </a>
+                    
     </small>
-</p>
+<small data-markdown>
+https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/tf2/time-series-advanced.ipynb
+</small>
+            
 </section>
 
 <section data-markdown>
@@ -1249,6 +1253,26 @@ https://machinelearningmastery.com/learn-add-numbers-seq2seq-recurrent-neural-ne
 </section>
 
 <section data-markdown>
+        <textarea data-template>
+## Exercise: Sequence to Sequence translations
+
+_Train the model_
+
+* go through the notebook as it is
+* Try to improve the model
+  * SimpleRNN or LSTM or GRU?
+  * More hidden nodes? less?
+  * Bigger / Smaller latent space?
+  * Regularization?
+                
+<small style="font-size: large">
+https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/tf2/rnn-add-example.ipynb
+</small>
+        </textarea>
+    </section>
+
+
+<section data-markdown>
     <textarea data-template>
 #### You can even describe all networks as a combination of encoder / decoder
 
@@ -1273,7 +1297,7 @@ https://medium.com/tensorflow/mit-deep-learning-basics-introduction-and-overview
     </textarea>
 </section>
 
-<section data-markdown>
+<!-- <section data-markdown>
         <textarea data-template>
 ### Challenge: How to embed similarities of concepts/categories/words into numbers?
 
@@ -1283,12 +1307,12 @@ https://medium.com/tensorflow/mit-deep-learning-basics-introduction-and-overview
 <small>
 There are indications we store concepts in the same way as distances in space    
 </small>
-
+ -->
 
             </textarea>
         </section>
             
-        <section data-markdown>
+        <!-- <section data-markdown>
                 <textarea data-template>
 ### What you can do with Embeddings: Clustering on concepts
 
@@ -1300,7 +1324,7 @@ Only works if an embedding really encodes similarities
         
                     </textarea>
                 </section>
-
+ -->
         <section data-markdown>
                 <textarea data-template>
 ### How to encode similarities into embeddings?
@@ -1342,6 +1366,8 @@ model.compile(optimizer='adam', loss='binary_crossentropy')
 <section data-markdown>
     <textarea data-template>
 ### Example: Sentiment Analysis on Movie Reviews
+
+_Caution: Takes a long time to train_
 
 <small>
 https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/tf2/sentiment.ipynb
@@ -1627,7 +1653,7 @@ https://medium.com/towards-data-science/neural-network-architectures-156e5bad51b
 <br>
 <img src='img/mobilnet-historie.png' height="200px">
 <small>
-https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/t2/fashion_mnist_resnet.ipynb
+https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/tf2/fashion-mnist-resnet.ipynb
 </small>
 </textarea>
 </section>
