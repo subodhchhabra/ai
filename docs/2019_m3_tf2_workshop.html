@@ -37,6 +37,14 @@
                   float: right;
                   height: 500px;
               }
+              .olli:before {
+                  content: 'Vorbereitung: ';
+              }
+              .olli {
+                  color: black !important;
+                  background-image: url("img/olli-cool.jpg") !important;
+                  background-size: 500px;
+              }
               .todo:before {
                   content: 'TODO: ';
               }
@@ -265,9 +273,6 @@ Teil 4
 * Übungen für Teil 3 und 4 überlegen
 
 * Alle anderen Notebooks nach TF2 konvertieren, in den Ordner und Links updaten
-  * https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/tf2/nn-training.ipynb
-  * https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/tf2/nn-reg.ipynb
-  * https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/tf2/nn-final.ipynb
 
   * https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/tf2/time-series.ipynb (und advanced part löschen)
   * https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/tf2/rnn-add-example.ipynb
@@ -335,7 +340,9 @@ Advanced und nice to have
     
 _I type and explain and you people follow along in your own notebook and make experiments_
 
+<small>
 https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/tf2/tf-low-level.ipynb
+</small>
 </textarea>
     </section>
 
@@ -346,6 +353,15 @@ https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/tf2
 ### Netzwerke für strukturierte Daten (Fully Connected Layers)
 </textarea>
 </section>
+
+<section data-markdown class="olli">
+        <textarea data-template>
+* Gemeinsame Entwurfs-Skizze vorbereiten für Netzwerk-Entwurf   
+        </textarea>
+    </section>
+    
+    
+    
 
 <section>
         <h3>Example: Customer Data - Risk of Accidents</h3>
@@ -555,6 +571,16 @@ _often given for training and test data separately_
     </section>
 
 <section data-markdown>
+    <textarea data-template>
+### Use some training data for validation
+
+<img class='fragment' src='img/insurance/generalization1.jpg'>
+
+</textarea>
+</section>
+
+
+<section data-markdown>
         <textarea data-template>
 ### Prediction
 
@@ -563,7 +589,7 @@ _often given for training and test data separately_
     </textarea>
     </section>
 
-<section data-markdown>
+<!-- <section data-markdown>
         <textarea data-template>
 ## Notebook            
 ### Split data sets, train the neural network and evaluate results
@@ -572,7 +598,7 @@ _often given for training and test data separately_
 https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/tf2/nn-training.ipynb
 </small>
     </textarea>
-    </section>
+    </section> -->
 
 <section data-markdown>
         <textarea data-template>
@@ -580,7 +606,7 @@ https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/tf2
 
 _Train the model_
 
-* Run the notebook as is
+* First, we go through the notebook as it is
 * Try to improve the model
 * How well does it perform?
 * Any idea why it performs the way it does?
@@ -766,8 +792,8 @@ Batch Norm is often frowned upon, because it is brittle magic and a small change
 * adds penalty term to loss function
 * L1 (Lasso Regression): penalty is proportional to the absolute value of the weights coefficients
   * helps drive the weights of irrelevant or barely relevant features to exactly 0
-* L2 ( Ridge Regression): penalty is proportional proportional to the square of value of the weights coefficients
-  * heavily penalizes very especially large coefficients
+* L2 ( Ridge Regression): penalty is proportional to the square of value of the weights coefficients
+  * heavily penalizes especially large coefficients
 
 <small style="font-size: large">
 https://colab.research.google.com/github/tensorflow/docs/blob/master/site/en/tutorials/keras/overfit_and_underfit.ipynb#scrollTo=4rHoVWcswFLa
@@ -1657,6 +1683,7 @@ https://keras.io/applications/
             $('.todo').remove();
             $('.preparation').remove();
             $('.local').remove();
+            $('.olli').remove();
         }
         Reveal.addEventListener( 'ready', function( event ) {
             // do we want this???
