@@ -208,6 +208,15 @@ but you do not need any knowledge of it. Knowledge of any Object oriented langua
             </textarea>
         </section> -->
 
+<section data-markdown class="olli">
+        <textarea data-template>
+* Gemeinsame Entwurfs-Skizze vorbereiten für Netzwerk-Entwurf   
+        </textarea>
+    </section>
+
+
+
+
 <section data-markdown style="font-size: xx-large">
     <textarea data-template>
 ### Wenn ihr euch langweilt
@@ -241,47 +250,7 @@ http://bit.ly/m3-tf2
 </a></small></p>
 </section>
 
-<section data-markdown class="todo">
-    <textarea data-template>
-
-### Notebooks
-
-Teil 1
-* https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/tf2/tf-low-level.ipynb
-
-Teil 2
-* https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/tf2/nn-training.ipynb
-* https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/tf2/nn-reg.ipynb
-* https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/tf2/nn-final.ipynb
-
-Teil 3
-* https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/tf2/time-series.ipynb
-* https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/tf2/time-series-advanced.ipynb
-* https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/tf2/rnn-add-example.ipynb
-* https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/tf2/sentiment.ipynb
-
-Teil 4
-* https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/tf2/fashion-mnist.ipynb
-* https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/tf2/fashion-mnist-resnet.ipynb
-
-</textarea>
-</section>
-
-
-<section data-markdown class="todo">
-        <textarea data-template>
-
-* Übungen für Teil  4 überlegen
-
-* Alle anderen Notebooks nach TF2 konvertieren, in den Ordner und Links updaten
-
-* https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/tf2/fashion-mnist.ipynb
-* https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/t2/fashion_mnist_resnet.ipynb
-
-        </textarea>
-    </section>
-
-<section data-markdown class="todo">
+<!-- <section data-markdown class="todo">
         <textarea data-template>
 Advanced und nice to have
 
@@ -289,10 +258,8 @@ Advanced und nice to have
 * https://towardsdatascience.com/back-propagation-demystified-in-7-minutes-4294d71a04d7 
 * tf.function: https://twitter.com/aureliengeron/status/1102792760875089920
 
-* https://karpathy.github.io/2019/04/25/recipe/
         </textarea>
-    </section>
-
+    </section> -->
 
 <!-- <section data-markdown class="local">
     <textarea data-template>
@@ -351,15 +318,6 @@ https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/tf2
 ### Netzwerke für strukturierte Daten (Fully Connected Layers)
 </textarea>
 </section>
-
-<section data-markdown class="olli">
-        <textarea data-template>
-* Gemeinsame Entwurfs-Skizze vorbereiten für Netzwerk-Entwurf   
-        </textarea>
-    </section>
-    
-    
-    
 
 <section>
         <h3>Example: Customer Data - Risk of Accidents</h3>
@@ -1605,10 +1563,11 @@ https://colab.research.google.com/github/Machine-Learning-Tokyo/DL-workshop-seri
 
 _Can you improve the model for Fashion MNIST notebook?_
 
+* train for more/less epochs
 * other/more/less layers
 * different sequence, less/more filters
 * prevent overfitting even better
-* For CNN you use the same means of regularization as in other standardN NNs 
+* For CNN you use the same means of regularization as in other standard NNs 
 
 <small>
 https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/tf2/fashion-mnist.ipynb
@@ -1681,6 +1640,103 @@ https://keras.io/applications/
     <p><small><a href="http://image-net.org/" target="_blank">http://image-net.org/</a></small></p>
 </section>
 
+<section data-markdown>
+        <textarea data-template>
+# Finally
+    
+</textarea>
+</section>
+
+<section data-markdown style="font-size: large" class="no-fragment">
+    <textarea data-template>
+
+## Overview of Notebooks
+
+_Teil 1_
+* https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/tf2/tf-low-level.ipynb
+
+_Teil 2_
+* https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/tf2/nn-training.ipynb
+* https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/tf2/nn-reg.ipynb
+* https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/tf2/nn-final.ipynb
+
+_Teil 3_
+* https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/tf2/time-series.ipynb
+* https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/tf2/time-series-advanced.ipynb
+* https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/tf2/rnn-add-example.ipynb
+* https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/tf2/sentiment.ipynb
+
+_Teil 4_
+* https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/tf2/fashion-mnist.ipynb
+* https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/tf2/fashion-mnist-resnet.ipynb
+
+</textarea>
+</section>
+
+
+
+<section data-markdown style="font-size: xx-large" class="no-fragment">
+        <textarea data-template>
+## More practical advice
+
+_Challenges of training neural nets_
+1. Neural net training is a leaky abstraction - you need to understand what is going on
+1. Neural net training fails silently - the possible error surface is large
+
+_The recipe_
+1. Understand your data
+1. Make one simple experiment after the other
+1. Make your model good / large enough to overfit on a batch
+1. Regularize on full data set
+1. Tune and scrape the barrel
+
+<small>
+https://karpathy.github.io/2019/04/25/recipe/    
+</small>
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### What's hot #1
+## Attention
+
+<img src='img/attention.gif'>
+
+<small style="font-size: large">
+https://machinetalk.org/2019/03/29/neural-machine-translation-with-attention-mechanism/
+<br>
+https://colab.research.google.com/github/tensorflow/examples/blob/master/community/en/nmt_with_luong_attention.ipynb
+<br>    
+https://distill.pub/2016/augmented-rnns/
+<br>
+Attention is all you need: https://arxiv.org/pdf/1706.03762.pdf
+
+</small>
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### What's hot #2
+## K-shot learning using MAML
+
+In K-shot learning, we need to train a neural network to generalize based on a very small number of examples (often on the order of 10 or so) instead of the often thousands of examples we see in datasets like ImageNet
+
+MAML: Model-Agnostic Meta-Learning for Fast Adaptation of Deep Networks
+
+<small>
+https://towardsdatascience.com/paper-repro-deep-metalearning-using-maml-and-reptile-fd1df1cc81b0
+<br>
+https://colab.research.google.com/github/mari-linhares/tensorflow-maml/blob/master/maml.ipynb
+<br>
+https://arxiv.org/abs/1703.03400
+</small>
+</textarea>
+</section>
+
+
+
 
 <section data-markdown>
         <textarea data-template>
@@ -1715,6 +1771,7 @@ https://keras.io/applications/
         Reveal.addEventListener( 'ready', function( event ) {
             // do we want this???
             $('li').addClass('fragment')
+            $('.no-fragment li').removeClass('fragment')
 
             if (window.location.hostname.indexOf('localhost') !== -1) {
                 // only applies to presentation version
