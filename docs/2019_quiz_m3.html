@@ -171,6 +171,16 @@ Aber mit Preisen!
     </textarea>
     </section>
 
+    <section data-markdown class="todo">
+            <textarea data-template>
+* Quellen erst später einblenden, damit keiner Googlen kann
+* Count Down Web Component bauen
+* kahoot ausprobieren
+* Bildgrößen anpassen
+
+                </textarea>
+            </section>
+                
     <section data-markdown>
     <textarea data-template>
 ### Wie funktioniert es?
@@ -238,6 +248,17 @@ https://twitter.com/chubicki/status/1000457946734759936
 </small>
 </textarea>
 </section>
+
+<section>
+        <img src="img/ai/dog-vs-muffin.jpg">
+    </section>
+    <section>
+        <img src="img/ai/dog-vs-bread.jpg" height="500px">
+    </section>
+
+    <section>
+        <img src="img/ai/dog-vs-chicken-wing.jpg" height="500px">
+    </section>
 
 <section data-markdown  class="perception">
     <textarea data-template>
@@ -324,13 +345,38 @@ https://twitter.com/RARohde/status/1114076320328290305
     <textarea data-template>
 ### Wie viele Punkte (die schnellste richtige Antwort zählt)
 
-<img src='img/quiz/dots.jfif'>
-
+<img src='img/quiz/dots.jfif' height="450px">
 <small>
 https://twitter.com/_youhadonejob1/status/1116335796838125570
 </small>
 </textarea>
 </section>
+
+<section data-markdown>
+    <textarea data-template>
+### Punkte sind mittig. Welcher Anteil des Quadrats ist schattiert?
+
+<img src='img/quiz/area.jpg' height="400px">
+
+<small class='solution'>
+https://twitter.com/Cshearer41/status/1123595174804897794
+</small>
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### 2/5
+<img src='img/quiz/area-result1.jpg' style="float: left;" height="300px">
+<img src='img/quiz/area-result2.jpg' style="float: right" height="300px">
+
+<small>
+https://twitter.com/Gogoljecco/status/1123596268129878016    
+https://twitter.com/OHSMaths/status/1123659572269461504
+    </small>
+</textarea>
+</section>
+
 
 
 <section data-markdown>
@@ -472,6 +518,10 @@ _4x Abholer_
                 // do we want this???
             $('li').addClass('fragment')
 
+            // hide link to solution until later
+            $('.solution').addClass('fragment')
+
+
             if (window.location.hostname.indexOf('localhost') !== -1) {
                 // only applies to presentation version
                 // Reveal.configure({ controls: false });
@@ -505,7 +555,8 @@ _4x Abholer_
         progress: true,
         history: true,
         center: true,
-        width: 1100,
+        width: "100%",
+        height: "100%",
 
 
         transition: 'fade', // none/fade/slide/convex/concave/zoom
