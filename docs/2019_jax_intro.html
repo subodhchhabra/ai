@@ -467,6 +467,17 @@ y_pred = clf.predict(input)
 
 <section data-markdown>
         <textarea data-template>
+## Lessons Learned
+
+* Machine Learning can automatically learn from data
+* Decision Trees are basically learned if-then-else blocks
+* Having many nesting levels of hand written if-then-else blocks might be a bad idea
+
+</textarea>
+</section>
+
+<section data-markdown>
+        <textarea data-template>
 ## Scenario #2
 
 ### Deep Supervised Machine Learning: time series data for better UX
@@ -525,6 +536,64 @@ https://www.tensorflow.org/js/
 
 <section data-markdown>
     <textarea data-template>
+### RNNs - Networks with Loops
+<img src='img/nlp/colah/RNN-rolled.png' height="450px">
+
+<small>
+http://colah.github.io/posts/2015-08-Understanding-LSTMs/
+</small>
+    </textarea>
+</section>
+    
+<section data-markdown>
+    <textarea data-template>
+### Unrolling the loop
+#### Becomes a truly deep feed-forward network!
+<img src='img/nlp/colah/RNN-unrolled.png'>
+
+<small>
+http://colah.github.io/posts/2015-08-Understanding-LSTMs/
+</small>
+    </textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Options for Model architectures 
+<pre><code contenteditable data-trim class="fragment line-numbers javascript">
+// GRUs are great in learning history
+// learns complete paths, best evaluation in numbers
+tf.layers.gru({
+    units: 50,
+    dropout: 0.1
+})
+</code></pre>
+
+
+<pre><code contenteditable data-trim class="fragment line-numbers javascript">
+// LSTMs are similar to GRUs, but more complex
+// slower to train and worse evaluation, but really good real world performance
+tf.layers.lstm({
+    units: 50,
+    dropout: 0.1
+})
+</code></pre>
+
+<pre><code contenteditable data-trim class="fragment line-numbers javascript">
+// trains fast, bad evaluation, but in real life does what we expect, 
+// only uses very recent history, generalizing great by proximity
+tf.layers.simpleRNN({
+    units: 50,
+    dropout: 0.1
+})
+</code></pre>
+        
+    </textarea>
+</section>
+
+
+<section data-markdown>
+    <textarea data-template>
 ### Training
 
 <img src='img/ux/accuracy-reg.png' height="500px">
@@ -543,7 +612,7 @@ https://www.tensorflow.org/js/
 
 <section data-markdown>
     <textarea data-template>
-### Results
+### Results for Simple RNN
 
 <img src='img/ux/simpleRNN.gif' class="fragment">
 
@@ -552,37 +621,21 @@ https://www.tensorflow.org/js/
 
 <section data-markdown>
     <textarea data-template>
-### Types of Machine Learning
+### Results for LSTM
 
-<img src='img/types-of-ml.jpg'>
-<small>
-https://www.facebook.com/nipsfoundation/posts/795861577420073/
-<br>
-https://ranzato.github.io/publications/tutorial_deep_unsup_learning_part1_NeurIPS2018.pdf
-</small>
+<img src='img/ux/ux-predict-3.gif' class="fragment">
+
 </textarea>
 </section>
 
 <section data-markdown>
         <textarea data-template>
-### Types of Learning in our Brains
+## Lessons Learned
 
-<img src='img/brain-and-ml.jpg' height="450px">
-<small>
-https://twitter.com/hardmaru/status/1101535801278693376
-<br>
-http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.178.2123&rep=rep1&type=pdf
-</small>
-</textarea>
-</section>
-
-<section data-markdown>
-    <textarea data-template>
-
-<img src='img/hinton-unsupervised.png'>
-<small>
-https://sites.google.com/view/berkeley-cs294-158-sp19/home    
-</small>
+* Neural Networks are a different style of machine learning
+* Recurrent Neural Networks can learn from sequences of data
+* Network Architecture, like type of layers, can have a big impact on results 
+* Neural Networks are very powerful and might outperform hand written heuristics
 </textarea>
 </section>
 
@@ -610,21 +663,58 @@ https://sites.google.com/view/berkeley-cs294-158-sp19/home
 * best-first search
 * will find optimal solution
 * but only on small problem
-* exponential runtime complexity
+* exponential complexity
             </textarea>
             </section>
 
             <section data-markdown>
                     <textarea data-template>
-### Solving in Fixed time
+### Alternative: Machine Learning
 
 Swapping
-* fixed time for exponential time
-* near-optimal path for optional path 
+* exponential time for fixed time 
+* optional path for near-optimal path 
 
                         </textarea>
                     </section>
-                                        
+                       
+
+<section data-markdown>
+    <textarea data-template>
+### Types of Machine Learning
+
+<img src='img/types-of-ml.jpg'>
+<small>
+https://www.facebook.com/nipsfoundation/posts/795861577420073/
+<br>
+https://ranzato.github.io/publications/tutorial_deep_unsup_learning_part1_NeurIPS2018.pdf
+</small>
+</textarea>
+</section>
+<!-- 
+<section data-markdown>
+        <textarea data-template>
+### Types of Learning in our Brains
+
+<img src='img/brain-and-ml.jpg' height="450px">
+<small>
+https://twitter.com/hardmaru/status/1101535801278693376
+<br>
+http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.178.2123&rep=rep1&type=pdf
+</small>
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+
+<img src='img/hinton-unsupervised.png'>
+<small>
+https://sites.google.com/view/berkeley-cs294-158-sp19/home    
+</small>
+</textarea>
+</section> -->
+                    
 <section data-markdown>
 <textarea data-template>
 ### Reinforcement Learning
@@ -645,7 +735,7 @@ Swapping
 
 <div style="clear: both;">
     <br>
-    <p >The Agent’s job is to maximise the cumulative Reward</p>
+    <p >The Agent’s job is to maximize the cumulative Reward</p>
 </div>
 
 <small>
@@ -656,6 +746,17 @@ http://gym.openai.com/docs/
 </section>
 
 <section data-markdown>
+        <textarea data-template>
+### Learning in a simulated world
+<video controls src="video/knocked-over-stand-up.mp4"  muted type="video/mp4" height="500"></video>
+                
+<small>
+    https://blog.openai.com/openai-baselines-ppo/
+</small>
+</textarea>
+</section>
+
+<!-- <section data-markdown>
     <textarea data-template>
 ### OpenAI Platforms
 
@@ -665,6 +766,43 @@ http://gym.openai.com/docs/
 https://openai.com/systems/
 </small>
 </textarea>
+</section> -->
+
+<section data-markdown>
+    <textarea data-template>
+### Modelling our world
+<pre><code contenteditable data-trim class="fragment line-numbers python">
+# what can the agent do?
+
+self.map = {
+    'S': [('A', 300), ('B', 100), ('C', 200 )],
+    'A': [('S', 300), ('B', 100), ('E', 100 ), ('D', 100 )],
+    'B': [('S', 100), ('A', 100), ('C', 50 ), ('K', 200 )],
+    'C': [('S', 200), ('B', 50), ('M', 100 ), ('L', 200 )],
+    'D': [('A', 100), ('F', 50)],
+    ...
+}
+max_paths = 4
+self.action_space = spaces.Discrete(max_paths)
+</code></pre>
+
+
+<pre><code contenteditable data-trim class="fragment line-numbers python">
+# what does the agent see?
+
+# observations: position, reward of all 4 local paths, 
+# rest reward of all locations
+low = # pos0, -1000 reward for missing path, 0 for rest rewards
+high = # last pos, 1000 max reward, 1000 for rest rewards
+self.observation_space = spaces.Box(low=low, high=high)
+
+</code></pre>
+
+<small>
+https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v11.ipynb
+</small>
+
+    </textarea>
 </section>
 
 <section data-markdown>
@@ -683,7 +821,7 @@ https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/
             </textarea>
         </section>
 
-        <section data-markdown>
+        <!-- <section data-markdown>
                 <textarea data-template>
 ### Alternative Solution
 
@@ -696,9 +834,22 @@ https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/
 https://arxiv.org/abs/1904.11102
 </small>
 </textarea>
-</section>
+</section> -->
 
 <section data-markdown>
+        <textarea data-template>
+## Lessons Learned
+
+* If you have no training data Reinforcement Learning might be an option
+* You will need a simulator for your problem, though 
+* Agent will learn by learning in a simulated world
+* Modelling that simulated world might be the hardest part of the job
+</textarea>
+</section>
+
+
+
+<!-- <section data-markdown>
     <textarea data-template>
 ### Learning to Play Chess using Reinforcement Learning
 
@@ -711,7 +862,7 @@ https://frpays.github.io/lc0-js/engine.html
 https://twitter.com/frpays/status/1077672273673359361
 </small>
 </textarea>
-</section>
+</section> -->
 
 
 <section data-markdown>
