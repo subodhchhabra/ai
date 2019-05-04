@@ -204,7 +204,19 @@ sich mit Softwareentwicklung beschäftigt, und setzt kein Wissen über Machine L
             </a></small></p>
         </section>
 
-        <section data-markdown style="font-size: x-large">
+        <section data-markdown>
+                <textarea data-template>
+### Wie sollen wir das entscheiden?
+
+* Wir gehen durch eine Reihe von Beispielen
+* sehen uns Lösungen in klassischer Implementierung an
+* und stellen sie der Machine Learning Lösung gegenüber
+* dabei lernen wir das Vorgehen im und die Arten des Machine Learnings kennen
+
+    </textarea>
+</section>
+
+        <!-- <section data-markdown style="font-size: x-large">
                 <textarea data-template>
 ### Scenarios
 
@@ -214,7 +226,7 @@ sich mit Softwareentwicklung beschäftigt, und setzt kein Wissen über Machine L
 1. Deep Unsupervised Learning: categorical airline data to embeddings for clustering (poster: https://djcordhose.github.io/ai/poster-sf.png)
 
                     </textarea>
-                </section>
+                </section> -->
         <section data-markdown>
                 <textarea data-template>
 ## Scenario #1
@@ -222,13 +234,6 @@ sich mit Softwareentwicklung beschäftigt, und setzt kein Wissen über Machine L
 ### Classic Supervised Machine Learning: Learning from tabular data
     </textarea>
 </section>
-
-<section data-markdown class="todo">
-    <textarea data-template>
-Kürzen
-    </textarea>
-</section>
-                                
 
     <section data-markdown>
         <textarea data-template>
@@ -262,11 +267,11 @@ Kürzen
                         </textarea>
                         </section>
             
-            <section data-markdown>
+            <!-- <section data-markdown>
                     <textarea data-template>
                     <img src='img/sketch/classic-development.jpg'>
                     </textarea>
-                    </section>
+                    </section> -->
                     
     <section>
         <h3>Programmer's approach: Code Rules by Hand</h3>
@@ -303,7 +308,7 @@ return green # otherwise: low risk
 </small></p>
     </section>
 
-<section data-markdown>
+<!-- <section data-markdown>
     <textarea data-template>
 ### How good is this?
 
@@ -313,7 +318,7 @@ return green # otherwise: low risk
 * How would we even know?
 
 </textarea>
-</section>                    
+</section>                     -->
 
 <section data-markdown>
                 <textarea data-template>
@@ -333,7 +338,6 @@ return green # otherwise: low risk
 * you have a lot of examples
 * solving the problem can tolerate some error or uncertainty
 * there is a clear, simple input and output
-* you want to replace a gut feeling
             </textarea>
             </section>
 
@@ -399,12 +403,12 @@ https://en.wikipedia.org/wiki/Feature_learning
 </textarea>
 </section>
 
-<section data-markdown>
+<!-- <section data-markdown>
 <textarea data-template>
 <img src='img/sketch/supervised-ml.jpg' height="650px">
 </textarea>
 </section>
-
+ -->
 <section data-markdown>
     <textarea data-template>
 ### Revisiting our Rule based approach
@@ -933,6 +937,20 @@ http://bit.ly/embed-airlines
             </textarea>
             </section>
 
+<section data-markdown>
+        <textarea data-template>
+## Lessons Learned
+
+* embeddings can be extremely useful and efficient representations
+* you can turn categories, symbols, words into numbers of any dimension
+* you can do this by training a neural network
+* if successful results will preserve semantics
+* main factor of success is a dataset that contains semantic information
+* the lines between classic programming and machine learning are already blurred here
+</textarea>
+</section>
+
+
     <section data-markdown>
         <textarea data-template>
 ## So?
@@ -974,12 +992,16 @@ https://en.m.wikipedia.org/wiki/Cynefin_framework
 
 <section style="font-size: xx-large">
     <h2>Wrap-Up</h2>
+    
+    <em>Modern Machine Learning is an important tool for software developers</em>
+    <br>
+    <br>
     <ul>
         <li class="fragment">Machine Learning can learn from existing data and generalize from it
         <li class="fragment">Sometimes, it can be an alternative to explicit, classic business logic
         <li class="fragment">Reinforcement Learning does not need any static data
         <li class="fragment">Unsupervised Learning does not need a teacher knowing the ground truth
-    </ul>
+            </ul>
     <br>
     <p>
             <em>JAX 2019: Machine Learning: das Ende der Businesslogik?</em>
