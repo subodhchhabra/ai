@@ -25,5 +25,6 @@
     "workbench.colorCustomizations": {
         "activityBar.background": "#00AA00"
     },
-    "python.linting.pylintEnabled": true
+    "python.linting.pylintEnabled": true,
+    "liveServer.settings.port": 5501
 }

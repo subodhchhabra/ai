@@ -677,7 +677,7 @@ tf.layers.simpleRNN({
 
 Swapping
 * exponential time for fixed time 
-* optional path for near-optimal path 
+* perfect path for near-optimal path 
 
                         </textarea>
                     </section>
@@ -846,11 +846,10 @@ https://arxiv.org/abs/1904.11102
 
 * If you have no training data Reinforcement Learning might be an option
 * You will need a simulator for your problem, though 
-* Agent will learn by learning in a simulated world
+* Agent will learn by being rewarded in a simulated world
 * Modelling that simulated world might be the hardest part of the job
 </textarea>
 </section>
-
 
 
 <!-- <section data-markdown>
@@ -967,7 +966,28 @@ Ellen Friedman, Tales from the Field: The Future is Now, Jfokus 2019
             </textarea>
     </section>
 
-    <section data-markdown>
+    <section data-markdown class="no-fragment">
+            <textarea data-template>
+### My claim: Manual Business Logic does not work well for complex tasks
+
+1. either not sufficient
+1. or not maintainable
+1. or mostly both
+1. often we just don't know because we don't evaluate
+</textarea>
+</section>                    
+
+<section data-markdown class="no-fragment">
+    <textarea data-template>
+### Machine Learning fits best when
+
+* the problem at hand is hard to specify
+* you have a lot of examples or a simulator
+* solving the problem can tolerate some error or uncertainty
+        </textarea>
+        </section>
+
+    <!-- <section data-markdown>
             <textarea data-template>
 ### Machine Learning needs us as well
 <img src='img/3rd-wave.png' height="500px">
@@ -989,7 +1009,7 @@ https://en.m.wikipedia.org/wiki/Cynefin_framework
 </small>
             </textarea>
     </section>
-
+ -->
 <section style="font-size: xx-large">
     <h2>Wrap-Up</h2>
     
@@ -1025,7 +1045,9 @@ https://en.m.wikipedia.org/wiki/Cynefin_framework
 <script src="lib/jquery-2.2.4.js"></script>
 
 <script>
-        if (window.location.hostname.indexOf('localhost') !== -1 && !printMode) {
+    const isLocal = window.location.hostname.indexOf('localhost') !== -1 || 
+                    window.location.hostname.indexOf('127.0.0.1') !== -1;
+        if (isLocal && !printMode) {
             // only applies to local version
             $('.remote').remove();
             $('.detail').remove();
@@ -1046,8 +1068,9 @@ https://en.m.wikipedia.org/wiki/Cynefin_framework
         Reveal.addEventListener( 'ready', function( event ) {
             // do we want this???
             $('li').addClass('fragment')
+            $('.no-fragment li').removeClass('fragment')
 
-            if (window.location.hostname.indexOf('localhost') !== -1) {
+            if (isLocal) {
                 // only applies to presentation version
                 Reveal.configure({ controls: false });
             } else {
