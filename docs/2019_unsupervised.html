@@ -791,100 +791,6 @@ https://minsuk.com/research/papers/kahng-ganlab-vast2018.pdf
 </textarea>
 </section>
 
-<section data-markdown>
-    <textarea data-template>
-## Neural Embeddings
-</textarea>
-</section>
-
-<section data-markdown>
-    <textarea data-template>
-### How to embed similarities of concepts/categories/words into numbers?
-
-<img src='img/embeddings/embedding-airlines.jpg' style="float: left" height="350px">
-<img src='img/embeddings/airline-embedding-empty.png' style="float: right" height="350px">
-
-<small>
-There are indications we store concepts in the same way as distances in space    
-</small>
-
-        </textarea>
-    </section>
-
-<section data-markdown>
-    <textarea data-template>
-### What you can do with Embeddings: Clustering on concepts
-
-<img src='img/embeddings/airline-embedded-cluster.png'>
-
-<small>
-Only works if an embedding really encodes similarities    
-</small>
-
-        </textarea>
-    </section>
-
-<section data-markdown>
-    <textarea data-template>
-### How to encode similarities into embeddings?
-
-<img src='img/embeddings/embedding-train.png'>
-
-
-        </textarea>
-    </section>
-
-<section data-markdown>
-    <textarea data-template>
-### How to extract embeddings
-
-<img src='img/embeddings/embedding-predict.png'>
-
-        </textarea>
-    </section>
-
-<section data-markdown>
-    <textarea data-template>
-### Arithmetic on Embeddings
-
-_has been exaggerated recently, but still fun_
-
-<img src='img/embedding_arithmetic.jpg' height="400px">
-
-<small>
-http://bryanlohjy.gitlab.io/spacesheet/word2vec.html
-</small>
-</textarea>
-</section>
-
-<section data-markdown>
-    <textarea data-template>
-### Suprising Application of Embeddings
-
-<img src='img/embedding-spell-checker.png' height="500px">
-
-<small>
-https://twitter.com/jeremyphoward/status/997264148655259648    
-</small>
-        </textarea>
-        </section>
-
-<section data-markdown>
-        <textarea data-template>
-### Word Embeddings using word2vec
-
-_main assumption: words appearing in similar contexts have similar meaning_
-
-<a href='https://projector.tensorflow.org'>
-<img src="img/nlp/embedding-projector.png" height="350px">
-</a>
-
-<small>
-https://projector.tensorflow.org
-</small>
-</textarea>
-</section>
-
 <section data-markdown class="local">
         <textarea data-template>
 ### If you liked this, stay in this room
@@ -933,7 +839,10 @@ https://projector.tensorflow.org
 <script src="lib/jquery-2.2.4.js"></script>
 
 <script>
-        if (window.location.hostname.indexOf('localhost') !== -1 && !printMode) {
+        const isLocal = window.location.hostname.indexOf('localhost') !== -1 || 
+                    window.location.hostname.indexOf('127.0.0.1') !== -1;
+
+        if (isLocal && !printMode) {
         } else {
             // only applies to public version
             $('.todo').remove();
@@ -944,7 +853,7 @@ https://projector.tensorflow.org
             // do we want this???
             $('li').addClass('fragment')
 
-            if (window.location.hostname.indexOf('localhost') !== -1 && !printMode) {
+            if (isLocal && !printMode) {
                 // only applies to presentation version
                 Reveal.configure({ controls: false });
             } else {
