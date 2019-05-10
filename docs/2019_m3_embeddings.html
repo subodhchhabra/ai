@@ -177,7 +177,8 @@ Umgang mit diesen Problemen.
 </section>
 
 <section>
-        <h2>Neural Embeddings</h2>
+        <h2>Neural Embeddings and Latent Representations</h2>
+        <h3>With TensorFlow</h3>
 <h4><a href="http://zeigermann.eu">Oliver Zeigermann</a> / <a href="http://twitter.com/djcordhose">@DJCordhose</a>
 </h4>
 <p><small><a href="https://djcordhose.github.io/ai/2019_m3_embeddings.html">
@@ -189,44 +190,70 @@ https://djcordhose.github.io/ai/2019_m3_embeddings.html
     <textarea data-template>
 ## Part I
 
-### Understanding Latent Representations and Embeddings 
+### Understanding Latent Representations and Embeddings
 
-</textarea>
-</section>
-
-
-<section data-markdown class="todo">
-    <textarea data-template>
-
-https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/2019_tf/airline2vec.ipynb
 </textarea>
 </section>
 
 <section data-markdown>
+        <textarea data-template>
+### What is an embedding?
+
+* In mathematics, an embedding is one instance of some mathematical structure contained within another instance
+* Practically, we often refer to embeddings as mapping of a category to a vector of numbers
+* E.g. Word embedding is the collective name for techniques where words or phrases from the vocabulary are mapped to vectors of real numbers
+
+https://en.wikipedia.org/wiki/Embedding
+https://en.wikipedia.org/wiki/Word_embedding
+
+            </textarea>
+            </section>
+
+<section data-markdown>
+        <textarea data-template>
+### Why turn categories into numbers?
+
+* neural networks can not deal with symbols, but numerical values only
+* even words and texts can be seen as categories / symbols
+* compression to a single number
+* that number might even carry semantics
+
+            </textarea>
+            </section>
+
+<section data-markdown>
     <textarea data-template>
-### How to encode of concepts/categories/words into numbers?
+### Example: Encoding airlines in two dimensions
 
 <img src='img/embeddings/embedding-airlines.jpg' style="float: left" height="350px">
 <img src='img/embeddings/airline-embedding-empty.png' style="float: right" height="350px">
 
-<small>
-There are indications we store concepts in the same way as distances in space    
-</small>
+<p style="clear: both">
+Do you already see a benefit of doing this?
+</p>
 
         </textarea>
     </section>
 
 <section data-markdown>
+    <textarea data-template>
+### The brain might map out ideas like spaces
+
+<img src='img/brain-abstract-knowledge.jpg' height="450">
+
+<small>
+https://twitter.com/PhilosophyMttrs/status/1085242776688775169
+</small>
+</textarea>
+</section>
+
+<section data-markdown>
         <textarea data-template>
-### How to turn categories into numbers?
-
-* neural networks can not deal with symbols
-* only numerical values can be processed by neural networks
-* even words and texts can be seen as categories / symbols
-* would it be possible to still make those numbers carry the semantics of the symbols? 
-
+## How to turn categories into numbers?
             </textarea>
-            </section>
+        </section>
+        
+        
 
 <section data-markdown>
 <textarea data-template>
@@ -312,20 +339,6 @@ Deep Learning with Python
 
 <section data-markdown>
     <textarea data-template>
-#### The Brain Maps Out Ideas and Memories Like Spaces
-
-<img src='img/brain-abstract-knowledge.jpg' height="450">
-
-_might it make sense to represent abstract knowledge in numbers?_
-
-<small>
-https://twitter.com/PhilosophyMttrs/status/1085242776688775169
-</small>
-</textarea>
-</section>
-
-<section data-markdown>
-    <textarea data-template>
 ### Arithmetic on Embeddings
 
 _has been exaggerated recently, but still fun_
@@ -403,56 +416,116 @@ Only works if an embedding really encodes similarities
 <section>
     <h3>Train embedding with TensorFlow</h3>
 
-    <p><small>Input</small></p>
     <pre><code contenteditable data-trim class="fragment line-numbers python">
-number_of_airports = len(airports)
-embedding_dim = 2
+number_of_airlines = len(airlines) + 1
+embedding_dim = 1 # up to us
 sequence_length = 1
 
-model.add(Embedding(input_dim=number_of_airports, 
+model.add(Embedding(input_dim=number_of_airlines, 
                     output_dim=embedding_dim, input_length=sequence_length))
 </code></pre>
 
-    <p><small>Output</small></p>
     <pre><code contenteditable data-trim class="fragment line-numbers python">
 # embedding will be n-dimensional, but Dense can only handle flat input
 model.add(Flatten())
 
 # random additional layers to at least make this train
 model.add(Dense(units=50, activation='relu'))
-
-model.add(Dense(units=dictionary_size, name='output', activation='softmax'))
+# ...
 </code></pre>
 
-</p>
+    <pre><code contenteditable data-trim class="fragment line-numbers python">
+# two airports in a route
+model.add(RepeatVector(2))
+model.add(SimpleRNN(units=50, return_sequences=True))
+
+# ca. 3500 airports in routes
+output_dim = len(routes_tokenizer.word_index) + 1
+model.add(Dense(units=output_dim, activation='softmax'))
+</code></pre>
+
 </section>
 
-<section data-markdown class="todo">
+<section data-markdown>
         <textarea data-template>
-### Training results
+### Make sure the model trains properly
 
-Train on notebook
+<div style="float: left">
+<img src='img/embeddings/airlines-2d-loss.png' height="300px"><br>
+Loss
+</div>
+<div style="float: right" >
+<img src='img/embeddings/airlines-2d-acc.png' height="300px"><br>
+Accuracy
+</div>
 
+<div style="clear: both">
+<small>        
 https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/2019_tf/airline2vec.ipynb
-
-* image of loss linear w/o log
-* image of accurcacy linear w/o log
+</small>
+</div>
 </textarea>
 </section>
-    
+
 <section data-markdown>
     <textarea data-template>
-### Embedding Airports in the notebook
+### What are we after here?
 
-_also shows encoding of input and output_
+* Model should train, i.e. loss should go down
+* If it does not you might do things to hidden layers
+* Typically we do not get good accuracy
+* All training needs to go through bottleneck of embedding
+* Thus we hope this will be packed with all the good semantics
 
-<img src='img/embedding_airport.png'>
+    </textarea>
+</section>
+
+<section data-markdown>
+        <textarea data-template>
+### Extracting embedding
+
+<pre><code contenteditable data-trim class="fragment line-numbers python">
+embedding_layer = model.get_layer('embedding')
+embedding_model = Model(inputs=model.input, outputs=embedding_layer.output)
+embeddings_2d = embedding_model.predict(samples).reshape(-1, 2)
+</code></pre>
+
+<pre><code contenteditable data-trim class="fragment line-numbers python">
+latent_x = embeddings_2d[:, 0]
+latent_y = embeddings_2d[:, 1]
+
+plt.scatter(latent_x, latent_y)
+</code></pre>
 
 <small style="font-size: large">
 https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/2019_tf/embeddings.ipynb
 </small>
+
+</textarea>
+        </section>
+
+
+        
+<section data-markdown>
+    <textarea data-template>
+### Resulting Plot of Airport Embedding 
+
+<img src='img/embeddings/2d_embedding_airlines.png' class='with-border' style="float: left" height="350px">
+<img src='img/embeddings/1d_embedding_airlines.png' class='with-border' style="float: right" height="350px">
+
     </textarea>
 </section>
+
+<section data-markdown>
+    <textarea data-template>
+## Part II
+
+### Advanced Challenges
+
+</textarea>
+</section>
+
+
 
 <section data-markdown>
     <textarea data-template>
@@ -573,15 +646,6 @@ plt.scatter(latent_x, latent_y, alpha=0.5, c=colors)
 <img src='img/insurance_ae.png'>
 
         
-</textarea>
-</section>
-
-<section data-markdown>
-    <textarea data-template>
-## Part II
-
-### Advanced Challenges
-
 </textarea>
 </section>
 

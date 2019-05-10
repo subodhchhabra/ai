@@ -1070,8 +1070,10 @@ _A chess engine was hard-core AI In the 90s_
 
 <script>
         $('.mlconf').remove();
-    
-        if (window.location.hostname.indexOf('localhost') !== -1 && !printMode) {
+        const isLocal = window.location.hostname.indexOf('localhost') !== -1 || 
+                    window.location.hostname.indexOf('127.0.0.1') !== -1;
+
+        if (isLocal && !printMode) {
             // only applies to local version
             $('.remote').remove();
         } else {
@@ -1084,7 +1086,7 @@ _A chess engine was hard-core AI In the 90s_
                 // do we want this???
                 $('li').addClass('fragment')
 
-            if (window.location.hostname.indexOf('localhost') !== -1 && !printMode) {
+            if (isLocal && !printMode) {
                 // only applies to presentation version
                 Reveal.configure({ controls: false });
             } else {

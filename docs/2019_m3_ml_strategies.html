@@ -727,7 +727,10 @@ https://www.leuphana.de/universitaet/personen/ulf-brefeld.html
 <script src="lib/jquery-2.2.4.js"></script>
 
 <script>
-        if (window.location.hostname.indexOf('localhost') !== -1 && !printMode) {
+        const isLocal = window.location.hostname.indexOf('localhost') !== -1 || 
+                    window.location.hostname.indexOf('127.0.0.1') !== -1;
+
+        if (isLocal && !printMode) {
         } else {
             // only applies to public version
             $('.todo').remove();
@@ -738,7 +741,7 @@ https://www.leuphana.de/universitaet/personen/ulf-brefeld.html
             // do we want this???
             $('li').addClass('fragment')
 
-            if (window.location.hostname.indexOf('localhost') !== -1 && !printMode) {
+            if (isLocal && !printMode) {
                 // only applies to presentation version
                 Reveal.configure({ controls: false });
             } else {
