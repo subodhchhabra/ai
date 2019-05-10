@@ -379,8 +379,6 @@ https://projector.tensorflow.org
 </textarea>
 </section>
 
-
-
 <section data-markdown>
     <textarea data-template>
 ### What you can do with Embeddings: Clustering on concepts
@@ -460,6 +458,7 @@ Accuracy
 </div>
 
 <div style="clear: both">
+Curves for 2-d embedding (1-d accuracy closer to 10%)
 <small>        
 https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/tf2/embeddings.ipynb
 </small>
@@ -516,9 +515,148 @@ https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/tf2
     </textarea>
 </section>
 
+
 <section data-markdown>
     <textarea data-template>
 ## Part II
+
+### Practical Challenges
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Returning to Example: Clustering on concepts
+
+<img src='img/embeddings/airline-embedded-cluster.png'>
+
+        </textarea>
+    </section>
+
+<section data-markdown>
+        <textarea data-template>
+## Issue
+### You would not want the data points to move around
+
+* Might happen when model changes
+* Or new data comes in
+* or simply with each training run, even without changes
+* people do not want to see drastic changes in visualizations when just a few data points change
+
+    </textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### How to stabilize the embedding
+
+* for the same data we would ike to see the same output every time
+  * simple: use initialization with seed
+  * will not work when model or data changes
+* even with same initialization training might not be deterministic
+  * can change from GPU to GPU
+  * same amount of EPOCHS, same BATCH_SIZE, same ordering of data, same version of framework
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Brainstorming: How to achieve stabilization when model architecture or data changes?
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Options: Stabilization
+
+1. Use initial model as starting point and _carefully_ retrain
+   * use small learning rate
+   * will work only if model architecture has not changed
+1. Train from scratch, but use difference to original latent representation as part of loss function
+   * Wow, but: How do we do this???
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Using second model head and loss
+
+* use old model to encode new/augmented data into latent space
+* train from scratch with new/augmented data and/or new model architecture
+* use difference to original latent representation as part of loss function
+* calibrate how much change you desire
+
+</textarea>
+</section>
+
+<section data-markdown class='todo'>
+    <textarea data-template>
+### Adding a second model head
+
+Hier links das Bild ohne 2. Head, rechts das neue
+
+</textarea>
+</section>
+
+
+<section data-markdown class='todo'>
+        <textarea data-template>
+### Network Setup 
+
+<pre><code contenteditable data-trim class="fragment line-numbers python">
+new_original_latent_representation = encoder.predict(x={'main_input': new_main, 'group_input': new_one_hot_groups})
+</code></pre>
+
+<pre><code contenteditable data-trim class="fragment line-numbers python">
+stability_output = encoded # just the latent space as output
+
+autoencoder = Model(inputs=[main_input, group_input], outputs=[main_output, group_output, stability_output])
+</code></pre>
+
+<pre><code contenteditable data-trim class="fragment line-numbers python">
+autoencoder.compile(optimizer=adam,
+              loss={'main_output': 'mae', 'group_output': 'categorical_crossentropy', 'encoder': 'mae' },
+              loss_weights={'main_output': 1., 'group_output': 100., 'encoder': 100.})
+</code></pre>
+
+<pre><code contenteditable data-trim class="fragment line-numbers python">
+autoencoder.fit(
+        x={'main_input': new_main, 'group_input': new_one_hot_groups},
+        y={'main_output': new_main, 'group_output': new_one_hot_groups, 'encoder': new_original_latent_representation})    
+</code></pre>
+
+</textarea>
+        </section>
+
+<!-- Letzter Teil, Wohin noch? -->
+
+<section data-markdown>
+    <textarea data-template>
+#### All all types of neural networks have a latent representation somewhere
+ 
+<img src='img/encoder-decoder-everywhere.png' height="530">
+
+<small style="font-size: large">
+https://medium.com/tensorflow/mit-deep-learning-basics-introduction-and-overview-with-tensorflow-355bcd26baf0
+</small>
+    </textarea>
+</section>
+
+<section data-markdown class="todo">
+        <textarea data-template>
+## Wrap Up
+    
+    </textarea>
+    </section>
+    
+
+<section data-markdown>
+    <textarea data-template>
+## Part III
 
 ### Advanced Challenges
 
