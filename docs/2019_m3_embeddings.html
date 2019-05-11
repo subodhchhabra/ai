@@ -167,22 +167,27 @@ Der erste Teil führt in die Grundlagen von Neural Embeddings anhand von Variati
 Diese haben ihre Anwendung vor allem im Bereich Bild und Text. Der zweite Teil beleuchtet die Herausforderung,
 Embeddings (Bild & Text) in Produktionsumgebung einzusetzen. Dabei berichtet der Referent über seine Erfahrungen im
 Umgang mit diesen Problemen.
+
+https://www.m3-konferenz.de/lecture.php?id=7724&source=0
  -->
 
-<section data-markdown class="preparation">
+<!-- <section data-markdown class="preparation">
         <textarea data-template>
 ### Preparation
 
     </textarea>
 </section>
-
-<section>
+ -->
+ <section>
         <h2>Neural Embeddings and Latent Representations</h2>
-        <h3>With TensorFlow</h3>
+        <h3>with TensorFlow</h3>
+        <p><a target="_blank" href="https://www.m3-konferenz.de/lecture.php?id=7724">
+            M3, Mannheim, Mai 2019
+        </a></p>
 <h4><a href="http://zeigermann.eu">Oliver Zeigermann</a> / <a href="http://twitter.com/djcordhose">@DJCordhose</a>
 </h4>
-<p><small><a href="https://djcordhose.github.io/ai/2019_m3_embeddings.html">
-https://djcordhose.github.io/ai/2019_m3_embeddings.html
+<p><small><a href="http://bit.ly/m3-embeddings">
+http://bit.ly/m3-embeddings
 </a></small></p>
 </section>
 
@@ -529,7 +534,7 @@ https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/tf2
     <textarea data-template>
 ### Returning to Example: Clustering on concepts
 
-<img src='img/embeddings/airline-embedded-cluster.png'>
+<img src='img/embeddings/cluster-original.png' height="550px">
 
         </textarea>
     </section>
@@ -560,6 +565,25 @@ https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/tf2
 
 </textarea>
 </section>
+
+<section data-markdown transition='none'>
+    <textarea data-template>
+### Clustering original
+
+<img src='img/embeddings/cluster-original.png' height="550px">
+
+        </textarea>
+    </section>
+
+<section data-markdown transition='none'>
+    <textarea data-template>
+### Clustering same seed, same model
+
+<img src='img/embeddings/clsutering-same-seed.png' height="550px">
+
+        </textarea>
+    </section>
+
 
 <section data-markdown>
     <textarea data-template>
@@ -593,46 +617,146 @@ https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/tf2
 </textarea>
 </section>
 
-<section data-markdown class='todo'>
+<section data-markdown transition='none'>
     <textarea data-template>
 ### Adding a second model head
 
-Hier links das Bild ohne 2. Head, rechts das neue
+<img src='img/embeddings/nn-airlines-extened.jpg'>
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Adding a second model head
+
+<img src='img/embeddings/nn-airlines-heads.jpg'>
 
 </textarea>
 </section>
 
 
-<section data-markdown class='todo'>
+<section data-markdown>
         <textarea data-template>
 ### Network Setup 
 
 <pre><code contenteditable data-trim class="fragment line-numbers python">
-new_original_latent_representation = encoder.predict(x={'main_input': new_main, 'group_input': new_one_hot_groups})
+# changed model using functional API
+# https://keras.io/getting-started/functional-api-guide/
+
+x = Dense(units=50, ...)(x)
+# second dense layer
+x = Dense(units=50, ...)(x)
+# ...
+# less units (25 instead of 50)
+x = SimpleRNN(units=25, ...)(x)
 </code></pre>
 
 <pre><code contenteditable data-trim class="fragment line-numbers python">
-stability_output = encoded # just the latent space as output
-
-autoencoder = Model(inputs=[main_input, group_input], outputs=[main_output, group_output, stability_output])
+# Head 1: main_output, Head 2: embedding
+model = Model(inputs=main_input, outputs=[main_output, embedding])
 </code></pre>
 
 <pre><code contenteditable data-trim class="fragment line-numbers python">
-autoencoder.compile(optimizer=adam,
-              loss={'main_output': 'mae', 'group_output': 'categorical_crossentropy', 'encoder': 'mae' },
-              loss_weights={'main_output': 1., 'group_output': 100., 'encoder': 100.})
+model.compile(loss={ 'main_output': 'categorical_crossentropy', 
+                     'embedding': 'mae' },
+              loss_weights={'main_output': .1, 'embedding': 1.})
 </code></pre>
 
 <pre><code contenteditable data-trim class="fragment line-numbers python">
-autoencoder.fit(
-        x={'main_input': new_main, 'group_input': new_one_hot_groups},
-        y={'main_output': new_main, 'group_output': new_one_hot_groups, 'encoder': new_original_latent_representation})    
+model.fit(x=Xy={'main_output': Y, 'embedding': original_embeddings})
 </code></pre>
 
+<small>
+https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/tf2/embeddings-retrain.ipynb
+</small>
 </textarea>
         </section>
 
+<section data-markdown>
+        <textarea data-template>
+### Model still trains well
+
+<div style="float: left">
+<img src='img/embeddings/multi-head-losses.png' height="350px"><br>
+Losses
+</div>
+<div style="float: right" >
+<img src='img/embeddings/main-output-accuracy.png' height="350px"><br>
+Accuracy on Main Head
+</div>
+
+</textarea>
+</section>
+
+
+<section data-markdown transition='none'>
+    <textarea data-template>
+### Clustering original
+
+<img src='img/embeddings/cluster-original.png' height="550px">
+
+        </textarea>
+    </section>
+
+<section data-markdown transition='none'>
+    <textarea data-template>
+### Clustering Stabilized
+
+<img src='img/embeddings/clustering-stabelized.png' height="550px">
+
+        </textarea>
+    </section>
+
+    <section data-markdown transition='none'>
+    <textarea data-template>
+### Clustering Unstabilized
+
+<img src='img/embeddings/clsutering-same-seed.png' height="550px">
+
+        </textarea>
+    </section>
+
+<section data-markdown>
+    <textarea data-template>
+### How to deal with additional data?
+
+* create the original embeddings on new/augmented/updated data
+* use that on the old/new/updated model architecture
+</textarea>
+</section>
+
+
 <!-- Letzter Teil, Wohin noch? -->
+
+<section data-markdown>
+    <textarea data-template>
+## This works for all kinds of latent representations
+    </textarea>
+</section>
+
+
+<section data-markdown>
+    <textarea data-template>
+### Like Autoencoders 
+
+<img src='img/autoencoder_schema.jpg'>
+
+<small style="font-size: large">
+https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/2019_tf/autoencoders_tabular.ipynb
+<br>
+https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/2019_tf/autoencoders_stabilize.ipynb
+
+</small>
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+## But where do we have latent representations?
+    </textarea>
+</section>
 
 <section data-markdown>
     <textarea data-template>
@@ -646,15 +770,27 @@ https://medium.com/tensorflow/mit-deep-learning-basics-introduction-and-overview
     </textarea>
 </section>
 
-<section data-markdown class="todo">
-        <textarea data-template>
-## Wrap Up
-    
-    </textarea>
+<section>
+        <h2>Wrap Up</h2>
+        <em>Neural Embeddings and Latent Representations can turn any category into semantic numbers</em>
+        <ul>
+            <li class="fragment">You will need training data carrying semantic information
+            <li class="fragment">Using the idea of latent representations you can stabilize the result of any neural network
+        </ul>
+        <p>
+                <em>Neural Embeddings and Latent Representations with TensorFlow</em>
+            <br>
+            <br>
+            <small>
+        <a href="http://zeigermann.eu">Oliver Zeigermann</a> / <a href="http://twitter.com/djcordhose">@DJCordhose</a>
+            <br>
+    <a href="http://bit.ly/m3-embeddings">
+        http://bit.ly/m3-embeddings</a>
+    </small>
+        </p>
     </section>
-    
 
-<section data-markdown>
+<!-- <section data-markdown>
     <textarea data-template>
 ## Part III
 
@@ -715,7 +851,7 @@ https://medium.com/tensorflow/mit-deep-learning-basics-introduction-and-overview
     <textarea data-template>
 ### Interative Exercise: Sketch a network for an Autoencoder on Tabular Data
 
-<!-- <img src='img/sketch/sketch_idea_embedding.png' height="550px"> -->
+<img src='img/sketch/sketch_idea_embedding.png' height="550px">
 
 </textarea>
 </section>
@@ -1040,7 +1176,7 @@ autoencoder.fit(
         
 </textarea>
 </section>
-
+ -->
 
     </div>
 
