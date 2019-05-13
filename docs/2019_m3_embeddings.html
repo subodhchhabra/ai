@@ -171,13 +171,15 @@ Umgang mit diesen Problemen.
 https://www.m3-konferenz.de/lecture.php?id=7724&source=0
  -->
 
-<!-- <section data-markdown class="preparation">
+<section data-markdown class="preparation">
         <textarea data-template>
 ### Preparation
 
+Öffnen und schonmal durchgehen
+* http://bryanlohjy.gitlab.io/spacesheet/word2vec.html
     </textarea>
 </section>
- -->
+
  <section>
         <h2>Neural Embeddings and Latent Representations</h2>
         <h3>with TensorFlow</h3>
@@ -205,7 +207,7 @@ http://bit.ly/m3-embeddings
 ### What is an embedding?
 
 * In mathematics, an embedding is one instance of some mathematical structure contained within another instance
-* Practically, we often refer to embeddings as mapping of a category to a vector of numbers
+* Practically, we often refer to embeddings as mapping of a category to a vector of numbers
 * E.g. Word embedding is the collective name for techniques where words or phrases from the vocabulary are mapped to vectors of real numbers
 
 https://en.wikipedia.org/wiki/Embedding
@@ -478,6 +480,7 @@ https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/tf2
 * Model should train, i.e. loss should go down
 * If it does not you might do things to hidden layers
 * Typically we do not get good accuracy
+* But this is not what we are after
 * All training needs to go through bottleneck of embedding
 * Thus we hope this will be packed with all the good semantics
 
@@ -512,7 +515,7 @@ https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/tf2
         
 <section data-markdown>
     <textarea data-template>
-### Resulting Plot of Airport Embedding 
+### Resulting Plot of Airline Embedding 
 
 <img src='img/embeddings/2d_embedding_airlines.png' class='with-border' style="float: left" height="350px">
 <img src='img/embeddings/1d_embedding_airlines.png' class='with-border' style="float: right" height="350px">
@@ -577,7 +580,7 @@ https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/tf2
 
 <section data-markdown transition='none'>
     <textarea data-template>
-### Clustering same seed, same model
+### Clustering same seed, same everthing
 
 <img src='img/embeddings/clsutering-same-seed.png' height="550px">
 
@@ -587,7 +590,7 @@ https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/tf2
 
 <section data-markdown>
     <textarea data-template>
-### Brainstorming: How to achieve stabilization when model architecture or data changes?
+### Brainstorming: How to achieve stabilization when model architecture and/or data changes?
 
 </textarea>
 </section>
@@ -600,7 +603,8 @@ https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/tf2
    * use small learning rate
    * will work only if model architecture has not changed
 1. Train from scratch, but use difference to original latent representation as part of loss function
-   * Wow, but: How do we do this???
+   * Wow, sounds promising, as it should work under all circumstances
+   * but: How do we do this???
 
 </textarea>
 </section>
@@ -609,10 +613,11 @@ https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/tf2
     <textarea data-template>
 ### Using second model head and loss
 
-* use old model to encode new/augmented data into latent space
-* train from scratch with new/augmented data and/or new model architecture
-* use difference to original latent representation as part of loss function
-* calibrate how much change you desire
+1. use old model to encode new/augmented data into latent space
+1. remember those latent representations
+1. train from scratch with new/augmented data and/or new model architecture
+1. use difference to original latent representation as part of loss function
+1. calibrate how much change you desire
 
 </textarea>
 </section>
@@ -638,11 +643,10 @@ https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/tf2
 
 <section data-markdown>
         <textarea data-template>
-### Network Setup 
+### Functional API allows for all kinds of wiring
 
 <pre><code contenteditable data-trim class="fragment line-numbers python">
-# changed model using functional API
-# https://keras.io/getting-started/functional-api-guide/
+# changed model
 
 x = Dense(units=50, ...)(x)
 # second dense layer
@@ -664,10 +668,12 @@ model.compile(loss={ 'main_output': 'categorical_crossentropy',
 </code></pre>
 
 <pre><code contenteditable data-trim class="fragment line-numbers python">
-model.fit(x=Xy={'main_output': Y, 'embedding': original_embeddings})
+model.fit(x=X, y={'main_output': Y, 'embedding': original_embeddings})
 </code></pre>
 
 <small>
+https://keras.io/getting-started/functional-api-guide/
+<br>
 https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/tf2/embeddings-retrain.ipynb
 </small>
 </textarea>
@@ -721,7 +727,7 @@ Accuracy on Main Head
     <textarea data-template>
 ### How to deal with additional data?
 
-* create the original embeddings on new/augmented/updated data
+* create the additional embeddings on new/augmented/updated data using old model
 * use that on the old/new/updated model architecture
 </textarea>
 </section>
@@ -754,7 +760,7 @@ https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/201
 
 <section data-markdown>
     <textarea data-template>
-## But where do we have latent representations?
+## But isn't that just a small fraction of all network architectures?
     </textarea>
 </section>
 
@@ -762,7 +768,7 @@ https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/201
     <textarea data-template>
 #### All all types of neural networks have a latent representation somewhere
  
-<img src='img/encoder-decoder-everywhere.png' height="530">
+<img src='img/encoder-decoder-everywhere.png' height="530" class='fragment'>
 
 <small style="font-size: large">
 https://medium.com/tensorflow/mit-deep-learning-basics-introduction-and-overview-with-tensorflow-355bcd26baf0
@@ -775,6 +781,8 @@ https://medium.com/tensorflow/mit-deep-learning-basics-introduction-and-overview
         <em>Neural Embeddings and Latent Representations can turn any category into semantic numbers</em>
         <ul>
             <li class="fragment">You will need training data carrying semantic information
+            <li class="fragment">You can extract embeddings or use as part of complete network
+
             <li class="fragment">Using the idea of latent representations you can stabilize the result of any neural network
         </ul>
         <p>
