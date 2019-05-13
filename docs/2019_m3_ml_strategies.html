@@ -214,10 +214,19 @@ Load while there is internet
     </section>
 
         <section>
-        <h3>Data Set Insurance</h3>
+        <h3>Data Set: known number of car crashes per driver</h3>
         <img src="img/insurance/automobile-insurance.png">
     </section>
 
+<section data-markdown>
+    <textarea data-template>
+## Objective
+### Predicting Crash Risks for unknown drivers
+
+</textarea>
+</section>
+
+    
     <section>
             <h3>Manual Classification - red</h3>
             <img src="img/decision-boundaries/decision-boundaries-1.jpg">
@@ -247,47 +256,67 @@ How do different _Supervised_ Machine Learning strategies draw those boundaries 
 * This is not about which strategy is the best
 * Their best is found using Grid- or RandomSearch on CPU for Scikit-learn
 * Best for TensorFlow is found using manual experiment
+* Keras Tuner might fill that gap for TensorFlow 
+  * https://elie.net/talk/cutting-edge-tensorflow-keras-tuner-hypertuning-for-humans/
         </textarea>
     </section>
 
+<section data-markdown>
+    <textarea data-template>
+### Looking at the decision boundaries of some baselines first
+
+</textarea>
+</section>
+        
     <section>
-<h3>Code in Scikit-learn</h3>
-
-<p>Training</p>
-<pre><code contenteditable data-trim class="fragment line-numbers python">
-from sklearn.tree import DecisionTreeClassifier
-clf = DecisionTreeClassifier()
-clf.fit(X_train, y_train)
-            </code></pre>
-        
-<p>Prediction</p>
-<pre><code contenteditable data-trim class="fragment line-numbers python">
-y_pred = clf.predict(input)
-        </code></pre>
-
-<small>
-    <a href='https://scikit-learn.org/stable/modules/classes.html'>https://scikit-learn.org/stable/modules/classes.html</a>
-    <br>
-    <a href='https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/sklearn/overview.ipynb'>
-        https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/sklearn/overview.ipynb</a>
-</small>
-        </section>
-        
-        
-
-    <section>
-            <h3>Random - A Baseline</h3>
+            <h3>Decision Boundaries for Random Classifier</h3>
             <div class="fragment">
                     <img src="img/decision-boundaries/random.png">
-                    <small>It still gets 33% percents right</small>
+                    <small>still gets 33% right</small>
             
             </div>
     </section>
+
     <section>
-            <h3>Rule based approach - Another Baseline</h3>
+        <h3>Programmer's approach: Code Rules by Hand</h3>
+        <div class="fragment">
+        <pre><code contenteditable data-trim class="line-numbers python">
+if age < 25:
+    if speed > 140:
+        return red # young people, fast cars: high risk
+    else:
+        return yellow # young people: medium risk
+            </code></pre>
+        </div>
+        <div class="fragment">
+        <pre><code contenteditable data-trim class="line-numbers python">
+if age > 75:
+    return red # old people: high risk
+            </code></pre>
+        </div>
+        <div class="fragment">
+        <pre><code contenteditable data-trim class="line-numbers python">
+if miles_per_year > 30:
+    return red # a lot of driving: high risk
+if miles_per_year > 20:
+    return yellow #  a bit of driving: medium risk
+            </code></pre>
+        </div>
+        <div class="fragment">
+        <pre><code contenteditable data-trim class="line-numbers python">
+return green # otherwise: low risk
+            </code></pre>
+        </div>
+<p><small>
+    <a href='https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/sklearn/classic-code.ipynb>'>https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/sklearn/classic-code.ipynb</a>
+</small></p>
+    </section>
+
+    <section>
+            <h3>Decision Boundaries for Rule based Classifier</h3>
             <div class="fragment">
                     <img src="img/decision-boundaries/5-prog.png">
-        <small>Blocks</small>
+        <small>Blocks, 43% accuracy</small>
         </div>
     </section>
 
@@ -325,7 +354,7 @@ http://scikit-learn.org/stable/modules/tree.html#tree-algorithms-id3-c4-5-c5-0-a
 
     <section>
 <h3>Code</h3>
-
+        
 <p>Grid-Search</p>
 <pre><code contenteditable data-trim class="fragment line-numbers python">
 param_grid = {
@@ -446,7 +475,25 @@ clf = KNeighborsClassifier(n_neighbors=39, weights='uniform')
 
 ### Support Vector Machines (SVM)
 * SVMs used to be the hot stuff before neural networks stole the show
-* SVMs choose a small number of data points to decide where to draw the decision boundary, they are called the *support vectors*
+* SVMs choose a small number of data points to decide where to draw the decision boundary
+* those data points are called the *support vectors*
+* Can solve problems that linearly separable 
+</textarea>
+    </section>
+
+    <section data-markdown>
+            <textarea data-template>
+### Kernel Trick allows to solve problems that are not linearly separable
+
+<img src='img/svm-kernel-trick.jpg' height="400px">
+
+<small>
+https://youtu.be/3Xw6FKYP7e4
+<br>
+RBF kernel can make any transformation: https://en.wikipedia.org/wiki/Radial_basis_function_kernel
+</small>
+
+
 </textarea>
     </section>
 
@@ -579,9 +626,11 @@ Link: https://colab.research.google.com/github/djcordhose/ai/blob/master/noteboo
 
 <section data-markdown>
         <textarea data-template>
-### Bonus Track: Decision Boundaries im Profisfußball
+## Bonus Track: Decision Boundaries im Profifußball
 
-Arbeit von Stefan Kühn
+Ein überraschende Analogie
+
+### Arbeit von Stefan Kühn
             </textarea>
         </section>
 <!-- 
@@ -610,35 +659,9 @@ Advanced Movement Models: Probabilistic movement models and zones of control (Br
 </textarea>
         </section>
 
-        <section data-markdown>
-                <textarea data-template>
-### Voronoi-Zellen 
-        
-Wie Decision Boundaries bei KNN, n=1
-<img src='img/sport/football/knn-to-voronoi.png' height="450px">
-
-<small>
-Victor Lavrenko, https://www.youtube.com/watch?v=PGy1rATkViA    
-</small>
-        
-                    </textarea>
-                </section>
-        
- 
 <section data-markdown>
         <textarea data-template>
-### Voronoi-Zellen für Fußball
-
-* sind "statisch": nur Position
-* bieten Ansatz für statistische Vergleiche
-* wer kontrolliert wo die meiste Fläche?
-
-            </textarea>
-        </section>
-        
-<section data-markdown>
-        <textarea data-template>
-#### Initial Position
+#### Voronoi-Zellen auf dem Fußballfeld
 
 <img src='img/sport/football/voronoi1.png' height="500px">
 
@@ -663,6 +686,18 @@ https://pdfs.semanticscholar.org/2cc5/4a4530343bc83d2ea81a493423bd15a01526.pdf
         </section>
 
         <section data-markdown>
+                <textarea data-template>
+### Wie Decision Boundaries bei KNN, n=1
+<img src='img/sport/football/knn-to-voronoi.png' height="450px">
+
+<small>
+Victor Lavrenko, https://www.youtube.com/watch?v=PGy1rATkViA    
+</small>
+        
+                    </textarea>
+                </section>
+
+        <section data-markdown>
         <textarea data-template>
 ### Interaktive Version
 
@@ -676,7 +711,18 @@ http://durtal.github.io/interactives/Football-Voronoi/
             </textarea>
         </section>
 
+        
+<section data-markdown>
+        <textarea data-template>
+### Voronoi-Zellen für Fußball
 
+* sind "statisch": nur Position
+* bieten Ansatz für statistische Vergleiche
+* wer kontrolliert wo die meiste Fläche?
+
+            </textarea>
+        </section>
+        
         <section data-markdown>
         <textarea data-template>
 ### Ausblick: Advanced Movement Models
@@ -701,9 +747,8 @@ https://www.leuphana.de/universitaet/personen/ulf-brefeld.html
         <ul>
             <li class="fragment">Visualizing Decision Boundaries is great for your understanding
             <li class="fragment">Different strategies tend to have different decision boundaries
-            <li class="fragment">Classic Machine Learning might be all you need
-            <li class="fragment">Deep Neural Network are what you want when you do images, texts or sequences
-        </ul>
+            <li class="fragment">Decision Boundaries are useful concepts even outside the realm of machine learning
+                        </ul>
         <p>
                 <em>Einblick in ML-Verfahren mit Decision Boundaries</em>
             <br>
