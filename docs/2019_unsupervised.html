@@ -152,10 +152,11 @@
                     <textarea data-template>
 ### Preparation
 
-Notebooks noch mal ansehen:
-* Notebooks schon mal aufmachen
-* Projector Example T-SNE schon mal trainieren
-* GAN Playground nochmal durchgehen
+Öffnen und  nochmal durchgehen
+* http://setosa.io/ev/principal-component-analysis/
+* https://distill.pub/2016/misread-tsne/ (2 blobs)
+* https://projector.tensorflow.org (T-SNE schon mal trainieren)
+* https://poloclub.github.io/ganlab/
                         </textarea>
                         </section>
 
@@ -348,6 +349,22 @@ https://colab.research.google.com/github/djcordhose/data-viz/blob/master/noteboo
             <p>Most Basic Algorithm</p>
         </section>
 
+        <section data-markdown>
+            <textarea data-template>
+### Let's try K-Means on this example
+
+<img src="img/unsupervised/blobs.png" height="550px">
+    
+            </textarea>
+        </section>
+
+        <section data-markdown>
+            <textarea data-template>
+<img src="img/unsupervised/kmeans-blobs.jpg">
+    
+            </textarea>
+        </section>
+
         <section>
             <h3>What do you think is the fundamental weakness of this approach?</h3>            
         </section>
@@ -443,6 +460,10 @@ http://scikit-learn.org/stable/modules/clustering.html
 
 <section>
     <h3>A quick guess: What is the crucial factor here?</h3>
+    <ul>
+        <li>number of neighbors required to be a core member</li>
+        <li>max distance to neighbor</li>
+    </ul>
 </section>
 
 <section>
@@ -524,7 +545,7 @@ http://setosa.io/ev/principal-component-analysis/
     </section>
 
 
-<section>
+<!-- <section>
 <h3>Typical Use Case: Dimensionality Reduction</h3>
 <div style="float: left">
         <img src="img/unsupervised/pca-example.png" height="500px">
@@ -537,7 +558,7 @@ http://setosa.io/ev/principal-component-analysis/
 https://colab.research.google.com/github/djcordhose/data-viz/blob/master/notebooks/5-1-pca.ipynb
 </a>
 </small>    
-        </section>
+        </section> -->
     
         <section data-markdown>
             <textarea data-template>
@@ -622,6 +643,43 @@ https://en.wikipedia.org/wiki/Perplexity
 <small>
 https://distill.pub/2016/misread-tsne/
 </small>
+</textarea>
+</section>
+
+<section data-markdown>
+        <textarea data-template>
+### Example using 2 Blobs in n-dim
+
+<img src="img/unsupervised/2-blobs.png" height="500px">
+
+</textarea>
+</section>
+
+<section data-markdown>
+        <textarea data-template>
+### High Perplexity
+
+<a href='https://distill.pub/2016/misread-tsne/#perplexity=100&epsilon=5&demo=1&demoParams=50,2'>
+<img src="img/unsupervised/t-sne-perplexity-100.png" height="500px">
+</a>
+<small>
+Everything is related to everything, no structure revealed    
+</small>
+</textarea>
+</section>
+
+<section data-markdown>
+        <textarea data-template>
+### Low Perplexity
+
+<a href='https://distill.pub/2016/misread-tsne/#perplexity=2&epsilon=5&demo=1&demoParams=50,2'>
+<img src="img/unsupervised/t-sne-perplexity-2.png" height="500px">
+</a>
+
+<small>
+Local proximity valued far too much, details revealed    
+</small>
+
 </textarea>
 </section>
 
