@@ -189,34 +189,6 @@ but you do not need any knowledge of it. Knowledge of any Object oriented langua
     </textarea>
 </section> -->
 
-<!-- <section data-markdown class="todo">
-        <textarea data-template>
-- Embeddings: Maths with Word2vec in Python
-  - https://towardsdatascience.com/machine-learning-word-embedding-sentiment-classification-using-keras-b83c28087456
-  - https://www.kdnuggets.com/2018/04/robust-word2vec-models-gensim.html 
-            </textarea>
-        </section> -->
-
-<!-- <section data-markdown class="todo">
-        <textarea data-template>
-- Deep Learning show images of more and more abstract feature abstraction and link to viz
-- Precision Recall f1 für Sentiment Analyse
-  - http://scikit-learn.org/stable/modules/generated/sklearn.metrics.classification_report.html
-- Hyperparameter Search: https://github.com/autonomio/talos/blob/master/README.md  
-- Gradient Descent: https://twitter.com/_brohrer_/status/1050013482693926913
-- Optional image segmentation: https://github.com/bonlime/keras-deeplab-v3-plus/blob/master/README.md
-            </textarea>
-        </section> -->
-
-<section data-markdown class="olli">
-        <textarea data-template>
-* Gemeinsame Entwurfs-Skizze vorbereiten für Netzwerk-Entwurf   
-        </textarea>
-    </section>
-
-
-
-
 <section data-markdown style="font-size: xx-large" class="no-fragment"">
     <textarea data-template>
 ### Wenn ihr euch langweilt
@@ -246,17 +218,6 @@ _Frag deinen Nachbarn oder Olli wenn du Hilfe brauchst_
 http://bit.ly/m3-tf2
 </a></small></p>
 </section>
-
-<!-- <section data-markdown class="todo">
-        <textarea data-template>
-Advanced und nice to have
-
-* Cat Crossebteopie erklären können
-* https://towardsdatascience.com/back-propagation-demystified-in-7-minutes-4294d71a04d7 
-* tf.function: https://twitter.com/aureliengeron/status/1102792760875089920
-
-        </textarea>
-    </section> -->
 
 <section data-markdown class="local">
     <textarea data-template>
@@ -315,6 +276,12 @@ https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/tf2
 ### Netzwerke für strukturierte Daten (Fully Connected Layers)
 </textarea>
 </section>
+
+<section data-markdown class="olli">
+        <textarea data-template>
+* Gemeinsame Entwurfs-Skizze vorbereiten für Netzwerk-Entwurf   
+        </textarea>
+    </section>
 
 <section>
         <h3>Example: Customer Data - Risk of Accidents</h3>
@@ -833,7 +800,7 @@ if not
               </textarea>
                 </section>
 
-<section data-markdown style='font-size: xx-large'>
+<section data-markdown style='font-size: xx-large'  class='advanced'>
     <textarea data-template>
 ### How big should your network be
 
@@ -855,7 +822,7 @@ https://arxiv.org/abs/1611.03530
     </textarea>
 </section>
 
-<section data-markdown style='font-size: xx-large'>
+<section data-markdown style='font-size: xx-large' class='advanced'>
     <textarea data-template>
 ### Local minima?
 
@@ -936,7 +903,7 @@ They lack capability to deal with sequential data, which is required to predict 
             </textarea>
             </section>
 
-            <section data-markdown>
+            <section data-markdown class='advanced'>
         <textarea data-template>
 ### Solution: Recurrent Neural Networks (RNNs)
 
@@ -967,7 +934,7 @@ http://colah.github.io/posts/2015-08-Understanding-LSTMs/
     <section data-markdown>
         <textarea data-template>
 ### Unrolling the loop
-#### Becomes a truly deep feed-forward network!
+
 <img src='img/nlp/colah/RNN-unrolled.png'>
 
 <small>
@@ -1069,6 +1036,7 @@ https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/tf2
 ### Main issues with RNNs
 
 _Vanishing or exploding gradient problem:_
+
 * Each step in training applies the same weights to the output, also in back-propagation  
 * The further we move backwards, the bigger (explodes) or smaller (vanishes) the gradient becomes
 * Multiplying many numbers <1 closes in on 0 (vanshing) and the same for >1 approaches infinty (exploding)
@@ -1085,6 +1053,7 @@ https://towardsdatascience.com/learn-how-recurrent-neural-networks-work-84e975fe
 
 _Effectively long term memory does not work:_
 
+* there is no training, because you are either on a plateau or in front of a wall
 * RNNs experiences difficulty in memorising words from far away in the sequence
 * Predictions based on most recent words only
 
@@ -1451,7 +1420,10 @@ https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/tf2
 ### Challenges for Images Recognition
 
 1. Feeding all pixels into Dense Layers will work, but slow and many parameters 
-1. Manual Feature extraction from images is tedious and error prone
+1. Manual Feature extraction from images might work, but
+   * is tedious and error prone
+   * requires domain knowledge
+   * needs frequent manual updates
 1. Convolutional networks will learn feature extraction before passing few features to Dense Layer Classifiers
 
 <small>
@@ -1584,7 +1556,7 @@ _The classifier more or less is what we used for our previous example_
 
             <p><small>Convolution</small></p>
             <pre><code contenteditable data-trim class="fragment line-numbers javascript">
-    model.add(Conv2D(filters=32, padding='same', activation='relu'))
+    model.add(Conv2D(filters=32, activation='relu'))
                 </code></pre>
 
                 <p><small>Max Pooling</small></p>
@@ -1736,7 +1708,7 @@ _Teil 4_
 
 <section data-markdown>
         <textarea data-template>
-### Time for the bad news
+### Time for some bad news
 
 <img src='img/weird-val-accuracy.png'>
 
@@ -1748,7 +1720,7 @@ _Teil 4_
         <textarea data-template>
 ### The real world looks different
 
-* All the shown examples are highly idealised
+All the shown examples are highly idealised
 * Training behaves much less graceful in the real world
   * it does not train linearly
   * sudden jumps in loss can occur any time
@@ -1756,7 +1728,7 @@ _Teil 4_
   * might ruin your night sleep and family live (let me just quickly check on the training progress) 
 * Real world data might not match training data
 * You might not even know the real training data
-
+* Struggle to find/get good quality data in the first place 
             </textarea>
         </section>
         
@@ -1821,9 +1793,6 @@ https://arxiv.org/abs/1703.03400
 </textarea>
 </section>
 
-
-
-
 <section data-markdown>
         <textarea data-template>
 ### Finding data sets to play with
@@ -1836,6 +1805,13 @@ https://arxiv.org/abs/1703.03400
 </textarea>
 </section>
 
+<section data-markdown>
+        <textarea data-template>
+### What else does M3 has to offer?
+
+https://www.m3-konferenz.de/programm.php
+</textarea>
+</section>
 
     </div>
 
@@ -1846,6 +1822,8 @@ https://arxiv.org/abs/1703.03400
 <script src="lib/jquery-2.2.4.js"></script>
 
 <script>
+        $('.advanced').remove();
+
         const isLocal = window.location.hostname.indexOf('localhost') !== -1 || 
                     window.location.hostname.indexOf('127.0.0.1') !== -1;
 
