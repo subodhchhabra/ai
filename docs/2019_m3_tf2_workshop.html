@@ -340,7 +340,20 @@ https://ranzato.github.io/publications/tutorial_deep_unsup_learning_part1_NeurIP
     <textarea data-template>
 ### Sample Data
 
-<img src='img/df_head.jpg' height="500">
+<div style="max-width: 50%; float: left;">
+    <img src='img/df_head.jpg' height="450">
+</div>
+<div style="max-width: 50%; float: right;">
+
+    <br>
+    <br>
+    <br>
+    <ul>
+        <li>0 - red: many accidents</li>
+        <li>1 - green: few or no accidents</li>
+        <li>2 - yellow: in the middle</li>
+    </ul>
+</div>
 
 </textarea>
 </section>
@@ -431,7 +444,7 @@ model.add(Dense(units=3, activation='softmax'))
 </p>
 </section>
 
-<section data-markdown>
+<!-- <section data-markdown>
     <textarea data-template>
 ### Intuition for the learning process
 
@@ -451,7 +464,7 @@ https://cs.stanford.edu/people/karpathy/convnetjs/
 https://brohrer.github.io/what_nns_learn.html
 </small>
 </textarea>
-</section>
+</section> -->
 
 
 <section>
@@ -472,26 +485,52 @@ Total params: 353
 Trainable params: 353
 Non-trainable params: 0
 _________________________________________________________________</code></pre>
+
+<small>
+<em>Can you explain the number of parameters for each layer for the model?</em>
+</small>
 </section>
 
+<section data-markdown class='todo'>
+        <textarea data-template>
+### How do we determine the loss?
+
+<pre><code contenteditable data-trim class="line-numbers python">
+model.compile(loss='sparse_categorical_crossentropy',
+              optimizer='adam')
+</code></pre>
+
+<pre><code contenteditable data-trim class="line-numbers python">
+model.fit(X, y)</code></pre>
+
+    </textarea>
+    </section>
 
 <section data-markdown>
         <textarea data-template>
-### Exercise
+## Exercise
 
-<img src='img/insurance/neuron213.jpg' height="350px">
+_Create the TensorFlow model and at make it train_
 
-_Can you explain the number of parameters for each layer for the model described in the previous slide?_
+* We will start with the notebook provided and go though it step by step
+* Write down a model that trains at least a bit
+* How many hidden layers?
+* How many neurons per layer?
+* How good can you get?
 
-</textarea>
-</section>
+<small>
+https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/tf2/nn-model.ipynb
+</small>
+    </textarea>
+    </section>
+
 
     
 <section data-markdown>
         <textarea data-template>
 ### Generalization
 
-_We do not have any idea how well our model performs, yet_
+_We do not have any idea how well our model performs in the real world, yet_
 
 </textarea>
 </section>
@@ -513,7 +552,7 @@ _We do not have any idea how well our model performs, yet_
     
 <section data-markdown>
         <textarea data-template>
-### Metrics
+### Evaluation Metrics
 
 <script type="math/tex; mode=display">
 accuracy = {\frac {correct\;predictions}{number\;of\;samples}}
@@ -542,30 +581,17 @@ _often given for training and test data separately_
     </textarea>
     </section>
 
-<!-- <section data-markdown>
+<section data-markdown>
         <textarea data-template>
-## Notebook            
-### Split data sets, train the neural network and evaluate results
+### Splitting data sets
+
+<pre><code contenteditable data-trim class="line-numbers python">
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)
+</code></pre>
 
 <small>
 https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/tf2/nn-training.ipynb
-</small>
-    </textarea>
-    </section> -->
-
-<section data-markdown>
-        <textarea data-template>
-## Exercise
-
-_Train the model_
-
-* First, we go through the notebook as it is
-* Try to improve the model
-* How well does it perform?
-* Any idea why it performs the way it does?
-
-<small>
-https://colab.research.google.com/github/djcordhose/ai/blob/master/notebooks/t2/nn-training.ipynb
 </small>
     </textarea>
     </section>
