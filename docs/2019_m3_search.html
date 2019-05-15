@@ -192,95 +192,6 @@ und auch das Weltklasse-Schachprogramm Stochfish schlägt.
 </a></small></p>
 </section>
 
-<section data-markdown class="todo">
-        <textarea data-template>
-
-https://djcordhose.github.io/ai/2019_m3_search.html#/
-
-<img src='img/tmp/schach-todo.png'>
-</textarea>
-</section>
-
-<section data-markdown>
-        <textarea data-template>
-### Lc0 Wins Computer Chess Championship, Makes History
-
-<em>The machine-learning chess engine Lc0 won the Chess.com Computer Chess Championship last weekend, 
-    making history as the first neural-network project to take the title.</em> 
-
-<em>Lc0 placed ahead of runner-up Stockfish (162/300) in the blitz finals, 
-    the first time in eight Computer Chess Championships that Stockfish didn't win the tournament</em>
-
-https://www.chess.com/news/view/lc0-wins-computer-chess-championship-makes-history
-</textarea>
-</section>
-
-<section data-markdown>
-        <textarea data-template>
-### Leela Chess Zero = LC0
-
-_Open Source Implementation and collective training based on the ideas presented in AlphaZero_
-
-<small>
-https://en.wikipedia.org/wiki/Leela_Chess_Zero
-<br>
-https://lczero.org/
-<br>
-https://github.com/LeelaChessZero/lc0
-<br>
-https://en.wikipedia.org/wiki/AlphaZero
-</small>
-
-</textarea>
-</section>
-
-<section data-markdown class="mlconf todo">
-    <textarea data-template>
-
-https://www.chess.com/article/view/live-now-neural-nakamura-analyzes-top-neural-network-computer-chess-games
-</textarea>
-</section>
-
-<section data-markdown class="preparation">
-        <textarea data-template>
-Spiel ganz durchlaufen lassen in fast und bisschen herum labern
-
-
-
-Move 31:
-- White builds up a very strong queen side and simply does not care too much for blacks small plan to steal a pawn
-
-Move 32:
-- Instead it makes its offensive position much stronger
-
-Move 36:
-- A surprising but very powerful move
-
-After that endgame: black resigns
-</textarea>
-</section>
-
-
-
-<section data-markdown>
-        <textarea data-template>
-### Postion for Material
-
-<small>
-White: LCZero v20.2-32930, Black Stockfish 190203
-</small>
-
-<video src='img/search/leela-vs-stockfish-position-for-material.mp4' controls height="400px" muted></video>
-
-<small>
-https://www.youtube.com/watch?v=zzfYRxL2lXU
-<br>
-https://www.chessworld.net/chessclubs/ltpgnviewer32/ltpgnboard.asp?GameID=5024214
-</small>
-
-</textarea>
-</section>
-
 <section data-markdown>
     <textarea data-template>
 ### Our Story
@@ -340,7 +251,18 @@ terrain = [
 </section>
         
 
-<section data-markdown>
+<section data-markdown class="local">
+        <textarea data-template>
+### How to find a path
+
+<img src='img/search/expansion1.png' height="500px">
+
+<small>By incrementally expanding possibilities</small>
+
+</textarea>
+        </section>
+
+<section data-markdown class="remote">
     <textarea data-template>
 ### How to find a path
 
@@ -495,7 +417,7 @@ http://theory.stanford.edu/~amitp/GameProgramming/
 </p>
 </section>                                
 
-<section data-markdown>
+<!-- <section data-markdown>
     <textarea data-template>
 ### Revisiting different strategies
 
@@ -503,7 +425,7 @@ http://theory.stanford.edu/~amitp/GameProgramming/
 
 <small>By incrementally expanding possibilities</small>
 </textarea>
-</section>
+</section> -->
     
         <section data-markdown>
     <textarea data-template>
@@ -579,7 +501,6 @@ To compare
 _Full, exhaustive search is mostly just not feasible_
 * Limit in Depth: Mini Max / Alpha Beta Pruning
 * Limit in Breadth: Monte-Carlo Tree Search
-  * Do we have a evaluation heuristic? No? MCTS
     </textarea>
     </section>
     
@@ -728,6 +649,85 @@ https://en.wikipedia.org/wiki/Stockfish_(chess)
 </section>
 
 <section data-markdown>
+        <textarea data-template>
+### Lc0 Wins Computer Chess Championship, Makes History
+
+<em>The machine-learning chess engine Lc0 won the Chess.com Computer Chess Championship last weekend, 
+    making history as the first neural-network project to take the title.</em> 
+
+<em>Lc0 placed ahead of runner-up Stockfish (162/300) in the blitz finals, 
+    the first time in eight Computer Chess Championships that Stockfish didn't win the tournament</em>
+
+https://www.chess.com/news/view/lc0-wins-computer-chess-championship-makes-history
+</textarea>
+</section>
+
+<section data-markdown>
+        <textarea data-template>
+### Leela Chess Zero = LC0
+
+_Open Source Implementation and collective training based on the ideas presented in AlphaZero_
+
+<small>
+https://en.wikipedia.org/wiki/Leela_Chess_Zero
+<br>
+https://lczero.org/
+<br>
+https://github.com/LeelaChessZero/lc0
+<br>
+https://en.wikipedia.org/wiki/AlphaZero
+</small>
+
+</textarea>
+</section>
+
+<section data-markdown class="mlconf todo">
+    <textarea data-template>
+
+https://www.chess.com/article/view/live-now-neural-nakamura-analyzes-top-neural-network-computer-chess-games
+</textarea>
+</section>
+
+<!-- <section data-markdown class="preparation">
+        <textarea data-template>
+Spiel ganz durchlaufen lassen in fast und bisschen herum labern
+
+
+
+Move 31:
+- White builds up a very strong queen side and simply does not care too much for blacks small plan to steal a pawn
+
+Move 32:
+- Instead it makes its offensive position much stronger
+
+Move 36:
+- A surprising but very powerful move
+
+After that endgame: black resigns
+</textarea>
+</section> -->
+
+<section data-markdown>
+        <textarea data-template>
+### Postion for Material
+
+<small>
+White: LCZero v20.2-32930, Black Stockfish 190203
+</small>
+
+<video src='img/search/leela-vs-stockfish-position-for-material.mp4' controls height="400px" muted></video>
+
+<small>
+https://www.youtube.com/watch?v=zzfYRxL2lXU
+<br>
+https://www.chessworld.net/chessclubs/ltpgnviewer32/ltpgnboard.asp?GameID=5024214
+</small>
+
+</textarea>
+</section>
+
+
+<section data-markdown>
     <textarea data-template>
 ## Part III
 ### Monte Carlo Methods
@@ -790,7 +790,34 @@ https://twitter.com/Aella_Girl/status/1070119419353870336
     </textarea>
     </section>
 
-            <section data-markdown>
+    <section data-markdown>
+            <textarea data-template>
+### Monte Carlo Game Search
+
+* Start from a next move beginning from an initial state
+* For each next move
+* Play a game to the _end_ using a random set of moves
+* Repeat for a number of times
+* Count number of times for win, loose, draw
+* Choose the move with the best probability for a win
+
+<small>
+Choose number of random experiment wisely based on branching factor
+https://en.wikipedia.org/wiki/Monte_Carlo_tree_search#Pure_Monte_Carlo_game_search
+</small>
+        </textarea>
+        </section>
+
+<section data-markdown class='local'>
+        <textarea data-template>
+### Monte Carlo Game Search on Tic-Tac-Toe
+
+<img src='img/search/monte_carlo_game_search_1.png' height="500px">
+
+</textarea>
+        </section>
+
+            <section data-markdown class="remote">
                     <textarea data-template>
 ### Monte Carlo Game Search
 
@@ -799,24 +826,12 @@ https://twitter.com/Aella_Girl/status/1070119419353870336
                         </section>
 
 
-        <section data-markdown class="remote">
+            <section data-markdown>
                 <textarea data-template>
-### Algorithm Monte Carlo Game Search
-
-* Start from a next move beginning from an initial state
-* For each next move
-    * Play a game to the _end_ using a random set of moves
-    * Repeat for a number of times
-    * Count number of times for win, loose, draw
-* Choose the move with the best probability for a win
-
-<small>
-Choose number of random experiment wisely based on branching factor
-https://en.wikipedia.org/wiki/Monte_Carlo_tree_search#Pure_Monte_Carlo_game_search
-</small>
-            </textarea>
+## Next Level Search
+                </textarea>
             </section>
-        
+                
                         
         <section data-markdown>
             <textarea data-template>
@@ -970,7 +985,7 @@ _core difference: now we are have a heuristic_
 
 * choose child to expand using heuristic of game state (instead of random expansion phase)
 * determined by Convolutional Neural Network (ResNet)
-* simulation phase by playing against best known heuristic
+* simulation phase by playing against best known previous version of itself
 * CNN trained by which state leads to a win
 * CNN also gives estimation of which player is going to win
 * no other information goes into training
