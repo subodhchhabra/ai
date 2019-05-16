@@ -171,7 +171,7 @@ Aber mit Preisen!
     </textarea>
     </section>
 
-    <section data-markdown class="todo">
+    <!-- <section data-markdown class="todo">
             <textarea data-template>
 * Quellen erst später einblenden, damit keiner Googlen kann
 * Count Down Web Component bauen
@@ -186,7 +186,7 @@ Aber mit Preisen!
     * Wizball: https://www.youtube.com/watch?v=6VYP5pLBnZ8
                 </textarea>
             </section>
-                
+                 -->
     <section data-markdown>
     <textarea data-template>
 ### Wie funktioniert es?
@@ -205,12 +205,13 @@ Aber mit Preisen!
             <textarea data-template>
 ### Nach welcher Programmiersprache wird zur Zeit am meisten auf Stackoverflow gesucht?  (die schnellste richtige Antwort zählt)
 
+https://twitter.com/vronnie911/status/1125268670324695041
 
 
 </textarea>
 </section>
 
-    <section data-markdown class="todo m3 code">
+    <!-- <section data-markdown class="todo m3 code">
             <textarea data-template>
 ### Welcher Code funktioniert?
         
@@ -221,14 +222,12 @@ Aber mit Preisen!
     y = tf.matmul(x, w) + b
 </textarea>
 </section>
-
+ -->
 <section data-markdown  class="data-viz">
         <textarea data-template>
 ### Welche Stadt hatte als erste mehr als 10 Millionen Einwohner? (die schnellste richtige Antwort zählt)
 
-<small class="solution">
-https://twitter.com/vronnie911/status/1125268670324695041
-</small>
+https://twitter.com/i/status/1107595419557740549
 </textarea>
 </section>
 
@@ -338,7 +337,7 @@ https://research.google.com/bigpicture/elements/
 </textarea>
 </section>
 
-<section data-markdown  class="data-viz">
+<!-- <section data-markdown  class="data-viz">
     <textarea data-template>
 ### Welche Land hat Stand 2016 den höchsten Ausstoß an Treibhausgasen? (die schnellste richtige Antwort zählt)
 
@@ -348,16 +347,15 @@ https://twitter.com/i/status/1114076320328290305
 https://twitter.com/RARohde/status/1114076320328290305
 </small>
 </textarea>
-</section>
+</section> -->
 
 <section data-markdown  class="data-viz">
     <textarea data-template>
 ### Wie viele Punkte (die schnellste richtige Antwort zählt)
 
 <img src='img/quiz/dots.jfif' height="450px">
-<small>
+
 https://twitter.com/_youhadonejob1/status/1116335796838125570
-</small>
 </textarea>
 </section>
 
@@ -402,7 +400,7 @@ https://twitter.com/SteveFranconeri/status/996309506425544705
 </textarea>
 </section>
 
-<section data-markdown class="fallacy">
+<!-- <section data-markdown class="fallacy">
     <textarea data-template>
 ### Rein Logisch betrachtet
 
@@ -411,7 +409,7 @@ Ein Geschäftspartner kündigt an, mich überraschend nächste Woche an einem de
 An welchem Tag wird er anrufen?
 
 </textarea>
-</section>
+</section> -->
 
 
 
@@ -446,7 +444,7 @@ https://twitter.com/dumb_hannah/status/891678558841708544
 </textarea>
 </section>
 
-<section data-markdown class="statics">
+<!-- <section data-markdown class="statics">
     <textarea data-template>
 ### Statistik
 
@@ -455,7 +453,7 @@ Nehmen wir an, 90% aller Statistiker sind schüchtern und nur 5% aller Verkäufe
 _Du triffst einen schüchternen Menschen, ist er eher Statistiker oder Verkäufer?_
 
 </textarea>
-</section>
+</section> -->
 
 <section data-markdown class="info">
     <textarea data-template>
@@ -514,7 +512,12 @@ _4x Abholer_
 <script src="lib/jquery-2.2.4.js"></script>
 
 <script>
-        if (window.location.hostname.indexOf('localhost') !== -1) {
+        const isLocal = window.location.hostname.indexOf('localhost') !== -1 || 
+                    window.location.hostname.indexOf('127.0.0.1') !== -1;
+
+        $('.info').remove();
+
+        if (isLocal) {
             // only applies to local version
             $('.remote').remove();
         } else {
@@ -531,7 +534,7 @@ _4x Abholer_
             $('.solution').addClass('fragment')
 
 
-            if (window.location.hostname.indexOf('localhost') !== -1) {
+            if (isLocal) {
                 // only applies to presentation version
                 // Reveal.configure({ controls: false });
             } else {
