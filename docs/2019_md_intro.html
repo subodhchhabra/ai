@@ -177,37 +177,16 @@ sich mit Softwareentwicklung beschäftigt, und setzt kein Wissen über Machine L
             <h2>Machine Learning: das Ende der Businesslogik?</h2>
             <br>
             <br>
-            <p><a target="_blank" href="https://jax.de/big-data-machine-learning/machine-learning-das-ende-der-businesslogik/">
-                JAX, Mainz, Mai 2019
+            <p><a target="_blank" href="https://www.md-devdays.de/Act?id=1000077">
+                Magdeburger Developer Days, Mai 2019
             </a></p>
             <h4><a href="http://zeigermann.eu">Oliver Zeigermann</a> / 
                 <a href="http://twitter.com/djcordhose">@DJCordhose</a>
             </h4>
-            <p><small><a href="http://bit.ly/ml-jax-intro">
-                http://bit.ly/ml-jax-intro
+            <p><small><a href="http://bit.ly/ml-md-intro">
+                http://bit.ly/ml-md-intro
             </a></small></p>
         </section>
-
-        <section data-markdown class="todo">
-                <textarea data-template>
-* Referenz auf das Buch zum Starten
-  * https://www.oreilly.de/book_details.php?masterid=12870#Autor
-* Evaluation explizit für Business Logik, Accuracy erklären (nächste Folie), dann erst ML
-                    </textarea>
-                </section>
-                
-<section data-markdown class="todo">
-        <textarea data-template>
-### Metrics
-
-<script type="math/tex; mode=display">
-accuracy = {\frac {correct\;predictions}{number\;of\;samples}}
-</script>
-
-_often given for training and test data separately_
-    </textarea>
-    </section>
-
 
         <section data-markdown>
                 <textarea data-template>
@@ -313,7 +292,7 @@ return green # otherwise: low risk
 </small></p>
     </section>
 
-<!-- <section data-markdown>
+<section data-markdown>
     <textarea data-template>
 ### How good is this?
 
@@ -323,7 +302,42 @@ return green # otherwise: low risk
 * How would we even know?
 
 </textarea>
-</section>                     -->
+</section>                    
+
+<section data-markdown>
+    <textarea data-template>
+### Accuracy: The most basic metric for quality of any prediction
+
+<script type="math/tex; mode=display">
+accuracy = {\frac {correct\;predictions}{number\;of\;samples}}
+</script>
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### How good is our Rule based approach?
+
+Plotting the predictions as a background
+
+<img src='img/decision-boundaries/5-prog.png' class="fragment" height="450px">
+<br>
+<small class="fragment">approx. 43% predictions correct</small>
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### 43% is just a value, how bad is it really?
+
+Let's compare it to guessing
+
+<img src="img/decision-boundaries/random.png" height="450px"  class="fragment">
+<small  class="fragment">still gets 33% right</small>
+</textarea>
+</section>
+
 
 <section data-markdown>
                 <textarea data-template>
@@ -414,17 +428,6 @@ https://en.wikipedia.org/wiki/Feature_learning
 </textarea>
 </section>
  -->
-<section data-markdown>
-    <textarea data-template>
-### Revisiting our Rule based approach
-
-Plotting the predictions as a background
-
-<img src='img/decision-boundaries/5-prog.png' class="fragment" height="450px">
-<br>
-<small class="fragment">approx. 43% predictions correct</small>
-</textarea>
-</section>
 
 <section data-markdown>
     <textarea data-template>
@@ -992,6 +995,23 @@ Ellen Friedman, Tales from the Field: The Future is Now, Jfokus 2019
         </textarea>
         </section>
 
+        <section data-markdown>
+            <textarea data-template>
+### Wenn ihr jetzt Lust habt, das auszuprobieren
+
+<img src='img/livevideo-deep-learning-crash-course-meap.png' style="float: left" height="450px">
+<img src='img/ml.jpg' style="float: right" height="450px" >
+
+<small>
+https://www.oreilly.de/book_details.php?masterid=12870#Autor
+<br>
+http://bit.ly/dl-course-manning, Discount Code (40%): ctwmdevdays19, gilt für die Dev Days für alle Produkte auf ctwm319 https://www.manning.com
+</small>
+                </textarea>
+            </section>
+            
+
+
     <!-- <section data-markdown>
             <textarea data-template>
 ### Machine Learning needs us as well
@@ -1029,13 +1049,13 @@ https://en.m.wikipedia.org/wiki/Cynefin_framework
             </ul>
     <br>
     <p>
-            <em>JAX 2019: Machine Learning: das Ende der Businesslogik?</em>
+            <em>Magdeburger Developer Days 2019: Machine Learning: das Ende der Businesslogik?</em>
         <br>
         <br>
     <a href="http://zeigermann.eu">Oliver Zeigermann</a> / <a href="http://twitter.com/djcordhose">@DJCordhose</a></a>
         <br>
-    <a href="http://bit.ly/ml-jax-intro">
-        http://bit.ly/ml-jax-intro
+    <a href="http://bit.ly/ml-md-intro">
+        http://bit.ly/ml-md-intro
     </a>
     </p>
 </section>
