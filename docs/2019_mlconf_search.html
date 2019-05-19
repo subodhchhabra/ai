@@ -1,0 +1,882 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>MLConf Chess</title>
+
+    <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+    <meta name="author" content="Hakim El Hattab">
+
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+          <link rel="stylesheet" href="reveal.js/css/reveal.css">
+          <!--<link rel="stylesheet" href="reveal.js/css/theme/white.css" id="theme">-->
+          <!--<link rel="stylesheet" href="reveal.js/css/theme/black.css" id="theme">-->
+          <!--<link rel="stylesheet" href="reveal.js/css/theme/night.css" id="theme">-->
+          <!--<link rel="stylesheet" href="reveal.js/css/theme/simple.css" id="theme">-->
+          <link rel="stylesheet" href="reveal.js/css/theme/solarized.css" id="theme">
+      
+          <!-- Code syntax highlighting -->
+          <link rel="stylesheet" href="reveal.js/lib/css/zenburn.css">
+          <style>
+              /*pre code {*/
+                  /*display: block;*/
+                  /*padding: 0.5em;*/
+                  /*background: #FFFFFF !important;*/
+                  /*color: #000000 !important;*/
+              /*}*/
+      
+              .right-img {
+                  margin-left: 10px !important;
+                  float: right;
+                  height: 500px;
+              }
+              .todo:before {
+                  content: 'TODO: ';
+              }
+              .todo {
+                  color: red !important;
+              }
+              code span.line-number {
+                  color: lightcoral;
+              }
+              .reveal pre code {
+                  max-height: 1000px !important;
+              }
+      
+              img {
+                  border: 0 !important;
+                  box-shadow:0 0 0 0 !important;
+              }
+      
+              .reveal {
+                  -ms-touch-action: auto !important;
+                  touch-action: auto !important;
+                      }
+      
+                      .reveal h2,
+                      .reveal h3,
+                      .reveal h4 {
+                        letter-spacing: 2px;
+                          font-family: 'Calibri', sans-serif;
+                          /* font-family: 'Times New Roman', Times, serif; */
+                          font-weight: bold;
+                          color: black;
+                          font-style: italic;
+                          letter-spacing: -2px;
+                          text-transform: none !important;
+                      }
+      
+                      .reveal em {
+                          font-weight: bold;
+                      }
+      
+                      .reveal .step-subtitle h1 {
+                          letter-spacing: 1px;
+                      }
+                      .reveal .step-subtitle h2,
+                      .reveal .step-subtitle h3 {
+                          text-transform: none;
+                          font-style: italic;
+                          font-weight: normal;
+                          /* font-weight: 400; */
+                          /* font-family: 'Amiri', serif; */
+                          font-family: 'Lobster', serif;
+                          letter-spacing: 1px;
+                          color: #2aa198;
+                          text-decoration: underline;
+                      }
+      
+                      .reveal .front-page h1,
+                      .reveal .front-page h2 {
+                          font-family: "League Gothic";
+                          font-style: normal;
+                          text-transform: uppercase !important;
+                          letter-spacing: 1px;
+                      }
+      
+                      .reveal .front-page h1 {
+                          font-size: 2.5em !important;
+                      }
+      
+                      .reveal .highlight {
+                          background-color: #D3337B;
+                          color: white;
+                      }
+      
+              .reveal section img {
+                background: none;
+              }
+      
+                      .reveal img.with-border {
+                          border: 1px solid #586e75 !important;
+                          box-shadow: 3px 3px 1px rgba(0, 0, 0, 0.15) !important;
+                      }
+      
+                      .reveal li {
+                          margin-bottom: 8px;
+                      }
+      
+                      /* For li's that use FontAwesome icons as bullet-point */
+                  .reveal ul.fa-ul li {
+                      list-style-type: none;
+                  }
+
+            .reveal {
+                color: black !important;
+             }       
+
+          </style>
+      
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        var printMode = window.location.search.match(/print-pdf/gi);
+        link.href = printMode ? 'reveal.js/css/print/pdf.css' : 'reveal.js/css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="reveal.js/lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+<div class="reveal">
+    <div class="slides">
+
+
+<!-- 
+
+How do Chess Engines work? Looking at Stockfish and AlphaZero
+
+60 min
+
+https://mlconference.ai/machine-learning-advanced-development/how-do-chess-engines-work-looking-at-stockfish-and-alphazero/
+
+Game playing is a classic discipline of AI and had a major break through in the 90s when Deep Blue defeated Kasparov and
+arguably became the world’s best chess player. First, we will look which algorithms made that success possible and how
+they are still used within Stockfish, one of the leading chess engines. Here, we will cover Minimax and AlphaBeta
+pruning.
+
+However, the emphasis of this talk will be on Monte Carlo Tree Search and its advanced use in AlphaZero that relies on
+zero human heuristics and without even an opening library. You will learn how it trains using self play on a
+convolutional ResNet architecture. At the end, we will briefly look at a great game between Stockfish and AlphaZero and
+why the era of classic chess engines might be over.
+ -->
+
+<section data-markdown class="preparation">
+        <textarea data-template>
+### Preparation
+
+1. Go through MCTS phases
+1. Play through minimax example
+1. Spiel nochmal durchgehen, spezielle Movies nochmal klar machen
+    </textarea>
+</section>
+
+<section>
+        <h3>How do Chess Engines work? Looking at Stockfish and AlphaZero</h3>
+<p><a target="_blank" href="https://mlconference.ai/machine-learning-advanced-development/how-do-chess-engines-work-looking-at-stockfish-and-alphazero/">
+    MLConference, Munich, June 2019
+</a></p>
+<h4><a href="http://zeigermann.eu">Oliver Zeigermann</a> / <a href="http://twitter.com/djcordhose">@DJCordhose</a>
+</h4>
+<p><small><a href="TODO">
+    TODO
+</a></small></p>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+[]Dann am Ende viel mehr Alpha Zero mit ResNet
+resnet in mehr detail
+
+Am Ende 2. Partie: https://www.chess.com/article/view/live-now-neural-nakamura-analyzes-top-neural-network-computer-chess-games
+
+[]Alpha Zero als RL, wie sähe das aus? Inwiefern ist das RL?
+
+</textarea>
+</section>
+
+<!-- <section data-markdown class="preparation">
+        <textarea data-template>
+Spiel ganz durchlaufen lassen in fast und bisschen herum labern
+
+
+
+Move 31:
+- White builds up a very strong queen side and simply does not care too much for blacks small plan to steal a pawn
+
+Move 32:
+- Instead it makes its offensive position much stronger
+
+Move 36:
+- A surprising but very powerful move
+
+After that endgame: black resigns
+</textarea>
+</section> -->
+
+<section data-markdown>
+    <textarea data-template>
+### Postion for Material
+
+<small>
+White: LCZero v20.2-32930, Black Stockfish 190203
+</small>
+
+<video src='img/search/leela-vs-stockfish-position-for-material.mp4' controls height="400px" muted></video>
+
+<small>
+https://www.youtube.com/watch?v=zzfYRxL2lXU
+<br>
+https://www.chessworld.net/chessclubs/ltpgnviewer32/ltpgnboard.asp?GameID=5024214
+</small>
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Leela Chess Zero = LC0
+
+_Open Source Implementation and collective training based on the ideas presented in AlphaZero_
+
+<small>
+https://en.wikipedia.org/wiki/Leela_Chess_Zero
+<br>
+https://lczero.org/
+<br>
+https://github.com/LeelaChessZero/lc0
+<br>
+https://en.wikipedia.org/wiki/AlphaZero
+</small>
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Lc0 Wins Computer Chess Championship, Makes History
+
+<em>The machine-learning chess engine Lc0 won the Chess.com Computer Chess Championship last weekend, 
+making history as the first neural-network project to take the title.</em> 
+
+<em>Lc0 placed ahead of runner-up Stockfish (162/300) in the blitz finals, 
+the first time in eight Computer Chess Championships that Stockfish didn't win the tournament</em>
+
+https://www.chess.com/news/view/lc0-wins-computer-chess-championship-makes-history
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Our Story
+
+1. to game search
+1. to monte carlo game search and tree search to
+1. to AlphaZero
+
+</textarea>
+</section>
+
+<section data-markdown>
+        <textarea data-template>
+    ## Part I
+    ### Classic Game Search
+    </textarea>
+    </section>
+    
+    
+<section>
+    <h3>Chess Computers have defeated humans because</h3>
+    <div class="fragment" style="float: left">
+        <img src="img/cray2.png" height="250">
+        <p><small>Cray X-MP<br> Supercomputer (1982)</small></p>
+    </div>
+    <div class="fragment" style="float: left; padding-left: 20px; padding-top: 120px; font-weight: bold">
+    x 100.000 =
+    </div>
+    <div class="fragment" style="float: left">
+      <img src="img/titan5.jpg" height="250" style="float: right">
+        <p><small><br>Titan 5 im Gamer PC (2017)</small></p>
+    </div>
+</section>
+
+<section data-markdown>
+        <textarea data-template>
+## But how?
+</textarea>
+</section>
+
+<section data-markdown style="font-size: xx-large">
+        <textarea data-template>
+### Size of complete Search Tree
+
+* _Tic Tac Toe_: 10<sup>5</sup>
+* _Connect Four_: 10<sup>21</sup>
+* _Chess_: 10<sup>123</sup>
+* _Backgammon_: 10<sup>144</sup>
+* _Go_: 10<sup>360</sup>
+
+To compare
+* _Number of Atoms in Human Body_: 10<sup>27</sup>
+* _Atoms in Earth_: 10<sup>49</sup>
+* _Atoms in Milky Way_: 10<sup>68</sup>
+* _Atoms in Universe_: 10<sup>78</sup>
+
+    </textarea>
+    </section>
+
+    <section data-markdown>
+            <textarea data-template>
+### Average number of moves
+
+* _Connect Four_: 18
+* _Backgammon_: 28
+* _Chess_: 40
+* _Go_: 75
+
+        </textarea>
+        </section>        
+
+<!-- <section data-markdown class="todo">
+        <textarea data-template>
+### Alpha-Beta Pruning
+
+<img src='img/haw/alpha_beta_pruning.jpg'>
+            </textarea>l/
+            </section> -->
+<section data-markdown>
+        <textarea data-template>
+### Game Search
+
+_Full, exhaustive search is mostly just not feasible_
+* Limit in Depth: Mini Max / Alpha Beta Pruning
+* Limit in Breadth: Monte-Carlo Tree Search
+    </textarea>
+    </section>
+    
+<section data-markdown>
+    <textarea data-template>
+### Mini Max, lookahead of 4 halfmoves
+
+_Computer maximixes and it is its move (circles)_
+
+<div class="fragment">
+
+<img src='img/search/Minimax.png'>
+</div>
+
+
+<small>
+https://en.wikipedia.org/wiki/Minimax    
+</small>
+</textarea>
+</section>
+
+
+<section data-markdown>
+    <textarea data-template>
+### Alpha Beta Pruning
+
+_can reach up to twice the depth of minimax_
+
+<div class="fragment">
+
+<img src="img/search/alpha-beta-intuition.png" alt="Alpha Beta Intuition" height="350px">
+<br>
+</div>
+<div class="fragment">
+No matter what Min does, Max can always win in leftmost branch, no need to check for the others
+</div>
+</textarea>
+</section>
+
+<section data-markdown class="remote">
+    <textarea data-template>
+### How does Alpha–beta pruning work?
+
+* maintains two values, alpha and beta
+* alpha: minimum score of the maximizing player in a branch
+* beta: maximum score of the minimizing player in a branch
+* branch can be pruned if
+  * beta ≤ alpha
+  * as this will never happen if players play well
+* can reach approx. twice the depth of minimax in the same amount of time  
+
+<small>
+https://en.wikipedia.org/wiki/Alpha%E2%80%93beta_pruning    
+</small>
+</textarea>
+</section>
+
+<section data-markdown style="font-size: xx-large">
+    <textarea data-template>
+### How does Stockfish Play
+
+_It heavily relies on human knowledge put into heuristics_
+
+* Alpha-Beta Search Pruning: https://en.wikipedia.org/wiki/Alpha%E2%80%93beta_search
+* Bitboards: https://en.wikipedia.org/wiki/Bitboard
+* Transposition Tables: https://en.wikipedia.org/wiki/Transposition_table
+* Late Move Reductions: https://en.wikipedia.org/wiki/Late_Move_Reductions (expand killer moves to full depth)
+* and many more
+
+https://en.wikipedia.org/wiki/Stockfish_(chess)
+
+</textarea>
+</section>
+
+<section data-markdown class="todo">
+    <textarea data-template>
+More on Stockfish evaluation function
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+## Part II
+### Monte Carlo Methods
+</textarea>
+</section>
+
+    <section data-markdown>
+            <textarea data-template>
+### Heuristics                
+Reasonable Heuristics for evaluation of position is crucial for deterministic search
+
+* Reasonable solutions available for Chess
+  * fast
+  * accurate 
+* No good solutions for Go
+    * Only a win as a state is a reliable indication
+    * Need to search to the end
+    * Branching factor higher than Chess as well
+
+        </textarea>
+        </section>
+
+<section data-markdown>
+        <textarea data-template>
+### Monte Carlo Experiments
+
+_approximating results by repeated random sampling_
+
+<img src='img/Pi_30K.gif' height="400px">
+
+<small>
+https://en.wikipedia.org/wiki/Monte_Carlo_method
+<br>
+https://en.wikipedia.org/wiki/Monte_Carlo_method#/media/File:Pi_30K.gif
+</small>
+    </textarea>
+    </section>
+
+    <section data-markdown>
+        <textarea data-template>
+### Monte Carlo is fun I
+
+<img src='img/search/monte-carlo-pi.png' height="400px">
+
+<small>
+https://twitter.com/Rainmaker1973b/status/1071865470901469189
+</small>
+    </textarea>
+    </section>
+        
+<section data-markdown>
+        <textarea data-template>
+### Monte Carlo is fun II
+
+<img src='img/search/twitter-sampling.png' height="400px">
+
+<small>
+https://twitter.com/Aella_Girl/status/1070119419353870336
+</small>
+    </textarea>
+    </section>
+
+    <section data-markdown>
+            <textarea data-template>
+### Monte Carlo Game Search
+
+* Start from a next move beginning from an initial state
+* For each next move
+* Play a game to the _end_ using a random set of moves
+* Repeat for a number of times
+* Count number of times for win, loose, draw
+* Choose the move with the best probability for a win
+
+<small>
+Choose number of random experiment wisely based on branching factor
+https://en.wikipedia.org/wiki/Monte_Carlo_tree_search#Pure_Monte_Carlo_game_search
+</small>
+        </textarea>
+        </section>
+
+<section data-markdown class='local'>
+        <textarea data-template>
+### Monte Carlo Game Search on Tic-Tac-Toe
+
+<img src='img/search/monte_carlo_game_search_1.png' height="500px">
+
+</textarea>
+        </section>
+
+            <section data-markdown class="remote">
+                    <textarea data-template>
+### Monte Carlo Game Search
+
+<img src='img/search/monte_carlo_game_search.jpg' height="550px">
+                        </textarea>
+                        </section>
+
+
+            <section data-markdown>
+                <textarea data-template>
+## Next Level Search
+                </textarea>
+            </section>
+                
+                        
+        <section data-markdown>
+            <textarea data-template>
+### Monte Carlo Tree Search
+
+Loops in four phases
+1. Selection
+2. Expansion
+3. Simulation
+4. Back-Propagation (do not confuse with the thing in Neural Networks)
+
+Images adapted from
+https://jeffbradberry.com/posts/2015/09/intro-to-monte-carlo-tree-search/
+        </textarea>
+        </section>
+
+        <section data-markdown>
+            <textarea data-template>
+### Selection
+
+Choose a node to expand next 
+
+<img src='img/search/mcts_selection.png'>
+
+<small>
+<code>wins / number of times played</code>
+</small>
+        </textarea>
+        </section>
+
+        <section data-markdown>
+            <textarea data-template>
+### Exploration vs Exploitation
+
+_Rather improve on states known as good or have a look at unknown moves?_
+
+* exploitation: choose moves with high average win ratio
+* exploration: choose moves with few simulations
+
+Compare: How would you explore a new city?
+            
+<small>
+https://en.wikipedia.org/wiki/Monte_Carlo_tree_search
+</small>
+        </textarea>
+        </section>
+
+        <section data-markdown style="font-size: xx-large" class="remote">
+            <textarea data-template>
+### Details: Exploration vs Exploitation
+
+* wi: number of wins for the node considered after the i-th move
+* ni: number of simulations for the node considered after the i-th move
+* Ni: total number of simulations after the i-th move
+* c: exploration parameter - theoretically equal to 2; in practice usually chosen empirically
+
+<br>
+
+<script type="math/tex; mode=display">
+{\displaystyle {\frac {w_{i}}{n_{i}}}+{\sqrt (c {\frac {\ln N_{i}}{n_{i}})}}}    
+</script>
+
+<br>            
+* first component: exploitation; it is high for moves with high average win ratio
+* second component: exploration; it is high for moves with few simulations            
+            
+        </textarea>
+        </section>
+
+        <section data-markdown>
+            <textarea data-template>
+### Expansion
+
+Expand node, add a random child
+
+<img src='img/search/mcts_expansion.png'>
+
+        </textarea>
+        </section>
+
+        <section data-markdown>
+            <textarea data-template>
+### Simulation
+
+Play a Monte Carlo Simulation
+
+<img src='img/search/mcts_simulation.png'>
+
+        </textarea>
+        </section>
+
+        <section data-markdown>
+            <textarea data-template>
+### Back-Propagation
+
+Update Scores
+
+<img src='img/search/mcts_backprop.png'>
+
+        </textarea>
+        </section>
+
+        <!-- <section data-markdown>
+            <textarea data-template>
+### More Applications of MCTS
+
+<img src='img/search/mcts-molecules.jpg' height="450px">
+
+<small>
+    make molecules tailored to a specific problem            
+    https://twitter.com/DJCordhose/status/1017886304384831488  
+</small>     
+            </textarea>
+            </section> -->
+            
+<section data-markdown>
+    <textarea data-template>
+## Part Intuition
+### MCTS and AlphaZero
+</textarea>
+</section>
+
+<section data-markdown class="todo">
+        <textarea data-template>
+Mastering Games Without Human Knowledge - https://youtu.be/Wujy7OzvdJk?t=92    
+        
+    </textarea>
+    </section>
+
+    <section data-markdown>
+            <textarea data-template>
+### AlphaZero
+
+* generalized version of AlphaGo Zero
+* can learn to play any deterministic full information game
+* actually trained to play chess and shogi
+* beat a version of chess world champion Stockfish
+
+<small>
+https://en.wikipedia.org/wiki/AlphaZero
+<br>
+https://deepmind.com/research/alphago/alphazero-resources/
+</small>
+            </textarea>
+        </section>
+
+<section data-markdown>
+        <textarea data-template>
+### Performance of AlphaZero
+            
+<img src='img/search/AZ-Blog-Fig1-Generality-Performance-Across-Games.gif'>
+
+<small>
+https://deepmind.com/blog/alphazero-shedding-new-light-grand-games-chess-shogi-and-go/    
+</small>
+        </textarea>
+    </section>
+
+
+<section data-markdown>
+        <textarea data-template>
+### Alpha Zero adapting MCTS
+
+_core difference: now we are have a heuristic_ 
+
+* choose child to expand using heuristic of game state (instead of random expansion phase)
+* determined by Convolutional Neural Network (ResNet)
+* simulation phase by playing against best known previous version of itself
+* CNN trained by which state leads to a win
+* CNN also gives estimation of which player is going to win
+* no other information goes into training
+
+<small>
+https://deepmind.com/blog/alphago-zero-learning-scratch/    
+</small>
+        </textarea>
+    </section>
+        
+
+<section data-markdown>
+        <textarea data-template>
+### Is this really AI?
+
+<div class="fragment">
+_KI = Künftig Informatik?_
+</div>
+
+<div class="fragment">
+_AI = Computer Science in the future?_
+</div>
+
+<div class="fragment">
+_Like: Once we understand it we take it for granted?_
+</div>
+    
+<div class="fragment">
+_A chess engine was hard-core AI In the 90s_
+</div>
+    
+</textarea>
+</section>
+
+
+<section style="font-size: xx-large">
+    <h2>Wrap Up</h2>
+    <p><em>Search is omnipresent in AI</em></p>
+    <ul>
+        <li class="fragment">Path finding is dominated by variants of A*
+        <li class="fragment">Chess can be solved using tweaked Alpha-Beta-Search
+        <li class="fragment">For a high branching factor and/or no good heuristic use Monte Carlo Methods 
+        <li class="fragment">Monte Carlo Tree Search is an advanced Monte Carlo Method 
+        <li class="fragment">Alpha(Go) Zero uses a variant of MCTS together with Supervised Deep Learning and CNNs 
+        <li class="fragment">AlphaGo Zero beats all known Go players 
+
+    </ul>
+    <p>
+            <em>Graph Search: The Silver Bullet of Symbolic AI and the Secret of AlphaGo Zero</em>
+        <br>
+        <br>
+        <small>
+    <a href="http://zeigermann.eu">Oliver Zeigermann</a> / <a href="http://twitter.com/djcordhose">@DJCordhose</a>
+        <br>
+<a href="http://bit.ly/m3-search">
+    http://bit.ly/m3-search</a>
+</small>
+    </p>
+</section>       
+
+    </div>
+
+</div>
+
+<script src="reveal.js/lib/js/head.min.js"></script>
+<script src="reveal.js/js/reveal.js"></script>
+<script src="lib/jquery-2.2.4.js"></script>
+
+<script>
+        const isLocal = window.location.hostname.indexOf('localhost') !== -1 || 
+                    window.location.hostname.indexOf('127.0.0.1') !== -1;
+
+        if (isLocal && !printMode) {
+            // only applies to local version
+            $('.remote').remove();
+        } else {
+            // only applies to public version
+            $('.todo').remove();
+            $('.preparation').remove();
+            $('.local').remove();
+        }
+        Reveal.addEventListener( 'ready', function( event ) {
+                // do we want this???
+                $('li').addClass('fragment')
+
+            if (isLocal && !printMode) {
+                // only applies to presentation version
+                Reveal.configure({ controls: false });
+            } else {
+                // only applies to public version
+                $('.fragment').removeClass('fragment');
+            }
+            // applies to all versions
+            $('code').addClass('line-numbers');
+
+            // make all links open in new tab
+            $('a').attr('target', '_blank')
+
+        } );
+        // $('section').attr('data-background-image', "backgrounds/light-metal.jpg");
+        // $('section').attr('data-background-image', "backgrounds/pink.jpg");
+        // $('section').attr('data-background-image', "backgrounds/white.jpg");
+            // $('section').attr('data-background-image', "backgrounds/sky.jpg");
+        $('section').attr('data-background-image', "backgrounds/wipe.jpg");
+
+    //    $('section').attr('data-background-image', "backgrounds/code.jpg");
+    </script>
+    
+<script>
+
+    // Full list of configuration options available at:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        width: 1100,
+
+
+        transition: 'fade', // none/fade/slide/convex/concave/zoom
+
+        math: {
+            mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+            config: 'TeX-AMS_HTML-full'  // See http://docs.mathjax.org/en/latest/config-files.html
+        },
+
+        // Optional reveal.js plugins
+        dependencies: [
+            {
+                src: 'reveal.js/lib/js/classList.js', condition: function () {
+                return !document.body.classList;
+            }
+            },
+            {
+                src: 'reveal.js/plugin/markdown/marked.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            }
+            },
+            {
+                src: 'reveal.js/plugin/markdown/markdown.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            }
+            },
+            {
+                src: 'reveal.js/plugin/highlight/highlight.js', async: true, condition: function () {
+                return !!document.querySelector('pre code');
+            }, callback: function () {
+                hljs.initHighlightingOnLoad();
+            }
+            },
+            {src: 'reveal.js/plugin/zoom-js/zoom.js', async: true},
+            {src: 'reveal.js/plugin/notes/notes.js', async: true},
+            // https://github.com/mikemiles86/reveal-line-numbers
+            {src: 'lib/js/line-numbers.js'},
+            { src: 'reveal.js/plugin/math/math.js', async: true }
+        ]
+    });
+
+</script>
+
+</body>
+</html>
