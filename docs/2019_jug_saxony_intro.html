@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 
-    <title>Magdeburg Dev Days Intro Machine Learning</title>
+    <title>JUG Saxony Day Intro Machine Learning</title>
 
     <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
     <meta name="author" content="Hakim El Hattab">
@@ -156,19 +156,10 @@
 
 <!-- 
     
-MD Dev Days Talk
+ JUG Saxony Day
 
 60 minutes
 
-https://www.md-devdays.de/Act?id=1000077
-
-Machine-Learning-Star Andrej Karpathy, Head of AI bei Tesla, beschreibt neuronale Netzwerke als Software 2.0. Also die
-neue Art zu Software zu entwickeln, die die klassische Art nicht ersetzen, sondern ergänzen wird. Passend dazu zeige
-ich in diesem Talk, wo uns als Softwareentwickler Machine Learning begegnet, wo sich der Ansatz von Machine Learning
-grundsätzlich von dem der Softwareentwicklung unterscheidet und wo es Parallelen gibt. Anhand eines praktischen
-Beispiels werden wir dabei Machine Learning als Alternative zu klassischer Businesslogik erleben und auch bereits erste
-Werkzeuge kennen lernen, mit denen wir Machine Learning implementieren können. Dieser Talk eignet sich für jeden, der
-sich mit Softwareentwicklung beschäftigt, und setzt kein Wissen über Machine Learning voraus.
 -->
 
 <section>
@@ -177,40 +168,17 @@ sich mit Softwareentwicklung beschäftigt, und setzt kein Wissen über Machine L
             <h2>Machine Learning: das Ende der Businesslogik?</h2>
             <br>
             <br>
-            <p><a target="_blank" href="https://www.md-devdays.de/Act?id=1000077">
-                Magdeburger Developer Days, Mai 2019
+            <p><a target="_blank" href="https://jug-saxony-day.org">
+                JUG Saxony Day, September 2019
             </a></p>
             <h4><a href="http://zeigermann.eu">Oliver Zeigermann</a> / 
                 <a href="http://twitter.com/djcordhose">@DJCordhose</a>
             </h4>
-            <p><small><a href="http://bit.ly/ml-md-intro">
-                http://bit.ly/ml-md-intro
+            <p><small><a href="http://bit.ly/ml-jug-saxony">
+                http://bit.ly/ml-jug-saxony
             </a></small></p>
         </section>
 
-        <section data-markdown>
-                <textarea data-template>
-### Wie sollen wir das entscheiden?
-
-* Wir gehen durch eine Reihe von Beispielen
-* sehen uns Lösungen in klassischer Implementierung an
-* und stellen sie der Machine Learning Lösung gegenüber
-* dabei lernen wir das Vorgehen im und die Arten des Machine Learnings kennen
-
-    </textarea>
-</section>
-
-        <!-- <section data-markdown style="font-size: x-large">
-                <textarea data-template>
-### Scenarios
-
-1. Classic Supervised Machine Learning: tabular data to predict risk classes (slides / notebooks / web app: https://djcordhose.github.io/crash-risk-calculator/) 
-1. Deep Supervised Machine Learning: time series data for better UX (web app: https://github.com/DJCordhose/ux-by-tfjs / http://djcordhose.github.io/ux-by-tfjs/dist)
-1. Deep Reinforcement Learning: graph data for route planning (notebook: https://colab.research.google.com/github/DJCordhose/ai/blob/master/notebooks/rl/berater-v11.ipynb)
-1. Deep Unsupervised Learning: categorical airline data to embeddings for clustering (poster: https://djcordhose.github.io/ai/poster-sf.png)
-
-                    </textarea>
-                </section> -->
         <section data-markdown>
                 <textarea data-template>
 ## Scenario #1
@@ -304,9 +272,20 @@ return green # otherwise: low risk
 </textarea>
 </section>                    
 
+<section>
+    <h3>Let's check with existing data</h3>
+    <img src="img/manning/all.png" height="500px" class="fragment">
+</section>
+
+<section>
+    <h3>Decision Boundaries</h3>
+<img src="img/decision-boundaries/decision-boundaries-4.jpg">
+</section>
+
+
 <section data-markdown>
     <textarea data-template>
-### Accuracy: The most basic metric for quality of any prediction
+### And let's introduce a metric for quality of any prediction        
 
 <script type="math/tex; mode=display">
 accuracy = {\frac {correct\;predictions}{number\;of\;samples}}
@@ -379,24 +358,6 @@ Let's compare it to guessing
     </ul>
     </div>
         </section>
-
-<section>
-    <h3>Let's check: Is the data we have any good?</h3>
-    <img src="img/manning/all.png" height="500px" class="fragment">
-    <small  class="fragment">Would we able to rank me (48) for a car having 100 mph top speed, driving 10k miles per year?</small>
-</section>
-
-<section data-markdown>
-    <textarea data-template>
-### Would we be able to separate different classes by drawing a few lines?
-
-    </textarea>
-        </section>
-
-<section>
-    <h3>Decision Boundaries</h3>
-<img src="img/decision-boundaries/decision-boundaries-4.jpg">
-</section>
 
 <section data-markdown>
 <textarea data-template>
