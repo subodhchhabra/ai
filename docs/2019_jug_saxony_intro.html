@@ -160,12 +160,14 @@
 
 60 minutes
 
+Wieso du dich jetzt mit Machine Learning beschäftigen solltest
+
 -->
 
 <section>
             <br>
             <br>
-            <h2>Machine Learning: das Ende der Businesslogik?</h2>
+            <h2>Wieso du dich jetzt mit Machine Learning beschäftigen solltest</h2>
             <br>
             <br>
             <p><a target="_blank" href="https://jug-saxony-day.org">
@@ -187,24 +189,12 @@
     </textarea>
 </section>
 
-    <section data-markdown>
-        <textarea data-template>
-### Predicting Crash Risk
-
-* We are CTO of a highly innovative Car Insurance Company
-* Different from other insurance companies we determine the rate by the actual number of accidents per customer
-* _Objective: how many accidents will prospective customers have?_ 
- 
-<img src='img/pixabay/accident-151668_1280.png' height="300px">
-        </textarea>
-    </section>
-
 <section data-markdown>
         <textarea data-template>
-### Three Inputs for Prediction
+### Car Insurance: Predicting Crash Risk for prospective customers
 
 <a href='html/calculator.html'>
-<img src='img/manning/calculator.png' height="450">
+<img src='img/manning/calculator.png' height="400">
 </a>
 <p><small>
     <a href='html/calculator.html' target="_blank">
@@ -863,7 +853,8 @@ https://twitter.com/frpays/status/1077672273673359361
 
 Similar numbers also indicate similarity of airline
 
-<img src='img/embeddings/1d_embedding_airport.png' height="450px">
+<img src='img/embeddings/1d_embedding_airlines.png' class='with-border' height="450px">
+
 <br>
 <small>
 http://bit.ly/embed-airlines
@@ -880,6 +871,19 @@ http://bit.ly/embed-airlines
             </textarea>
             </section>
 
+<section data-markdown>
+        <textarea data-template>
+### Machine Learning solution
+ 
+* use routes data: which airline flies which routes
+* train a neural network to predict route for airline
+* impossible as there is no single route to predict
+* make it even harder by introducing a bottleneck
+* still network tries very hard
+* our hope: bottleneck will contain all the semantics
+* use that bottleneck only to express semantics of airline 
+            </textarea>
+            </section>
 
 <section>
         <h3>Creating a neural embedding</h3>
@@ -894,6 +898,28 @@ http://bit.ly/embed-airlines
 
 <img src='img/embeddings/airline-embedded-cluster.png' height="550px">
     </textarea>
+</section>
+
+<section data-markdown>
+        <textarea data-template>
+### DBSCAN Clustering: Algorithm or Machine Learning?    
+<img src="img/unsupervised/dbscan-demo.png" height="500px">
+
+
+</textarea>
+</section>
+
+
+
+<section data-markdown>
+<textarea data-template>
+<img src="img/unsupervised/sphx_glr_plot_cluster_comparison_001.png" height="550px">
+
+<p><small><a href="http://scikit-learn.org/stable/modules/clustering.html">
+http://scikit-learn.org/stable/modules/clustering.html
+</a></small></p>
+
+</textarea>
 </section>
 
 <section data-markdown>
@@ -922,7 +948,6 @@ http://bit.ly/embed-airlines
     <section data-markdown>
         <textarea data-template>
 ## So?
-### Does Machine Learning kill Business Logic?
             </textarea>
     </section>
 
@@ -937,7 +962,9 @@ Ellen Friedman, Tales from the Field: The Future is Now, Jfokus 2019
 
     <section data-markdown class="no-fragment">
             <textarea data-template>
-### My claim: Manual Business Logic does not work well for complex tasks
+### My claim 
+
+_Classic Business Logic often does not work well for complex tasks_
 
 1. either not sufficient
 1. or not maintainable
@@ -956,46 +983,6 @@ Ellen Friedman, Tales from the Field: The Future is Now, Jfokus 2019
         </textarea>
         </section>
 
-        <section data-markdown>
-            <textarea data-template>
-### Wenn ihr jetzt Lust habt, das auszuprobieren
-
-<img src='img/livevideo-deep-learning-crash-course-meap.png' style="float: left" height="450px">
-<img src='img/ml.jpg' style="float: right" height="450px" >
-
-<small>
-https://www.oreilly.de/book_details.php?masterid=12870#Autor
-<br>
-http://bit.ly/dl-course-manning, Discount Code (40%): ctwmdevdays19, gilt für die Dev Days für alle Produkte auf ctwm319 https://www.manning.com
-</small>
-                </textarea>
-            </section>
-            
-
-
-    <!-- <section data-markdown>
-            <textarea data-template>
-### Machine Learning needs us as well
-<img src='img/3rd-wave.png' height="500px">
-    <small>
-https://towardsdatascience.com/the-third-wave-data-scientist-1421df7433c9
-    </small>
-                </textarea>
-        </section>
-    
-    <section data-markdown>
-        <textarea data-template>
-#### Classic Software Engineering is Complex, Machine Learning often Chaotic
-
-<img src='img/Cynefin_as_of_1st_June_2014.png' height="500px">
-
-<small>
-Dave Snowden, CC-BY-SA-3.0, Self-published work    
-https://en.m.wikipedia.org/wiki/Cynefin_framework
-</small>
-            </textarea>
-    </section>
- -->
 <section style="font-size: xx-large">
     <h2>Wrap-Up</h2>
     
@@ -1010,13 +997,13 @@ https://en.m.wikipedia.org/wiki/Cynefin_framework
             </ul>
     <br>
     <p>
-            <em>Magdeburger Developer Days 2019: Machine Learning: das Ende der Businesslogik?</em>
+            <em>JUG Saxony Day 2019: Wieso du dich jetzt mit Machine Learning beschäftigen solltest</em>
         <br>
         <br>
     <a href="http://zeigermann.eu">Oliver Zeigermann</a> / <a href="http://twitter.com/djcordhose">@DJCordhose</a></a>
         <br>
-    <a href="http://bit.ly/ml-md-intro">
-        http://bit.ly/ml-md-intro
+    <a href="http://bit.ly/ml-jug-saxony">
+        http://bit.ly/ml-jug-saxony
     </a>
     </p>
 </section>
