@@ -75,18 +75,533 @@
 <div class="reveal">
     <div class="slides">
 
-<!--
-tensorflow.js (https://js.tensorflow.org/) brings TensorFlow style machine learning to the browser. You define Machine
-Learning problems using JavaScript and push them over for fast computation to any GPU using WebGL. Or you train your
-model on a standard TensorFlow stack using high performance GPUs, convert the model and use it in the browser for
-prediction or transfer learning.
 
-This might not sound like a big deal, but tight integration of Machine Learning with all the things that make the web
-great opens up a whole new world of applications in the areas of education, deployment, visualization, gaming,
-development, and overall UX. You will also learn how to do your own experiments.
+        <section data-markdown class="preparation">
+            <script type="text/template">
+### Preparation
 
-45 Minutes
--->
+1. Prepare Demo
+1. Create a bit of data
+            </script>
+        </section>
+
+<!--         
+Machine Learning von der Idee zur Produktion mit tensorflow.js
+
+45 Minuten
+
+Machine Learning mit JavaScript im Browser sieht auf den ersten Blick vielleicht nicht nach der besten Idee aus.
+Neben dem offensichtlichen Grund, dass JavaScript Deine Programmiersprache ist, werden wir in diesem Talk weitere gute Gründe für Machine Learning 
+im Browser herausarbeiten. 
+
+Anhand eines kompletten Beispiels spielt Oliver die Schritte von der Erhebung der Daten, über das Training, 
+die Qualitätskontrolle und die Produktion durch. 
+
+Dabei kommt neben anderen Werkzeugen vor allem tensorflow.js zum Einsatz, 
+die JavaScript-Version des führenden ML Frameworks TensorFlow. 
+
+Am Ende der Session zeigt Oliver eine sinnvolle und funktionsfähige Anwendung.
+ -->
+        <section>
+        <h3>Machine Learning von der Idee zur Produktion mit tensorflow.js</h3>
+        <p><a target="_blank" href="https://www.enterjs.de/single?id=7865&machine-learning-von-der-idee-zur-produktion-mit-tensorflow.js">
+            enterjs, Darmstadt, Juni 2019
+        </a></p>
+        <h4><a href="http://zeigermann.eu">Oliver Zeigermann</a> / <a href="http://twitter.com/djcordhose">@DJCordhose</a>
+        </h4>
+        <p><small><a href="TODO">
+            TODO
+        </a></small></p>
+    </section>
+
+    <section data-markdown class="todo">
+            <textarea data-template>
+
+* Ux Neue Version live stellen
+* Wrap-Up (hinten angefangen)
+* Demos anderer Anwendugen auswählen (hinten angefangen)
+* Kopie für mcubed
+* Hinteren Teil mit Material hier löschen
+* bit.ly Link Titelfolie und Wrap-Up
+    </textarea>
+</section>
+
+<section data-markdown style="font-size: x-large">
+        <textarea data-template>
+### Steps for machine learning
+
+1. Clarify: What is your objective?
+1. What data do you have or could you acquire?
+1. Create an architecture for your model matching your data
+1. Train your model
+1. Evaluate the model: Satisfied?
+* Satisfied
+    1. Deployment
+    1. Prediction
+    1. Monitoring
+        * collect more data
+        * check: is live data from the same distribution as training data
+* Not Satisfied
+    1. More or better data
+    1. Better architecture
+    1. Better training
+1. Rinse and Repeat
+</textarea>
+</section>
+
+<section data-markdown>
+        <textarea data-template>
+### Step 1
+## What is our objective?
+
+</textarea>
+</section>
+
+<section data-markdown>
+        <textarea data-template>
+### Standard UX trick: Highlight button user hovers over
+
+<img src='img/ux/app.gif'  class="fragment">
+
+</textarea>
+</section>
+
+<section data-markdown>
+        <textarea data-template>
+### But, could we highlight the buttons before hover?
+
+<img src='img/ux/simpleRNN.gif' class="fragment">
+
+</textarea>
+</section>
+
+<section data-markdown>
+        <textarea data-template>
+### Why would we do this?
+
+_If predicting properly which button the user is going to click next we can_
+* Prepare Resources in Advance
+  * Serverless function pre-start
+  * Preload audio/video/AR media to be played next
+  * Prelaod lazyly loaded module 
+* UX
+  * (unnoticeably) highlight or zoom in/out button to make it easier/harder to access for user
+  * Marketing, Ads, dark Side
+</textarea>
+</section>
+
+<section data-markdown>
+        <textarea data-template>
+### Excursion
+## But wait: How does machine learning even work?
+
+</textarea>
+</section>
+
+<section data-markdown>
+        <textarea data-template>
+
+<img src='img/xkcd-machine_learning_2x.png' height="550px">
+
+https://xkcd.com/1838/
+</textarea>
+</section>
+
+<section data-markdown>
+        <textarea data-template>
+        <img src='img/sketch/classic-development.jpg' height="600px">
+        </textarea>
+        </section>
+
+<section data-markdown>
+        <textarea data-template>
+### Supervised Machine Learning fits best when
+
+* the problem at hand is hard to specify
+* you have a lot of examples
+* solving the problem can tolerate some error or uncertainty
+* there is a clear, simple input and output
+            </textarea>
+            </section>
+
+<section data-markdown>
+<textarea data-template>
+<img src='img/sketch/supervised-ml.jpg' height="600px">
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+### Learning from data samples
+
+* This is also called representation learning, or feature learning
+* We do not teach abstract concepts or rules of reasoning
+* We simply show data to the a machine
+* And teach the right answer, which we know
+
+<small>
+https://en.wikipedia.org/wiki/Feature_learning    
+</small>
+</textarea>
+</section>
+
+<section data-markdown>
+        <textarea data-template>
+### Step 2
+## What data do we have or could we acquire?
+
+</textarea>
+</section>
+
+<section data-markdown>
+        <textarea data-template>
+### Collecting Events for Mouse Movements
+
+<img src='img/ux/mouse-positions.png' class="fragment">
+
+    </textarea>
+</section>
+
+
+<section data-markdown>
+        <textarea data-template>
+### Why this is a tricky case
+
+* Data
+  * very much depends on user and machine used
+  * might even be good enough to identify individual user
+  * sending it to our server seems suspicious
+* Training and Prediction
+  * low latency for prediction
+  * incremental and fast training
+  * small amounts of data, still needs to generalize
+  * actual data unknown upfront
+    </textarea>
+</section>
+
+<section data-markdown>
+        <textarea data-template>
+### Why not train and predict on the edge side?
+
+_Train an individual model per user directly in the browser_
+
+* data does not leave the machine of the user
+* same goes for model
+* low-latency training and prediction
+            </textarea>
+        </section>
+        
+<section data-markdown>
+    <textarea data-template>
+### TensorFlow.js
+
+<img src='img/ux/tfjs.png'>
+
+<small>
+https://www.tensorflow.org/js/    
+</small>
+
+</textarea>
+</section>
+
+<section data-markdown>
+        <textarea data-template>
+### Step 3
+## Create an architecture for your model matching your data
+
+</textarea>
+</section>
+
+<section data-markdown>
+        <textarea data-template>
+#### Foundation of Neural Networks
+
+<img src='img/insurance/neuron213.jpg'  height="500px">
+
+<small>That's more of less the only thing TensorFlow.js supports</small>
+
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+#### From Neuron to Network 
+
+<a href='https://playground.tensorflow.org'><img src='img/tf-plaground.png' height="500px">
+</a>
+
+<small>
+https://playground.tensorflow.org
+</small>
+</textarea>
+</section>
+
+
+<section data-markdown>
+        <textarea data-template>
+### Challenge: Such Networks have no memory of previous events
+
+They lack capability to deal with sequential data which our mouse movements really are
+            </textarea>
+            </section>
+
+<section data-markdown>
+    <textarea data-template>
+### RNNs - Networks with Loops
+<img src='img/nlp/colah/RNN-rolled.png' height="450px" style="background-color: aliceblue">
+
+<small>
+http://colah.github.io/posts/2015-08-Understanding-LSTMs/
+</small>
+    </textarea>
+</section>
+    
+<section data-markdown>
+    <textarea data-template>
+### Unrolling the loop
+
+<img src='img/nlp/colah/RNN-unrolled.png' style="background-color: aliceblue">
+
+<small>
+http://colah.github.io/posts/2015-08-Understanding-LSTMs/
+</small>
+    </textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+#### Options for Model architectures 
+<pre><code contenteditable data-trim class="fragment line-numbers javascript">
+// GRUs are great in learning history
+// learns complete paths, best evaluation in numbers
+tf.layers.gru({
+    units: 50,
+    dropout: 0.1
+})
+</code></pre>
+
+
+<pre><code contenteditable data-trim class="fragment line-numbers javascript">
+// LSTMs are similar to GRUs, but more complex
+// slower to train and worse evaluation, but really good real world performance
+tf.layers.lstm({
+    units: 50,
+    dropout: 0.1
+})
+</code></pre>
+
+<pre><code contenteditable data-trim class="fragment line-numbers javascript">
+// trains fast, bad evaluation, but in real life does what we expect, 
+// only uses very recent history, generalizing great by proximity
+tf.layers.simpleRNN({
+    units: 50,
+    dropout: 0.1
+})
+</code></pre>
+        
+    </textarea>
+</section>
+
+<section data-markdown>
+        <textarea data-template>
+### Step 4
+## Train your model
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+#### Training runs asynchronously in the background using WebGL on your GPU 
+<pre><code contenteditable data-trim class="fragment line-numbers javascript">
+this.model.compile({
+    loss: "sparseCategoricalCrossentropy",
+    optimizer: "adam",
+    metrics: ["accuracy"]
+});
+</code></pre>
+
+<pre><code contenteditable data-trim class="fragment line-numbers javascript">
+const history = await this.model.fit(X, y, {
+    epochs: 200,
+    validationSplit: 0.2
+});
+</code></pre>
+
+</textarea>
+</section>
+
+<section data-markdown>
+        <textarea data-template>
+
+<img src='img/xkcd-compiling.png' height="550px">
+
+https://xkcd.com/303/
+</textarea>
+</section>
+
+<section data-markdown>
+        <textarea data-template>
+### Demo Time
+
+http://djcordhose.github.io/ux-by-tfjs/dist
+
+</textarea>
+</section>    
+
+
+<section data-markdown>
+        <textarea data-template>
+### Step 5
+## Evaluate the model
+
+</textarea>
+</section>
+
+<section data-markdown>
+        <textarea data-template>
+### Generalization
+
+* We need to find out if our model is good before going to production
+* Wow should we estimate the quality of our model?
+* We want to know how well it will perform on previously unknown data
+* How is that possible?
+
+</textarea>
+</section>
+
+<section data-markdown>
+        <textarea data-template>
+### A standard Workflow
+
+<img src='img/flow-train.jpg'>
+
+    </textarea>
+    </section>
+    
+<section data-markdown>
+    <textarea data-template>
+### Accuracy Training Curves
+
+<img src='img/ux/accuracy-reg.png' height="500px">
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Confustion Matrix
+
+<img src='img/ux/confusion-right-for-middle.png' height="550px"
+style="background-color: aliceblue">
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Accuracy per Class
+
+<img src='img/ux/acc-per-class.png' 
+style="background-color: aliceblue">
+
+</textarea>
+</section>
+
+<section data-markdown>
+        <textarea data-template>
+### Step 6
+## Deployment, Prediction
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Model is trained and used locally
+
+<pre><code contenteditable data-trim class="fragment line-numbers javascript">
+// saving in IndexedDB
+await this.model.save("indexeddb://ux");
+</code></pre>
+
+<pre><code contenteditable data-trim class="fragment line-numbers javascript">
+// loading from IndexedDB
+this.model = 
+    await tf.loadLayersModel('indexeddb://ux');
+</code></pre>
+
+<pre><code contenteditable data-trim class="fragment line-numbers javascript">
+// model could be served from remote without any change (except for online)
+const url = 
+    "https://raw.githubusercontent.com/DJCordhose/ux-by-tfjs/master/model/ux.json";
+this.model = await tf.loadLayersModel(url);
+</code></pre>
+
+<pre><code contenteditable data-trim class="fragment line-numbers javascript">
+const prediction = 
+    await this.model.predict(tf.tensor3d([X])).data();
+</code></pre>
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Results for Simple RNN
+
+<img src='img/ux/simpleRNN.gif' class="fragment">
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Results for LSTM
+
+<img src='img/ux/lstm.gif' class="fragment" height="500px">
+
+</textarea>
+</section>
+
+
+<section data-markdown class="todo">
+    <textarea data-template>
+### What else is cool?
+
+* Bob Ross pix2pix: https://twitter.com/jdwlbr/status/1131244682317484032
+    []PostNet
+    []ResNet
+    []Handtrack: https://towardsdatascience.com/handtrackjs-677c29c1d585 
+    []GAN Harp: https://twitter.com/ctpt_studio/status/1131975006173507585 
+* BodyPix: https://twitter.com/TensorFlow/status/1096519420816568322
+</textarea>
+</section>
+
+<section data-markdown class="todo">
+    <textarea data-template>
+### Wrap-Up
+
+* TensorFlow.js (tfjs) allows for completely new ways of training and deploying neural networks
+* tfjs allows to train and use models in the browser using WebGL on your GPU
+* tfjs mimics TensorFlows Keras API 
+* use can also convert standard TensorFlow models to use them with tfjs
+* tfjs-vis provides us with powerful tools for visualizing training results
+
+</textarea>
+</section>
+
+<section data-markdown class="todo">
+        <textarea data-template>
+## From here material for mcubed to replace introductory parts
+
+_copy into mcubed version before finalizign this one for enterjs_
+
+* GPU using WebGL
+* more details for examples
+</textarea>
+</section>
 
 
 <!-- <section data-markdown class="todo">
@@ -239,102 +754,6 @@ https://t.co/TXuXNcemSJ https://t.co/SXLQw1UBek
             </pre>
         </section> -->
 
-        <section data-markdown class="preparation">
-            <script type="text/template">
-### Preparation
-
-Load in advance and rehearse demos
-1. https://storage.googleapis.com/tfjs-vis/mnist/dist/index.html
-1. https://poloclub.github.io/ganlab/
-1. https://ml5js.org/docs/lstm-interactive-example
-1. https://ml5js.org/docs/style-transfer-webcam-example
-            </script>
-        </section>
-
-<!--         
-Machine Learning von der Idee zur Produktion mit tensorflow.js
-
-45 Minuten
-
-Machine Learning mit JavaScript im Browser sieht auf den ersten Blick vielleicht nicht nach der besten Idee aus.
-Neben dem offensichtlichen Grund, dass JavaScript Deine Programmiersprache ist, werden wir in diesem Talk weitere gute Gründe für Machine Learning 
-im Browser herausarbeiten. 
-
-Anhand eines kompletten Beispiels spielt Oliver die Schritte von der Erhebung der Daten, über das Training, 
-die Qualitätskontrolle und die Produktion durch. 
-
-Dabei kommt neben anderen Werkzeugen vor allem tensorflow.js zum Einsatz, 
-die JavaScript-Version des führenden ML Frameworks TensorFlow. 
-
-Am Ende der Session zeigt Oliver eine sinnvolle und funktionsfähige Anwendung.
- -->
-        <section>
-        <h3>Machine Learning von der Idee zur Produktion mit tensorflow.js</h3>
-        <p><a target="_blank" href="https://www.enterjs.de/single?id=7865&machine-learning-von-der-idee-zur-produktion-mit-tensorflow.js">
-            enterjs, Darmstadt, Juni 2019
-        </a></p>
-        <h4><a href="http://zeigermann.eu">Oliver Zeigermann</a> / <a href="http://twitter.com/djcordhose">@DJCordhose</a>
-        </h4>
-        <p><small><a href="TODO">
-            TODO
-        </a></small></p>
-    </section>
-
-    <section data-markdown class="todo">
-        <textarea data-template>
-# enter.js
-
-## Part I: Intro from idea to production
-## Part II: Using ML Models for exciting apps (pre-built for own ideas)
-            
-    docs/js/insurance
-</textarea>
-    </section>
-
-    <section data-markdown class="todo">
-        <textarea data-template>
-### Demo: Universal Sentence Encoder
-
-    []https://tfhub.dev/google/universal-sentence-encoder/2
-        []https://colab.research.google.com/github/tensorflow/hub/blob/master/examples/colab/semantic_similarity_with_tf_hub_universal_encoder_lite.ipynb
-        []https://colab.research.google.com/github/tensorflow/hub/blob/master/examples/colab/semantic_similarity_with_tf_hub_universal_encoder.ipynb
-        []https://github.com/tensorflow/tfjs-models/tree/master/universal-sentence-encoder
-</textarea>
-    </section>
-
-        <section data-markdown class="todo">
-        <textarea data-template>
-
-TensorFlow (@TensorFlow) tweeted at 9:19 PM on Fri, Feb 15, 2019:
-We’re excited to announce the release of BodyPix!
-
-Real-time Person Segmentation in the Browser with TensorFlow.js (try the live demo!) by @oveddan, @ashleyjanelewis, @tylerzhu3 and others.
-
-Learn more here → https://t.co/mDWClzawIV https://t.co/jOaIaRyOS4
-(https://twitter.com/TensorFlow/status/1096519420816568322?s=03)            
-    docs/js/insurance
-</textarea>
-    </section>
-
-    <section data-markdown class="todo">
-            <textarea data-template>
-    
-    Handsfree.js 5.0 will have built-in WebSocket support, making it easy to control things outside the browser (like the robot) and desktops.
-
-Here's me installing Fortnite handsfree from the browser for a video series I'll be making.
-
-< 100 lines including HTML markup and server ✨ https://t.co/fzUUB9w49S
-(https://twitter.com/LabOfOz/status/1092136979385536513?s=03)
-</textarea>
-</section>
-
-    <section data-markdown class="todo">
-        <textarea data-template>
-### Code for the insurance example in tf.js
-            
-    docs/js/insurance
-</textarea>
-    </section>
 
 <section data-markdown class="todo">
     <textarea data-template>
@@ -908,7 +1327,10 @@ https://twitter.com/EleanorHaproff/status/1035068222087811072
 //    $('section').attr('data-background-image', "backgrounds/white-transparent.jpg")
 </script>
 <script>
-    if (window.location.hostname.indexOf('localhost') !== -1) {
+    const isLocal = window.location.hostname.indexOf('localhost') !== -1 || 
+                window.location.hostname.indexOf('127.0.0.1') !== -1;
+
+    if (isLocal) {
     } else {
         // only applies to public version
             $('.todo').remove();
@@ -926,7 +1348,7 @@ https://twitter.com/EleanorHaproff/status/1035068222087811072
         // make all links open in new tab
         $('a').attr('target', '_blank')
 
-        if (window.location.hostname.indexOf('localhost') !== -1) {
+        if (isLocal) {
             // only applies to presentation version
             Reveal.configure({ controls: false });
         } else {
