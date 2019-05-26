@@ -199,12 +199,77 @@ why the era of classic chess engines might be over.
 
 <section data-markdown class="todo">
     <textarea data-template>
+AlphaZero
+* Oberflächlich: https://deepmind.com/blog/alphazero-shedding-new-light-grand-games-chess-shogi-and-go/
+* Verstehen und Bilder klauen: https://deepmind.com/documents/260/alphazero_preprint.pdf
+* Artikel in Nature: https://science.sciencemag.org/content/362/6419/1140.full?ijkey=XGd77kI6W4rSc&keytype=ref&siteid=sci
+* https://www.youtube.com/watch?v=Wujy7OzvdJk&feature=youtu.be&t=92
+
+Leela Chess Zero
+* https://en.wikipedia.org/wiki/Leela_Chess_Zero
+* https://www.chessprogramming.org/Leela_Chess_Zero
+</textarea>
+</section>
+
+
+<section data-markdown class="todo">
+    <textarea data-template>
 []Dann am Ende viel mehr Alpha Zero mit ResNet
 resnet in mehr detail
 
 Am Ende 2. Partie: https://www.chess.com/article/view/live-now-neural-nakamura-analyzes-top-neural-network-computer-chess-games
 
 []Alpha Zero als RL, wie sähe das aus? Inwiefern ist das RL?
+
+</textarea>
+</section>
+
+<section data-markdown>
+        <textarea data-template>
+### AlphaZero
+
+* generalized version of AlphaGo Zero
+* can learn to play any deterministic full information game
+* zero human domain knowledge required
+* only needs rules for game 
+* actually trained to play chess, go, and shogi
+
+<small>
+https://en.wikipedia.org/wiki/AlphaZero
+<br>
+https://deepmind.com/research/alphago/alphazero-resources/
+</small>
+        </textarea>
+    </section>
+
+
+<section data-markdown>
+        <textarea data-template>
+### Performance of AlphaZero
+            
+<img src='img/search/AZ-Blog-Fig1-Generality-Performance-Across-Games.gif'>
+
+<small>
+https://deepmind.com/blog/alphazero-shedding-new-light-grand-games-chess-shogi-and-go/    
+</small>
+        </textarea>
+    </section>
+
+<section data-markdown>
+    <textarea data-template>
+### Leela Chess Zero = LC0
+
+_Open Source Implementation and collective training based on the ideas presented in AlphaZero_
+
+<small>
+https://en.wikipedia.org/wiki/Leela_Chess_Zero
+<br>
+https://lczero.org/
+<br>
+https://github.com/LeelaChessZero/lc0
+<br>
+https://en.wikipedia.org/wiki/AlphaZero
+</small>
 
 </textarea>
 </section>
@@ -249,25 +314,6 @@ https://www.chessworld.net/chessclubs/ltpgnviewer32/ltpgnboard.asp?GameID=502421
 
 <section data-markdown>
     <textarea data-template>
-### Leela Chess Zero = LC0
-
-_Open Source Implementation and collective training based on the ideas presented in AlphaZero_
-
-<small>
-https://en.wikipedia.org/wiki/Leela_Chess_Zero
-<br>
-https://lczero.org/
-<br>
-https://github.com/LeelaChessZero/lc0
-<br>
-https://en.wikipedia.org/wiki/AlphaZero
-</small>
-
-</textarea>
-</section>
-
-<section data-markdown>
-    <textarea data-template>
 ### Lc0 Wins Computer Chess Championship, Makes History
 
 <em>The machine-learning chess engine Lc0 won the Chess.com Computer Chess Championship last weekend, 
@@ -282,23 +328,41 @@ https://www.chess.com/news/view/lc0-wins-computer-chess-championship-makes-histo
 
 <section data-markdown>
     <textarea data-template>
-### Our Story
+### But let's not get ahead of ourselves here
 
-1. to game search
-1. to monte carlo game search and tree search to
-1. to AlphaZero
+1. How do classic chess engines like Stockfish play?
+1. Understanding Monte Carlo Tree Search (MCTS)
+1. What is Reinforcement Learning
+1. How AlphaZero combines all of them 
 
 </textarea>
 </section>
 
 <section data-markdown>
-        <textarea data-template>
-    ## Part I
-    ### Classic Game Search
-    </textarea>
-    </section>
-    
-    
+    <textarea data-template>
+### Part I        
+## How do classic chess engines like Stockfish play?
+
+</textarea>
+</section>
+
+<section data-markdown style="font-size: xx-large">
+    <textarea data-template>
+### How does Stockfish Play
+
+_It heavily relies on human knowledge put into heuristics_
+
+* Alpha-Beta Search Pruning: https://en.wikipedia.org/wiki/Alpha%E2%80%93beta_search
+* Bitboards: https://en.wikipedia.org/wiki/Bitboard
+* Transposition Tables: https://en.wikipedia.org/wiki/Transposition_table
+* Late Move Reductions: https://en.wikipedia.org/wiki/Late_Move_Reductions (expand killer moves to full depth)
+* and many more
+
+https://en.wikipedia.org/wiki/Stockfish_(chess)
+
+</textarea>
+</section>
+
 <section>
     <h3>Chess Computers have defeated humans because</h3>
     <div class="fragment" style="float: left">
@@ -351,13 +415,6 @@ To compare
         </textarea>
         </section>        
 
-<!-- <section data-markdown class="todo">
-        <textarea data-template>
-### Alpha-Beta Pruning
-
-<img src='img/haw/alpha_beta_pruning.jpg'>
-            </textarea>l/
-            </section> -->
 <section data-markdown>
         <textarea data-template>
 ### Game Search
@@ -404,9 +461,9 @@ No matter what Min does, Max can always win in leftmost branch, no need to check
 </textarea>
 </section>
 
-<section data-markdown class="remote">
+<section data-markdown>
     <textarea data-template>
-### How does Alpha–beta pruning work?
+### Details of Alpha–beta pruning
 
 * maintains two values, alpha and beta
 * alpha: minimum score of the maximizing player in a branch
@@ -424,52 +481,55 @@ https://en.wikipedia.org/wiki/Alpha%E2%80%93beta_pruning
 
 <section data-markdown style="font-size: xx-large">
     <textarea data-template>
-### How does Stockfish Play
+### Stockfish plays a variation of Alpha–beta pruning
 
-_It heavily relies on human knowledge put into heuristics_
+* additional cuts using domain knowledge
+* ordering heuristics: efficiency of alpha-beta search depends critically upon the order in which moves are considered, 
+  * such as killer heuristic
+  * history heuristic
+  * counter-move heuristic 
+* extending the search depth of promising variations
+* reducing the search depth of unpromising variations 
+* opening book
+* table based endgames for 6 (sometimes 7) pieces or less
 
-* Alpha-Beta Search Pruning: https://en.wikipedia.org/wiki/Alpha%E2%80%93beta_search
-* Bitboards: https://en.wikipedia.org/wiki/Bitboard
-* Transposition Tables: https://en.wikipedia.org/wiki/Transposition_table
-* Late Move Reductions: https://en.wikipedia.org/wiki/Late_Move_Reductions (expand killer moves to full depth)
-* and many more
-
-https://en.wikipedia.org/wiki/Stockfish_(chess)
-
+<small>
+https://deepmind.com/documents/260/alphazero_preprint.pdf
+</small>
 </textarea>
 </section>
 
-<section data-markdown class="todo">
+<section data-markdown style="font-size: xx-large">
     <textarea data-template>
-More on Stockfish evaluation function
+### What goes into Stockfish's evaluation function
+
+handcrafted features for positions with no unresolved captures or checks
+* midgame/endgame-speciﬁc material point values
+* material imbalance tables
+* mobility and trapped pieces
+* pawn structure
+* king safety
+* outposts
+
+A quiescence search is used to resolve ongoing tactical situations before the
+evaluation function is applied
+
+<small>
+https://deepmind.com/documents/260/alphazero_preprint.pdf
+</small>
 </textarea>
 </section>
 
 <section data-markdown>
     <textarea data-template>
-## Part II
-### Monte Carlo Methods
+### Part II        
+## Monte Carlo Tree Search (MCTS)
+
 </textarea>
 </section>
 
-    <section data-markdown>
-            <textarea data-template>
-### Heuristics                
-Reasonable Heuristics for evaluation of position is crucial for deterministic search
-
-* Reasonable solutions available for Chess
-  * fast
-  * accurate 
-* No good solutions for Go
-    * Only a win as a state is a reliable indication
-    * Need to search to the end
-    * Branching factor higher than Chess as well
-
-        </textarea>
-        </section>
-
 <section data-markdown>
-        <textarea data-template>
+    <textarea data-template>
 ### Monte Carlo Experiments
 
 _approximating results by repeated random sampling_
@@ -481,11 +541,11 @@ https://en.wikipedia.org/wiki/Monte_Carlo_method
 <br>
 https://en.wikipedia.org/wiki/Monte_Carlo_method#/media/File:Pi_30K.gif
 </small>
-    </textarea>
-    </section>
+</textarea>
+</section>
 
-    <section data-markdown>
-        <textarea data-template>
+<section data-markdown>
+    <textarea data-template>
 ### Monte Carlo is fun I
 
 <img src='img/search/monte-carlo-pi.png' height="400px">
@@ -493,11 +553,11 @@ https://en.wikipedia.org/wiki/Monte_Carlo_method#/media/File:Pi_30K.gif
 <small>
 https://twitter.com/Rainmaker1973b/status/1071865470901469189
 </small>
-    </textarea>
-    </section>
-        
+</textarea>
+</section>
+    
 <section data-markdown>
-        <textarea data-template>
+    <textarea data-template>
 ### Monte Carlo is fun II
 
 <img src='img/search/twitter-sampling.png' height="400px">
@@ -505,11 +565,11 @@ https://twitter.com/Rainmaker1973b/status/1071865470901469189
 <small>
 https://twitter.com/Aella_Girl/status/1070119419353870336
 </small>
-    </textarea>
-    </section>
+</textarea>
+</section>
 
-    <section data-markdown>
-            <textarea data-template>
+<section data-markdown>
+        <textarea data-template>
 ### Monte Carlo Game Search
 
 * Start from a next move beginning from an initial state
@@ -523,36 +583,28 @@ https://twitter.com/Aella_Girl/status/1070119419353870336
 Choose number of random experiment wisely based on branching factor
 https://en.wikipedia.org/wiki/Monte_Carlo_tree_search#Pure_Monte_Carlo_game_search
 </small>
-        </textarea>
-        </section>
+    </textarea>
+    </section>
 
 <section data-markdown class='local'>
-        <textarea data-template>
+    <textarea data-template>
 ### Monte Carlo Game Search on Tic-Tac-Toe
 
 <img src='img/search/monte_carlo_game_search_1.png' height="500px">
 
 </textarea>
-        </section>
+    </section>
 
-            <section data-markdown class="remote">
-                    <textarea data-template>
+        <section data-markdown class="remote">
+                <textarea data-template>
 ### Monte Carlo Game Search
 
 <img src='img/search/monte_carlo_game_search.jpg' height="550px">
-                        </textarea>
-                        </section>
-
-
-            <section data-markdown>
-                <textarea data-template>
-## Next Level Search
-                </textarea>
-            </section>
-                
-                        
-        <section data-markdown>
-            <textarea data-template>
+                    </textarea>
+                    </section>
+                    
+    <section data-markdown>
+        <textarea data-template>
 ### Monte Carlo Tree Search
 
 Loops in four phases
@@ -563,11 +615,11 @@ Loops in four phases
 
 Images adapted from
 https://jeffbradberry.com/posts/2015/09/intro-to-monte-carlo-tree-search/
-        </textarea>
-        </section>
+    </textarea>
+    </section>
 
-        <section data-markdown>
-            <textarea data-template>
+    <section data-markdown>
+        <textarea data-template>
 ### Selection
 
 Choose a node to expand next 
@@ -577,11 +629,11 @@ Choose a node to expand next
 <small>
 <code>wins / number of times played</code>
 </small>
-        </textarea>
-        </section>
+    </textarea>
+    </section>
 
-        <section data-markdown>
-            <textarea data-template>
+    <section data-markdown>
+        <textarea data-template>
 ### Exploration vs Exploitation
 
 _Rather improve on states known as good or have a look at unknown moves?_
@@ -590,15 +642,15 @@ _Rather improve on states known as good or have a look at unknown moves?_
 * exploration: choose moves with few simulations
 
 Compare: How would you explore a new city?
-            
+        
 <small>
 https://en.wikipedia.org/wiki/Monte_Carlo_tree_search
 </small>
-        </textarea>
-        </section>
+    </textarea>
+    </section>
 
-        <section data-markdown style="font-size: xx-large" class="remote">
-            <textarea data-template>
+    <section data-markdown style="font-size: xx-large">
+        <textarea data-template>
 ### Details: Exploration vs Exploitation
 
 * wi: number of wins for the node considered after the i-th move
@@ -615,99 +667,112 @@ https://en.wikipedia.org/wiki/Monte_Carlo_tree_search
 <br>            
 * first component: exploitation; it is high for moves with high average win ratio
 * second component: exploration; it is high for moves with few simulations            
-            
-        </textarea>
-        </section>
+        
+    </textarea>
+    </section>
 
-        <section data-markdown>
-            <textarea data-template>
+    <section data-markdown>
+        <textarea data-template>
 ### Expansion
 
 Expand node, add a random child
 
 <img src='img/search/mcts_expansion.png'>
 
-        </textarea>
-        </section>
+    </textarea>
+    </section>
 
-        <section data-markdown>
-            <textarea data-template>
+    <section data-markdown>
+        <textarea data-template>
 ### Simulation
 
 Play a Monte Carlo Simulation
 
 <img src='img/search/mcts_simulation.png'>
 
-        </textarea>
-        </section>
+    </textarea>
+    </section>
 
-        <section data-markdown>
-            <textarea data-template>
+    <section data-markdown>
+        <textarea data-template>
 ### Back-Propagation
 
 Update Scores
 
 <img src='img/search/mcts_backprop.png'>
 
-        </textarea>
-        </section>
-
-        <!-- <section data-markdown>
-            <textarea data-template>
-### More Applications of MCTS
-
-<img src='img/search/mcts-molecules.jpg' height="450px">
-
-<small>
-    make molecules tailored to a specific problem            
-    https://twitter.com/DJCordhose/status/1017886304384831488  
-</small>     
-            </textarea>
-            </section> -->
-            
-<section data-markdown>
-    <textarea data-template>
-## Part Intuition
-### MCTS and AlphaZero
-</textarea>
-</section>
-
-<section data-markdown class="todo">
-        <textarea data-template>
-Mastering Games Without Human Knowledge - https://youtu.be/Wujy7OzvdJk?t=92    
-        
     </textarea>
     </section>
 
-    <section data-markdown>
-            <textarea data-template>
-### AlphaZero
+<section data-markdown>
+    <textarea data-template>
+### Part III        
+## Reinforcement Learning
 
-* generalized version of AlphaGo Zero
-* can learn to play any deterministic full information game
-* actually trained to play chess and shogi
-* beat a version of chess world champion Stockfish
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Types of Machine Learning
+
+<img src='img/types-of-ml.jpg'>
+<small>
+https://www.facebook.com/nipsfoundation/posts/795861577420073/
+<br>
+https://ranzato.github.io/publications/tutorial_deep_unsup_learning_part1_NeurIPS2018.pdf
+</small>
+</textarea>
+</section>
+                    
+<section data-markdown>
+<textarea data-template>
+### Reinforcement Learning
+
+<div  style="max-width: 45%; float: left">
+<br>
+<img src="img/rl.png">
+</div>
+<div style="max-width: 50%; float: right">
+<br>
+<ol>
+    <li>Based on _Observations_ an _Agent_ executes </li>
+<li>_Actions_ within a given  
+<li>_Environment_ which lead to positive or negative 
+<li>_Rewards_.
+</ol>
+</div>
+
+<div style="clear: both;">
+    <br>
+    <p >The Agent’s job is to maximize the cumulative Reward</p>
+</div>
 
 <small>
-https://en.wikipedia.org/wiki/AlphaZero
-<br>
-https://deepmind.com/research/alphago/alphazero-resources/
+http://gym.openai.com/docs/    
 </small>
-            </textarea>
-        </section>
+
+</textarea>
+</section>
 
 <section data-markdown>
         <textarea data-template>
-### Performance of AlphaZero
-            
-<img src='img/search/AZ-Blog-Fig1-Generality-Performance-Across-Games.gif'>
-
+### Learning in a simulated world
+<video controls src="video/knocked-over-stand-up.mp4"  muted type="video/mp4" height="500"></video>
+                
 <small>
-https://deepmind.com/blog/alphazero-shedding-new-light-grand-games-chess-shogi-and-go/    
+    https://blog.openai.com/openai-baselines-ppo/
 </small>
-        </textarea>
-    </section>
+</textarea>
+</section>
 
+<section data-markdown>
+    <textarea data-template>
+### Part IV        
+## How AlphaZero combines all of them
+
+</textarea>
+</section>
 
 <section data-markdown>
         <textarea data-template>
@@ -728,31 +793,6 @@ https://deepmind.com/blog/alphago-zero-learning-scratch/
         </textarea>
     </section>
         
-
-<section data-markdown>
-        <textarea data-template>
-### Is this really AI?
-
-<div class="fragment">
-_KI = Künftig Informatik?_
-</div>
-
-<div class="fragment">
-_AI = Computer Science in the future?_
-</div>
-
-<div class="fragment">
-_Like: Once we understand it we take it for granted?_
-</div>
-    
-<div class="fragment">
-_A chess engine was hard-core AI In the 90s_
-</div>
-    
-</textarea>
-</section>
-
-
 <section style="font-size: xx-large">
     <h2>Wrap Up</h2>
     <p><em>Search is omnipresent in AI</em></p>
