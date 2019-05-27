@@ -331,8 +331,8 @@ https://www.chess.com/news/view/lc0-wins-computer-chess-championship-makes-histo
 ### But let's not get ahead of ourselves here
 
 1. How do classic chess engines like Stockfish play?
-1. Understanding Monte Carlo Tree Search (MCTS)
 1. What is Reinforcement Learning
+1. Understanding Monte Carlo Tree Search (MCTS)
 1. How AlphaZero combines all of them 
 
 </textarea>
@@ -520,9 +520,103 @@ https://deepmind.com/documents/260/alphazero_preprint.pdf
 </textarea>
 </section>
 
+
 <section data-markdown>
     <textarea data-template>
-### Part II        
+### Part II
+## Reinforcement Learning
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Types of Machine Learning
+
+<img src='img/types-of-ml.jpg'>
+<small>
+https://www.facebook.com/nipsfoundation/posts/795861577420073/
+<br>
+https://ranzato.github.io/publications/tutorial_deep_unsup_learning_part1_NeurIPS2018.pdf
+</small>
+</textarea>
+</section>
+                    
+<section data-markdown>
+<textarea data-template>
+### Reinforcement Learning
+
+<div  style="max-width: 45%; float: left">
+<br>
+<img src="img/rl.png">
+</div>
+<div style="max-width: 50%; float: right">
+<br>
+<ol>
+    <li>Based on _Observations_ an _Agent_ executes </li>
+<li>_Actions_ within a given  
+<li>_Environment_ which lead to positive or negative 
+<li>_Rewards_.
+</ol>
+</div>
+
+<div style="clear: both;">
+    <br>
+    <p >The Agent’s job is to maximize the cumulative Reward</p>
+</div>
+
+<small>
+http://gym.openai.com/docs/    
+</small>
+
+</textarea>
+</section>
+
+<section data-markdown>
+        <textarea data-template>
+### Learning in a simulated world
+<video controls src="video/knocked-over-stand-up.mp4"  muted type="video/mp4" height="500"></video>
+                
+<small>
+    https://blog.openai.com/openai-baselines-ppo/
+</small>
+</textarea>
+</section>
+
+<section data-markdown>
+        <textarea data-template>
+    ### Algorithm Overview
+    
+    <img src='img/rl/rl_algorithms_9_15.svg'>
+    
+    <small>
+    https://spinningup.openai.com/en/latest/spinningup/rl_intro2.html    
+    </small>
+    
+    </textarea>
+    </section>
+    
+<section data-markdown>
+        <textarea data-template>
+### Model-Free vs Model-Based RL
+
+* agent has or learns a model of the environment
+* model predicts state transitions and rewards
+* allows agent to plan by thinking ahead
+* AlphaZero receives a hard-coded model for the environment
+* model consists of a set of rules for each game 
+
+<small>
+https://spinningup.openai.com/en/latest/spinningup/rl_intro2.html#model-free-vs-model-based-rl    
+</small>
+    
+    </textarea>
+    </section>
+
+
+<section data-markdown>
+    <textarea data-template>
+### Part III        
 ## Monte Carlo Tree Search (MCTS)
 
 </textarea>
@@ -703,69 +797,7 @@ Update Scores
 
     </textarea>
     </section>
-
-<section data-markdown>
-    <textarea data-template>
-### Part III        
-## Reinforcement Learning
-
-</textarea>
-</section>
-
-<section data-markdown>
-    <textarea data-template>
-### Types of Machine Learning
-
-<img src='img/types-of-ml.jpg'>
-<small>
-https://www.facebook.com/nipsfoundation/posts/795861577420073/
-<br>
-https://ranzato.github.io/publications/tutorial_deep_unsup_learning_part1_NeurIPS2018.pdf
-</small>
-</textarea>
-</section>
-                    
-<section data-markdown>
-<textarea data-template>
-### Reinforcement Learning
-
-<div  style="max-width: 45%; float: left">
-<br>
-<img src="img/rl.png">
-</div>
-<div style="max-width: 50%; float: right">
-<br>
-<ol>
-    <li>Based on _Observations_ an _Agent_ executes </li>
-<li>_Actions_ within a given  
-<li>_Environment_ which lead to positive or negative 
-<li>_Rewards_.
-</ol>
-</div>
-
-<div style="clear: both;">
-    <br>
-    <p >The Agent’s job is to maximize the cumulative Reward</p>
-</div>
-
-<small>
-http://gym.openai.com/docs/    
-</small>
-
-</textarea>
-</section>
-
-<section data-markdown>
-        <textarea data-template>
-### Learning in a simulated world
-<video controls src="video/knocked-over-stand-up.mp4"  muted type="video/mp4" height="500"></video>
-                
-<small>
-    https://blog.openai.com/openai-baselines-ppo/
-</small>
-</textarea>
-</section>
-
+    
 <section data-markdown>
     <textarea data-template>
 ### Part IV        
