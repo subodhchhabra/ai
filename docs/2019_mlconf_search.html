@@ -192,37 +192,22 @@ why the era of classic chess engines might be over.
 </a></p>
 <h4><a href="http://zeigermann.eu">Oliver Zeigermann</a> / <a href="http://twitter.com/djcordhose">@DJCordhose</a>
 </h4>
-<p><small><a href="TODO">
-    TODO
+<p><small><a href="http://bit.ly/mlconf-chess">
+    http://bit.ly/mlconf-chess
 </a></small></p>
 </section>
 
 <section data-markdown class="todo">
-    <textarea data-template>
-AlphaZero
-* Oberflächlich: https://deepmind.com/blog/alphazero-shedding-new-light-grand-games-chess-shogi-and-go/
-* Verstehen und Bilder klauen: https://deepmind.com/documents/260/alphazero_preprint.pdf
-* Artikel in Nature: https://science.sciencemag.org/content/362/6419/1140.full?ijkey=XGd77kI6W4rSc&keytype=ref&siteid=sci
-* https://www.youtube.com/watch?v=Wujy7OzvdJk&feature=youtu.be&t=92
+        <textarea data-template>
 
-Leela Chess Zero
-* https://en.wikipedia.org/wiki/Leela_Chess_Zero
-* https://www.chessprogramming.org/Leela_Chess_Zero
-</textarea>
-</section>
+* preparations updaten
+* 2. Partie hinten dazu falls möglich
+* folie über Stockfish mergen (siehe todo weiter unten)
+* Zeichnung für das Training machen
+* alles nochmal durchgehen
 
-
-<section data-markdown class="todo">
-    <textarea data-template>
-[]Dann am Ende viel mehr Alpha Zero mit ResNet
-resnet in mehr detail
-
-Am Ende 2. Partie: https://www.chess.com/article/view/live-now-neural-nakamura-analyzes-top-neural-network-computer-chess-games
-
-[]Alpha Zero als RL, wie sähe das aus? Inwiefern ist das RL?
-
-</textarea>
-</section>
+        </textarea>
+    </section>
 
 <section data-markdown>
         <textarea data-template>
@@ -242,18 +227,6 @@ https://deepmind.com/research/alphago/alphazero-resources/
         </textarea>
     </section>
 
-
-<section data-markdown>
-        <textarea data-template>
-### Performance of AlphaZero
-            
-<img src='img/search/AZ-Blog-Fig1-Generality-Performance-Across-Games.gif'>
-
-<small>
-https://deepmind.com/blog/alphazero-shedding-new-light-grand-games-chess-shogi-and-go/    
-</small>
-        </textarea>
-    </section>
 
 <section data-markdown>
     <textarea data-template>
@@ -342,23 +315,6 @@ https://www.chess.com/news/view/lc0-wins-computer-chess-championship-makes-histo
     <textarea data-template>
 ### Part I        
 ## How do classic chess engines like Stockfish play?
-
-</textarea>
-</section>
-
-<section data-markdown style="font-size: xx-large">
-    <textarea data-template>
-### How does Stockfish Play
-
-_It heavily relies on human knowledge put into heuristics_
-
-* Alpha-Beta Search Pruning: https://en.wikipedia.org/wiki/Alpha%E2%80%93beta_search
-* Bitboards: https://en.wikipedia.org/wiki/Bitboard
-* Transposition Tables: https://en.wikipedia.org/wiki/Transposition_table
-* Late Move Reductions: https://en.wikipedia.org/wiki/Late_Move_Reductions (expand killer moves to full depth)
-* and many more
-
-https://en.wikipedia.org/wiki/Stockfish_(chess)
 
 </textarea>
 </section>
@@ -520,6 +476,26 @@ https://deepmind.com/documents/260/alphazero_preprint.pdf
 </textarea>
 </section>
 
+<section data-markdown style="font-size: xx-large" class="todo">
+        <textarea data-template>
+# in die beiden Folien davor integrieren
+            
+### How does Stockfish Play
+
+_It heavily relies on human knowledge put into heuristics_
+
+* Alpha-Beta Search Pruning: https://en.wikipedia.org/wiki/Alpha%E2%80%93beta_search
+* Bitboards: https://en.wikipedia.org/wiki/Bitboard
+* Transposition Tables: https://en.wikipedia.org/wiki/Transposition_table
+* Late Move Reductions: https://en.wikipedia.org/wiki/Late_Move_Reductions (expand killer moves to full depth)
+* and many more
+
+https://en.wikipedia.org/wiki/Stockfish_(chess)
+    
+    </textarea>
+    </section>
+    
+    
 
 <section data-markdown>
     <textarea data-template>
@@ -806,46 +782,125 @@ Update Scores
 </textarea>
 </section>
 
+
 <section data-markdown>
         <textarea data-template>
-### Alpha Zero adapting MCTS
+### Idea 1: have a deep neural network as evaluation function
 
-_core difference: now we are have a heuristic_ 
-
-* choose child to expand using heuristic of game state (instead of random expansion phase)
-* determined by Convolutional Neural Network (ResNet)
-* simulation phase by playing against best known previous version of itself
-* CNN trained by which state leads to a win
-* CNN also gives estimation of which player is going to win
-* no other information goes into training
+* hand-crafted linear evaluation function is not able to "see" how good a position really is
+* convolutional neural network (CNN) are very good for image recognition
+* hopefully is able to have a more holistic view of game state 
 
 <small>
-https://deepmind.com/blog/alphago-zero-learning-scratch/    
+https://deepmind.com/documents/260/alphazero_preprint.pdf    
 </small>
         </textarea>
     </section>
-        
+
+<section data-markdown>
+        <textarea data-template>
+### CNN in AlphaZero
+
+* single network, state-of-the-art ResNet style
+* input: board position
+* output 
+  * policy head: move probabilities (vector)
+  * value head: winning probability (skalar)
+
+<small>
+https://deepmind.com/documents/260/alphazero_preprint.pdf
+https://www.chessprogramming.org/Leela_Chess_Zero
+</small>
+        </textarea>
+    </section>
+
+<section data-markdown style="font-size: xx-large">
+        <textarea data-template>
+### Idea 2: Use MCTS instead of alpha-beta search
+
+* alpha-beta search does not seem to work well with neural network as prediction function
+* MCTS alone inferior to alpha-beta search
+* combining MCTS with CNN works really well, though
+* intuition
+  * CNNs are prone to error and a large worse-case generalization error 
+  * alpha-beta propagates large errors to the top
+  * MCTS averages over all positions and cancels out approximation error
+* choose child to expand using move probabilities (instead of random expansion phase)
+  * exploration uses sampling proportional to probabilities
+  * exploitation uses greedy selection
+* simulation phase by playing against current version of itself
+
+<small>
+https://deepmind.com/documents/260/alphazero_preprint.pdf    
+</small>
+        </textarea>
+    </section>
+
+<section data-markdown style="font-size: xx-large">
+        <textarea data-template>
+### Training of Neural Network
+
+* zero initial knowledge
+* model starts random
+* simulation runs from start to end using MCTS
+* training takes place once a game has been finished
+  * values: +1 for winning, 0 for draw, -1 for loosing
+* losses: 
+  * MSE of value head against final game outcome
+  * cross-entropy for policy head against actual probabilities (determined by MCTS)
+* experimental: train value head against prediction further down the tree
+
+<small>
+https://deepmind.com/documents/260/alphazero_preprint.pdf    
+https://www.chessprogramming.org/Leela_Chess_Zero
+</small>
+        </textarea>
+    </section>
+
+<section data-markdown>
+        <textarea data-template>
+### Performance of AlphaZero
+            
+<img src='img/search/AZ-Blog-Fig1-Generality-Performance-Across-Games.gif'>
+
+<small>
+https://deepmind.com/blog/alphazero-shedding-new-light-grand-games-chess-shogi-and-go/    
+</small>
+        </textarea>
+    </section>
+
+<section data-markdown class="todo">
+    <textarea data-template>
+
+Am Ende 2. Partie: https://www.chess.com/article/view/live-now-neural-nakamura-analyzes-top-neural-network-computer-chess-games
+
+</textarea>
+</section>
+
+    
 <section style="font-size: xx-large">
     <h2>Wrap Up</h2>
-    <p><em>Search is omnipresent in AI</em></p>
+    <p><em>Combining state of the art AI techniques can bring us a long way</em></p>
     <ul>
-        <li class="fragment">Path finding is dominated by variants of A*
-        <li class="fragment">Chess can be solved using tweaked Alpha-Beta-Search
-        <li class="fragment">For a high branching factor and/or no good heuristic use Monte Carlo Methods 
-        <li class="fragment">Monte Carlo Tree Search is an advanced Monte Carlo Method 
-        <li class="fragment">Alpha(Go) Zero uses a variant of MCTS together with Supervised Deep Learning and CNNs 
-        <li class="fragment">AlphaGo Zero beats all known Go players 
-
+        <li class="fragment">chess playing has been dominated by alpha-beta search for decades
+        <li class="fragment">compute power and hand-crafted evaluation functions are key
+        <li class="fragment">new paradigm
+            <ul>
+                    <li class="fragment">Monte Carlo Tree Search instead of alpha-beta search
+                    <li class="fragment">Deep Neural Network instead of hand-crafted evaluation function
+            </ul>
+        </li>
+        <li class="fragment">we see successes and an overall new way of playing 
     </ul>
     <p>
-            <em>Graph Search: The Silver Bullet of Symbolic AI and the Secret of AlphaGo Zero</em>
+            <em>Paradigm Shift in Chess Engines, MLConference, Munich, June 2019</em>
         <br>
         <br>
         <small>
     <a href="http://zeigermann.eu">Oliver Zeigermann</a> / <a href="http://twitter.com/djcordhose">@DJCordhose</a>
         <br>
-<a href="http://bit.ly/m3-search">
-    http://bit.ly/m3-search</a>
+<a href="http://bit.ly/mlconf-chess">
+    http://bit.ly/mlconf-chess</a>
 </small>
     </p>
 </section>       
