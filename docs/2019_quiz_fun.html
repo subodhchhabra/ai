@@ -210,7 +210,7 @@ Aber mit Preisen! -->
 
 <section data-markdown  class="data-viz">
         <textarea data-template>
-### Welche Stadt hatte als erste mehr als 10 Millionen Einwohner? (die schnellste richtige Antwort zählt)
+### Welche Stadt hatte als erste mehr als 10 Millionen Einwohner?
 
 https://twitter.com/i/status/1107595419557740549
 </textarea>
@@ -242,19 +242,9 @@ https://twitter.com/chubicki/status/1000457946734759936
 </textarea>
 </section>
 
-<section>
-<h3>Was ist in 2. Reihe, 2. Spalte (die schnellste richtige Antwort zählt)</h3>
-
-        <img src="img/ai/dog-vs-muffin.jpg" class="fragment">
-    </section>
     <section>
 <h3>Was ist ganz oben links (die schnellste richtige Antwort zählt)</h3>
             <img src="img/ai/dog-vs-bread.jpg" height="500px" class="fragment">
-    </section>
-
-    <section>
-<h3>Was ist letzte Reihe, ganz links (die schnellste richtige Antwort zählt)</h3>
-            <img src="img/ai/dog-vs-chicken-wing.jpg" height="500px" class="fragment">
     </section>
 
 <section data-markdown  class="perception">
@@ -285,14 +275,18 @@ P. Sinha & T. Adelson (1997)
     <textarea data-template>
 ### Trivia: Welche Farbpigmente enthalten die Federn des Blauhähers (Blue Jay)
 
-<img src='img/quiz/blue-jay.jfif' style="float: left;" height="500px">
+<img src='img/quiz/blue-jay.jfif' style="float: left;" height="400px">
 
-<img src='img/quiz/blue-jay-zoom.jfif' class="fragment" style="float: right;" height="500px">
+<img src='img/quiz/blue-jay-zoom.jfif' class="fragment" style="float: right;" height="400px">
+
+<div style="clear: both">
+</div>
 
 1. Blau
 1. Rot
 1. Gelb
 1. Keine
+
 
 <small>
 https://twitter.com/RyanFMandelbaum/status/1115777490134478850    
@@ -332,6 +326,12 @@ https://thebestschools.org/magazine/25-popular-science-myths-debunked/
 </small>
 </textarea>
 </section>
+
+<section>
+<h3>Was ist in 2. Reihe, 2. Spalte (die schnellste richtige Antwort zählt)</h3>
+
+        <img src="img/ai/dog-vs-muffin.jpg" class="fragment">
+    </section>
 
 <section data-markdown>
     <textarea data-template>
@@ -382,7 +382,7 @@ https://twitter.com/NovickProf/status/1133211527367073792?s=03
     <textarea data-template>
 ### Welches ist das häufigste Element in der Erdkruste
 
-<img src='img/quiz/periodicTable.png' class="fragment" height="400px">
+<img src='img/quiz/periodicTable.png' class="fragment" height="600px">
 
 <small>
 https://research.google.com/bigpicture/elements/
@@ -390,23 +390,23 @@ https://research.google.com/bigpicture/elements/
 </textarea>
 </section>
 
-<!-- <section data-markdown  class="data-viz">
+<section data-markdown  class="data-viz">
     <textarea data-template>
-### Welche Land hat Stand 2016 den höchsten Ausstoß an Treibhausgasen? (die schnellste richtige Antwort zählt)
+### Welche Land hat Stand 2016 den höchsten Ausstoß an Treibhausgasen?
 
-https://twitter.com/i/status/1114076320328290305
+<!-- https://twitter.com/i/status/1114076320328290305 -->
 
 <small>
 https://twitter.com/RARohde/status/1114076320328290305
 </small>
 </textarea>
-</section> -->
+</section>
 
 <section data-markdown  class="data-viz">
     <textarea data-template>
 ### Wie viele Punkte (die schnellste richtige Antwort zählt)
 
-<img src='img/quiz/dots.jfif' height="450px">
+<img src='img/quiz/dots.jfif' height="450px" class="fragment">
 
 https://twitter.com/_youhadonejob1/status/1116335796838125570
 </textarea>
@@ -489,7 +489,7 @@ _Du triffst einen schüchternen Menschen, ist er eher Statistiker oder Verkäufe
 </textarea>
 </section>
 
-<section data-markdown class="info">
+<section data-markdown>
     <textarea data-template>
 ### Bring die Zahlen in die richtige Reihenfolge
 
@@ -505,7 +505,7 @@ _Du triffst einen schüchternen Menschen, ist er eher Statistiker oder Verkäufe
 </section>
 
 
-<section data-markdown class="m3 fragments">
+<!-- <section data-markdown class="m3 fragments">
     <textarea data-template>
 ### Psychologie
 
@@ -527,14 +527,13 @@ https://hackspirit.com/scientist-debunks-10-popular-psychology-myths-people-beli
 </small>
 
 </textarea>
-</section>
-
+</section> -->
 
 <section data-markdown>
     <textarea data-template>
 ### Sequentielle Wahrnehmung #3
 
-Was und wie oft? Die schnellste richtige Antwort gewinnt
+Was und wie oft?
 
 <img src='img/quiz/abholauftrag.jpg' height="450px" class="fragment">
 <br>
@@ -544,6 +543,12 @@ _4x Abholer_
 </textarea>
 </section>
 
+<section>
+    <h3>Was ist letzte Reihe, ganz links (die schnellste richtige Antwort zählt)</h3>
+                <img src="img/ai/dog-vs-chicken-wing.jpg" height="500px" class="fragment">
+        </section>
+    
+    
     </div>
 
 </div>
@@ -556,7 +561,7 @@ _4x Abholer_
         const isLocal = window.location.hostname.indexOf('localhost') !== -1 || 
                     window.location.hostname.indexOf('127.0.0.1') !== -1;
 
-        // $('.info').remove();
+        $('.info').remove();
 
         if (isLocal) {
             // only applies to local version
@@ -609,7 +614,7 @@ _4x Abholer_
         history: true,
         center: true,
         width: "100%",
-        height: "100%",
+        height: 1000,
 
 
         transition: 'fade', // none/fade/slide/convex/concave/zoom
