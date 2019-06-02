@@ -80,7 +80,10 @@
             <script type="text/template">
 ### Preparation
 
-1. Prepare Demo
+Load when there is still internet
+* https://storage.googleapis.com/tfjs-models/demos/posenet/camera.html
+  * Camera facing audience
+
 1. Create a bit of data
             </script>
         </section>
@@ -103,7 +106,7 @@ die JavaScript-Version des führenden ML Frameworks TensorFlow.
 Am Ende der Session zeigt Oliver eine sinnvolle und funktionsfähige Anwendung.
  -->
         <section>
-        <h3>Machine Learning von der Idee zur Produktion mit tensorflow.js</h3>
+        <h3>Machine Learning von der Idee zur Produktion mit TensorFlow.js</h3>
         <p><a target="_blank" href="https://www.enterjs.de/single?id=7865&machine-learning-von-der-idee-zur-produktion-mit-tensorflow.js">
             enterjs, Darmstadt, Juni 2019
         </a></p>
@@ -127,7 +130,49 @@ https://www.tensorflow.org/js/
 </textarea>
 </section>
 
-<section data-markdown class="todo">
+<section data-markdown>
+    <textarea data-template>
+<img src='img/tfjs/jsconfeu-tfjs-overview.jpg' height="550px">
+
+<small>
+@nsthorat @jsconfeu    
+</small>
+
+</textarea>
+</section>
+
+
+<section data-markdown>
+    <textarea data-template>
+<img src='img/tfjs/jsconfeu-why-ml-in-browser.jpg' height="550px">
+
+<small>
+@nsthorat @jsconfeu    
+</small>
+
+</textarea>
+</section>
+
+<section data-markdown>
+        <textarea data-template>
+### Using pre-etrained models
+
+<img src='img/posenet_camera.gif' height="400px">
+
+<small>
+Demo: https://storage.googleapis.com/tfjs-models/demos/posenet/camera.html
+<br>
+Links: https://twitter.com/random_forests/status/993639149780459520
+<br>
+Application: https://twitter.com/teropa/status/1001151524351959041
+</small>    
+    
+        </textarea>
+    </section>
+
+
+
+<!-- <section data-markdown class="todo">
         <textarea data-template>
 ### Intro Demo
 * Entschuldigen für schlechte Demos aus dem letzten Jahr
@@ -137,20 +182,34 @@ https://www.tensorflow.org/js/
 * Bewegung in 4 Richtungen == 2 Bits?
 * 5-6 Bits pro Buchstaben?
 </textarea>
-</section>
+</section> -->
 
 
 
     <section data-markdown class="todo">
             <textarea data-template>
 * Ux Neue Version live stellen
+* Skizzen für die unterschiedlichen Arten der Vorhersagen machen für UX Camp
+  * Mouse Events auf Button auch für enterjs
 * Wrap-Up (hinten angefangen)
 * Kopie für mcubed
   * auch Notebook und Konvertierung zeigen
   * UX Transfer Learning from general model high learning rate for Mcubed
   * Auch für Button Sequence and UX Camp 
+  * high learning rate when doing federated learning
+  * Nikhil fragen wenn ich hilfe brauche
+  * Weitere Netzwerke ausprobiren
+    * Dense und CNN Layers
+  * TensorFlow.js users interested in cutting model size by 50% or 75% to speed up page loading: 
+    * https://twitter.com/sqcai/status/1134657476014592000
+    * https://github.com/tensorflow/tfjs-examples/tree/master/quantization
+
 * Hinteren Teil mit Material hier löschen
 * bit.ly Link Titelfolie und Wrap-Up
+
+UX Camp Copy erstellen:
+* Has anyone created a ML model to identify semantic areas on a web page visually or via the DOM. e.g. identify where the login section is, what section is the menu, where are the social share button.
+(https://twitter.com/preetster/status/1134940921760440320?s=03)
     </textarea>
 </section>
 
