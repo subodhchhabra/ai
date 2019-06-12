@@ -200,11 +200,9 @@ why the era of classic chess engines might be over.
 <section data-markdown class="todo">
         <textarea data-template>
 * TF-Agents Grafik am Anfang von RL
-  * Network is trained like in Supervised Learning. But output of network influences what data is being collected for the next training iteration
 * Entsprechende Zeichnung für das Training machen (genauer verstehen wie die Beziehung zu RL mit Christian)
 
 * preparations updaten
-* folie über Stockfish mergen (siehe todo weiter unten)
 * alles nochmal durchgehen
         </textarea>
     </section>
@@ -439,11 +437,10 @@ https://en.wikipedia.org/wiki/Alpha%E2%80%93beta_pruning
     <textarea data-template>
 ### Stockfish plays a variation of Alpha–beta pruning
 
+_It heavily relies on human knowledge put into heuristics_
+
 * additional cuts using domain knowledge
 * ordering heuristics: efficiency of alpha-beta search depends critically upon the order in which moves are considered, 
-  * such as killer heuristic
-  * history heuristic
-  * counter-move heuristic 
 * extending the search depth of promising variations
 * reducing the search depth of unpromising variations 
 * opening book
@@ -475,27 +472,6 @@ https://deepmind.com/documents/260/alphazero_preprint.pdf
 </small>
 </textarea>
 </section>
-
-<section data-markdown style="font-size: xx-large" class="todo">
-        <textarea data-template>
-# in die beiden Folien davor integrieren
-            
-### How does Stockfish Play
-
-_It heavily relies on human knowledge put into heuristics_
-
-* Alpha-Beta Search Pruning: https://en.wikipedia.org/wiki/Alpha%E2%80%93beta_search
-* Bitboards: https://en.wikipedia.org/wiki/Bitboard
-* Transposition Tables: https://en.wikipedia.org/wiki/Transposition_table
-* Late Move Reductions: https://en.wikipedia.org/wiki/Late_Move_Reductions (expand killer moves to full depth)
-* and many more
-
-https://en.wikipedia.org/wiki/Stockfish_(chess)
-    
-    </textarea>
-    </section>
-    
-    
 
 <section data-markdown>
     <textarea data-template>
@@ -782,9 +758,8 @@ Update Scores
 </textarea>
 </section>
 
-
 <section data-markdown>
-        <textarea data-template>
+    <textarea data-template>
 ### Idea 1: have a deep neural network as evaluation function
 
 * hand-crafted linear evaluation function is not able to "see" how good a position really is
@@ -794,12 +769,12 @@ Update Scores
 <small>
 https://deepmind.com/documents/260/alphazero_preprint.pdf    
 </small>
-        </textarea>
-    </section>
+    </textarea>
+</section>
 
 <section data-markdown>
-        <textarea data-template>
-### CNN in AlphaZero
+    <textarea data-template>
+### CNN in AlphaZero as model
 
 * single network, state-of-the-art ResNet style
 * input: board position
@@ -811,51 +786,89 @@ https://deepmind.com/documents/260/alphazero_preprint.pdf
 https://deepmind.com/documents/260/alphazero_preprint.pdf
 https://www.chessprogramming.org/Leela_Chess_Zero
 </small>
-        </textarea>
-    </section>
+    </textarea>
+</section>
 
-<section data-markdown style="font-size: xx-large">
-        <textarea data-template>
-### Idea 2: Use MCTS instead of alpha-beta search
-
-* alpha-beta search does not seem to work well with neural network as prediction function
-* MCTS alone inferior to alpha-beta search
-* combining MCTS with CNN works really well, though
-* intuition
-  * CNNs are prone to error and a large worse-case generalization error 
-  * alpha-beta propagates large errors to the top
-  * MCTS averages over all positions and cancels out approximation error
-* choose child to expand using move probabilities (instead of random expansion phase)
-  * exploration uses sampling proportional to probabilities
-  * exploitation uses greedy selection
-* simulation phase by playing against current version of itself
-
-<small>
-https://deepmind.com/documents/260/alphazero_preprint.pdf    
-</small>
-        </textarea>
-    </section>
-
-<section data-markdown style="font-size: xx-large">
-        <textarea data-template>
+<section data-markdown style="font-size: x-large">
+    <textarea data-template>
 ### Training of Neural Network
+
+_Network is trained like in Supervised Learning. But output of network influences what data is being collected for the next training iteration_
 
 * zero initial knowledge
 * model starts random
-* simulation runs from start to end using MCTS
-* training takes place once a game has been finished
-  * values: +1 for winning, 0 for draw, -1 for loosing
 * losses: 
-  * MSE of value head against final game outcome
-  * cross-entropy for policy head against actual probabilities (determined by MCTS)
+* MSE of value head against final game outcome
+* values: +1 for winning, 0 for draw, -1 for loosing
+* cross-entropy for policy head against actual probabilities (determined by MCTS)
 * experimental: train value head against prediction further down the tree
 
 <small>
 https://deepmind.com/documents/260/alphazero_preprint.pdf    
 https://www.chessprogramming.org/Leela_Chess_Zero
 </small>
-        </textarea>
-    </section>
+    </textarea>
+</section>
+
+<section data-markdown style="font-size: xx-large">
+    <textarea data-template>
+### Idea 2: Use a Reinforcement Learning approach
+
+* games are played continuously using selfplay always using current model
+* skips AlhpaGoZero's approach of model evaluation altogether for speedup and simplification 
+* move probabilities are computed by model
+* moves chosen by sampling over probabilities
+* replay buffer is filled with game records
+  * outcome
+  * move history
+  * predicted probabilities at each move  
+* game records match input / output of model
+* used to constantly retrain model
+
+<small>
+https://arxiv.org/pdf/1902.04522.pdf    
+</small>
+    </textarea>
+</section>
+
+
+    <section data-markdown>
+        <textarea data-template>
+### Idea 3: Use MCTS as policy improvement operator
+
+* probabilities of policy head output works as prior to MCTS simulation
+* MCTS explores game tree based on those priors
+* terminates after a certain number of iterations
+* creates new probabilities based on the outcome of the simulation
+
+<small>
+https://arxiv.org/pdf/1902.04522.pdf
+</small>
+</textarea>
+</section>
+
+<section data-markdown style="font-size: xx-large">
+    <textarea data-template>
+### Why use MCTS instead of alpha-beta search
+
+* alpha-beta search does not seem to work well with neural network as prediction function
+* MCTS alone inferior to alpha-beta search
+* combining MCTS with CNN works really well, though
+* intuition
+* CNNs are prone to error and a large worse-case generalization error 
+* alpha-beta propagates large errors to the top
+* MCTS averages over all positions and cancels out approximation error
+* choose child to expand using move probabilities (instead of random expansion phase)
+* exploration uses sampling proportional to probabilities
+* exploitation uses greedy selection
+* simulation phase by playing against current version of itself
+
+<small>
+https://deepmind.com/documents/260/alphazero_preprint.pdf    
+</small>
+    </textarea>
+</section>
+
 
 <section data-markdown>
         <textarea data-template>
