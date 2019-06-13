@@ -178,9 +178,9 @@ why the era of classic chess engines might be over.
         <textarea data-template>
 ### Preparation
 
+1. Spiel nochmal durchgehen, spezielle Movies nochmal klar machen
 1. Go through MCTS phases
 1. Play through minimax example
-1. Spiel nochmal durchgehen, spezielle Movies nochmal klar machen
     </textarea>
 </section>
 
@@ -199,9 +199,11 @@ why the era of classic chess engines might be over.
 
 <section data-markdown class="todo">
         <textarea data-template>
-* TF-Agents Grafik am Anfang von RL
-* Entsprechende Zeichnung für das Training machen (genauer verstehen wie die Beziehung zu RL mit Christian)
+* Grafik in gut 
+  * Anfang und Ende ganz
+  * als Einzelteile (zoom?) bei den Ideen
 
+* kürzen und vereinfachen wo möglich
 * preparations updaten
 * alles nochmal durchgehen
         </textarea>
@@ -213,8 +215,7 @@ why the era of classic chess engines might be over.
 
 * generalized version of AlphaGo Zero
 * can learn to play any deterministic full information game
-* zero human domain knowledge required
-* only needs rules for game 
+* mainly needs rules for game as domain knowledge
 * actually trained to play chess, go, and shogi
 
 <small>
@@ -302,16 +303,17 @@ https://www.chess.com/news/view/lc0-wins-computer-chess-championship-makes-histo
 ### But let's not get ahead of ourselves here
 
 1. How do classic chess engines like Stockfish play?
-1. What is Reinforcement Learning
-1. Understanding Monte Carlo Tree Search (MCTS)
-1. How AlphaZero combines all of them 
+1. How does AlphaZero play?
+    1. Reinforcement Learning
+    1. Monte Carlo Tree Search (MCTS)
+    1. Combination with CNN 
 
 </textarea>
 </section>
 
 <section data-markdown>
     <textarea data-template>
-### Part I        
+### Part I
 ## How do classic chess engines like Stockfish play?
 
 </textarea>
@@ -357,7 +359,7 @@ To compare
     </textarea>
     </section>
 
-    <section data-markdown>
+    <!-- <section data-markdown>
             <textarea data-template>
 ### Average number of moves
 
@@ -368,7 +370,7 @@ To compare
 
         </textarea>
         </section>        
-
+ -->
 <section data-markdown>
         <textarea data-template>
 ### Game Search
@@ -415,7 +417,7 @@ No matter what Min does, Max can always win in leftmost branch, no need to check
 </textarea>
 </section>
 
-<section data-markdown>
+<!-- <section data-markdown>
     <textarea data-template>
 ### Details of Alpha–beta pruning
 
@@ -431,7 +433,7 @@ No matter what Min does, Max can always win in leftmost branch, no need to check
 https://en.wikipedia.org/wiki/Alpha%E2%80%93beta_pruning    
 </small>
 </textarea>
-</section>
+</section> -->
 
 <section data-markdown style="font-size: xx-large">
     <textarea data-template>
@@ -456,7 +458,8 @@ https://deepmind.com/documents/260/alphazero_preprint.pdf
     <textarea data-template>
 ### What goes into Stockfish's evaluation function
 
-handcrafted features for positions with no unresolved captures or checks
+_handcrafted features for positions with no unresolved captures or checks_
+
 * midgame/endgame-speciﬁc material point values
 * material imbalance tables
 * mobility and trapped pieces
@@ -475,8 +478,94 @@ https://deepmind.com/documents/260/alphazero_preprint.pdf
 
 <section data-markdown>
     <textarea data-template>
+### This used to be start of the art
+
+* all recent versions of chess engines were using a variation of this approach
+* good enough to play on a superhuman level on commodity hardware
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
 ### Part II
-## Reinforcement Learning
+## What makes AlphaZero so special?
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Idea 1: have a deep neural network as evaluation function
+
+* hand-crafted linear evaluation function is not able to "see" how good a position really is
+* convolutional neural network (CNN) are very good for image recognition
+* hopefully is able to have a more holistic view of game state 
+
+<small>
+https://arxiv.org/pdf/1712.01815.pdf    
+</small>
+    </textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### CNN in AlphaZero as model
+
+* single network, state-of-the-art ResNet style
+* input: board position
+* output 
+  * policy head: move probabilities (vector)
+  * value head: winning probability (skalar)
+
+<small>
+https://arxiv.org/pdf/1712.01815.pdf
+https://www.chessprogramming.org/Leela_Chess_Zero
+</small>
+    </textarea>
+</section>
+
+<section data-markdown style="font-size: xx-large">
+    <textarea data-template>
+### Training of Neural Network
+
+_Network is trained like in Supervised Learning. But output of network influences what data is being collected for the next training iteration_
+
+* model starts as random
+* will be trained on collected data
+* losses: 
+  * MSE of value head against final game outcome
+    * values: +1 for winning, 0 for draw, -1 for loosing
+  * cross-entropy for policy head against actual probabilities (determined by MCTS)
+<!-- * experimental: train value head against prediction further down the tree -->
+
+<small>
+https://arxiv.org/pdf/1712.01815.pdf
+https://www.chessprogramming.org/Leela_Chess_Zero
+</small>
+    </textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+## Overall picture
+
+</textarea>
+</section>
+
+<section data-markdown>
+        <textarea data-template>
+    <img src='img/az_overview.jpg' height="650px">
+    </textarea>
+    </section>
+    
+    
+
+<section data-markdown>
+    <textarea data-template>
+### Idea 2: Use Reinforcement Learning to train the model
+
+_AlphaZero learns how to play chess by playing against itself_
 
 </textarea>
 </section>
@@ -493,7 +582,18 @@ https://ranzato.github.io/publications/tutorial_deep_unsup_learning_part1_NeurIP
 </small>
 </textarea>
 </section>
-                    
+
+<section data-markdown>
+    <textarea data-template>
+### Learning in a simulated world
+<video controls src="video/knocked-over-stand-up.mp4"  muted type="video/mp4" height="500"></video>
+            
+<small>
+https://blog.openai.com/openai-baselines-ppo/
+</small>
+</textarea>
+</section>
+
 <section data-markdown>
 <textarea data-template>
 ### Reinforcement Learning
@@ -524,39 +624,52 @@ http://gym.openai.com/docs/
 </textarea>
 </section>
 
-<section data-markdown>
-        <textarea data-template>
-### Learning in a simulated world
-<video controls src="video/knocked-over-stand-up.mp4"  muted type="video/mp4" height="500"></video>
-                
+<section data-markdown style="font-size: x-large">
+    <textarea data-template>
+### Reinforcement Learning approach for AlphaZero
+
+_reward at very end of game, need to record trajectory to it for training once reward has been given_
+* games are played continuously using selfplay always using current model
+* skips AlhpaGoZero's approach of model evaluation altogether for speedup and simplification 
+* move probabilities are computed by model
+* improved by MCTS (more on that later)
+* moves chosen by sampling over probabilities
+  * greedy for end-game training and all of real game play
+  * stochastic for early-game training
+* replay buffer is filled with game records
+  * outcome
+  * move history
+  * predicted probabilities at each move  
+* game records match input / output of model
+* used to constantly retrain model
+
 <small>
-    https://blog.openai.com/openai-baselines-ppo/
+https://arxiv.org/pdf/1902.04522.pdf    
 </small>
-</textarea>
+    </textarea>
 </section>
 
 <section data-markdown>
         <textarea data-template>
-    ### Algorithm Overview
-    
-    <img src='img/rl/rl_algorithms_9_15.svg'>
-    
-    <small>
-    https://spinningup.openai.com/en/latest/spinningup/rl_intro2.html    
-    </small>
+### Algorithm Overview
+
+<img src='img/rl/rl_algorithms_9_15.svg'>
+<small>
+https://spinningup.openai.com/en/latest/spinningup/rl_intro2.html    
+</small>
     
     </textarea>
     </section>
     
 <section data-markdown>
         <textarea data-template>
-### Model-Free vs Model-Based RL
+### Model-Based RL (instead of Model-Free)
 
 * agent has or learns a model of the environment
-* model predicts state transitions and rewards
 * allows agent to plan by thinking ahead
 * AlphaZero receives a hard-coded model for the environment
-* model consists of a set of rules for each game 
+* rules for game are coded into engine
+* only valid next moves can be expanded
 
 <small>
 https://spinningup.openai.com/en/latest/spinningup/rl_intro2.html#model-free-vs-model-based-rl    
@@ -565,11 +678,11 @@ https://spinningup.openai.com/en/latest/spinningup/rl_intro2.html#model-free-vs-
     </textarea>
     </section>
 
-
 <section data-markdown>
     <textarea data-template>
-### Part III        
-## Monte Carlo Tree Search (MCTS)
+### Idea 3: Use Monte Carlo Tree Search (MCTS)
+
+_Instead of limiting search tree in depth, limit it in breadth_
 
 </textarea>
 </section>
@@ -590,7 +703,7 @@ https://en.wikipedia.org/wiki/Monte_Carlo_method#/media/File:Pi_30K.gif
 </textarea>
 </section>
 
-<section data-markdown>
+<!-- <section data-markdown>
     <textarea data-template>
 ### Monte Carlo is fun I
 
@@ -612,18 +725,18 @@ https://twitter.com/Rainmaker1973b/status/1071865470901469189
 https://twitter.com/Aella_Girl/status/1070119419353870336
 </small>
 </textarea>
-</section>
+</section> -->
 
 <section data-markdown>
         <textarea data-template>
 ### Monte Carlo Game Search
 
-* Start from a next move beginning from an initial state
-* For each next move
-* Play a game to the _end_ using a random set of moves
-* Repeat for a number of times
-* Count number of times for win, loose, draw
-* Choose the move with the best probability for a win
+* start from an initial state
+* for each next move
+* play a game to the _end_ using a random set of moves
+* repeat for a number of times
+* count number of times for win, loose, draw
+* choose the move with the best probability for a win
 
 <small>
 Choose number of random experiment wisely based on branching factor
@@ -651,7 +764,7 @@ https://en.wikipedia.org/wiki/Monte_Carlo_tree_search#Pure_Monte_Carlo_game_sear
                     
     <section data-markdown>
         <textarea data-template>
-### Monte Carlo Tree Search
+### Next Level: Monte Carlo Tree Search
 
 Loops in four phases
 1. Selection
@@ -685,6 +798,7 @@ Choose a node to expand next
 _Rather improve on states known as good or have a look at unknown moves?_
 
 * exploitation: choose moves with high average win ratio
+  * uses prediction of model as prior
 * exploration: choose moves with few simulations
 
 Compare: How would you explore a new city?
@@ -695,7 +809,7 @@ https://en.wikipedia.org/wiki/Monte_Carlo_tree_search
     </textarea>
     </section>
 
-    <section data-markdown style="font-size: xx-large">
+    <!-- <section data-markdown style="font-size: xx-large">
         <textarea data-template>
 ### Details: Exploration vs Exploitation
 
@@ -715,7 +829,7 @@ https://en.wikipedia.org/wiki/Monte_Carlo_tree_search
 * second component: exploration; it is high for moves with few simulations            
         
     </textarea>
-    </section>
+    </section> -->
 
     <section data-markdown>
         <textarea data-template>
@@ -749,96 +863,21 @@ Update Scores
 
     </textarea>
     </section>
-    
+
 <section data-markdown>
     <textarea data-template>
-### Part IV        
-## How AlphaZero combines all of them
 
+<img src='img/az_overview.jpg' height="650px">
 </textarea>
 </section>
 
 <section data-markdown>
     <textarea data-template>
-### Idea 1: have a deep neural network as evaluation function
+### MCTS as policy improvement operator
 
-* hand-crafted linear evaluation function is not able to "see" how good a position really is
-* convolutional neural network (CNN) are very good for image recognition
-* hopefully is able to have a more holistic view of game state 
-
-<small>
-https://deepmind.com/documents/260/alphazero_preprint.pdf    
-</small>
-    </textarea>
-</section>
-
-<section data-markdown>
-    <textarea data-template>
-### CNN in AlphaZero as model
-
-* single network, state-of-the-art ResNet style
-* input: board position
-* output 
-  * policy head: move probabilities (vector)
-  * value head: winning probability (skalar)
-
-<small>
-https://deepmind.com/documents/260/alphazero_preprint.pdf
-https://www.chessprogramming.org/Leela_Chess_Zero
-</small>
-    </textarea>
-</section>
-
-<section data-markdown style="font-size: x-large">
-    <textarea data-template>
-### Training of Neural Network
-
-_Network is trained like in Supervised Learning. But output of network influences what data is being collected for the next training iteration_
-
-* zero initial knowledge
-* model starts random
-* losses: 
-* MSE of value head against final game outcome
-* values: +1 for winning, 0 for draw, -1 for loosing
-* cross-entropy for policy head against actual probabilities (determined by MCTS)
-* experimental: train value head against prediction further down the tree
-
-<small>
-https://deepmind.com/documents/260/alphazero_preprint.pdf    
-https://www.chessprogramming.org/Leela_Chess_Zero
-</small>
-    </textarea>
-</section>
-
-<section data-markdown style="font-size: xx-large">
-    <textarea data-template>
-### Idea 2: Use a Reinforcement Learning approach
-
-* games are played continuously using selfplay always using current model
-* skips AlhpaGoZero's approach of model evaluation altogether for speedup and simplification 
-* move probabilities are computed by model
-* moves chosen by sampling over probabilities
-* replay buffer is filled with game records
-  * outcome
-  * move history
-  * predicted probabilities at each move  
-* game records match input / output of model
-* used to constantly retrain model
-
-<small>
-https://arxiv.org/pdf/1902.04522.pdf    
-</small>
-    </textarea>
-</section>
-
-
-    <section data-markdown>
-        <textarea data-template>
-### Idea 3: Use MCTS as policy improvement operator
-
-* probabilities of policy head output works as prior to MCTS simulation
+* probabilities of model's policy head output works as prior to MCTS simulation
 * MCTS explores game tree based on those priors
-* terminates after a certain number of iterations
+* terminates after a certain number of iterations (800 for AlphaZero)
 * creates new probabilities based on the outcome of the simulation
 
 <small>
@@ -847,17 +886,17 @@ https://arxiv.org/pdf/1902.04522.pdf
 </textarea>
 </section>
 
-<section data-markdown style="font-size: xx-large">
-    <textarea data-template>
+<!-- <section data-markdown style="font-size: xx-large">
+<textarea data-template>
 ### Why use MCTS instead of alpha-beta search
 
 * alpha-beta search does not seem to work well with neural network as prediction function
 * MCTS alone inferior to alpha-beta search
 * combining MCTS with CNN works really well, though
 * intuition
-* CNNs are prone to error and a large worse-case generalization error 
-* alpha-beta propagates large errors to the top
-* MCTS averages over all positions and cancels out approximation error
+    * CNNs are prone to error and a large worse-case generalization error 
+    * alpha-beta propagates large errors to the top
+    * MCTS averages over all positions and cancels out approximation error
 * choose child to expand using move probabilities (instead of random expansion phase)
 * exploration uses sampling proportional to probabilities
 * exploitation uses greedy selection
@@ -866,9 +905,18 @@ https://arxiv.org/pdf/1902.04522.pdf
 <small>
 https://deepmind.com/documents/260/alphazero_preprint.pdf    
 </small>
-    </textarea>
+</textarea>
 </section>
+ -->
 
+    
+<section data-markdown>
+    <textarea data-template>
+### Part III        
+## How does this perform?
+
+</textarea>
+</section>
 
 <section data-markdown>
         <textarea data-template>
