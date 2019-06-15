@@ -184,6 +184,18 @@ why the era of classic chess engines might be over.
     </textarea>
 </section>
 
+<section data-markdown class="todo">
+        <textarea data-template>
+* Grafik in gut 
+  * Anfang und Ende ganz
+  * als Einzelteile (zoom?) bei den Ideen
+
+* kürzen und vereinfachen wo möglich
+* preparations updaten
+* alles nochmal durchgehen
+        </textarea>
+    </section>
+
 <section>
         <h3>Paradigm Shift in Chess Engines</h3>
         <img src='img/queen.jpg' height="350px">
@@ -197,119 +209,30 @@ why the era of classic chess engines might be over.
 </a></small></p>
 </section>
 
-<section data-markdown class="todo">
-        <textarea data-template>
-* Grafik in gut 
-  * Anfang und Ende ganz
-  * als Einzelteile (zoom?) bei den Ideen
+<section data-markdown>
+    <textarea data-template>
+### AlphaZero playing black against Stockfish
 
-* kürzen und vereinfachen wo möglich
-* preparations updaten
-* alles nochmal durchgehen
-        </textarea>
+position is what matters
+
+<img src='img/search/white-dominating.jpeg' style="float: left; padding-left: 100px" height="400px" class="fragment">
+<img src='img/search/black-fights-back.jpeg' style="float: right; padding-right: 100px" height="400px" class="fragment">
+
+<small style="clear: both">
+AlphaZero's return, destroying Stockfish 8
+<br>
+https://www.chess.com/article/view/live-now-neural-nakamura-analyzes-top-neural-network-computer-chess-games
+</small>
+</textarea>
+</section>
+
+<section data-markdown>
+        <textarea data-template>
+
+### What makes AlphaZero and Stockfish play so differently? 
+    </textarea>
     </section>
-
-<section data-markdown>
-        <textarea data-template>
-### AlphaZero
-
-* generalized version of AlphaGo Zero
-* can learn to play any deterministic full information game
-* mainly needs rules for game as domain knowledge
-* actually trained to play chess, go, and shogi
-
-<small>
-https://en.wikipedia.org/wiki/AlphaZero
-<br>
-https://deepmind.com/research/alphago/alphazero-resources/
-</small>
-        </textarea>
-    </section>
-
-
-<section data-markdown>
-    <textarea data-template>
-### Leela Chess Zero = LC0
-
-_Open Source Implementation and collective training based on the ideas presented in AlphaZero_
-
-<small>
-https://en.wikipedia.org/wiki/Leela_Chess_Zero
-<br>
-https://lczero.org/
-<br>
-https://github.com/LeelaChessZero/lc0
-<br>
-https://en.wikipedia.org/wiki/AlphaZero
-</small>
-
-</textarea>
-</section>
-
-<!-- <section data-markdown class="preparation">
-        <textarea data-template>
-Spiel ganz durchlaufen lassen in fast und bisschen herum labern
-
-
-
-Move 31:
-- White builds up a very strong queen side and simply does not care too much for blacks small plan to steal a pawn
-
-Move 32:
-- Instead it makes its offensive position much stronger
-
-Move 36:
-- A surprising but very powerful move
-
-After that endgame: black resigns
-</textarea>
-</section> -->
-
-<section data-markdown>
-    <textarea data-template>
-### Postion for Material
-
-<small>
-White: LCZero v20.2-32930, Black Stockfish 190203
-</small>
-
-<video src='img/search/leela-vs-stockfish-position-for-material.mp4' controls height="400px" muted></video>
-
-<small>
-https://www.youtube.com/watch?v=zzfYRxL2lXU
-<br>
-https://www.chessworld.net/chessclubs/ltpgnviewer32/ltpgnboard.asp?GameID=5024214
-</small>
-
-</textarea>
-</section>
-
-<section data-markdown>
-    <textarea data-template>
-### Lc0 Wins Computer Chess Championship, Makes History
-
-<em>The machine-learning chess engine Lc0 won the Chess.com Computer Chess Championship last weekend, 
-making history as the first neural-network project to take the title.</em> 
-
-<em>Lc0 placed ahead of runner-up Stockfish (162/300) in the blitz finals, 
-the first time in eight Computer Chess Championships that Stockfish didn't win the tournament</em>
-
-https://www.chess.com/news/view/lc0-wins-computer-chess-championship-makes-history
-</textarea>
-</section>
-
-<section data-markdown>
-    <textarea data-template>
-### But let's not get ahead of ourselves here
-
-1. How do classic chess engines like Stockfish play?
-1. How does AlphaZero play?
-    1. Reinforcement Learning
-    1. Monte Carlo Tree Search (MCTS)
-    1. Combination with CNN 
-
-</textarea>
-</section>
+    
 
 <section data-markdown>
     <textarea data-template>
@@ -319,7 +242,13 @@ https://www.chess.com/news/view/lc0-wins-computer-chess-championship-makes-histo
 </textarea>
 </section>
 
-<section>
+<section data-markdown>
+        <textarea data-template>
+### Can we not just store all the perfect moves?
+</textarea>
+</section>
+
+<!-- <section>
     <h3>Chess Computers have defeated humans because</h3>
     <div class="fragment" style="float: left">
         <img src="img/cray2.png" height="250">
@@ -339,7 +268,7 @@ https://www.chess.com/news/view/lc0-wins-computer-chess-championship-makes-histo
 ## But how?
 </textarea>
 </section>
-
+ -->
 <section data-markdown style="font-size: xx-large">
         <textarea data-template>
 ### Size of complete Search Tree
@@ -376,16 +305,30 @@ To compare
 ### Game Search
 
 _Full, exhaustive search is mostly just not feasible_
-* Limit in Depth: Mini Max / Alpha Beta Pruning
-* Limit in Breadth: Monte-Carlo Tree Search
+
+Possible solutions
+* Limit in Depth
+* Limit in Breadth
     </textarea>
+    </section>
+
+<section data-markdown>
+        <textarea data-template>
+### Adversarial Search
+
+* two players
+* one tries to minimize the outcome of the game (negative)
+* the other one maximizes (positive)
+* typically we restrict search depth
+
+</textarea>
     </section>
     
 <section data-markdown>
     <textarea data-template>
-### Mini Max, lookahead of 4 halfmoves
+### Minimax, lookahead of 4 halfmoves
 
-_Computer maximixes and it is its move (circles)_
+_Computer maximizes and it is its move (circles)_
 
 <div class="fragment">
 
@@ -478,7 +421,7 @@ https://deepmind.com/documents/260/alphazero_preprint.pdf
 
 <section data-markdown>
     <textarea data-template>
-### This used to be start of the art
+### This used to be state of the art
 
 * all recent versions of chess engines were using a variation of this approach
 * good enough to play on a superhuman level on commodity hardware
@@ -489,11 +432,70 @@ https://deepmind.com/documents/260/alphazero_preprint.pdf
 <section data-markdown>
     <textarea data-template>
 ### Part II
-## What makes AlphaZero so special?
+## What makes AlphaZero different?
 
 </textarea>
 </section>
 
+<section data-markdown>
+        <textarea data-template>
+### AlphaZero
+
+* generalized version of AlphaGo Zero
+* can learn to play any deterministic full information game
+* learns by self-play
+* mainly needs rules for game as domain knowledge
+* actually trained to play chess, go, and shogi
+
+<small>
+https://en.wikipedia.org/wiki/AlphaZero
+<br>
+https://deepmind.com/research/alphago/alphazero-resources/
+</small>
+        </textarea>
+    </section>
+
+<section data-markdown>
+        <textarea data-template>
+    <img src='img/search/az1.jpg' height="650px">
+    </textarea>
+    </section>
+    <section data-markdown>
+            <textarea data-template>
+        <img src='img/search/az2.jpg' height="650px">
+        </textarea>
+        </section>
+        <section data-markdown>
+                <textarea data-template>
+            <img src='img/search/az3.jpg' height="650px">
+            </textarea>
+            </section>
+            <section data-markdown>
+                    <textarea data-template>
+                <img src='img/search/az4.jpg' height="650px">
+                </textarea>
+                </section>
+                <section data-markdown>
+                        <textarea data-template>
+                    <img src='img/search/az5.jpg' height="650px">
+                    </textarea>
+                    </section>
+                    <section data-markdown>
+                            <textarea data-template>
+                        <img src='img/search/az6.jpg' height="650px">
+                        </textarea>
+                        </section>
+                        <section data-markdown>
+                                <textarea data-template>
+                            <img src='img/search/az7.jpg' height="650px">
+                            </textarea>
+                            </section>
+                            <section data-markdown>
+                                    <textarea data-template>
+                                <img src='img/search/az8.jpg' height="650px">
+                                </textarea>
+                                </section>
+                                                                                                                
 <section data-markdown>
     <textarea data-template>
 ### Idea 1: have a deep neural network as evaluation function
@@ -525,162 +527,9 @@ https://www.chessprogramming.org/Leela_Chess_Zero
     </textarea>
 </section>
 
-<section data-markdown style="font-size: xx-large">
-    <textarea data-template>
-### Training of Neural Network
-
-_Network is trained like in Supervised Learning. But output of network influences what data is being collected for the next training iteration_
-
-* model starts as random
-* will be trained on collected data
-* losses: 
-  * MSE of value head against final game outcome
-    * values: +1 for winning, 0 for draw, -1 for loosing
-  * cross-entropy for policy head against actual probabilities (determined by MCTS)
-<!-- * experimental: train value head against prediction further down the tree -->
-
-<small>
-https://arxiv.org/pdf/1712.01815.pdf
-https://www.chessprogramming.org/Leela_Chess_Zero
-</small>
-    </textarea>
-</section>
-
 <section data-markdown>
     <textarea data-template>
-## Overall picture
-
-</textarea>
-</section>
-
-<section data-markdown>
-        <textarea data-template>
-    <img src='img/az_overview.jpg' height="650px">
-    </textarea>
-    </section>
-    
-    
-
-<section data-markdown>
-    <textarea data-template>
-### Idea 2: Use Reinforcement Learning to train the model
-
-_AlphaZero learns how to play chess by playing against itself_
-
-</textarea>
-</section>
-
-<section data-markdown>
-    <textarea data-template>
-### Types of Machine Learning
-
-<img src='img/types-of-ml.jpg'>
-<small>
-https://www.facebook.com/nipsfoundation/posts/795861577420073/
-<br>
-https://ranzato.github.io/publications/tutorial_deep_unsup_learning_part1_NeurIPS2018.pdf
-</small>
-</textarea>
-</section>
-
-<section data-markdown>
-    <textarea data-template>
-### Learning in a simulated world
-<video controls src="video/knocked-over-stand-up.mp4"  muted type="video/mp4" height="500"></video>
-            
-<small>
-https://blog.openai.com/openai-baselines-ppo/
-</small>
-</textarea>
-</section>
-
-<section data-markdown>
-<textarea data-template>
-### Reinforcement Learning
-
-<div  style="max-width: 45%; float: left">
-<br>
-<img src="img/rl.png">
-</div>
-<div style="max-width: 50%; float: right">
-<br>
-<ol>
-    <li>Based on _Observations_ an _Agent_ executes </li>
-<li>_Actions_ within a given  
-<li>_Environment_ which lead to positive or negative 
-<li>_Rewards_.
-</ol>
-</div>
-
-<div style="clear: both;">
-    <br>
-    <p >The Agent’s job is to maximize the cumulative Reward</p>
-</div>
-
-<small>
-http://gym.openai.com/docs/    
-</small>
-
-</textarea>
-</section>
-
-<section data-markdown style="font-size: x-large">
-    <textarea data-template>
-### Reinforcement Learning approach for AlphaZero
-
-_reward at very end of game, need to record trajectory to it for training once reward has been given_
-* games are played continuously using selfplay always using current model
-* skips AlhpaGoZero's approach of model evaluation altogether for speedup and simplification 
-* move probabilities are computed by model
-* improved by MCTS (more on that later)
-* moves chosen by sampling over probabilities
-  * greedy for end-game training and all of real game play
-  * stochastic for early-game training
-* replay buffer is filled with game records
-  * outcome
-  * move history
-  * predicted probabilities at each move  
-* game records match input / output of model
-* used to constantly retrain model
-
-<small>
-https://arxiv.org/pdf/1902.04522.pdf    
-</small>
-    </textarea>
-</section>
-
-<section data-markdown>
-        <textarea data-template>
-### Algorithm Overview
-
-<img src='img/rl/rl_algorithms_9_15.svg'>
-<small>
-https://spinningup.openai.com/en/latest/spinningup/rl_intro2.html    
-</small>
-    
-    </textarea>
-    </section>
-    
-<section data-markdown>
-        <textarea data-template>
-### Model-Based RL (instead of Model-Free)
-
-* agent has or learns a model of the environment
-* allows agent to plan by thinking ahead
-* AlphaZero receives a hard-coded model for the environment
-* rules for game are coded into engine
-* only valid next moves can be expanded
-
-<small>
-https://spinningup.openai.com/en/latest/spinningup/rl_intro2.html#model-free-vs-model-based-rl    
-</small>
-    
-    </textarea>
-    </section>
-
-<section data-markdown>
-    <textarea data-template>
-### Idea 3: Use Monte Carlo Tree Search (MCTS)
+### Idea 2: Use Monte Carlo Tree Search (MCTS)
 
 _Instead of limiting search tree in depth, limit it in breadth_
 
@@ -909,12 +758,222 @@ https://deepmind.com/documents/260/alphazero_preprint.pdf
 </section>
  -->
 
+
+<section data-markdown>
+    <textarea data-template>
+### Idea 3: Use Reinforcement Learning to train the model
+
+_AlphaZero learns how to play chess by playing against itself_
+
+</textarea>
+</section>
+
+<section data-markdown style="font-size: xx-large">
+    <textarea data-template>
+### Training of Neural Network
+
+_Network is trained like in Supervised Learning. But output of network influences what data is being collected for the next training iteration_
+
+* model starts as random
+* will be trained on collected data
+* model will also used to collect new data
+* losses: 
+  * MSE of value head against final game outcome
+    * values: +1 for winning, 0 for draw, -1 for loosing
+  * cross-entropy for policy head against actual probabilities (determined by MCTS)
+<!-- * experimental: train value head against prediction further down the tree -->
+
+<small>
+https://arxiv.org/pdf/1712.01815.pdf
+https://www.chessprogramming.org/Leela_Chess_Zero
+</small>
+    </textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Types of Machine Learning
+
+<img src='img/types-of-ml.jpg'>
+<small>
+https://www.facebook.com/nipsfoundation/posts/795861577420073/
+<br>
+https://ranzato.github.io/publications/tutorial_deep_unsup_learning_part1_NeurIPS2018.pdf
+</small>
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Learning in a simulated world
+<video controls src="video/knocked-over-stand-up.mp4"  muted type="video/mp4" height="500"></video>
+            
+<small>
+https://blog.openai.com/openai-baselines-ppo/
+</small>
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+### Reinforcement Learning
+
+<div  style="max-width: 45%; float: left">
+<br>
+<img src="img/rl.png">
+</div>
+<div style="max-width: 50%; float: right">
+<br>
+<ol>
+    <li>Based on _Observations_ an _Agent_ executes </li>
+<li>_Actions_ within a given  
+<li>_Environment_ which lead to positive or negative 
+<li>_Rewards_.
+</ol>
+</div>
+
+<div style="clear: both;">
+    <br>
+    <p >The Agent’s job is to maximize the cumulative Reward</p>
+</div>
+
+<small>
+http://gym.openai.com/docs/    
+</small>
+
+</textarea>
+</section>
+
+<section data-markdown style="font-size: x-large">
+    <textarea data-template>
+### Reinforcement Learning approach for AlphaZero
+
+_reward at very end of game, need to record trajectory to it for training once reward has been given_
+* games are played continuously using selfplay always using current model
+* skips AlhpaGoZero's approach of model evaluation altogether for speedup and simplification 
+* move probabilities are computed by model
+* improved by MCTS (more on that later)
+* moves chosen by sampling over probabilities
+  * greedy for end-game training and all of real game play
+  * stochastic for early-game training
+* replay buffer is filled with game records
+  * outcome
+  * move history
+  * predicted probabilities at each move  
+* game records match input / output of model
+* used to constantly retrain model
+
+<small>
+https://arxiv.org/pdf/1902.04522.pdf    
+</small>
+    </textarea>
+</section>
+
+<section data-markdown>
+        <textarea data-template>
+### Algorithm Overview
+
+<img src='img/rl/rl_algorithms_9_15.svg'>
+<small>
+https://spinningup.openai.com/en/latest/spinningup/rl_intro2.html    
+</small>
     
+    </textarea>
+    </section>
+    
+<section data-markdown>
+        <textarea data-template>
+### Model-Based RL (instead of Model-Free)
+
+* agent has or learns a model of the environment
+* allows agent to plan by thinking ahead
+* AlphaZero receives a hard-coded model for the environment
+* rules for game are coded into engine
+* only valid next moves can be expanded
+
+<small>
+https://spinningup.openai.com/en/latest/spinningup/rl_intro2.html#model-free-vs-model-based-rl    
+</small>
+    
+    </textarea>
+    </section>
+
 <section data-markdown>
     <textarea data-template>
 ### Part III        
 ## How does this perform?
 
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Leela Chess Zero = LC0
+
+_Open Source Implementation and collective training based on the ideas presented in AlphaZero_
+
+<small>
+https://en.wikipedia.org/wiki/Leela_Chess_Zero
+<br>
+https://lczero.org/
+<br>
+https://github.com/LeelaChessZero/lc0
+<br>
+https://en.wikipedia.org/wiki/AlphaZero
+</small>
+
+</textarea>
+</section>
+
+<!-- <section data-markdown class="preparation">
+        <textarea data-template>
+Spiel ganz durchlaufen lassen in fast und bisschen herum labern
+
+
+
+Move 31:
+- White builds up a very strong queen side and simply does not care too much for blacks small plan to steal a pawn
+
+Move 32:
+- Instead it makes its offensive position much stronger
+
+Move 36:
+- A surprising but very powerful move
+
+After that endgame: black resigns
+</textarea>
+</section> -->
+
+<section data-markdown>
+    <textarea data-template>
+### Postion for Material
+
+<small>
+White: LCZero v20.2-32930, Black Stockfish 190203
+</small>
+
+<video src='img/search/leela-vs-stockfish-position-for-material.mp4' controls height="400px" muted></video>
+
+<small>
+https://www.youtube.com/watch?v=zzfYRxL2lXU
+<br>
+https://www.chessworld.net/chessclubs/ltpgnviewer32/ltpgnboard.asp?GameID=5024214
+</small>
+
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Lc0 Wins Computer Chess Championship, Makes History
+
+<em>The machine-learning chess engine Lc0 won the Chess.com Computer Chess Championship last weekend, 
+making history as the first neural-network project to take the title.</em> 
+
+<em>Lc0 placed ahead of runner-up Stockfish (162/300) in the blitz finals, 
+the first time in eight Computer Chess Championships that Stockfish didn't win the tournament</em>
+
+https://www.chess.com/news/view/lc0-wins-computer-chess-championship-makes-history
 </textarea>
 </section>
 
@@ -929,23 +988,6 @@ https://deepmind.com/blog/alphazero-shedding-new-light-grand-games-chess-shogi-a
 </small>
         </textarea>
     </section>
-
-<section data-markdown>
-    <textarea data-template>
-### AlphaZero playing black against Stockfish
-
-black turns position around by very aggressive play
-
-<img src='img/search/white-dominating.jpeg' style="float: left; padding-left: 100px" height="400px" class="fragment">
-<img src='img/search/black-fights-back.jpeg' style="float: right; padding-right: 100px" height="400px" class="fragment">
-
-<small style="clear: both">
-AlphaZero's return, destroying Stockfish 8
-<br>
-https://www.chess.com/article/view/live-now-neural-nakamura-analyzes-top-neural-network-computer-chess-games
-</small>
-</textarea>
-</section>
 
 <section data-markdown>
     <textarea data-template>
