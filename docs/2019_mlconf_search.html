@@ -186,13 +186,8 @@ why the era of classic chess engines might be over.
 
 <section data-markdown class="todo">
         <textarea data-template>
-* Grafik in gut 
-  * Anfang und Ende ganz
-  * als Einzelteile (zoom?) bei den Ideen
-
-* kürzen und vereinfachen wo möglich
+* MCTS kürzen
 * preparations updaten
-* alles nochmal durchgehen
         </textarea>
     </section>
 
@@ -455,46 +450,16 @@ https://deepmind.com/research/alphago/alphazero-resources/
         </textarea>
     </section>
 
-<section data-markdown>
-        <textarea data-template>
+<!-- <section data-markdown>
+    <textarea data-template>
     <img src='img/search/az1.jpg' height="650px">
     </textarea>
-    </section>
-    <section data-markdown>
-            <textarea data-template>
+</section> -->
+<section data-markdown>
+    <textarea data-template>
         <img src='img/search/az2.jpg' height="650px">
         </textarea>
-        </section>
-        <section data-markdown>
-                <textarea data-template>
-            <img src='img/search/az3.jpg' height="650px">
-            </textarea>
-            </section>
-            <section data-markdown>
-                    <textarea data-template>
-                <img src='img/search/az4.jpg' height="650px">
-                </textarea>
-                </section>
-                <section data-markdown>
-                        <textarea data-template>
-                    <img src='img/search/az5.jpg' height="650px">
-                    </textarea>
-                    </section>
-                    <section data-markdown>
-                            <textarea data-template>
-                        <img src='img/search/az6.jpg' height="650px">
-                        </textarea>
-                        </section>
-                        <section data-markdown>
-                                <textarea data-template>
-                            <img src='img/search/az7.jpg' height="650px">
-                            </textarea>
-                            </section>
-                            <section data-markdown>
-                                    <textarea data-template>
-                                <img src='img/search/az8.jpg' height="650px">
-                                </textarea>
-                                </section>
+</section>
                                                                                                                 
 <section data-markdown>
     <textarea data-template>
@@ -512,19 +477,32 @@ https://arxiv.org/pdf/1712.01815.pdf
 
 <section data-markdown>
     <textarea data-template>
+            <img src='img/search/az3.jpg' height="650px">
+            </textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
 ### CNN in AlphaZero as model
 
 * single network, state-of-the-art ResNet style
 * input: board position
 * output 
   * policy head: move probabilities (vector)
-  * value head: winning probability (skalar)
+  * value head: winning probability (scalar)
 
 <small>
 https://arxiv.org/pdf/1712.01815.pdf
 https://www.chessprogramming.org/Leela_Chess_Zero
 </small>
     </textarea>
+</section>
+
+
+<section data-markdown>
+    <textarea data-template>
+                <img src='img/search/az4.jpg' height="650px">
+                </textarea>
 </section>
 
 <section data-markdown>
@@ -534,6 +512,27 @@ https://www.chessprogramming.org/Leela_Chess_Zero
 _Instead of limiting search tree in depth, limit it in breadth_
 
 </textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### MCTS as policy improvement operator
+
+* probabilities of model's policy head output works as prior to MCTS simulation
+* MCTS explores game tree based on those priors
+* terminates after a certain number of iterations (800 for AlphaZero)
+* creates new probabilities based on the outcome of the simulation
+
+<small>
+https://arxiv.org/pdf/1902.04522.pdf
+</small>
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+                    <img src='img/search/az5.jpg' height="650px">
+                    </textarea>
 </section>
 
 <section data-markdown>
@@ -576,7 +575,7 @@ https://twitter.com/Aella_Girl/status/1070119419353870336
 </textarea>
 </section> -->
 
-<section data-markdown>
+<!-- <section data-markdown>
         <textarea data-template>
 ### Monte Carlo Game Search
 
@@ -602,18 +601,18 @@ https://en.wikipedia.org/wiki/Monte_Carlo_tree_search#Pure_Monte_Carlo_game_sear
 
 </textarea>
     </section>
-
-        <section data-markdown class="remote">
+ -->
+        <!-- <section data-markdown class="remote">
                 <textarea data-template>
 ### Monte Carlo Game Search
 
 <img src='img/search/monte_carlo_game_search.jpg' height="550px">
                     </textarea>
-                    </section>
+                    </section> -->
                     
     <section data-markdown>
         <textarea data-template>
-### Next Level: Monte Carlo Tree Search
+### Monte Carlo Tree Search
 
 Loops in four phases
 1. Selection
@@ -713,28 +712,6 @@ Update Scores
     </textarea>
     </section>
 
-<section data-markdown>
-    <textarea data-template>
-
-<img src='img/az_overview.jpg' height="650px">
-</textarea>
-</section>
-
-<section data-markdown>
-    <textarea data-template>
-### MCTS as policy improvement operator
-
-* probabilities of model's policy head output works as prior to MCTS simulation
-* MCTS explores game tree based on those priors
-* terminates after a certain number of iterations (800 for AlphaZero)
-* creates new probabilities based on the outcome of the simulation
-
-<small>
-https://arxiv.org/pdf/1902.04522.pdf
-</small>
-</textarea>
-</section>
-
 <!-- <section data-markdown style="font-size: xx-large">
 <textarea data-template>
 ### Why use MCTS instead of alpha-beta search
@@ -758,7 +735,6 @@ https://deepmind.com/documents/260/alphazero_preprint.pdf
 </section>
  -->
 
-
 <section data-markdown>
     <textarea data-template>
 ### Idea 3: Use Reinforcement Learning to train the model
@@ -768,51 +744,12 @@ _AlphaZero learns how to play chess by playing against itself_
 </textarea>
 </section>
 
-<section data-markdown style="font-size: xx-large">
-    <textarea data-template>
-### Training of Neural Network
+    <section data-markdown>
+        <textarea data-template>
+                            <img src='img/search/az6.jpg' height="650px">
+                            </textarea>
+    </section>
 
-_Network is trained like in Supervised Learning. But output of network influences what data is being collected for the next training iteration_
-
-* model starts as random
-* will be trained on collected data
-* model will also used to collect new data
-* losses: 
-  * MSE of value head against final game outcome
-    * values: +1 for winning, 0 for draw, -1 for loosing
-  * cross-entropy for policy head against actual probabilities (determined by MCTS)
-<!-- * experimental: train value head against prediction further down the tree -->
-
-<small>
-https://arxiv.org/pdf/1712.01815.pdf
-https://www.chessprogramming.org/Leela_Chess_Zero
-</small>
-    </textarea>
-</section>
-
-<section data-markdown>
-    <textarea data-template>
-### Types of Machine Learning
-
-<img src='img/types-of-ml.jpg'>
-<small>
-https://www.facebook.com/nipsfoundation/posts/795861577420073/
-<br>
-https://ranzato.github.io/publications/tutorial_deep_unsup_learning_part1_NeurIPS2018.pdf
-</small>
-</textarea>
-</section>
-
-<section data-markdown>
-    <textarea data-template>
-### Learning in a simulated world
-<video controls src="video/knocked-over-stand-up.mp4"  muted type="video/mp4" height="500"></video>
-            
-<small>
-https://blog.openai.com/openai-baselines-ppo/
-</small>
-</textarea>
-</section>
 
 <section data-markdown>
 <textarea data-template>
@@ -844,31 +781,6 @@ http://gym.openai.com/docs/
 </textarea>
 </section>
 
-<section data-markdown style="font-size: x-large">
-    <textarea data-template>
-### Reinforcement Learning approach for AlphaZero
-
-_reward at very end of game, need to record trajectory to it for training once reward has been given_
-* games are played continuously using selfplay always using current model
-* skips AlhpaGoZero's approach of model evaluation altogether for speedup and simplification 
-* move probabilities are computed by model
-* improved by MCTS (more on that later)
-* moves chosen by sampling over probabilities
-  * greedy for end-game training and all of real game play
-  * stochastic for early-game training
-* replay buffer is filled with game records
-  * outcome
-  * move history
-  * predicted probabilities at each move  
-* game records match input / output of model
-* used to constantly retrain model
-
-<small>
-https://arxiv.org/pdf/1902.04522.pdf    
-</small>
-    </textarea>
-</section>
-
 <section data-markdown>
         <textarea data-template>
 ### Algorithm Overview
@@ -898,11 +810,121 @@ https://spinningup.openai.com/en/latest/spinningup/rl_intro2.html#model-free-vs-
     </textarea>
     </section>
 
+<section data-markdown style="font-size: x-large">
+    <textarea data-template>
+### Reinforcement Learning approach for AlphaZero
+
+_reward at very end of game, need to record trajectory to it for training once reward has been given_
+* games are played continuously using selfplay always using current model
+* skips AlhpaGoZero's approach of model evaluation altogether for speedup and simplification 
+* move probabilities are computed by model
+* improved by MCTS (more on that later)
+* moves chosen by sampling over probabilities
+  * greedy for end-game training and all of real game play
+  * stochastic for early-game training
+* replay buffer is filled with game records
+  * outcome
+  * move history
+  * predicted probabilities at each move  
+* game records match input / output of model
+* used to constantly retrain model
+
+<small>
+https://arxiv.org/pdf/1902.04522.pdf    
+</small>
+    </textarea>
+</section>
+
+    <section data-markdown>
+        <textarea data-template>
+                                <img src='img/search/az7.jpg' height="650px">
+                                </textarea>
+    </section>
+<section data-markdown style="font-size: xx-large">
+    <textarea data-template>
+### Training of Neural Network
+
+_Network is trained like in Supervised Learning. But output of network influences what data is being collected for the next training iteration_
+
+* model starts as random
+* will be trained on collected data
+* model will also used to collect new data
+* losses: 
+  * MSE of value head against final game outcome
+    * values: +1 for winning, 0 for draw, -1 for loosing
+  * cross-entropy for policy head against actual probabilities (determined by MCTS)
+<!-- * experimental: train value head against prediction further down the tree -->
+
+<small>
+https://arxiv.org/pdf/1712.01815.pdf
+https://www.chessprogramming.org/Leela_Chess_Zero
+</small>
+    </textarea>
+</section>
+
+    <section data-markdown>
+        <textarea data-template>
+                                    <img src='img/search/az8.jpg' height="650px">
+                                    </textarea>
+    </section>
+    
+    
+<!-- <section data-markdown>
+    <textarea data-template>
+### Types of Machine Learning
+
+<img src='img/types-of-ml.jpg'>
+<small>
+https://www.facebook.com/nipsfoundation/posts/795861577420073/
+<br>
+https://ranzato.github.io/publications/tutorial_deep_unsup_learning_part1_NeurIPS2018.pdf
+</small>
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Learning in a simulated world
+<video controls src="video/knocked-over-stand-up.mp4"  muted type="video/mp4" height="500"></video>
+            
+<small>
+https://blog.openai.com/openai-baselines-ppo/
+</small>
+</textarea>
+</section> -->
+
+
 <section data-markdown>
     <textarea data-template>
 ### Part III        
 ## How does this perform?
 
+</textarea>
+</section>
+
+<section data-markdown>
+        <textarea data-template>
+### Performance of AlphaZero
+            
+<img src='img/search/AZ-Blog-Fig1-Generality-Performance-Across-Games.gif'>
+
+<small>
+https://deepmind.com/blog/alphazero-shedding-new-light-grand-games-chess-shogi-and-go/    
+</small>
+        </textarea>
+    </section>
+
+<section data-markdown>
+    <textarea data-template>
+### Lc0 Wins Computer Chess Championship, Makes History
+
+<em>The machine-learning chess engine Lc0 won the Chess.com Computer Chess Championship last weekend, 
+making history as the first neural-network project to take the title.</em> 
+
+<em>Lc0 placed ahead of runner-up Stockfish (162/300) in the blitz finals, 
+the first time in eight Computer Chess Championships that Stockfish didn't win the tournament</em>
+
+https://www.chess.com/news/view/lc0-wins-computer-chess-championship-makes-history
 </textarea>
 </section>
 
@@ -962,32 +984,6 @@ https://www.chessworld.net/chessclubs/ltpgnviewer32/ltpgnboard.asp?GameID=502421
 
 </textarea>
 </section>
-
-<section data-markdown>
-    <textarea data-template>
-### Lc0 Wins Computer Chess Championship, Makes History
-
-<em>The machine-learning chess engine Lc0 won the Chess.com Computer Chess Championship last weekend, 
-making history as the first neural-network project to take the title.</em> 
-
-<em>Lc0 placed ahead of runner-up Stockfish (162/300) in the blitz finals, 
-the first time in eight Computer Chess Championships that Stockfish didn't win the tournament</em>
-
-https://www.chess.com/news/view/lc0-wins-computer-chess-championship-makes-history
-</textarea>
-</section>
-
-<section data-markdown>
-        <textarea data-template>
-### Performance of AlphaZero
-            
-<img src='img/search/AZ-Blog-Fig1-Generality-Performance-Across-Games.gif'>
-
-<small>
-https://deepmind.com/blog/alphazero-shedding-new-light-grand-games-chess-shogi-and-go/    
-</small>
-        </textarea>
-    </section>
 
 <section data-markdown>
     <textarea data-template>
