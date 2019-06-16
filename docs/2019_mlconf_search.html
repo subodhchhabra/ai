@@ -178,22 +178,21 @@ why the era of classic chess engines might be over.
         <textarea data-template>
 ### Preparation
 
-1. Spiel nochmal durchgehen, spezielle Movies nochmal klar machen
-1. Go through MCTS phases
 1. Play through minimax example
+1. Go through MCTS phases
+1. Spiel nochmal durchgehen, spezielle Movies nochmal klar machen
+1. Wie heißen die Figuren noachmal auf Englisch: https://www.embarc.de/schachbegriffe-auf-englisch/
     </textarea>
 </section>
 
-<section data-markdown class="todo">
+<!-- <section data-markdown class="todo">
         <textarea data-template>
-* MCTS kürzen
-* preparations updaten
         </textarea>
-    </section>
+    </section> -->
 
 <section>
-        <h3>Paradigm Shift in Chess Engines</h3>
-        <img src='img/queen.jpg' height="350px">
+        <h2>Paradigm Shift in Chess Engines</h2>
+        <!-- <img src='img/queen.jpg' height="350px"> -->
         <p><a target="_blank" href="https://mlconference.ai/machine-learning-advanced-development/how-do-chess-engines-work-looking-at-stockfish-and-alphazero/">
     MLConference, Munich, June 2019
 </a></p>
@@ -507,6 +506,15 @@ https://www.chessprogramming.org/Leela_Chess_Zero
 
 <section data-markdown>
     <textarea data-template>
+
+### It turns out without looking ahead you will never get really good results
+
+</textarea>
+</section>
+
+
+<section data-markdown>
+    <textarea data-template>
 ### Idea 2: Use Monte Carlo Tree Search (MCTS)
 
 _Instead of limiting search tree in depth, limit it in breadth_
@@ -793,7 +801,7 @@ https://spinningup.openai.com/en/latest/spinningup/rl_intro2.html
     </textarea>
     </section>
     
-<section data-markdown>
+<!-- <section data-markdown>
         <textarea data-template>
 ### Model-Based RL (instead of Model-Free)
 
@@ -808,22 +816,20 @@ https://spinningup.openai.com/en/latest/spinningup/rl_intro2.html#model-free-vs-
 </small>
     
     </textarea>
-    </section>
+    </section> -->
 
-<section data-markdown style="font-size: x-large">
+<section data-markdown style="font-size: xx-large">
     <textarea data-template>
 ### Reinforcement Learning approach for AlphaZero
 
-_reward at very end of game, need to record trajectory to it for training once reward has been given_
 * games are played continuously using selfplay always using current model
-* skips AlhpaGoZero's approach of model evaluation altogether for speedup and simplification 
-* move probabilities are computed by model
-* improved by MCTS (more on that later)
+<!-- * skips AlhpaGoZero's approach of model evaluation altogether for speedup and simplification  -->
+* move probabilities are computed by model and improved by MCTS
 * moves chosen by sampling over probabilities
   * greedy for end-game training and all of real game play
   * stochastic for early-game training
 * replay buffer is filled with game records
-  * outcome
+  * complete outcome (toggled for each player)
   * move history
   * predicted probabilities at each move  
 * game records match input / output of model
@@ -835,6 +841,13 @@ https://arxiv.org/pdf/1902.04522.pdf
     </textarea>
 </section>
 
+<section data-markdown>
+        <textarea data-template>
+### Reward received at very end of game
+### Need to record trajectory to it for training once reward has been given
+            </textarea>
+    </section>
+
     <section data-markdown>
         <textarea data-template>
                                 <img src='img/search/az7.jpg' height="650px">
@@ -844,7 +857,7 @@ https://arxiv.org/pdf/1902.04522.pdf
     <textarea data-template>
 ### Training of Neural Network
 
-_Network is trained like in Supervised Learning. But output of network influences what data is being collected for the next training iteration_
+_Network is trained similar to Supervised Learning. But output of network influences what data is being collected for the next training iteration_
 
 * model starts as random
 * will be trained on collected data
@@ -896,7 +909,7 @@ https://blog.openai.com/openai-baselines-ppo/
 
 <section data-markdown>
     <textarea data-template>
-### Part III        
+### Part III
 ## How does this perform?
 
 </textarea>
@@ -904,7 +917,7 @@ https://blog.openai.com/openai-baselines-ppo/
 
 <section data-markdown>
         <textarea data-template>
-### Performance of AlphaZero
+### Performance of AlphaZero like Deepmind reports it
             
 <img src='img/search/AZ-Blog-Fig1-Generality-Performance-Across-Games.gif'>
 
@@ -916,21 +929,20 @@ https://deepmind.com/blog/alphazero-shedding-new-light-grand-games-chess-shogi-a
 
 <section data-markdown>
     <textarea data-template>
-### Lc0 Wins Computer Chess Championship, Makes History
+### But really?
 
-<em>The machine-learning chess engine Lc0 won the Chess.com Computer Chess Championship last weekend, 
-making history as the first neural-network project to take the title.</em> 
+* not playing in the open
+* superior hardware
+* outdated version of Stockfish
+* game engine not available
+* research paper has many caveats
 
-<em>Lc0 placed ahead of runner-up Stockfish (162/300) in the blitz finals, 
-the first time in eight Computer Chess Championships that Stockfish didn't win the tournament</em>
-
-https://www.chess.com/news/view/lc0-wins-computer-chess-championship-makes-history
 </textarea>
 </section>
 
 <section data-markdown>
     <textarea data-template>
-### Leela Chess Zero = LC0
+### Leela Chess Zero = Lc0
 
 _Open Source Implementation and collective training based on the ideas presented in AlphaZero_
 
@@ -946,6 +958,46 @@ https://en.wikipedia.org/wiki/AlphaZero
 
 </textarea>
 </section>
+
+
+<section data-markdown>
+    <textarea data-template>
+### Lc0 Wins Computer Chess Championship, Makes History
+
+<em>The machine-learning chess engine Lc0 won the Chess.com Computer Chess Championship in April, 
+making history as the first neural-network project to take the title.</em> 
+
+<em>Lc0 placed ahead of runner-up Stockfish (162/300) in the blitz finals, 
+the first time in eight Computer Chess Championships that Stockfish didn't win the tournament</em>
+
+<small>
+https://www.chess.com/news/view/lc0-wins-computer-chess-championship-makes-history
+</small>
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Lc0 Queenside Kingwalk 
+
+<small>
+using the biggest monster knight leveraging its outstanding position
+</small>
+
+<a href='https://www.youtube.com/watch?v=1jyM_vktEdU'>
+<img src='img/search/lc0-knight-beast-king-walk.png' style="float: left; padding-left: 100px" height="400px" class="fragment">
+</a>
+<a href='https://www.youtube.com/watch?v=1jyM_vktEdU'>
+<img src='img/search/lc0-knight-beast-king-walk2.png' style="float: right; padding-right: 100px" height="400px" class="fragment">
+</a>
+
+<small style="clear: both">
+Watch this match on Youtube (if you have 20 minutes of time, really do)
+https://www.reddit.com/r/chess/comments/bwwk5w/jerrys_analysis_of_a_leela_vs_stockfish_game_that/    
+</small>
+</textarea>
+</section>
+    
 
 <!-- <section data-markdown class="preparation">
         <textarea data-template>
@@ -985,28 +1037,6 @@ https://www.chessworld.net/chessclubs/ltpgnviewer32/ltpgnboard.asp?GameID=502421
 </textarea>
 </section>
 
-<section data-markdown>
-    <textarea data-template>
-### Lc0 Queenside Kingwalk 
-
-<small>
-using the biggest monster knight leveraging its outstanding position
-</small>
-
-<a href='https://www.youtube.com/watch?v=1jyM_vktEdU'>
-<img src='img/search/lc0-knight-beast-king-walk.png' style="float: left; padding-left: 100px" height="400px" class="fragment">
-</a>
-<a href='https://www.youtube.com/watch?v=1jyM_vktEdU'>
-<img src='img/search/lc0-knight-beast-king-walk2.png' style="float: right; padding-right: 100px" height="400px" class="fragment">
-</a>
-
-<small style="clear: both">
-Watch this match on Youtube (if you have 20 minutes of time, really do)
-https://www.reddit.com/r/chess/comments/bwwk5w/jerrys_analysis_of_a_leela_vs_stockfish_game_that/    
-</small>
-</textarea>
-</section>
-    
 <section style="font-size: xx-large">
     <h2>Wrap Up</h2>
     <p><em>Combining state of the art AI techniques can bring us a long way</em></p>
@@ -1015,8 +1045,9 @@ https://www.reddit.com/r/chess/comments/bwwk5w/jerrys_analysis_of_a_leela_vs_sto
         <li class="fragment">compute power and hand-crafted evaluation functions are key
         <li class="fragment">new paradigm
             <ul>
-                    <li class="fragment">Monte Carlo Tree Search instead of alpha-beta search
                     <li class="fragment">Deep Neural Network instead of hand-crafted evaluation function
+                    <li class="fragment">Monte Carlo Tree Search instead of alpha-beta search
+                    <li class="fragment">Self play and learning using Reinforcement Learning
             </ul>
         </li>
         <li class="fragment">we see successes and an overall new way of playing 
