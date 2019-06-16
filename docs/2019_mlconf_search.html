@@ -237,6 +237,109 @@ https://www.chess.com/article/view/live-now-neural-nakamura-analyzes-top-neural-
 </section>
 
 <section data-markdown>
+    <textarea data-template>
+### Can we not just take the best next position?
+
+_Let's evaluate positions and always take the best?_
+
+Open question: How do we know what is a good position?
+
+</textarea>
+</section>
+
+<section data-markdown style="font-size: xx-large">
+    <textarea data-template>
+### Stockfish's evaluation function: how good is a position
+
+_handcrafted features for positions with no unresolved captures or checks_
+
+* midgame/endgame-speciﬁc material point values
+* material imbalance tables
+* mobility and trapped pieces
+* pawn structure
+* king safety
+* outposts
+
+A quiescence search is used to resolve ongoing tactical situations before the
+evaluation function is applied
+
+<small>
+https://deepmind.com/documents/260/alphazero_preprint.pdf
+</small>
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Why we need to look ahead
+
+<small>
+Kudos for position to https://twitter.com/StefanZoerner
+http://www.dokchess.de/_downloads/szoerner_majug2012_architekturentwurf_schach_deploy.pdf
+</small>
+</textarea>
+</section>
+
+
+<section data-markdown>
+    <textarea data-template>
+### White to move: Checkmate unavoidable?
+
+<img src="img/search/pos1.jpg" height="450px">
+
+FEN: 2R5/8/p7/7p/6pP/5pP1/5P1K/k4q2 w - - 0 1
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### Using a heuristic to avoid loss of a piece
+
+<img src="img/search/pos2_no_loss.jpg" height="450px">
+
+Random move of Rook, but no loss
+</textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
+### But Checkmate in next move
+
+<img src="img/search/pos3_mate.jpg" height="450px">
+
+Rook saved, but not effectively used
+</textarea>
+</section>
+
+<section data-markdown class="mlconf">
+    <textarea data-template>
+### Rewind to initial position
+
+<img src="img/search/pos1.jpg" height="450px">
+
+This time we look ahead
+</textarea>
+</section>
+<section data-markdown class="mlconf">
+    <textarea data-template>
+### Certain loss of Rook
+
+<img src="img/search/pos2_check.jpg" height="450px">
+
+Bad local evaluation, Queen will take Rook
+</textarea>
+</section>
+<section data-markdown class="mlconf">
+    <textarea data-template>
+### Of course Queen has to capture Rook
+
+<img src="img/search/pos3_stalemate.jpg" height="450px">
+
+But this means Stalemate and a Draw
+</textarea>
+</section>
+
+<section data-markdown>
         <textarea data-template>
 ### Can we not just store all the perfect moves?
 </textarea>
@@ -391,28 +494,6 @@ https://deepmind.com/documents/260/alphazero_preprint.pdf
 </textarea>
 </section>
 
-<section data-markdown style="font-size: xx-large">
-    <textarea data-template>
-### What goes into Stockfish's evaluation function
-
-_handcrafted features for positions with no unresolved captures or checks_
-
-* midgame/endgame-speciﬁc material point values
-* material imbalance tables
-* mobility and trapped pieces
-* pawn structure
-* king safety
-* outposts
-
-A quiescence search is used to resolve ongoing tactical situations before the
-evaluation function is applied
-
-<small>
-https://deepmind.com/documents/260/alphazero_preprint.pdf
-</small>
-</textarea>
-</section>
-
 <section data-markdown>
     <textarea data-template>
 ### This used to be state of the art
@@ -431,7 +512,7 @@ https://deepmind.com/documents/260/alphazero_preprint.pdf
 </textarea>
 </section>
 
-<section data-markdown>
+<!-- <section data-markdown>
         <textarea data-template>
 ### AlphaZero
 
@@ -447,7 +528,7 @@ https://en.wikipedia.org/wiki/AlphaZero
 https://deepmind.com/research/alphago/alphazero-resources/
 </small>
         </textarea>
-    </section>
+    </section> -->
 
 <!-- <section data-markdown>
     <textarea data-template>
