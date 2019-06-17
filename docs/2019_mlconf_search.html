@@ -182,6 +182,10 @@ why the era of classic chess engines might be over.
 1. Go through MCTS phases
 1. Spiel nochmal durchgehen, spezielle Movies nochmal klar machen
 1. Wie heißen die Figuren noachmal auf Englisch: https://www.embarc.de/schachbegriffe-auf-englisch/
+
+Öffnen als Referenz:
+* Original: https://arxiv.org/pdf/1712.01815.pdf
+* Elf OpenGo: https://arxiv.org/pdf/1902.04522.pdf
     </textarea>
 </section>
 
@@ -207,7 +211,7 @@ why the era of classic chess engines might be over.
     <textarea data-template>
 ### AlphaZero playing black against Stockfish
 
-position is what matters
+<!-- position is what matters -->
 
 <img src='img/search/white-dominating.jpeg' style="float: left; padding-left: 100px" height="400px" class="fragment">
 <img src='img/search/black-fights-back.jpeg' style="float: right; padding-right: 100px" height="400px" class="fragment">
@@ -238,9 +242,19 @@ https://www.chess.com/article/view/live-now-neural-nakamura-analyzes-top-neural-
 
 <section data-markdown>
     <textarea data-template>
+## Central Question
+### What move to play next to maximize chance of winning?
+
+
+</textarea>
+</section>
+
+
+<section data-markdown>
+    <textarea data-template>
 ### Can we not just take the best next position?
 
-_Let's evaluate positions and always take the best?_
+<!-- _Let's evaluate positions and always take the best?_ -->
 
 Open question: How do we know what is a good position?
 
@@ -254,11 +268,11 @@ Open question: How do we know what is a good position?
 _handcrafted features for positions with no unresolved captures or checks_
 
 * midgame/endgame-speciﬁc material point values
-* material imbalance tables
 * mobility and trapped pieces
 * pawn structure
 * king safety
 * outposts
+* many others
 
 A quiescence search is used to resolve ongoing tactical situations before the
 evaluation function is applied
@@ -271,7 +285,9 @@ https://deepmind.com/documents/260/alphazero_preprint.pdf
 
 <section data-markdown>
     <textarea data-template>
-### Why we need to look ahead
+## Is this good enough?
+
+### Why we need to look ahead...
 
 <small>
 Kudos for position to https://twitter.com/StefanZoerner
@@ -283,7 +299,7 @@ http://www.dokchess.de/_downloads/szoerner_majug2012_architekturentwurf_schach_d
 
 <section data-markdown>
     <textarea data-template>
-### White to move: Checkmate unavoidable?
+### White to move: What's the next best move?
 
 <img src="img/search/pos1.jpg" height="450px">
 
@@ -307,7 +323,7 @@ Random move of Rook, but no loss
 
 <img src="img/search/pos3_mate.jpg" height="450px">
 
-Rook saved, but not effectively used
+Rook saved, but not used effectively
 </textarea>
 </section>
 
@@ -411,7 +427,7 @@ Possible solutions
 
 <section data-markdown>
         <textarea data-template>
-### Adversarial Search
+### Adversarial Game Search
 
 * two players
 * one tries to minimize the outcome of the game (negative)
@@ -425,7 +441,7 @@ Possible solutions
     <textarea data-template>
 ### Minimax, lookahead of 4 halfmoves
 
-_Computer maximizes and it is its move (circles)_
+_Computer maximizes and is to move (circles)_
 
 <div class="fragment">
 
@@ -482,7 +498,7 @@ https://en.wikipedia.org/wiki/Alpha%E2%80%93beta_pruning
 _It heavily relies on human knowledge put into heuristics_
 
 * additional cuts using domain knowledge
-* ordering heuristics: efficiency of alpha-beta search depends critically upon the order in which moves are considered, 
+* ordering heuristics: efficiency of alpha-beta search depends critically upon the order in which moves are considered 
 * extending the search depth of promising variations
 * reducing the search depth of unpromising variations 
 * opening book
@@ -605,11 +621,18 @@ _Instead of limiting search tree in depth, limit it in breadth_
 
 <section data-markdown>
     <textarea data-template>
+                    <img src='img/search/az5.jpg' height="650px">
+                    </textarea>
+</section>
+
+<section data-markdown>
+    <textarea data-template>
 ### MCTS as policy improvement operator
 
 * probabilities of model's policy head output works as prior to MCTS simulation
 * MCTS explores game tree based on those priors
-* terminates after a certain number of iterations (800 for AlphaZero)
+* heavy simulation playouts using model probabilities
+* terminates after a certain number of iterations
 * creates new probabilities based on the outcome of the simulation
 
 <small>
@@ -620,17 +643,11 @@ https://arxiv.org/pdf/1902.04522.pdf
 
 <section data-markdown>
     <textarea data-template>
-                    <img src='img/search/az5.jpg' height="650px">
-                    </textarea>
-</section>
-
-<section data-markdown>
-    <textarea data-template>
 ### Monte Carlo Experiments
 
 _approximating results by repeated random sampling_
 
-<img src='img/Pi_30K.gif' height="400px">
+<img src='img/Pi_30K.gif' height="400px" class="fragment">
 
 <small>
 https://en.wikipedia.org/wiki/Monte_Carlo_method
@@ -640,93 +657,19 @@ https://en.wikipedia.org/wiki/Monte_Carlo_method#/media/File:Pi_30K.gif
 </textarea>
 </section>
 
-<!-- <section data-markdown>
-    <textarea data-template>
-### Monte Carlo is fun I
+<section data-markdown>
+<textarea data-template>
+### Monte Carlo Tree Search
 
-<img src='img/search/monte-carlo-pi.png' height="400px">
-
+<img src='img/search/MCTS_wikipedia.svg' height="500px">
 <small>
-https://twitter.com/Rainmaker1973b/status/1071865470901469189
+https://en.wikipedia.org/wiki/Monte_Carlo_tree_search, 
+By Mciura, Dicksonlaw583 - Own work, CC BY-SA 4.0, https://commons.wikimedia.org/w/index.php?curid=64174613
+<br>
+https://jeffbradberry.com/posts/2015/09/intro-to-monte-carlo-tree-search/                    
 </small>
 </textarea>
 </section>
-    
-<section data-markdown>
-    <textarea data-template>
-### Monte Carlo is fun II
-
-<img src='img/search/twitter-sampling.png' height="400px">
-
-<small>
-https://twitter.com/Aella_Girl/status/1070119419353870336
-</small>
-</textarea>
-</section> -->
-
-<!-- <section data-markdown>
-        <textarea data-template>
-### Monte Carlo Game Search
-
-* start from an initial state
-* for each next move
-* play a game to the _end_ using a random set of moves
-* repeat for a number of times
-* count number of times for win, loose, draw
-* choose the move with the best probability for a win
-
-<small>
-Choose number of random experiment wisely based on branching factor
-https://en.wikipedia.org/wiki/Monte_Carlo_tree_search#Pure_Monte_Carlo_game_search
-</small>
-    </textarea>
-    </section>
-
-<section data-markdown class='local'>
-    <textarea data-template>
-### Monte Carlo Game Search on Tic-Tac-Toe
-
-<img src='img/search/monte_carlo_game_search_1.png' height="500px">
-
-</textarea>
-    </section>
- -->
-        <!-- <section data-markdown class="remote">
-                <textarea data-template>
-### Monte Carlo Game Search
-
-<img src='img/search/monte_carlo_game_search.jpg' height="550px">
-                    </textarea>
-                    </section> -->
-                    
-    <section data-markdown>
-        <textarea data-template>
-### Monte Carlo Tree Search
-
-Loops in four phases
-1. Selection
-2. Expansion
-3. Simulation
-4. Back-Propagation (do not confuse with the thing in Neural Networks)
-
-Images adapted from
-https://jeffbradberry.com/posts/2015/09/intro-to-monte-carlo-tree-search/
-    </textarea>
-    </section>
-
-    <section data-markdown>
-        <textarea data-template>
-### Selection
-
-Choose a node to expand next 
-
-<img src='img/search/mcts_selection.png'>
-
-<small>
-<code>wins / number of times played</code>
-</small>
-    </textarea>
-    </section>
 
     <section data-markdown>
         <textarea data-template>
@@ -735,7 +678,7 @@ Choose a node to expand next
 _Rather improve on states known as good or have a look at unknown moves?_
 
 * exploitation: choose moves with high average win ratio
-  * uses prediction of model as prior
+  <!-- * uses prediction of model as prior -->
 * exploration: choose moves with few simulations
 
 Compare: How would you explore a new city?
@@ -768,38 +711,7 @@ https://en.wikipedia.org/wiki/Monte_Carlo_tree_search
     </textarea>
     </section> -->
 
-    <section data-markdown>
-        <textarea data-template>
-### Expansion
 
-Expand node, add a random child
-
-<img src='img/search/mcts_expansion.png'>
-
-    </textarea>
-    </section>
-
-    <section data-markdown>
-        <textarea data-template>
-### Simulation
-
-Play a Monte Carlo Simulation
-
-<img src='img/search/mcts_simulation.png'>
-
-    </textarea>
-    </section>
-
-    <section data-markdown>
-        <textarea data-template>
-### Back-Propagation
-
-Update Scores
-
-<img src='img/search/mcts_backprop.png'>
-
-    </textarea>
-    </section>
 
 <!-- <section data-markdown style="font-size: xx-large">
 <textarea data-template>
@@ -821,8 +733,8 @@ Update Scores
 https://deepmind.com/documents/260/alphazero_preprint.pdf    
 </small>
 </textarea>
-</section>
- -->
+</section> -->
+
 
 <section data-markdown>
     <textarea data-template>
@@ -899,29 +811,6 @@ https://spinningup.openai.com/en/latest/spinningup/rl_intro2.html#model-free-vs-
     </textarea>
     </section> -->
 
-<section data-markdown style="font-size: xx-large">
-    <textarea data-template>
-### Reinforcement Learning approach for AlphaZero
-
-* games are played continuously using selfplay always using current model
-<!-- * skips AlhpaGoZero's approach of model evaluation altogether for speedup and simplification  -->
-* move probabilities are computed by model and improved by MCTS
-* moves chosen by sampling over probabilities
-  * greedy for end-game training and all of real game play
-  * stochastic for early-game training
-* replay buffer is filled with game records
-  * complete outcome (toggled for each player)
-  * move history
-  * predicted probabilities at each move  
-* game records match input / output of model
-* used to constantly retrain model
-
-<small>
-https://arxiv.org/pdf/1902.04522.pdf    
-</small>
-    </textarea>
-</section>
-
 <section data-markdown>
         <textarea data-template>
 ### Reward received at very end of game
@@ -962,6 +851,29 @@ https://www.chessprogramming.org/Leela_Chess_Zero
                                     </textarea>
     </section>
     
+<section data-markdown style="font-size: xx-large">
+    <textarea data-template>
+### Reinforcement Learning approach for AlphaZero
+
+* games are played continuously using selfplay always using current model
+<!-- * skips AlhpaGoZero's approach of model evaluation altogether for speedup and simplification  -->
+* move probabilities are computed by model and improved by MCTS
+* moves chosen by sampling over probabilities
+  * greedy for end-game training and all of real game play
+  * stochastic for early-game training
+* replay buffer is filled with game records
+  * complete outcome (toggled for each player)
+  * move history
+  * predicted probabilities at each move  
+* game records match input / output of model
+* used to constantly retrain model
+
+<small>
+https://arxiv.org/pdf/1902.04522.pdf    
+</small>
+    </textarea>
+</section>
+
     
 <!-- <section data-markdown>
     <textarea data-template>
