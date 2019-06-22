@@ -81,12 +81,14 @@
 
 ### Preparation
 
-1. Start Chrome using "Run With Graphics Processor"
-1. Create a bit of data for ux demo
+1. Start Chrome using "Run With Graphics Processor" (scheint viel langsamer, Problem zu klein?)
+1. Create a bit of data for ux demo, so dass es trainiert
 
 Load when there is still internet
 * https://storage.googleapis.com/tfjs-models/demos/posenet/camera.html
   * Camera facing audience
+  * Multi-Pose
+  * So lassen bis zum Start des Talks
 * http://djcordhose.github.io/ux-by-tfjs/dist  
 
 </textarea>
@@ -179,7 +181,7 @@ https://github.com/tensorflow/tfjs-models/tree/master/posenet
                     
 
 
-<section data-markdown style="font-size: x-large">
+<section data-markdown style="font-size: x-large" class="fragments">
         <textarea data-template>
 ### Steps for machine learning
 
@@ -234,7 +236,7 @@ https://github.com/tensorflow/tfjs-models/tree/master/posenet
 </textarea>
 </section>
 
-<section data-markdown>
+<section data-markdown class="fragments">
         <textarea data-template>
 #### Predicting properly which button the user is going to click next we can ...
 
@@ -329,7 +331,7 @@ https://en.wikipedia.org/wiki/Feature_learning
 </section>
 
 
-<section data-markdown>
+<section data-markdown class="fragments">
         <textarea data-template>
 ### Why this is a tricky case
 
@@ -358,7 +360,7 @@ https://en.wikipedia.org/wiki/Feature_learning
 
 <section data-markdown>
         <textarea data-template>
-### Why not train and predict on the edge side?
+### Train and predict on the edge side
 
 _Train an individual model per user directly in the browser_
 
@@ -448,7 +450,8 @@ tf.layers.gru({
 
 <pre><code contenteditable data-trim class="fragment line-numbers javascript">
 // LSTMs are similar to GRUs, but more complex
-// slower to train and worse evaluation, but really good real world performance
+// slower to train and worse evaluation, 
+// but really good real world performance
 tf.layers.lstm({
     units: 50,
     dropout: 0.1
@@ -456,8 +459,10 @@ tf.layers.lstm({
 </code></pre>
 
 <pre><code contenteditable data-trim class="fragment line-numbers javascript">
-// trains fast, bad evaluation, but in real life does what we expect, 
-// only uses very recent history, generalizing great by proximity
+// trains fast, bad evaluation, 
+// but in real life does what we expect, 
+// only uses very recent history, 
+// generalizing great by proximity
 tf.layers.simpleRNN({
     units: 50,
     dropout: 0.1
@@ -699,7 +704,7 @@ Slides: http://bit.ly/tfjs-enterjs
         $('code').addClass('line-numbers');
 
         // do we want this???
-        $('li').addClass('fragment')
+        $('.fragments li').addClass('fragment')
 
         // make all links open in new tab
         $('a').attr('target', '_blank')
