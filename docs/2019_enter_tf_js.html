@@ -81,11 +81,13 @@
 
 ### Preparation
 
-1. Start Chrome using "Run With Graphics Processor" (scheint viel langsamer, Problem zu klein?)
 1. Create a bit of data for ux demo, so dass es trainiert
+1. Beide Modelle trainieren und später zeigen
+
 
 Load when there is still internet
 * https://storage.googleapis.com/tfjs-models/demos/posenet/camera.html
+* https://storage.googleapis.com/tfjs-models/demos/body-pix/index.html
   * Camera facing audience
   * Multi-Pose
   * So lassen bis zum Start des Talks
@@ -222,8 +224,17 @@ https://github.com/tensorflow/tfjs-models/tree/master/posenet
 </section>
 
 <section data-markdown>
+    <textarea data-template>
+### Demo: Our Application
+
+http://djcordhose.github.io/ux-by-tfjs/dist
+
+</textarea>
+</section>    
+
+<section data-markdown>
         <textarea data-template>
-### But, could we highlight the buttons before hover?
+### But, could we highlight the button the user is going to click next?
 
 <img src='img/ux/simpleRNN.gif' class="fragment">
 
@@ -268,6 +279,12 @@ https://xkcd.com/1838/
 </section>
 
 <section data-markdown>
+    <textarea data-template>
+    <img src='img/sketch/supervised-ml.jpg' height="600px">
+    </textarea>
+    </section>
+        
+<section data-markdown>
         <textarea data-template>
         <img src='img/sketch/classic-development.jpg' height="600px">
         </textarea>
@@ -284,13 +301,7 @@ https://xkcd.com/1838/
             </textarea>
             </section>
 
-<section data-markdown>
-<textarea data-template>
-<img src='img/sketch/supervised-ml.jpg' height="600px">
-</textarea>
-</section>
-
-<section data-markdown>
+<!-- <section data-markdown>
 <textarea data-template>
 ### Learning from data samples
 
@@ -303,7 +314,7 @@ https://xkcd.com/1838/
 https://en.wikipedia.org/wiki/Feature_learning    
 </small>
 </textarea>
-</section>
+</section> -->
 
 <section data-markdown>
         <textarea data-template>
@@ -438,6 +449,18 @@ http://colah.github.io/posts/2015-08-Understanding-LSTMs/
 <section data-markdown>
     <textarea data-template>
 #### Options for Model architectures 
+
+<pre><code contenteditable data-trim class="fragment line-numbers javascript">
+// trains fast, bad evaluation, 
+// but in real life does what we expect, 
+// only uses very recent history, 
+// generalizing great by proximity
+tf.layers.simpleRNN({
+    units: 50,
+    dropout: 0.1
+})
+</code></pre>
+
 <pre><code contenteditable data-trim class="fragment line-numbers javascript">
 // GRUs are great in learning history
 // learns complete paths, best evaluation in numbers
@@ -453,17 +476,6 @@ tf.layers.gru({
 // slower to train and worse evaluation, 
 // but really good real world performance
 tf.layers.lstm({
-    units: 50,
-    dropout: 0.1
-})
-</code></pre>
-
-<pre><code contenteditable data-trim class="fragment line-numbers javascript">
-// trains fast, bad evaluation, 
-// but in real life does what we expect, 
-// only uses very recent history, 
-// generalizing great by proximity
-tf.layers.simpleRNN({
     units: 50,
     dropout: 0.1
 })
@@ -512,7 +524,7 @@ https://xkcd.com/303/
 
 <section data-markdown>
         <textarea data-template>
-### Demo Time
+### Demo: Training
 
 http://djcordhose.github.io/ux-by-tfjs/dist
 
@@ -560,7 +572,7 @@ http://djcordhose.github.io/ux-by-tfjs/dist
 
 <section data-markdown>
     <textarea data-template>
-### Confustion Matrix
+### Confusion Matrix
 
 <img src='img/ux/confusion-right-for-middle.png' height="550px"
 style="background-color: aliceblue">
@@ -634,6 +646,14 @@ const prediction =
 </textarea>
 </section>
 
+<section data-markdown>
+    <textarea data-template>
+### Demo: Live Predictions
+
+http://djcordhose.github.io/ux-by-tfjs/dist
+
+</textarea>
+</section>    
 
 <section data-markdown style="font-size: xx-large">
     <textarea data-template>
@@ -643,6 +663,7 @@ const prediction =
 * Bob Ross pix2pix: https://twitter.com/jdwlbr/status/1131244682317484032
 * GAN Harp: https://twitter.com/ctpt_studio/status/1131975006173507585 
 * BodyPix: https://twitter.com/TensorFlow/status/1096519420816568322
+  * https://storage.googleapis.com/tfjs-models/demos/body-pix/index.html
 </textarea>
 </section>
 
@@ -652,14 +673,14 @@ const prediction =
 
 _Feel free to say "Hello" after the talk_
 
-_Machine Learning from Idea to Production with TensorFlow.js, enterjs 2019_
-
 * TensorFlow.js (tfjs) allows for completely new ways of training and deploying neural networks
 * tfjs allows to train and use models in the browser using WebGL on your GPU
-* tfjs mimics TensorFlows Keras API 
+* very interesting for GDPR and highly interactive predictions
+<!-- * tfjs mimics TensorFlows Keras API  -->
 * use can also convert standard TensorFlow models to use them with tfjs
 * tfjs-vis provides us with powerful tools for visualizing training results
 
+_Machine Learning from Idea to Production with TensorFlow.js, enterjs 2019_
 
 <small>
 <a href="http://zeigermann.eu">Oliver Zeigermann</a> / <a href="http://twitter.com/djcordhose">@DJCordhose</a>
