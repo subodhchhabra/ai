@@ -622,7 +622,7 @@ model = await tf.loadLayersModel(url);
 
 <pre><code contenteditable data-trim class="fragment line-numbers javascript">
 const prediction = 
-    await model.predict(tf.tensor3d([X])).data();
+    await model.predict(X).data();
 </code></pre>
 
 </textarea>
