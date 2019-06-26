@@ -82,8 +82,7 @@
 ### Preparation
 
 1. Create a bit of data for ux demo, so dass es trainiert
-1. Beide Modelle trainieren und später zeigen
-
+<!-- 1. Beide Modelle trainieren und später zeigen -->
 
 Load when there is still internet
 * https://storage.googleapis.com/tfjs-models/demos/posenet/camera.html
@@ -654,6 +653,31 @@ http://djcordhose.github.io/ux-by-tfjs/dist
 
 </textarea>
 </section>    
+
+<section data-markdown class="fragments">
+    <textarea data-template>
+### How to improve
+
+* Morph predicted buttons in the direction of the mouse
+* Transfer Learning: start with a more general model and retrain
+* Federated Learning: use experience from all users without sharing data or model (transfer gradients)
+* Silent Test Phase: measure prediction vs reality internally still collect samples
+* Train continuously
+* Switch on prediction as soon as model is good
+</textarea>
+</section>
+
+<section data-markdown class="fragments">
+    <textarea data-template>
+### More ideas
+
+1. Improve UX by highlighting parts that are likely to be clicked next (using click path instead of mouse events)
+1. Use mouse movements to predict: beginner or advanced?
+1. Detect user. Fraud? Robot?
+1. Talk to me about your ideas 
+</textarea>
+</section>
+
 
 <section data-markdown style="font-size: xx-large">
     <textarea data-template>
