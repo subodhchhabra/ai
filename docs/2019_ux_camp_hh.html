@@ -76,6 +76,14 @@
 <div class="reveal">
     <div class="slides">
 
+<section class="preparation">
+Brauchen wir, damit später das Format des Codes stimmt    
+<pre><code data-trim class="javascript">
+</code></pre>
+</small>    
+
+</section>
+
         <section data-markdown class="preparation">
             <textarea data-template>
 
@@ -94,94 +102,22 @@ Load when there is still internet
 </textarea>
 </section>
 
+<section data-markdown class="preparation">
+        <textarea data-template>
+### Story
 
-
-<section data-markdown class="todo">
-    <textarea data-template>
-
-https://twitter.com/PPathole/status/1100406765156327427
-‘Customers will love it once they’ve read and understood the docs’ https://t.co/ZNWFP1hTsq
-(https://twitter.com/dkhan/status/1129153536565104641?s=03)
-Design vs user experience.
-https://t.co/jWuX34mxAa
-(https://twitter.com/page_eco/status/1082971149208772609?s=03)
-Ux Camp
-[]drei Arten zeigen
-[]Knöpfe anhand der Clicks (zentrale Daten, Training in Notebook und Konvertierung)
-[]Maus Movement
-[]Beginner or Expert (zentrale Daten, Training in Notebook und Konvertierung)
-[]What Button is going to be clicked
-UX Camp
-[]Daten Sammeln für Rookie vs Expert    
-[]Ux Erkennung von Benutzern individuell
-[][]Online Demo die automatisch trainiert unter der Haube, Ergebnis zeigen
-    [][]Knöpfe erstmal ausblenden
-    [][]auch next click prediction nur auf die 3 Knöpfe unten
-    [][]Automatisch deployen wenn Werte gut genug sind.
-    [][]kontinuierlich trainieren, aber immer einmal bis zuende
-[]
-
-Todo
-[]erweitern, so dass sie ohne Dev Tools funktioniert
-    []Data Count anzeigen
-    []Download training data
-[]mehrere Modelle trainieren und über Upload laden
-[]Flow of buttons on top, highlight what is next most likely button
-    []Seq2Seq auf den Click Events der Knöpfe
-    []Given this sequence of click events what is the next step?
-[]animations
-    []good button gravitate towards mouse (buy, save)
-    []bad buttons move away a bit (delete, close, cancel)
-    [] https://greensock.com/gsap
-[]Knöpfe für BatchNorm ja nein, Dropout network type, und darauf trainieren
-
-
-
-Prep
-[]yarn start oder http://djcordhose.github.io/ux-by-tfjs/dist
-[]reset data and model
-[]Open Notebook: https://colab.research.google.com/github/DJCordhose/ux-by-tfjs/blob/master/notebooks/rnn-model.ipynb
-[]Laden: https://twitter.com/PPathole/status/1100406765156327427
-[] https://www.tensorflow.org/js/tutorials
-[] https://dev.to/djcordhose/improving-user-experience-with-tensorflow-js-4693
-[] https://www.youtube.com/watch?v=kZ8sXFIJQyg
-[]Tweet von Robin Drexler öffnen:  https://twitter.com/DJCordhose/status/1116631131389140992
-[]PDF mit Artikel öffnen
-
-
-Setting
-[]image you have an application like this
-[]It highlights the buttons the user is about to click (when the user hovers over the buttons)
-[]now, it might be beneficial to highlight those buttons before the hovers over it
-
-How
-[]You can indeed implement rules of thumb
-[]but, this heavily depends on user, application and machine
-[]How can we adapt to that?
-
-Training
-[]Show Task Manager GPU load while training
-
-Notebook
-    []stable
-    []fast
-    []tooling
-    []network definition can be reproduced in tf.js
-    []pre-trained model can be converted to tf.js: sharing of common model
-[] https://github.com/PAIR-code/federated-learning
-[] https://github.com/tensorflow/federated 
-[] https://github.com/tensorflow/tfjs-vis
-
-Finish
-[]Kudos to Robin Drexler
-[]Try it yourself: http://djcordhose.github.io/ux-by-tfjs/dist
-[]Article, Video
-[]TF.js:  https://www.tensorflow.org/js/tutorials
-
-</textarea>
-</section>
-
-
+1. App zeigen
+2. Unbedienbar
+3. Help Modus
+4. ML vom Server
+5. Zeigen wofür die gut ist
+6. 2 App oben zeigen
+7. Was geht sonst noch?
+    
+    </textarea>
+    </section>
+    
+    
 <!--         
 
 Improving UX with Machine Learning
@@ -209,36 +145,6 @@ attendees have their say in it.
             xxx
         </a></small></p>
     </section>
-
-    <section data-markdown class="todo">
-    <textarea data-template>
-### Story
-
-1. App zeigen
-2. Unbedienbar
-3. Help Modus
-4. ML vom Server
-5. Zeigen wofür die gut ist
-6. 2 App oben zeigen
-
-</textarea>
-</section>
-
-    <section data-markdown class="todo">
-    <textarea data-template>
-Focus: Nicht wie gut kriegen wir das Modell wirklich, sondern wie funktioniert ML mit TensorFlow.js
-
-* Punkte von oben
-* Skizzen für die unterschiedlichen Arten der Vorhersagen machen und hinten anfügen
-* Nur den ersten Teil ausführlicher und Idee von ML erläutern
-
-[] Click Model
-    []Embedding extrahieren durch 5 mal reinfüttern desselben und nur ein Output nehmen
-    []Modell und Mapping to Namen exportierten und in App einbauen
-    []GRU und LSTM ausprobieren
-</textarea>
-</section>
-
 
 <section data-markdown>
         <textarea data-template>
@@ -290,10 +196,13 @@ https://twitter.com/dkhan/status/1129153536565104641
 </textarea>
 </section>
 
-
 <section data-markdown>
     <textarea data-template>
-### Demo: Let's look at our horrible application
+### Demo
+
+_Which button to click?_
+
+<img src='img/ux/bad_ux.png'>
 
 http://djcordhose.github.io/ux-by-tfjs/dist
 
@@ -311,15 +220,6 @@ http://djcordhose.github.io/ux-by-tfjs/dist
 ### First things first
 ## What is the idea of machine learning?
 
-</textarea>
-</section>
-
-<section data-markdown>
-        <textarea data-template>
-
-<img src='img/xkcd-machine_learning_2x.png' height="550px">
-
-https://xkcd.com/1838/
 </textarea>
 </section>
 
@@ -393,77 +293,64 @@ https://github.com/tensorflow/tfjs-models/tree/master/posenet
 <h3 class="fragment">And when does it make sense to train a model in the browser</h3>
                 
             </textarea>
-        </section>
-                     -->
+        </section> -->
+                    
 
-
-<section data-markdown style="font-size: x-large" class="fragments">
-        <textarea data-template>
-### Steps for machine learning
-
-1. Clarify: What is your objective?
-1. What data do you have or could you acquire?
-1. Create an architecture for your model matching your data
-1. Train your model
-1. Evaluate the model: Satisfied?
-* Satisfied
-    1. Deployment
-    1. Prediction
-    1. Monitoring
-        * collect more data
-        * check: is live data from the same distribution as training data
-* Not Satisfied
-    1. More or better data
-    1. Better architecture
-    1. Better training
-1. Rinse and Repeat
-</textarea>
-</section>
 
 <section data-markdown>
         <textarea data-template>
-### Step 1
-## What is our objective?
+### Training Data
+
+<pre><code contenteditable data-trim class="line-numbers javascript">
+[ "train-model", "save-model-to-local" ],
+[ "train-model", "show-eval", 
+  "train-model", "save-model-to-local" ],
+[ "load-local-model", "toggle-prediction" ]
+</code></pre>
 
 </textarea>
 </section>
 
 <section data-markdown>
         <textarea data-template>
-### Step 2
-## What data do we have or could we acquire?
+### Training Setup
+
+<a href='https://colab.research.google.com/github/DJCordhose/ux-by-tfjs/blob/master/notebooks/click-sequence-model.ipynb'>
+<img src='img/ux/click-model-setup.png' height="450">            
+</a>
+<small>
+https://colab.research.google.com/github/DJCordhose/ux-by-tfjs/blob/master/notebooks/click-sequence-model.ipynb
+</small>
+</textarea>
+</section>
+
+
+<section data-markdown>
+        <textarea data-template>
+### Training
+
+<img src='img/ux/click_acc.png' style="background-color: azure">            
 
 </textarea>
 </section>
 
 <section data-markdown>
         <textarea data-template>
-### Step 3
-## Create an architecture for your model matching your data
+### Evaluation
+
+<img src='img/ux/click_cm.png' style="background-color: azure" height="550px">            
 
 </textarea>
 </section>
 
-<section data-markdown>
-        <textarea data-template>
-### Step 4
-## Train your model
-
-</textarea>
-</section>
 
 <section data-markdown>
         <textarea data-template>
-### Step 5
-## Evaluate the model
+### Prediction
 
-</textarea>
-</section>
+<img src='img/ux/click_prediction.gif'>            
 
-<section data-markdown>
-        <textarea data-template>
-### Step 6
-## Deployment, Prediction
+http://djcordhose.github.io/ux-by-tfjs/dist
 
 </textarea>
 </section>
@@ -476,6 +363,16 @@ https://github.com/tensorflow/tfjs-models/tree/master/posenet
 
 </textarea>
 </section>
+
+<!-- <section data-markdown>
+        <textarea data-template>
+### Step 1
+## What is our objective?
+
+</textarea>
+</section>
+ -->
+
 
 <section data-markdown>
         <textarea data-template>
@@ -513,6 +410,29 @@ https://github.com/tensorflow/tfjs-models/tree/master/posenet
 * UX
   * (unnoticeably) highlight or zoom in/out button to make it easier/harder to access for user
   * Marketing, Ads, https://www.darkpatterns.org/ (https://copenhagenletter.org/ would not like this, though)
+</textarea>
+</section>
+
+<section data-markdown style="font-size: x-large" class="fragments">
+        <textarea data-template>
+### Steps for machine learning
+
+1. Clarify: What is your objective?
+1. What data do you have or could you acquire?
+1. Create an architecture for your model matching your data
+1. Train your model
+1. Evaluate the model: Satisfied?
+* Satisfied
+    1. Deployment
+    1. Prediction
+    1. Monitoring
+        * collect more data
+        * check: is live data from the same distribution as training data
+* Not Satisfied
+    1. More or better data
+    1. Better architecture
+    1. Better training
+1. Rinse and Repeat
 </textarea>
 </section>
 
@@ -557,6 +477,17 @@ https://github.com/tensorflow/tfjs-models/tree/master/posenet
   * actual data unknown upfront
     </textarea>
 </section>
+
+<section data-markdown>
+        <textarea data-template>
+<img src='img/ux/ux_latency.png' height="550px">
+
+<small>
+https://twitter.com/jaredpalmer/status/1145412000975065091    
+</small>
+</textarea>
+</section>
+
 
 <section data-markdown>
     <textarea data-template>
@@ -672,42 +603,52 @@ http://colah.github.io/posts/2015-08-Understanding-LSTMs/
 
 <section data-markdown>
         <textarea data-template>
-    #### Options for Model architectures 
-    
-    <pre><code contenteditable data-trim class="fragment line-numbers javascript">
-    // trains fast, bad evaluation, 
-    // but in real life does what we expect, 
-    // only uses very recent history, 
-    // generalizing great by proximity
-    tf.layers.simpleRNN({
-        units: 50,
-        dropout: 0.1
-    })
-    </code></pre>
-    
-    <pre><code contenteditable data-trim class="fragment line-numbers javascript">
-    // GRUs are great in learning history
-    // learns complete paths, best evaluation in numbers
-    tf.layers.gru({
-        units: 50,
-        dropout: 0.1
-    })
-    </code></pre>
-    
-    
-    <pre><code contenteditable data-trim class="fragment line-numbers javascript">
-    // LSTMs are similar to GRUs, but more complex
-    // slower to train and worse evaluation, 
-    // but really good real world performance
-    tf.layers.lstm({
-        units: 50,
-        dropout: 0.1
-    })
-    </code></pre>
+#### Options for Model architectures 
+
+<pre><code contenteditable data-trim class="fragment line-numbers javascript">
+// trains fast, bad evaluation, 
+// but in real life does what we expect, 
+// only uses very recent history, 
+// generalizing great by proximity
+tf.layers.simpleRNN({
+    units: 50,
+    dropout: 0.1
+})
+</code></pre>
+
+<pre><code contenteditable data-trim class="fragment line-numbers javascript">
+// GRUs are great in learning history
+// learns complete paths, best evaluation in numbers
+tf.layers.gru({
+    units: 50,
+    dropout: 0.1
+})
+</code></pre>
+
+
+<pre><code contenteditable data-trim class="fragment line-numbers javascript">
+// LSTMs are similar to GRUs, but more complex
+// slower to train and worse evaluation, 
+// but really good real world performance
+tf.layers.lstm({
+    units: 50,
+    dropout: 0.1
+})
+</code></pre>
             
         </textarea>
     </section>
     
+<section data-markdown>
+        <textarea data-template>
+
+<img src='img/xkcd-machine_learning_2x.png' height="550px">
+
+https://xkcd.com/1838/
+</textarea>
+</section>
+
+
 <section data-markdown>
         <textarea data-template>
 ### Step 4
@@ -896,13 +837,15 @@ Don't use model if applied on different data
 </textarea>
 </section>
 
-<section data-markdown class="fragments">
+<section data-markdown class="fragments" style="font-size: xx-large">
     <textarea data-template>
 ### How to improve
 
 * Morph predicted buttons in the direction of the mouse
 * Transfer Learning: start with a more general model and retrain
 * Federated Learning: use experience from all users without sharing data or model (transfer gradients)
+  * https://github.com/PAIR-code/federated-learning
+  * https://github.com/tensorflow/federated 
 * Silent Test Phase: measure prediction vs reality internally still collect samples
   * Evaluate with newer data without even without going into production
 * Train continuously
