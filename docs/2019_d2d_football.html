@@ -166,28 +166,111 @@
 <div class="reveal">
     <div class="slides">
 <!-- 
-Title: Einblick in ML-Verfahren mit Decision Boundaries
 
-Data Science wird heute immer mehr als Decision Science verstanden, als die Wissenschaft guter und vor allem datenbasierter Entscheidungen. 
-Moderne Machine-Learning-Verfahren sind aber längst so komplex, dass selbst Experten nicht immer gut erklären können, 
-wie genau die eingesetzten Verfahren eigentlich lernen und entscheiden ‐ man verlässt sich letztlich oft auf abstrakte Kennzahlen. 
-Es ergibt sich eine paradoxe Situation: Wir können immer bessere Entscheidungen treffen, verstehen aber gleichzeitig immer weniger, 
-wie diese zustande kommen.
 
-Die Visualisierung von Decisions Boundaries – das sind die Entscheidungsgrenzen, an denen mehrere Möglichkeiten gleichwahrscheinlich sind – 
-ermöglicht, einen Blick ins Innere der maschinellen Lernverfahren zu werfen. 
-Damit lässt sich besser verstehen, wie diese Algorithmen "die Welt sehen", welche Probleme sie gut oder auch 
-weniger gut lösen können und sogar wie sicher eine getroffene Entscheidung aus Sicht des Algorithmus eigentlich ist. 
-Und man kann ihnen quasi beim Lernen zuschauen.
 
-In diesem Vortrag werden wir einige Algorithmen auf einfache Testprobleme anwenden und 
-mit verschiedenen Methoden und insbesondere interaktiven Visualisierungen 
-die dabei von den Algorithmen gelernten Decision Boundaries untersuchen und vergleichen. 
+https://www.data2day.de/lecture.php?id=9417&source=0    
 
-Darüber hinaus betrachten wir ähnliche Konzepte aus dem Bereich des Unsupervised Learning wie etwa Voronoi-Zellen, 
-die sogar im Profisport - Fußball, Basketball (NBA) - Verwendung finden.
+Data Science in Football
+
+45 Minutes
+
+We wanted to show some state-of-the-art application of Deep Learning, Machine Learning, Data Science and Analytics in
+the domain of professional football. Since the rise of sports analytics – sabermetrics in baseball (moneyball) or
+advanced stats in basketball just to name a few – it has become obvious that data can tell us a lot about winning
+chances, better tactics and player ratings. But football has always been a hard case, there simply are too few goals –
+in the end the only relevant metric – to really make use of statistical analysis.
+
+In this talk, Stefan Kühn und Oliver Zeigermann present some of the smart or maybe not-so-smart ideas and approaches,
+and don't forget to bring your favorite club's shirt!
 
 -->
+
+<section data-markdown class="todo">
+    <textarea data-template>
+### Data Science in Football
+
+* Intro: https://www.bundesliga.com/de/statistiken/bundesliga/aktuelle-saison/alle-spieltage/spieler-statistiken
+  * Zeigen was so an Daten gesammelt und aggregiert wird
+* Wie werden die Daten gesammelt
+  * https://www.deltatre.com/ ex Impire: https://www.hna.de/sport/fussball/millionen-daten-spiel-werden-fussball-statistiken-erfasst-4483893.html
+  * SAP: https://www.faz.net/aktuell/sport/fussball/bundesliga/fussball-auf-dem-weg-zum-daten-spiel-15344638.html
+  * STATS, OPTA: https://www.datenjournalist.de/fusball-statistiken-tracking-der-spieler-per-kamera-und-per-hand/
+
+* Quellen
+  * https://www.bundesliga.com/de/statistiken/bundesliga/aktuelle-saison/alle-spieltage/spieler-statistiken  
+    * https://www.bundesliga.com/de/statistiken/bundesliga/2018-2019/alle-spieltage/spieler-statistiken
+    * https://www.bundesliga.com/de/statistiken/bundesliga/2017-2018/alle-spieltage/spieler-statistiken    
+
+* Scraping tools
+  * https://checklyhq.com/docs/puppeteer-recorder/
+  * https://github.com/GoogleChrome/puppeteer
+  * 
+* Joke <img src='img/football/football-daten.jpg'>        
+    </textarea>
+</section>
+
+<section data-markdown class="todo">
+    <textarea data-template>
+### Intro
+
+https://twitter.com/ChristianHelms/status/1148299349660708865
+    </textarea>
+</section>
+
+<section data-markdown class="todo">
+        <textarea data-template>
+
+### Beginn Data Science in Football in England
+
+Number of successful subsequent passes in Premier League
+
+<img src='img/football/IMG_20190709_185714.jpg'>
+
+* Foundation of Kick and Rush
+* Believe in corners
+
+</textarea>
+</section>
+
+
+
+<section data-markdown class="todo" style="font-size: large">
+        <textarea data-template>
+
+### Story: what makes a good striker
+
+1. Ask audience: number of goals?
+1. But, are all goals equally important?
+* Not all goals matter the same
+
+second goal is most important, you need someone who can score the important goals
+
+<img src='img/football/IMG_20190711_190837.jpg' height="200px">
+
+means "increase in points when going from 1 to 2, 2 to 3 etc."
+
+<img src='img/football/IMG_20190711_190822.jpg' height="200px">
+
+</textarea>
+</section>
+
+<section data-markdown class="todo">
+        <textarea data-template>
+### Aufbau
+            
+1. General means of data science in football
+  * Aus Numbers Game
+
+2. Embeddings für einzelne Spieler
+
+You sell one player: who is a good replacement?
+
+One player is injured: do you have a good replacement in your team?
+
+  * für Embeddings Talk weiter verwenden
+</textarea>
+</section>
 
 <section data-markdown class="todo">
     <textarea data-template>
@@ -197,8 +280,8 @@ die sogar im Profisport - Fußball, Basketball (NBA) - Verwendung finden.
     []Ich , in Summe 20 Minuten: Alle Learn Methoden durchsprechen
     []Teil I: Fußball Embeddings: wer spielt wie Messi?
         []Spieler rein, Spielposition predikten, Embedding Trainieren und vergleichen
-
 		* 
+
 Anwendung:
 
 			* 
