@@ -1,0 +1,89 @@
+<html>
+
+<head>
+    <script src='underscore.js'></script>
+    <script src='data.js'></script>
+    <script>
+        const relevantFieldsStats = [
+            'MatchMinutes',    
+
+            'FoulsAgainstOpponent',
+            
+            'CardsRed',
+            'CardsYellow',
+            'CardsYellowRed',
+
+            'PenaltiesNotSuccessful',
+            'PenaltiesSuccessful',
+
+            'ShotsAtGoalSum',
+            'ShotsAtGoalSuccessfull',
+            'GoalContribution',
+
+            'BallControlPhases',
+
+            'CrossesSum',
+            'CrossesNotSuccessfulSum',
+            'CrossesSuccessfulSum',
+
+            'PassesSuccessfulSum',
+            'PassesNotSuccessfulSum',
+            'PassesSum',
+
+            'Assists',
+
+            'FreeKicksSum',
+
+            'OwnGoals',
+
+            'TacklingGamesGroundLost',
+            'TacklingGamesLost',
+            'TacklingGamesSum',
+            'TacklingGamesAirWon',
+            'TacklingGamesGroundWon',
+            'TacklingGamesGroundSum',
+            'TacklingGamesAirLost',
+            'TacklingGamesAirSum',
+            'TacklingGamesWon',
+
+            'SubstitutionsOut',
+            'SubstitutionsIn'
+        ];
+
+        const relevantFieldsExtra = [
+            
+        'EventsPlayedCareer',
+        'EventsPlayedSeasonFull',
+
+        'SubstitutionsInSeasonFull',
+
+        'FoulsSufferedSeasonFull',
+        
+        'GoalsHead',
+        'GoalsLeftLeg',
+        'GoalsRightLeg',
+        'GoalsOther'
+        ];
+        function extractFromPlayer(player) {
+            const stats = player.PlayerStatistics[0]
+            const statsProperties = _.pick(stats, relevantFieldsStats)
+
+            const extra = stats.extra
+            const extraProperties = _.pick(stats, relevantFieldsExtra)
+
+            return _.extend({}, statsProperties, extraProperties);
+
+        }
+        // const player = offense[0];
+        // const player = midField[0];
+        const player = defense[0]; // TODO
+        const player = goalkeeper[0];
+        
+        const stats = extractFromPlayer(player);
+        console.log(stats)
+    </script>
+</head>
+
+<body></body>
+
+</html>
