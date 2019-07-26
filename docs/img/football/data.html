@@ -79,7 +79,7 @@
 
         let playerData = []
 
-        const players = [offense, midField, defense];
+        const players = [offense, midField, defense, goalkeeper];
         players.forEach(players => playerData = playerData.concat(players.map(extractFromPlayer)))
         console.log(JSON.stringify(playerData))
 
