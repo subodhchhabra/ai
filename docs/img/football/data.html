@@ -71,16 +71,30 @@
             const extra = stats.extra
             const extraProperties = _.pick(stats, relevantFieldsExtra)
 
-            return _.extend({}, statsProperties, extraProperties);
+            const name = stats.Player.Name;
+
+            return _.extend({name}, statsProperties, extraProperties);
 
         }
+
+        let playerData = []
+
+        const players = [offense, midField, defense];
+        players.forEach(players => playerData = playerData.concat(players.map(extractFromPlayer)))
+        console.log(JSON.stringify(playerData))
+
+
         // const player = offense[0];
         // const player = midField[0];
-        const player = defense[0]; // TODO
-        const player = goalkeeper[0];
+        // const player = defense[0];
+        // Goalkeeper have very different role, hard to use for embeddings
+        // const player = goalkeeper[0];
+
+        // possible prediction: what role is someone playing?
+        // embedding: which players are similar
         
-        const stats = extractFromPlayer(player);
-        console.log(stats)
+        // const stats = extractFromPlayer(player);
+        // console.log(stats)
     </script>
 </head>
 
