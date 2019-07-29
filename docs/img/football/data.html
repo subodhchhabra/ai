@@ -71,12 +71,10 @@
             const extra = stats.extra
             const extraProperties = _.pick(stats, relevantFieldsExtra)
 
-            const Name = stats.Player.Name;
 
-            const Position = stats.Player.PlayingPositionEnglish; 
+            const {Name, Height, Weight, Position} = stats.Player;
 
-            return _.extend({Name, Position}, statsProperties, extraProperties);
-
+            return _.extend({Name, Height, Weight, Position}, statsProperties, extraProperties);
         }
 
         let playerData = []

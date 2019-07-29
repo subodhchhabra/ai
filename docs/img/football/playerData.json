@@ -1,7 +1,8 @@
 [
     {
         "Name": "Wout Weghorst",
-        "Position": "offense",
+        "Height": 197,
+        "Weight": 84,
         "MatchMinutes": 2931,
         "FoulsAgainstOpponent": 35,
         "CardsRed": 0,
@@ -36,7 +37,8 @@
     },
     {
         "Name": "Robert Lewandowski",
-        "Position": "offense",
+        "Height": 184,
+        "Weight": 80,
         "MatchMinutes": 2959,
         "FoulsAgainstOpponent": 23,
         "CardsRed": 0,
@@ -71,7 +73,8 @@
     },
     {
         "Name": "Francisco Alcacer Garcia",
-        "Position": "offense",
+        "Height": 175,
+        "Weight": 72,
         "MatchMinutes": 1203,
         "FoulsAgainstOpponent": 4,
         "CardsRed": 0,
@@ -106,7 +109,8 @@
     },
     {
         "Name": "Andrej Kramaric",
-        "Position": "offense",
+        "Height": 177,
+        "Weight": 73,
         "MatchMinutes": 2403,
         "FoulsAgainstOpponent": 6,
         "CardsRed": 0,
@@ -141,7 +145,8 @@
     },
     {
         "Name": "Marco Reus",
-        "Position": "offense",
+        "Height": 180,
+        "Weight": 71,
         "MatchMinutes": 2322,
         "FoulsAgainstOpponent": 31,
         "CardsRed": 1,
@@ -176,7 +181,8 @@
     },
     {
         "Name": "Timo Werner",
-        "Position": "offense",
+        "Height": 180,
+        "Weight": 75,
         "MatchMinutes": 2524,
         "FoulsAgainstOpponent": 21,
         "CardsRed": 0,
@@ -211,7 +217,8 @@
     },
     {
         "Name": "Yussuf Yurary Poulsen",
-        "Position": "offense",
+        "Height": 193,
+        "Weight": 84,
         "MatchMinutes": 2454,
         "FoulsAgainstOpponent": 50,
         "CardsRed": 0,
@@ -246,7 +253,8 @@
     },
     {
         "Name": "Kevin Volland",
-        "Position": "offense",
+        "Height": 178,
+        "Weight": 85,
         "MatchMinutes": 2820,
         "FoulsAgainstOpponent": 41,
         "CardsRed": 0,
@@ -281,7 +289,8 @@
     },
     {
         "Name": "Max Kruse",
-        "Position": "offense",
+        "Height": 180,
+        "Weight": 76,
         "MatchMinutes": 2837,
         "FoulsAgainstOpponent": 22,
         "CardsRed": 0,
@@ -316,7 +325,8 @@
     },
     {
         "Name": "Sébastien Haller",
-        "Position": "offense",
+        "Height": 190,
+        "Weight": 82,
         "MatchMinutes": 2181,
         "FoulsAgainstOpponent": 41,
         "CardsRed": 0,
@@ -351,7 +361,8 @@
     },
     {
         "Name": "Thiago Alcantara Nascimiento",
-        "Position": "midField",
+        "Height": 174,
+        "Weight": 70,
         "MatchMinutes": 2408,
         "FoulsAgainstOpponent": 44,
         "CardsRed": 0,
@@ -386,7 +397,8 @@
     },
     {
         "Name": "Jadon Malik Sancho",
-        "Position": "midField",
+        "Height": 180,
+        "Weight": 76,
         "MatchMinutes": 2462,
         "FoulsAgainstOpponent": 5,
         "CardsRed": 0,
@@ -421,7 +433,8 @@
     },
     {
         "Name": "Axel Laurent Angel Lambert Witsel",
-        "Position": "midField",
+        "Height": 186,
+        "Weight": 81,
         "MatchMinutes": 2873,
         "FoulsAgainstOpponent": 26,
         "CardsRed": 0,
@@ -456,7 +469,8 @@
     },
     {
         "Name": "Maximilian Eggestein",
-        "Position": "midField",
+        "Height": 183,
+        "Weight": 75,
         "MatchMinutes": 3053,
         "FoulsAgainstOpponent": 34,
         "CardsRed": 0,
@@ -491,7 +505,8 @@
     },
     {
         "Name": "Ondrej Duda",
-        "Position": "midField",
+        "Height": 181,
+        "Weight": 75,
         "MatchMinutes": 2574,
         "FoulsAgainstOpponent": 70,
         "CardsRed": 0,
@@ -526,7 +541,8 @@
     },
     {
         "Name": "Filip Kostic",
-        "Position": "midField",
+        "Height": 184,
+        "Weight": 82,
         "MatchMinutes": 2961,
         "FoulsAgainstOpponent": 23,
         "CardsRed": 0,
@@ -561,7 +577,8 @@
     },
     {
         "Name": "Joshua Walter Kimmich",
-        "Position": "defense",
+        "Height": 176,
+        "Weight": 73,
         "MatchMinutes": 3060,
         "FoulsAgainstOpponent": 27,
         "CardsRed": 0,
@@ -596,7 +613,8 @@
     },
     {
         "Name": "Nico Elvedi",
-        "Position": "defense",
+        "Height": 189,
+        "Weight": 78,
         "MatchMinutes": 2625,
         "FoulsAgainstOpponent": 17,
         "CardsRed": 0,
@@ -631,7 +649,8 @@
     },
     {
         "Name": "Niklas Süle",
-        "Position": "defense",
+        "Height": 195,
+        "Weight": 97,
         "MatchMinutes": 2652,
         "FoulsAgainstOpponent": 17,
         "CardsRed": 0,
@@ -666,7 +685,8 @@
     },
     {
         "Name": "Manuel Obafemi Akanji",
-        "Position": "defense",
+        "Height": 187,
+        "Weight": 91,
         "MatchMinutes": 2205,
         "FoulsAgainstOpponent": 13,
         "CardsRed": 0,
@@ -701,7 +721,8 @@
     },
     {
         "Name": "Hans Carl Ludwig Augustinsson",
-        "Position": "defense",
+        "Height": 181,
+        "Weight": 76,
         "MatchMinutes": 3027,
         "FoulsAgainstOpponent": 43,
         "CardsRed": 0,
@@ -736,7 +757,8 @@
     },
     {
         "Name": "Kevin Trapp",
-        "Position": "goalkeeper",
+        "Height": 189,
+        "Weight": 88,
         "MatchMinutes": 2938,
         "FoulsAgainstOpponent": 0,
         "CardsRed": 0,
@@ -771,7 +793,8 @@
     },
     {
         "Name": "Roman Bürki",
-        "Position": "goalkeeper",
+        "Height": 187,
+        "Weight": 85,
         "MatchMinutes": 2880,
         "FoulsAgainstOpponent": 0,
         "CardsRed": 0,
@@ -806,7 +829,8 @@
     },
     {
         "Name": "Michael Esser",
-        "Position": "goalkeeper",
+        "Height": 198,
+        "Weight": 99,
         "MatchMinutes": 2880,
         "FoulsAgainstOpponent": 0,
         "CardsRed": 0,
@@ -841,7 +865,8 @@
     },
     {
         "Name": "Oliver Baumann",
-        "Position": "goalkeeper",
+        "Height": 187,
+        "Weight": 82,
         "MatchMinutes": 2970,
         "FoulsAgainstOpponent": 0,
         "CardsRed": 0,
@@ -876,7 +901,8 @@
     },
     {
         "Name": "Manuel Peter Neuer",
-        "Position": "goalkeeper",
+        "Height": 193,
+        "Weight": 92,
         "MatchMinutes": 2303,
         "FoulsAgainstOpponent": 1,
         "CardsRed": 0,
