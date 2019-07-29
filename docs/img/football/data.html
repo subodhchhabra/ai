@@ -71,9 +71,11 @@
             const extra = stats.extra
             const extraProperties = _.pick(stats, relevantFieldsExtra)
 
-            const name = stats.Player.Name;
+            const Name = stats.Player.Name;
 
-            return _.extend({name}, statsProperties, extraProperties);
+            const Posistion = stats.Player.PlayingPositionEnglish; 
+
+            return _.extend({Name, Posistion}, statsProperties, extraProperties);
 
         }
 

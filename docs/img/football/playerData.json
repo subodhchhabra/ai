@@ -1,6 +1,7 @@
 [
     {
-        "name": "Wout Weghorst",
+        "Name": "Wout Weghorst",
+        "Posistion": "offense",
         "MatchMinutes": 2931,
         "FoulsAgainstOpponent": 35,
         "CardsRed": 0,
@@ -34,7 +35,8 @@
         "SubstitutionsIn": 1
     },
     {
-        "name": "Robert Lewandowski",
+        "Name": "Robert Lewandowski",
+        "Posistion": "offense",
         "MatchMinutes": 2959,
         "FoulsAgainstOpponent": 23,
         "CardsRed": 0,
@@ -68,7 +70,8 @@
         "SubstitutionsIn": 0
     },
     {
-        "name": "Francisco Alcacer Garcia",
+        "Name": "Francisco Alcacer Garcia",
+        "Posistion": "offense",
         "MatchMinutes": 1203,
         "FoulsAgainstOpponent": 4,
         "CardsRed": 0,
@@ -102,7 +105,8 @@
         "SubstitutionsIn": 15
     },
     {
-        "name": "Andrej Kramaric",
+        "Name": "Andrej Kramaric",
+        "Posistion": "offense",
         "MatchMinutes": 2403,
         "FoulsAgainstOpponent": 6,
         "CardsRed": 0,
@@ -136,7 +140,8 @@
         "SubstitutionsIn": 2
     },
     {
-        "name": "Marco Reus",
+        "Name": "Marco Reus",
+        "Posistion": "offense",
         "MatchMinutes": 2322,
         "FoulsAgainstOpponent": 31,
         "CardsRed": 1,
@@ -170,7 +175,8 @@
         "SubstitutionsIn": 0
     },
     {
-        "name": "Timo Werner",
+        "Name": "Timo Werner",
+        "Posistion": "offense",
         "MatchMinutes": 2524,
         "FoulsAgainstOpponent": 21,
         "CardsRed": 0,
@@ -204,7 +210,8 @@
         "SubstitutionsIn": 1
     },
     {
-        "name": "Yussuf Yurary Poulsen",
+        "Name": "Yussuf Yurary Poulsen",
+        "Posistion": "offense",
         "MatchMinutes": 2454,
         "FoulsAgainstOpponent": 50,
         "CardsRed": 0,
@@ -238,7 +245,8 @@
         "SubstitutionsIn": 4
     },
     {
-        "name": "Kevin Volland",
+        "Name": "Kevin Volland",
+        "Posistion": "offense",
         "MatchMinutes": 2820,
         "FoulsAgainstOpponent": 41,
         "CardsRed": 0,
@@ -272,7 +280,8 @@
         "SubstitutionsIn": 2
     },
     {
-        "name": "Max Kruse",
+        "Name": "Max Kruse",
+        "Posistion": "offense",
         "MatchMinutes": 2837,
         "FoulsAgainstOpponent": 22,
         "CardsRed": 0,
@@ -306,7 +315,8 @@
         "SubstitutionsIn": 0
     },
     {
-        "name": "Sébastien Haller",
+        "Name": "Sébastien Haller",
+        "Posistion": "offense",
         "MatchMinutes": 2181,
         "FoulsAgainstOpponent": 41,
         "CardsRed": 0,
@@ -340,7 +350,8 @@
         "SubstitutionsIn": 6
     },
     {
-        "name": "Thiago Alcantara Nascimiento",
+        "Name": "Thiago Alcantara Nascimiento",
+        "Posistion": "midField",
         "MatchMinutes": 2408,
         "FoulsAgainstOpponent": 44,
         "CardsRed": 0,
@@ -374,7 +385,8 @@
         "SubstitutionsIn": 4
     },
     {
-        "name": "Jadon Malik Sancho",
+        "Name": "Jadon Malik Sancho",
+        "Posistion": "midField",
         "MatchMinutes": 2462,
         "FoulsAgainstOpponent": 5,
         "CardsRed": 0,
@@ -408,7 +420,8 @@
         "SubstitutionsIn": 8
     },
     {
-        "name": "Axel Laurent Angel Lambert Witsel",
+        "Name": "Axel Laurent Angel Lambert Witsel",
+        "Posistion": "midField",
         "MatchMinutes": 2873,
         "FoulsAgainstOpponent": 26,
         "CardsRed": 0,
@@ -442,7 +455,8 @@
         "SubstitutionsIn": 1
     },
     {
-        "name": "Maximilian Eggestein",
+        "Name": "Maximilian Eggestein",
+        "Posistion": "midField",
         "MatchMinutes": 3053,
         "FoulsAgainstOpponent": 34,
         "CardsRed": 0,
@@ -476,7 +490,8 @@
         "SubstitutionsIn": 0
     },
     {
-        "name": "Ondrej Duda",
+        "Name": "Ondrej Duda",
+        "Posistion": "midField",
         "MatchMinutes": 2574,
         "FoulsAgainstOpponent": 70,
         "CardsRed": 0,
@@ -510,7 +525,8 @@
         "SubstitutionsIn": 2
     },
     {
-        "name": "Filip Kostic",
+        "Name": "Filip Kostic",
+        "Posistion": "midField",
         "MatchMinutes": 2961,
         "FoulsAgainstOpponent": 23,
         "CardsRed": 0,
@@ -544,7 +560,8 @@
         "SubstitutionsIn": 1
     },
     {
-        "name": "Joshua Walter Kimmich",
+        "Name": "Joshua Walter Kimmich",
+        "Posistion": "defense",
         "MatchMinutes": 3060,
         "FoulsAgainstOpponent": 27,
         "CardsRed": 0,
@@ -578,7 +595,8 @@
         "SubstitutionsIn": 0
     },
     {
-        "name": "Nico Elvedi",
+        "Name": "Nico Elvedi",
+        "Posistion": "defense",
         "MatchMinutes": 2625,
         "FoulsAgainstOpponent": 17,
         "CardsRed": 0,
@@ -612,7 +630,8 @@
         "SubstitutionsIn": 0
     },
     {
-        "name": "Niklas Süle",
+        "Name": "Niklas Süle",
+        "Posistion": "defense",
         "MatchMinutes": 2652,
         "FoulsAgainstOpponent": 17,
         "CardsRed": 0,
@@ -646,7 +665,8 @@
         "SubstitutionsIn": 2
     },
     {
-        "name": "Manuel Obafemi Akanji",
+        "Name": "Manuel Obafemi Akanji",
+        "Posistion": "defense",
         "MatchMinutes": 2205,
         "FoulsAgainstOpponent": 13,
         "CardsRed": 0,
@@ -680,7 +700,8 @@
         "SubstitutionsIn": 0
     },
     {
-        "name": "Hans Carl Ludwig Augustinsson",
+        "Name": "Hans Carl Ludwig Augustinsson",
+        "Posistion": "defense",
         "MatchMinutes": 3027,
         "FoulsAgainstOpponent": 43,
         "CardsRed": 0,
@@ -714,7 +735,8 @@
         "SubstitutionsIn": 0
     },
     {
-        "name": "Kevin Trapp",
+        "Name": "Kevin Trapp",
+        "Posistion": "goalkeeper",
         "MatchMinutes": 2938,
         "FoulsAgainstOpponent": 0,
         "CardsRed": 0,
@@ -748,7 +770,8 @@
         "SubstitutionsIn": 0
     },
     {
-        "name": "Roman Bürki",
+        "Name": "Roman Bürki",
+        "Posistion": "goalkeeper",
         "MatchMinutes": 2880,
         "FoulsAgainstOpponent": 0,
         "CardsRed": 0,
@@ -782,7 +805,8 @@
         "SubstitutionsIn": 0
     },
     {
-        "name": "Michael Esser",
+        "Name": "Michael Esser",
+        "Posistion": "goalkeeper",
         "MatchMinutes": 2880,
         "FoulsAgainstOpponent": 0,
         "CardsRed": 0,
@@ -816,7 +840,8 @@
         "SubstitutionsIn": 0
     },
     {
-        "name": "Oliver Baumann",
+        "Name": "Oliver Baumann",
+        "Posistion": "goalkeeper",
         "MatchMinutes": 2970,
         "FoulsAgainstOpponent": 0,
         "CardsRed": 0,
@@ -850,7 +875,8 @@
         "SubstitutionsIn": 0
     },
     {
-        "name": "Manuel Peter Neuer",
+        "Name": "Manuel Peter Neuer",
+        "Posistion": "goalkeeper",
         "MatchMinutes": 2303,
         "FoulsAgainstOpponent": 1,
         "CardsRed": 0,
