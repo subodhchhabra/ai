@@ -1,0 +1,18 @@
+<html>
+
+<head>
+    <script src='lodash.js'></script>
+    <script src='data.js'></script>
+    <script>
+        function convertName(s) {
+            return _.toLower(`${s.FirstName} ${s.LastName}`).replace(/\s/g, '-');
+        }
+
+        const urls = scorers.map(s => `${s.PlayerId}/${convertName(s)}`)
+        console.log(JSON.stringify(urls));
+    </script>
+</head>
+
+<body></body>
+
+</html>
