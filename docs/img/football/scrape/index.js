@@ -1,4 +1,5 @@
 const puppeteer = require('puppeteer');
+const fs = require('fs');
 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
 function jsonFromURL(url) {
@@ -11,38 +12,61 @@ function jsonFromURL(url) {
     });
 }
 
-// https://www.bundesliga.com/de/spieler/aktuelle-saison/DFL-OBJ-0027BG/felix-g%C3%B6tze/statistiken
-const players = ["DFL-OBJ-0028QB/achraf-hakimi-mouh","DFL-OBJ-0028QF/goncalo-mendes-paciencia","DFL-OBJ-0002JY/steven-zuber","DFL-OBJ-0000WF/manuel-gulde","DFL-OBJ-0028QK/alassane-pléa","DFL-OBJ-0001HT/niklas-süle","DFL-OBJ-0028R0/dodi-lukebakio-ngandoli","DFL-OBJ-0002JQ/filip-kostić","DFL-OBJ-0028Q3/evan-obite-ndicka","DFL-OBJ-000078/daniel-brosinski","DFL-OBJ-0028Q7/moussa-niakhaté","DFL-OBJ-0028Q8/nicolás-iván-gonzález","DFL-OBJ-0001Z8/thiago-alcantara-nascimiento","DFL-OBJ-000191/leon-goretzka","DFL-OBJ-00018O/michael-gregoritsch","DFL-OBJ-0001YP/josip-drmić","DFL-OBJ-0000F8/felix-klaus","DFL-OBJ-00005D/oliver-fink","DFL-OBJ-00259W/guido-burgstaller","DFL-OBJ-0028PL/wout-weghorst","DFL-OBJ-0002JK/josuha-guilavogui","DFL-OBJ-0001HJ/niklas-stark","DFL-OBJ-0000W9/fabian-marco-johnson","DFL-OBJ-0000W7/vedad-ibišević","DFL-OBJ-00259D/emil-peter-forsberg","DFL-OBJ-00029T/philipp-max","DFL-OBJ-0001HB/kaan-ayhan","DFL-OBJ-000182/felipe-trevizan-martins","DFL-OBJ-0002JB/ante-rebić","DFL-OBJ-00259K/matija-nastasić","DFL-OBJ-00029N/julian-weigl","DFL-OBJ-0000YO/mitchell-elijah-weiser","DFL-OBJ-0028SE/joshua-thomas-sargent","DFL-OBJ-00008K/rouwen-hennings","DFL-OBJ-00270E/josip-brekalo","DFL-OBJ-00008H/max-kruse","DFL-OBJ-0000I9/david-olatukunbo-alaba","DFL-OBJ-0026OK/charles-mariano-aránguiz-sandoval","DFL-OBJ-0028SN/axel-laurent-angel-lambert-witsel","DFL-OBJ-0028SQ/ahmed-kutucu","DFL-OBJ-0000I0/franck-ribéry","DFL-OBJ-0000HO/willi-thomas-orban","DFL-OBJ-0027R3/gélson-da-conceição-tavares-fernandes","DFL-OBJ-0000IO/márcio-rafael-ferreira-de-souza","DFL-OBJ-002703/breel-donald-embolo","DFL-OBJ-0028BD/linton-maina","DFL-OBJ-0027PT/hans-carl-ludwig-augustinsson","DFL-OBJ-002706/florian-neuhaus","DFL-OBJ-0000IF/takashi-usami","DFL-OBJ-0000IC/arjen-robben","DFL-OBJ-0028SA/jerome-roussillon","DFL-OBJ-0000IA/thomas-müller","DFL-OBJ-0000Z2/mikael-ishak","DFL-OBJ-0028RE/davy-klaassen","DFL-OBJ-0000GQ/caiuby-francisco-da-silva","DFL-OBJ-0001ZB/admir-mehmedi","DFL-OBJ-00007W/bobby-shou-wood","DFL-OBJ-0001ZY/jean-zimmer","DFL-OBJ-0000Y8/hanno-behrens","DFL-OBJ-0002LI/nadiem-amiri","DFL-OBJ-00007T/kevin-volland","DFL-OBJ-0000XU/dominique-heintz","DFL-OBJ-0000Y4/maximilian-arnold","DFL-OBJ-0002LD/salomon-armand-magloire-kalou","DFL-OBJ-0027PA/florent-muslija","DFL-OBJ-0026QJ/alexander-hack","DFL-OBJ-0026QK/suat-serdar","DFL-OBJ-0027SM/ibrahima-konaté","DFL-OBJ-0027T1/konrad-laimer","DFL-OBJ-0026Q4/jacob-bruun-larsen","DFL-OBJ-0027S8/luka-jovic","DFL-OBJ-0027BG/felix-götze","DFL-OBJ-0027AV/ondrej-duda","DFL-OBJ-0000ZM/niclas-füllkrug","DFL-OBJ-0026PF/georg-margreitter","DFL-OBJ-0000IZ/claudio-miguel-pizarro-bosio","DFL-OBJ-0027B9/lucas-höler","DFL-OBJ-0027AY/johannes-eggestein","DFL-OBJ-0000IU/nils-petersen","DFL-OBJ-0026PM/kingsley-junior-coman","DFL-OBJ-0027RO/sébastien-haller","DFL-OBJ-0000IT/mario-gómez-garcía","DFL-OBJ-0028TQ/hendrik-weydandt","DFL-OBJ-0026Q3/christian-mate-pulisic","DFL-OBJ-0027QS/anastasios-donis","DFL-OBJ-0027AH/raphaël-adelino-josé-guerreiro","DFL-OBJ-0000ZS/matthias-lukas-ginter","DFL-OBJ-0027RA/alexander-fuchs","DFL-OBJ-0027UO/elvis-rexhbecaj","DFL-OBJ-0027UP/marco-richter","DFL-OBJ-0028GG/lucas-nicolás-alario","DFL-OBJ-0025AD/maximilian-mittelstädt","DFL-OBJ-0028FH/ishak-belfodil","DFL-OBJ-0002AD/lukas-klostermann","DFL-OBJ-0028FI/jadon-malik-sancho","DFL-OBJ-0000N2/bastian-oczipka","DFL-OBJ-0028FJ/benito-raman","DFL-OBJ-0000MN/mark-alexander-uth","DFL-OBJ-0028FP/törles-knöll","DFL-OBJ-0027TH/eduard-löwen","DFL-OBJ-0027TQ/weston-james-earl-mckennie","DFL-OBJ-0000LQ/julian-schieber","DFL-OBJ-0000LM/ermin-bičakčić","DFL-OBJ-0028EP/jonathas-cristian-de-jesus-mauricio","DFL-OBJ-0000LG/martin-harnik","DFL-OBJ-0027WL/sergio-duvan-córdova-lezama","DFL-OBJ-0002BP/alessandro-andre-schöpf","DFL-OBJ-00264N/nico-elvedi","DFL-OBJ-002650/pavel-kadeřábek","DFL-OBJ-0027WR/jean-kévin-augustin","DFL-OBJ-0027X3/amine-harit","DFL-OBJ-0000NZ/matthias-jürgen-zimmermann","DFL-OBJ-0027WS/armindo-tué-na-bangna","DFL-OBJ-00264R/markus-suttner","DFL-OBJ-0000NW/patrick-herrmann","DFL-OBJ-00264T/waldemar-anton","DFL-OBJ-0027X8/james-david-rodríguez-rubio","DFL-OBJ-0027WW/adam-zreľák","DFL-OBJ-0027GH/kai-havertz","DFL-OBJ-0000P6/daniel-didavi","DFL-OBJ-0000OR/marvin-bakalorz","DFL-OBJ-0027G1/yevhen-konoplyanka","DFL-OBJ-0026UB/miloš-veljković","DFL-OBJ-0027G4/marcel-tisserand","DFL-OBJ-0026UE/alfreð-finnbogason","DFL-OBJ-0027G6/serge-david-gnabry","DFL-OBJ-0000NB/danny-vieira-da-costa","DFL-OBJ-0026TN/martin-hinteregger","DFL-OBJ-0027W3/william-de-asevedo-furtado","DFL-OBJ-0027FC/aleksandar-dragović","DFL-OBJ-0000MW/karim-bellarabi","DFL-OBJ-0027VT/erik-thommy","DFL-OBJ-0027W5/haji-amir-wright","DFL-OBJ-0027FE/nabil-bentaleb","DFL-OBJ-0027VU/corentin-tolisso","DFL-OBJ-0026TU/andrej-kramarić","DFL-OBJ-0027W7/dan-axel-zagadou","DFL-OBJ-0027W8/denis-lemi-zakaria-lako-lado","DFL-OBJ-0000MT/lars-bender","DFL-OBJ-00021U/timo-werner","DFL-OBJ-00286W/valentino-lazaro","DFL-OBJ-0000O3/marco-reus","DFL-OBJ-00021Q/gian-luca-waldschmidt","DFL-OBJ-0000O1/mathew-allan-leckie","DFL-OBJ-0000NP/oscar-wendt","DFL-OBJ-00021P/mahmoud-dahoud","DFL-OBJ-0002B9/maximilian-philipp","DFL-OBJ-0000NF/gonzalo-castro","DFL-OBJ-0026TF/karim-onisiwo","DFL-OBJ-0002E8/miiko-martín-albornoz-inola","DFL-OBJ-0002DW/janik-haberer","DFL-OBJ-0002E2/wendell-nascimento-borges","DFL-OBJ-0001BN/kevin-kampl","DFL-OBJ-000007/mats-julian-hummels","DFL-OBJ-002FVJ/roland-sallai","DFL-OBJ-002FVK/reiss-nelson","DFL-OBJ-0001CE/marvin-ducksch","DFL-OBJ-0000R4/ádám-csaba-szalai","DFL-OBJ-002FVM/virgil-roy-misidjan","DFL-OBJ-000012/jonathan-schmid","DFL-OBJ-0000R2/nicolai-müller","DFL-OBJ-002FVO/matheus-fellipe-costa-pereira","DFL-OBJ-0028JR/renato-steffen","DFL-OBJ-00000M/robert-lewandowski","DFL-OBJ-0028JW/manuel-obafemi-akanji","DFL-OBJ-00000H/mario-götze","DFL-OBJ-00000G/lukasz-piszczek","DFL-OBJ-0000PC/mike-frantz","DFL-OBJ-0002CT/jérôme-gondorf","DFL-OBJ-002783/jean-philippe-gbamin","DFL-OBJ-002FVF/francisco-alcacer-garcia","DFL-OBJ-002666/marcel-sabitzer","DFL-OBJ-00264Y/joelinton-cassio-apolinaro-de-lira","DFL-OBJ-002FUK/marko-grujic","DFL-OBJ-002FUL/yuya-kubo","DFL-OBJ-0027XA/jonathan-alexander-de-guzman","DFL-OBJ-0000PN/marvin-plattenhardt","DFL-OBJ-0027XF/abdou-lakhad-diallo","DFL-OBJ-002FV7/jean-paul-patrick-boetius","DFL-OBJ-00265F/kevin-möhwald","DFL-OBJ-0001E6/vincenzo-grifo","DFL-OBJ-0000SE/nico-schulz","DFL-OBJ-0001E5/jonas-hofmann","DFL-OBJ-0000SD/raffael-caetano-de-araújo","DFL-OBJ-0000CF/steven-skrzybski","DFL-OBJ-0002GE/florian-niederlechner","DFL-OBJ-0001US/salif-sané","DFL-OBJ-0001V4/yannick-gerhardt","DFL-OBJ-0027K5/thomas-joseph-delaney","DFL-OBJ-002FXT/dawid-igor-kownacki","DFL-OBJ-0001EA/rani-khedira","DFL-OBJ-0000SP/lars-stindl","DFL-OBJ-0027JU/jordan-torunarigha","DFL-OBJ-000030/marco-terrazzino","DFL-OBJ-0001UP/jonathan-glao-tah","DFL-OBJ-0001V0/ihlas-bebou","DFL-OBJ-0001UO/kerem-demirbay","DFL-OBJ-000270/davie-selke","DFL-OBJ-0000SK/alfredo-morales","DFL-OBJ-002FWZ/alphonso-boyle-davies","DFL-OBJ-0002F9/federico-palacios-martínez","DFL-OBJ-0026XM/lukas-mühl","DFL-OBJ-0002F6/yussuf-yurary-poulsen","DFL-OBJ-0002F5/joshua-walter-kimmich","DFL-OBJ-002FXB/ozan-muhammed-kabak","DFL-OBJ-0000RA/yunus-malli","DFL-OBJ-0001CL/marc-oliver-kempf","DFL-OBJ-0025W7/robin-koch","DFL-OBJ-00000W/daniel-caligiuri","DFL-OBJ-0000RT/john-anthony-brooks","DFL-OBJ-002FX0/amadou-haidara","DFL-OBJ-0001DC/javier-martínez-aguinaga","DFL-OBJ-0000RQ/anthony-ujah","DFL-OBJ-0028L6/milot-rashica","DFL-OBJ-0027J8/kevin-danso","DFL-OBJ-00028K/timo-baumgartl","DFL-OBJ-00028I/yuya-osako","DFL-OBJ-0000UH/ja-cheol-koo","DFL-OBJ-0001FW/andré-hahn","DFL-OBJ-0000UE/robin-knoche","DFL-OBJ-0000DT/leonardo-jesus-loureiro-bittencourt","DFL-OBJ-0001FT/undefined-şahin","DFL-OBJ-0028OH/michael-rico-lang","DFL-OBJ-0028OL/jean-philippe-mateta","DFL-OBJ-0028OO/nordi-mukiele-mulere","DFL-OBJ-00016V/theodor-gebre-selassie","DFL-OBJ-00258B/maximilian-eggestein","DFL-OBJ-0028NU/matheus-santos-carneiro-da-cunha","DFL-OBJ-0026JS/emiliano-adrián-insúa-zapata","DFL-OBJ-0002IG/marius-wolf","DFL-OBJ-0001WU/kenan-karaman","DFL-OBJ-0001GE/alexandru-iulian-maxim","DFL-OBJ-0028NW/javairo-joreno-faustino-dilrosun","DFL-OBJ-000172/kevin-stöger","DFL-OBJ-0026ZQ/renato-júnior-luz-sanches","DFL-OBJ-0001F4/marcel-halstenberg","DFL-OBJ-0027LI/leon-patrick-bailey","DFL-OBJ-0027LJ/walace-souza-silva","DFL-OBJ-0027LM/robin-kwamina-quaison","DFL-OBJ-0028NN/joshua-benjamin-brenet","DFL-OBJ-00003X/daniel-ginczek","DFL-OBJ-0001FF/dong-won-ji","DFL-OBJ-0002HB/thorgan-ganael-francis-hazard","DFL-OBJ-000280/julian-brandt","DFL-OBJ-00003L/christoph-kramer"]
-const url_prefix = 'https://www.bundesliga.com/de/spieler/aktuelle-saison/'
-const url_suffix = '/statistiken'
 
-const player_url = `${url_prefix}${players[0]}${url_suffix}`;
-console.log(player_url);
+function playerToUrl(player) {
+    const url_prefix = 'https://www.bundesliga.com/de/spieler/aktuelle-saison/'
+    const url_suffix = '/statistiken'
 
+    const player_url = `${url_prefix}${player}${url_suffix}`;
+    return player_url;
+}
+
+const players = JSON.parse(fs.readFileSync('../players.json'))
+console.log(players.length)
+
+const waitPeriod = 5000;
+const start = 100;
+const end = 150;
 const newData = [];
 
 (async () => {
-      const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch();
     //   const browser = await puppeteer.launch({headless: false, slowMo: 1000});
     // const browser = await puppeteer.launch({ headless: false });
-     
     // const browser = await puppeteer.launch({ devtools: true });
+    for (let i = start; i < end; i++) {
+        const player = players[i];
+        const url = playerToUrl(player);
+        await getPlayer(browser, url);
+    }
+
+    await browser.close();
+    fs.writeFileSync(`newData${start}-${end}.json`, JSON.stringify(newData));
+})();
+
+async function getPlayer(browser, player_url) {
+    console.log('Getting', player_url);
     const page = await browser.newPage();
+    page.on("error", async error => {
+        console.error(error);
+    })
     page.on("response", async res => {
-        if ('xhr' !== res.request().resourceType()){
-            return ;
+        if ('xhr' !== res.request().resourceType()) {
+            return;
         }
 
         // console.log("response received");
         // console.log(res.request().resourceType());
         const url = await res.url();
         // console.log(url);
-        if (url.indexOf('Prod/masterdata') !== -1) {
-            const json = await res.text();
-            console.log(json)
+        if (url.indexOf('Prod/player') !== -1) {
+            const text = await res.text();
+            const player = JSON.parse(text);
+            const name = player.PlayerStatistics[0].Player.Name;
+            newData.push(player);
+            console.log(name)
         }
     })
     await page.goto(player_url);
-    await page.waitFor(5000);
-    await browser.close();
-})();
+    await page.waitFor(waitPeriod);
+}

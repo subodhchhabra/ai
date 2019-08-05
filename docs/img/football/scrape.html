@@ -2,14 +2,22 @@
 
 <head>
     <script src='lodash.js'></script>
-    <script src='data.js'></script>
+    <script src='fouls-am-gegner.js'></script>
+    <script src='torwart_paraden.js'></script>
+    <script src='torschuesse.js'></script>
+    <script src='kopfball-duelle-gewonnen.js'></script>
     <script>
+        const players = fouls_am_gegner.Players.concat(torwart_paraden.Players).concat(torschuesse.Players).concat(kopfball_duelle_gewonnen.Players)
+
         function convertName(s) {
             return _.toLower(`${s.FirstName} ${s.LastName}`).replace(/\s/g, '-');
         }
 
-        const urls = scorers.map(s => `${s.PlayerId}/${convertName(s)}`)
-        console.log(JSON.stringify(urls));
+        const urls = players.map(s => `${s.PlayerId}/${convertName(s)}`)
+        console.log(urls.length)
+        const uniq = [...new Set(urls)]
+        console.log(uniq.length)
+        console.log(JSON.stringify(uniq));
     </script>
 </head>
 
