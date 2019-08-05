@@ -25,8 +25,8 @@ const players = JSON.parse(fs.readFileSync('../players.json'))
 console.log(players.length)
 
 const waitPeriod = 5000;
-const start = 100;
-const end = 150;
+const start = 350;
+const end = 451;
 const newData = [];
 
 (async () => {
